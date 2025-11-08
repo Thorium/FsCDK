@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="FsCDK Documentation Diagram Specifications
+" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/img/DIAGRAM_SPECIFICATIONS.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="FsCDK Documentation Diagram Specifications
+">
+    
+    <title>FsCDK Documentation Diagram Specifications
+ | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  AWS Lambda
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-header ">
+  docs
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-header active">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/DIAGRAM_SPECIFICATIONS.html">
+    FsCDK Documentation Diagram Specifications
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  AWS Lambda
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-header ">
+  docs
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-header active">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/DIAGRAM_SPECIFICATIONS.html">
+    FsCDK Documentation Diagram Specifications
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <h1><a name="FsCDK-Documentation-Diagram-Specifications" class="anchor" href="#FsCDK-Documentation-Diagram-Specifications">FsCDK Documentation Diagram Specifications</a></h1>
+<p>This document provides detailed specifications for creating diagrams to enhance FsCDK documentation.</p>
+<h2><a name="1-Multi-Tier-Architecture-Diagram" class="anchor" href="#1-Multi-Tier-Architecture-Diagram">1. Multi-Tier Architecture Diagram</a></h2>
+<p><strong>Filename:</strong> <code>multi-tier-architecture.png</code><br />
+<strong>Dimensions:</strong> 1200px × 800px<br />
+<strong>Style:</strong> Clean, modern AWS architecture diagram with soft colors and clear labels</p>
+<h3><a name="Visual-Elements" class="anchor" href="#Visual-Elements">Visual Elements</a></h3>
+<p><strong>Layout:</strong> Top-to-bottom flow with three horizontal security zones:
+1. <strong>Public Internet Zone</strong> (top, light blue background)
+2. <strong>VPC Public Subnet Zone</strong> (middle, light green background)
+3. <strong>VPC Private Subnet Zone</strong> (bottom, light gray background)</p>
+<h3><a name="Components-to-Illustrate" class="anchor" href="#Components-to-Illustrate">Components to Illustrate</a></h3>
+<h4><a name="Layer-1-Internet-CDN-Top" class="anchor" href="#Layer-1-Internet-CDN-Top">Layer 1: Internet/CDN (Top)</a></h4>
+<ul>
+<li><strong>Internet</strong> (cloud icon at very top)</li>
+<li>↓ (arrow)</li>
+<li>
+<strong>CloudFront CDN</strong>
+<ul>
+<li>AWS CloudFront icon</li>
+<li>Label: "CloudFront Distribution"</li>
+<li>Badge: "HTTPS/TLS 1.2+"</li>
+<li>Color: Orange</li>
+</ul>
+</li>
+</ul>
+<h4><a name="Layer-2-VPC-Boundary" class="anchor" href="#Layer-2-VPC-Boundary">Layer 2: VPC Boundary</a></h4>
+<ul>
+<li>
+<strong>VPC Rectangle</strong> enclosing all remaining components
+<ul>
+<li>Border: Dashed line, dark gray</li>
+<li>Label: "VPC (10.0.0.0/16)"</li>
+<li>Badge: "2 Availability Zones"</li>
+</ul>
+</li>
+</ul>
+<h4><a name="Layer-3-Public-Subnet-within-VPC" class="anchor" href="#Layer-3-Public-Subnet-within-VPC">Layer 3: Public Subnet (within VPC)</a></h4>
+<ul>
+<li>Background: Light green</li>
+<li>
+<strong>Internet Gateway</strong>
+<ul>
+<li>AWS IGW icon</li>
+<li>Label: "Internet Gateway"</li>
+<li>Connected to CloudFront</li>
+</ul>
+</li>
+<li>
+<strong>Application Load Balancer (ALB)</strong>
+<ul>
+<li>AWS ALB icon</li>
+<li>Label: "Application Load Balancer"</li>
+<li>Badge: "Multi-AZ, HTTPS"</li>
+<li>Color: Purple</li>
+<li>Placed in 2 AZs (AZ-1, AZ-2)</li>
+</ul>
+</li>
+</ul>
+<h4><a name="Layer-4-Private-Subnet-within-VPC" class="anchor" href="#Layer-4-Private-Subnet-within-VPC">Layer 4: Private Subnet (within VPC)</a></h4>
+<ul>
+<li>Background: Light gray</li>
+<li>
+<strong>NAT Gateway</strong>
+<ul>
+<li>AWS NAT Gateway icon</li>
+<li>Label: "NAT Gateway"</li>
+<li>Color: Blue</li>
+</ul>
+</li>
+<li>
+<strong>Lambda Functions</strong>
+<ul>
+<li>AWS Lambda icon (×3 to show multiple)</li>
+<li>Label: "Lambda Functions (Node.js)"</li>
+<li>Badge: "Auto-scaling"</li>
+<li>Color: Orange</li>
+<li>Security group boundary (dotted rectangle)</li>
+</ul>
+</li>
+<li>
+<strong>RDS Database</strong>
+<ul>
+<li>AWS RDS PostgreSQL icon</li>
+<li>Label: "RDS PostgreSQL (Multi-AZ)"</li>
+<li>Badge: "Encrypted, Private"</li>
+<li>Color: Blue</li>
+<li>Security group boundary (dotted rectangle)</li>
+<li>Show read replica in AZ-2</li>
+</ul>
+</li>
+</ul>
+<h4><a name="Layer-5-Additional-Services-Side-boxes" class="anchor" href="#Layer-5-Additional-Services-Side-boxes">Layer 5: Additional Services (Side boxes)</a></h4>
+<ul>
+<li>
+<strong>S3 Bucket</strong>
+<ul>
+<li>AWS S3 icon</li>
+<li>Label: "S3 Static Assets"</li>
+<li>Badge: "Encrypted, Versioned"</li>
+<li>Color: Green</li>
+<li>Connected via dashed line to CloudFront and Lambda</li>
+</ul>
+</li>
+<li>
+<strong>Cognito</strong>
+<ul>
+<li>AWS Cognito icon</li>
+<li>Label: "Cognito User Pool"</li>
+<li>Badge: "Authentication"</li>
+<li>Color: Red</li>
+<li>Connected via dashed line to ALB</li>
+</ul>
+</li>
+</ul>
+<h3><a name="Data-Flow-Arrows" class="anchor" href="#Data-Flow-Arrows">Data Flow Arrows</a></h3>
+<ol>
+<li>
+<strong>User Request Flow</strong> (solid blue arrows):
+<ul>
+<li>Internet → CloudFront → IGW → ALB → Lambda → RDS</li>
+</ul>
+</li>
+<li>
+<strong>Static Content Flow</strong> (dashed green arrows):
+<ul>
+<li>S3 → CloudFront</li>
+</ul>
+</li>
+<li>
+<strong>Authentication Flow</strong> (dotted red arrows):
+<ul>
+<li>User → CloudFront → ALB → Cognito</li>
+</ul>
+</li>
+<li>
+<strong>Outbound Traffic</strong> (solid gray arrows):
+<ul>
+<li>Lambda → NAT Gateway → IGW → Internet</li>
+</ul>
+</li>
+</ol>
+<h3><a name="Security-Annotations" class="anchor" href="#Security-Annotations">Security Annotations</a></h3>
+<ul>
+<li>
+<strong>Security Group 1</strong> (Lambda):
+<ul>
+<li>Dotted rectangle around Lambda</li>
+<li>Label: "SG-Lambda"</li>
+<li>Rules: "Inbound from ALB only"</li>
+</ul>
+</li>
+<li>
+<strong>Security Group 2</strong> (RDS):
+<ul>
+<li>Dotted rectangle around RDS</li>
+<li>Label: "SG-Database"</li>
+<li>Rules: "Inbound from Lambda SG only"</li>
+</ul>
+</li>
+</ul>
+<h3><a name="Legend-Bottom-Right" class="anchor" href="#Legend-Bottom-Right">Legend (Bottom Right)</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+<h3><a name="Text-Labels" class="anchor" href="#Text-Labels">Text Labels</a></h3>
+<p><strong>Title:</strong> "Multi-Tier Web Application Architecture"<br />
+<strong>Subtitle:</strong> "Production-ready with security best practices and high availability"</p>
+<h3><a name="Color-Palette" class="anchor" href="#Color-Palette">Color Palette</a></h3>
+<ul>
+<li>VPC Border: #232F3E (AWS Dark)</li>
+<li>Public Subnet: #E8F5E9 (Light Green)</li>
+<li>Private Subnet: #F5F5F5 (Light Gray)</li>
+<li>Arrows: #0073BB (AWS Blue)</li>
+<li>Security Groups: #FF9900 (AWS Orange), dashed border</li>
+<li>Icons: Official AWS service colors</li>
+</ul>
+<h3><a name="Export-Format" class="anchor" href="#Export-Format">Export Format</a></h3>
+<ul>
+<li>PNG with transparent background</li>
+<li>300 DPI for documentation</li>
+<li>Optimized for web (~200KB max)</li>
+</ul>
+<hr />
+<h2><a name="2-DynamoDB-Single-Table-Design-Visual" class="anchor" href="#2-DynamoDB-Single-Table-Design-Visual">2. DynamoDB Single-Table Design Visual</a></h2>
+<p><strong>Filename:</strong> <code>dynamodb-single-table.png</code><br />
+<strong>Dimensions:</strong> 1000px × 700px<br />
+<strong>Style:</strong> Clean table visualization with color-coded entity types</p>
+<h3><a name="Visual-Structure" class="anchor" href="#Visual-Structure">Visual Structure</a></h3>
+<p><strong>Layout:</strong> Two-part visualization:
+1. <strong>Top Half:</strong> Actual table data (how it's stored)
+2. <strong>Bottom Half:</strong> Access pattern diagrams (how it's queried)</p>
+<h3><a name="Part-1-Table-Data-Visualization" class="anchor" href="#Part-1-Table-Data-Visualization">Part 1: Table Data Visualization</a></h3>
+<p><strong>Title:</strong> "Single-Table Design: Users + Orders"</p>
+<p>Create a table with these columns and styling:</p>
+<h4><a name="Table-Header" class="anchor" href="#Table-Header">Table Header</a></h4>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+<h4><a name="Table-Rows-Color-coded-by-entity-type" class="anchor" href="#Table-Rows-Color-coded-by-entity-type">Table Rows (Color-coded by entity type)</a></h4>
+<p><strong>User Entities</strong> (Light Blue Background: #E3F2FD):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+<p><strong>Order Entities</strong> (Light Green Background: #E8F5E9):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+<p><strong>User Entities</strong> (Light Blue Background):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+<p><strong>Order Entities</strong> (Light Green Background):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+<p><strong>Inverted Index (for GSI)</strong> (Light Orange Background: #FFF3E0):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+<h3><a name="Part-2-Access-Pattern-Queries" class="anchor" href="#Part-2-Access-Pattern-Queries">Part 2: Access Pattern Queries</a></h3>
+<p>Show 3 query patterns with visual arrows:</p>
+<h4><a name="Query-1-Get-User-and-All-Their-Orders" class="anchor" href="#Query-1-Get-User-and-All-Their-Orders">Query 1: Get User and All Their Orders</a></h4>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">Query</span><span class="pn">:</span> <span class="id">PK</span> <span class="o">=</span> <span class="s">&quot;USER#alice&quot;</span>
+       <span class="id">SK</span> <span class="id">begins_with</span> <span class="s">&quot;O&quot;</span>
+
+<span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Result</span><span class="pn">:</span> <span class="pn">[</span><span class="id">arrow</span> <span class="id">pointing</span> <span class="k">to</span><span class="pn">]</span>
+
+
+
+
+<span class="id">Benefits</span><span class="pn">:</span> <span class="id">Single</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">query</span><span class="pn">,</span> <span class="id">efficient</span>
+</code></pre>
+<h4><a name="Query-2-Get-Single-Order-Details" class="anchor" href="#Query-2-Get-Single-Order-Details">Query 2: Get Single Order Details</a></h4>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">Query</span><span class="pn">:</span> <span class="id">PK</span> <span class="o">=</span> <span class="s">&quot;USER#alice&quot;</span>
+       <span class="id">SK</span> <span class="o">=</span> <span class="s">&quot;ORDER#2024-001&quot;</span>
+
+<span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">Result</span><span class="pn">:</span> <span class="pn">[</span><span class="id">arrow</span> <span class="id">pointing</span> <span class="k">to</span><span class="pn">]</span>
+
+
+<span class="id">Benefits</span><span class="pn">:</span> <span class="id">O</span><span class="pn">(</span><span class="n">1</span><span class="pn">)</span> <span class="id">access</span>
+</code></pre>
+<h4><a name="Query-3-List-All-Orders-using-GSI" class="anchor" href="#Query-3-List-All-Orders-using-GSI">Query 3: List All Orders (using GSI)</a></h4>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">GSI</span> <span class="id">Query</span><span class="pn">:</span> <span class="id">PK</span> <span class="o">=</span> <span class="s">&quot;ORDER#2024-001&quot;</span>
+           
+<span onmouseout="hideTip(event, 'fs1', 4)" onmouseover="showTip(event, 'fs1', 4)" class="id">Result</span><span class="pn">:</span> <span class="pn">[</span><span class="id">arrow</span> <span class="id">pointing</span> <span class="k">to</span> <span class="id">inverted</span> <span class="id">index</span> <span class="id">rows</span><span class="pn">]</span>
+
+
+<span class="id">Benefits</span><span class="pn">:</span> <span class="id">Different</span> <span class="id">access</span> <span class="id">pattern</span><span class="pn">,</span> <span class="id">same</span> <span class="id">table</span>
+</code></pre>
+<h3><a name="Annotations" class="anchor" href="#Annotations">Annotations</a></h3>
+<p><strong>Key Concepts</strong> (callout boxes):</p>
+<ol>
+<li>
+<p><strong>Composite Keys</strong> (top right):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">PK</span><span class="pn">:</span> <span class="id">Entity</span> <span class="id">Identifier</span>
+<span class="id">SK</span><span class="pn">:</span> <span class="id">Attribute</span> <span class="o">+</span> <span class="id">Value</span>
+<span class="id">Enables</span> <span class="id">hierarchical</span> <span class="id">queries</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Benefits</strong> (bottom left):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+</li>
+<li>
+<p><strong>GSI Note</strong> (bottom right):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">GSI1</span><span class="pn">:</span> <span class="id">Inverted</span> <span class="id">PK</span><span class="o">/</span><span class="id">SK</span>
+<span class="id">Enables</span> <span class="s">&quot;reverse&quot;</span> <span class="id">lookups</span>
+<span class="id">Sparse</span> <span class="id">index</span> <span class="pn">(</span><span class="id">only</span> <span class="id">orders</span><span class="pn">)</span>
+</code></pre>
+</li>
+</ol>
+<h3><a name="Visual-Style" class="anchor" href="#Visual-Style">Visual Style</a></h3>
+<ul>
+<li>Table borders: 1px solid #BDBDBD</li>
+<li>Header: Dark gray background (#424242), white text</li>
+<li>Alternating row colors for readability</li>
+<li>Monospace font for keys (Consolas, 14px)</li>
+<li>Sans-serif font for descriptions (Arial, 12px)</li>
+<li>Arrows: Bold blue (#1976D2), 3px width</li>
+</ul>
+<h3><a name="Legend" class="anchor" href="#Legend">Legend</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"></code></pre>
+<h3><a name="Export-Format-1" class="anchor" href="#Export-Format-1">Export Format</a></h3>
+<ul>
+<li>PNG with white background</li>
+<li>300 DPI</li>
+<li>Optimized for web (~150KB max)</li>
+</ul>
+<hr />
+<h2><a name="3-Video-Embed-No-Diagram-Needed" class="anchor" href="#3-Video-Embed-No-Diagram-Needed">3. Video Embed (No Diagram Needed)</a></h2>
+<p>For the Rick Houlihan video, we'll use a standard YouTube embed with custom styling.</p>
+<p><strong>Implementation:</strong> HTML iframe in F# documentation comment block</p>
+<hr />
+<h2><a name="Design-Tools-Recommendations" class="anchor" href="#Design-Tools-Recommendations">Design Tools Recommendations</a></h2>
+<p><strong>For Multi-Tier Architecture:</strong>
+- <strong>Cloudcraft</strong> (<a href="https://cloudcraft.co)">https://cloudcraft.co)</a> - AWS-specific, clean diagrams
+- <strong>Draw.io / Diagrams.net</strong> - Free, AWS icon library available
+- <strong>Lucidchart</strong> - Professional, AWS templates
+- <strong>Excalidraw</strong> - Hand-drawn style, modern</p>
+<p><strong>For DynamoDB Table:</strong>
+- <strong>Figma</strong> - Best for table layouts with precise control
+- <strong>Google Slides</strong> - Quick table creation, export as PNG
+- <strong>HTML/CSS</strong> - Generate table programmatically, screenshot
+- <strong>Excel/Numbers</strong> - Create table, style, export as image</p>
+<p><strong>For AI Generation:</strong>
+If using AI image generation (DALL-E, Midjourney, Stable Diffusion):
+- Focus on "clean technical diagram" style
+- Use "AWS architecture diagram" as base prompt
+- Request "flat design, pastel colors, clear labels"
+- Generate at 2x resolution, downscale for web</p>
+<hr />
+<h2><a name="Accessibility-Requirements" class="anchor" href="#Accessibility-Requirements">Accessibility Requirements</a></h2>
+<p>All diagrams must include:
+- High contrast colors (WCAG AA compliant)
+- Clear, readable labels (minimum 12px font)
+- Alt text descriptions in markdown
+- SVG format when possible (scalable)
+- PNG fallback for complex diagrams</p>
+<hr />
+<p><strong>Last Updated:</strong> November 8, 2025<br />
+<strong>Maintained By:</strong> FsCDK Documentation Team</p>
+
+        <div class="fsdocs-tip" id="fs1">Multiple items<br />module Result
+
+from Microsoft.FSharp.Core<br /><br />--------------------<br />[&lt;Struct&gt;]
+type Result&lt;&#39;T,&#39;TError&gt; =
+  | Ok of ResultValue: &#39;T
+  | Error of ErrorValue: &#39;TError</div>
+<div class="fsdocs-tip" id="fs2">val query: Linq.QueryBuilder</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#FsCDK-Documentation-Diagram-Specifications">
+      FsCDK Documentation Diagram Specifications
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#1-Multi-Tier-Architecture-Diagram">
+      1. Multi-Tier Architecture Diagram
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Visual-Elements">
+      Visual Elements
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Components-to-Illustrate">
+      Components to Illustrate
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Layer-1-Internet-CDN-Top">
+      Layer 1: Internet/CDN (Top)
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Layer-2-VPC-Boundary">
+      Layer 2: VPC Boundary
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Layer-3-Public-Subnet-within-VPC">
+      Layer 3: Public Subnet (within VPC)
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Layer-4-Private-Subnet-within-VPC">
+      Layer 4: Private Subnet (within VPC)
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Layer-5-Additional-Services-Side-boxes">
+      Layer 5: Additional Services (Side boxes)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Data-Flow-Arrows">
+      Data Flow Arrows
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security-Annotations">
+      Security Annotations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Legend-Bottom-Right">
+      Legend (Bottom Right)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Text-Labels">
+      Text Labels
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Color-Palette">
+      Color Palette
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Export-Format">
+      Export Format
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#2-DynamoDB-Single-Table-Design-Visual">
+      2. DynamoDB Single-Table Design Visual
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Visual-Structure">
+      Visual Structure
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Part-1-Table-Data-Visualization">
+      Part 1: Table Data Visualization
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Table-Header">
+      Table Header
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Table-Rows-Color-coded-by-entity-type">
+      Table Rows (Color-coded by entity type)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Part-2-Access-Pattern-Queries">
+      Part 2: Access Pattern Queries
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Query-1-Get-User-and-All-Their-Orders">
+      Query 1: Get User and All Their Orders
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Query-2-Get-Single-Order-Details">
+      Query 2: Get Single Order Details
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Query-3-List-All-Orders-using-GSI">
+      Query 3: List All Orders (using GSI)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Annotations">
+      Annotations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Visual-Style">
+      Visual Style
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Legend">
+      Legend
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Export-Format-1">
+      Export Format
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#3-Video-Embed-No-Diagram-Needed">
+      3. Video Embed (No Diagram Needed)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Design-Tools-Recommendations">
+      Design Tools Recommendations
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Accessibility-Requirements">
+      Accessibility Requirements
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>
