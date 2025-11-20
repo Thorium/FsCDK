@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="FsCDK" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/index.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="FsCDK">
+    
+    <title>FsCDK | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<p>FsCDK lets you describe AWS infrastructure with a small, expressive F# DSL built on top of the AWS Cloud Development Kit (CDK). If you like computation expressions, immutability, and readable diffs, you’ll feel right at home.</p>
+<p>This page gives you a quick, human-sized tour. No buzzwords, just a couple of realistic stacks you can read end-to-end.</p>
+<p>What you’ll see below:
+- Define per-environment settings once and reuse them.
+- Declare DynamoDB tables, Lambdas, queues and topics with intent, not boilerplate.
+- Wire resources together (grants and subscriptions) without hunting for ARNs.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/System.Text.Json.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">DynamoDB</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">Lambda</span>
+
+<span class="c">// 1) Environments</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="id">devEnv</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="k">environment</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="k">account</span> <span class="s">&quot;123456789012&quot;</span>
+        <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span>
+    <span class="pn">}</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="id">prodEnv</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs8', 17)" onmouseover="showTip(event, 'fs8', 17)" class="k">environment</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs9', 18)" onmouseover="showTip(event, 'fs9', 18)" class="k">account</span> <span class="s">&quot;123456789012&quot;</span>
+        <span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span>
+    <span class="pn">}</span>
+
+<span class="c">// 2) A Dev stack you can actually work with</span>
+<span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="fn">stack</span> <span class="s">&quot;Dev&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 21)" onmouseover="showTip(event, 'fs7', 21)" class="id">devEnv</span>
+    <span onmouseout="hideTip(event, 'fs13', 22)" onmouseover="showTip(event, 'fs13', 22)" class="k">description</span> <span class="s">&quot;Developer stack for feature work&quot;</span>
+    <span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="k">tags</span> <span class="pn">[</span> <span class="s">&quot;service&quot;</span><span class="pn">,</span> <span class="s">&quot;users&quot;</span><span class="pn">;</span> <span class="s">&quot;env&quot;</span><span class="pn">,</span> <span class="s">&quot;dev&quot;</span> <span class="pn">]</span>
+
+    <span class="c">// resources</span>
+    <span onmouseout="hideTip(event, 'fs15', 24)" onmouseover="showTip(event, 'fs15', 24)" class="fn">table</span> <span class="s">&quot;users&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs16', 25)" onmouseover="showTip(event, 'fs16', 25)" class="k">partitionKey</span> <span class="s">&quot;id&quot;</span> <span onmouseout="hideTip(event, 'fs17', 26)" onmouseover="showTip(event, 'fs17', 26)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 27)" onmouseover="showTip(event, 'fs18', 27)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs20', 29)" onmouseover="showTip(event, 'fs20', 29)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 30)" onmouseover="showTip(event, 'fs21', 30)" class="id">PAY_PER_REQUEST</span>
+        <span onmouseout="hideTip(event, 'fs22', 31)" onmouseover="showTip(event, 'fs22', 31)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs23', 32)" onmouseover="showTip(event, 'fs23', 32)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 33)" onmouseover="showTip(event, 'fs24', 33)" class="id">DESTROY</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs25', 34)" onmouseover="showTip(event, 'fs25', 34)" class="fn">lambda</span> <span class="s">&quot;users-api-dev&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs26', 35)" onmouseover="showTip(event, 'fs26', 35)" class="k">handler</span> <span class="s">&quot;Users::Handler::FunctionHandler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs27', 36)" onmouseover="showTip(event, 'fs27', 36)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs28', 37)" onmouseover="showTip(event, 'fs28', 37)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 38)" onmouseover="showTip(event, 'fs29', 38)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs30', 39)" onmouseover="showTip(event, 'fs30', 39)" class="k">code</span> <span class="s">&quot;./examples/lambdas/users&quot;</span>
+        <span onmouseout="hideTip(event, 'fs31', 40)" onmouseover="showTip(event, 'fs31', 40)" class="k">memory</span> <span class="n">512</span>
+        <span onmouseout="hideTip(event, 'fs32', 41)" onmouseover="showTip(event, 'fs32', 41)" class="k">timeout</span> <span class="n">10.0</span>
+        <span onmouseout="hideTip(event, 'fs33', 42)" onmouseover="showTip(event, 'fs33', 42)" class="k">description</span> <span class="s">&quot;CRUD over the users table&quot;</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs34', 43)" onmouseover="showTip(event, 'fs34', 43)" class="fn">queue</span> <span class="s">&quot;users-dlq&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs35', 44)" onmouseover="showTip(event, 'fs35', 44)" class="k">messageRetention</span> <span class="pn">(</span><span class="n">7.0</span> <span class="o">*</span> <span class="n">24.0</span> <span class="o">*</span> <span class="n">3600.0</span><span class="pn">)</span> <span class="c">// 7 days</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs34', 45)" onmouseover="showTip(event, 'fs34', 45)" class="fn">queue</span> <span class="s">&quot;users-queue&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs36', 46)" onmouseover="showTip(event, 'fs36', 46)" class="k">deadLetterQueue</span> <span class="s">&quot;users-dlq&quot;</span> <span class="n">5</span>
+        <span onmouseout="hideTip(event, 'fs37', 47)" onmouseover="showTip(event, 'fs37', 47)" class="k">visibilityTimeout</span> <span class="n">30.0</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs38', 48)" onmouseover="showTip(event, 'fs38', 48)" class="fn">topic</span> <span class="s">&quot;user-events&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs39', 49)" onmouseover="showTip(event, 'fs39', 49)" class="k">displayName</span> <span class="s">&quot;User events&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs40', 50)" onmouseover="showTip(event, 'fs40', 50)" class="id">subscription</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs41', 51)" onmouseover="showTip(event, 'fs41', 51)" class="k">topic</span> <span class="s">&quot;user-events&quot;</span>
+        <span onmouseout="hideTip(event, 'fs42', 52)" onmouseover="showTip(event, 'fs42', 52)" class="k">queue</span> <span class="s">&quot;users-queue&quot;</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs43', 53)" onmouseover="showTip(event, 'fs43', 53)" class="id">grant</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs44', 54)" onmouseover="showTip(event, 'fs44', 54)" class="k">table</span> <span class="s">&quot;users&quot;</span>
+        <span onmouseout="hideTip(event, 'fs45', 55)" onmouseover="showTip(event, 'fs45', 55)" class="k">lambda</span> <span class="s">&quot;users-api-dev&quot;</span>
+        <span onmouseout="hideTip(event, 'fs46', 56)" onmouseover="showTip(event, 'fs46', 56)" class="k">readWriteAccess</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs12', 57)" onmouseover="showTip(event, 'fs12', 57)" class="fn">stack</span> <span class="s">&quot;Prod&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs11', 58)" onmouseover="showTip(event, 'fs11', 58)" class="id">prodEnv</span>
+    <span onmouseout="hideTip(event, 'fs47', 59)" onmouseover="showTip(event, 'fs47', 59)" class="k">terminationProtection</span> <span class="k">true</span>
+    <span onmouseout="hideTip(event, 'fs14', 60)" onmouseover="showTip(event, 'fs14', 60)" class="k">tags</span> <span class="pn">[</span> <span class="s">&quot;service&quot;</span><span class="pn">,</span> <span class="s">&quot;users&quot;</span><span class="pn">;</span> <span class="s">&quot;env&quot;</span><span class="pn">,</span> <span class="s">&quot;prod&quot;</span> <span class="pn">]</span>
+
+    <span onmouseout="hideTip(event, 'fs15', 61)" onmouseover="showTip(event, 'fs15', 61)" class="fn">table</span> <span class="s">&quot;users&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs16', 62)" onmouseover="showTip(event, 'fs16', 62)" class="k">partitionKey</span> <span class="s">&quot;id&quot;</span> <span onmouseout="hideTip(event, 'fs17', 63)" onmouseover="showTip(event, 'fs17', 63)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 64)" onmouseover="showTip(event, 'fs18', 64)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs19', 65)" onmouseover="showTip(event, 'fs19', 65)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs20', 66)" onmouseover="showTip(event, 'fs20', 66)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 67)" onmouseover="showTip(event, 'fs21', 67)" class="id">PAY_PER_REQUEST</span>
+        <span onmouseout="hideTip(event, 'fs22', 68)" onmouseover="showTip(event, 'fs22', 68)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs23', 69)" onmouseover="showTip(event, 'fs23', 69)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 70)" onmouseover="showTip(event, 'fs48', 70)" class="id">RETAIN</span>
+        <span onmouseout="hideTip(event, 'fs49', 71)" onmouseover="showTip(event, 'fs49', 71)" class="k">pointInTimeRecovery</span> <span class="k">true</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs25', 72)" onmouseover="showTip(event, 'fs25', 72)" class="fn">lambda</span> <span class="s">&quot;users-api&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs26', 73)" onmouseover="showTip(event, 'fs26', 73)" class="k">handler</span> <span class="s">&quot;Users::Handler::FunctionHandler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs27', 74)" onmouseover="showTip(event, 'fs27', 74)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs28', 75)" onmouseover="showTip(event, 'fs28', 75)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 76)" onmouseover="showTip(event, 'fs29', 76)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs30', 77)" onmouseover="showTip(event, 'fs30', 77)" class="k">code</span> <span class="s">&quot;./examples/lambdas/users&quot;</span>
+        <span onmouseout="hideTip(event, 'fs31', 78)" onmouseover="showTip(event, 'fs31', 78)" class="k">memory</span> <span class="n">1024</span>
+        <span onmouseout="hideTip(event, 'fs32', 79)" onmouseover="showTip(event, 'fs32', 79)" class="k">timeout</span> <span class="n">15.0</span>
+        <span onmouseout="hideTip(event, 'fs33', 80)" onmouseover="showTip(event, 'fs33', 80)" class="k">description</span> <span class="s">&quot;CRUD over the users table&quot;</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs43', 81)" onmouseover="showTip(event, 'fs43', 81)" class="id">grant</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs44', 82)" onmouseover="showTip(event, 'fs44', 82)" class="k">table</span> <span class="s">&quot;users&quot;</span>
+        <span onmouseout="hideTip(event, 'fs45', 83)" onmouseover="showTip(event, 'fs45', 83)" class="k">lambda</span> <span class="s">&quot;users-api&quot;</span>
+        <span onmouseout="hideTip(event, 'fs46', 84)" onmouseover="showTip(event, 'fs46', 84)" class="k">readWriteAccess</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Why-FsCDK" class="anchor" href="#Why-FsCDK">Why FsCDK?</a></h2>
+<p><img src="img/Why-FsCDK.png" alt="Why FsCDK" /></p>
+<h3><a name="FsCDK-Architecture-Overview" class="anchor" href="#FsCDK-Architecture-Overview">FsCDK Architecture Overview</a></h3>
+<p><img src="img/diagrams/fscdk-architecture.svg" alt="FsCDK Architecture Overview" /></p>
+<p><strong>Production-Safe Defaults</strong></p>
+<ul>
+<li>Implements <a href="https://theburningmonk.com/">Yan Cui's serverless best practices</a> by default</li>
+<li>Auto-creates Dead Letter Queues (DLQs) for Lambda functions</li>
+<li>Enables X-Ray tracing and structured JSON logging</li>
+<li>Sets conservative concurrency limits to prevent runaway costs</li>
+</ul>
+<p><strong>Security by Default</strong></p>
+<ul>
+<li>S3 buckets block public access and enforce SSL/TLS</li>
+<li>Lambda environment variables encrypted with KMS</li>
+<li>Security groups deny all outbound traffic by default (opt-in model)</li>
+</ul>
+<p><strong>F# Developer Experience</strong></p>
+<ul>
+<li>Type-safe computation expressions for all AWS resources</li>
+<li>Immutable configuration with compile-time checks</li>
+<li>IntelliSense support for discovering available options</li>
+<li>Readable diffs in version control</li>
+</ul>
+<h2><a name="List-of-builders-and-their-operations" class="anchor" href="#List-of-builders-and-their-operations">List of builders and their operations</a></h2>
+<p>(Most of them, this might not be complete)</p>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+</style>
+<table>
+<thead>
+<tr class="header">
+<th><p>AWS Resource</p></th>
+<th><p>Builder Name(s)</p></th>
+<th><p>Parameters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>ALB</strong></p></td>
+<td><p><code>applicationLoadBalancer</code></p></td>
+<td><p><code>constructId</code>, <code>deletionProtection</code>, <code>dropInvalidHeaderFields</code>, <code>http2Enabled</code>, <code>internetFacing</code>, <code>securityGroup</code>, <code>vpc</code>, <code>vpcSubnets</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>App Runner Service</strong></p></td>
+<td><p><code>appRunnerService</code></p></td>
+<td><p><code>accessRole</code>, <code>autoScalingConfigurationArn</code>, <code>constructId</code>, <code>healthCheckConfiguration</code>, <code>instanceConfiguration</code>, <code>instanceRole</code>, <code>sourceConfiguration</code>, <code>tag</code>, <code>tags</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>AppSync GraphQL API</strong></p></td>
+<td><p><code>appSyncGraphqlApi</code></p></td>
+<td><p><code>authorizationConfig</code>, <code>constructId</code>, <code>domainName</code>, <code>logConfig</code>, <code>name</code>, <code>schema</code>, <code>xrayEnabled</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Bastion Host</strong></p></td>
+<td><p><code>bastionHost</code></p></td>
+<td><p><code>constructId</code>, <code>instanceName</code>, <code>instanceType</code>, <code>machineImage</code>, <code>requireImdsv2</code>, <code>securityGroup</code>, <code>subnetSelection</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Bucket</strong></p></td>
+<td><p><code>bucket</code>, <code>s3Bucket</code></p></td>
+<td><p><code>autoDeleteObjects</code>, <code>blockPublicAccess</code>, <code>constructId</code>, <code>encryption</code>, <code>encryptionKey</code>, <code>enforceSSL</code>, <code>removalPolicy</code>, <code>serverAccessLogsBucket</code>, <code>serverAccessLogsPrefix</code>, <code>versioned</code>, <code>websiteErrorDocument</code>, <code>websiteIndexDocument</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>CDK App</strong></p></td>
+<td><p><code>app</code></p></td>
+<td><p><code>context</code>, <code>stackTraces</code>, <code>synthesizer</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>CloudWatch Alarm</strong></p></td>
+<td><p><code>cloudwatchAlarm</code></p></td>
+<td><p><code>comparisonOperator</code>, <code>constructId</code>, <code>description</code>, <code>dimensions</code>, <code>evaluationPeriods</code>, <code>metric</code>, <code>metricName</code>, <code>metricNamespace</code>, <code>period</code>, <code>statistic</code>, <code>threshold</code>, <code>treatMissingData</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>CloudWatch Log Group</strong></p></td>
+<td><p><code>logGroup</code></p></td>
+<td><p><code>constructId</code>, <code>encryptionKey</code>, <code>logGroupClass</code>, <code>removalPolicy</code>, <code>retention</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>CloudWatch Metric Filter</strong></p></td>
+<td><p><code>metricFilter</code></p></td>
+<td><p><code>constructId</code>, <code>defaultValue</code>, <code>filterPattern</code>, <code>logGroup</code>, <code>metricName</code>, <code>metricNamespace</code>, <code>metricValue</code>, <code>unit</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>CloudWatch Subscription Filter</strong></p></td>
+<td><p><code>subscriptionFilter</code></p></td>
+<td><p><code>constructId</code>, <code>destination</code>, <code>filterPattern</code>, <code>logGroup</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>CloudHSM Cluster</strong></p></td>
+<td><p><code>cloudHSMCluster</code></p></td>
+<td><p><code>constructId</code>, <code>hsmType</code>, <code>subnetIds</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>CloudTrail</strong></p></td>
+<td><p><code>cloudTrail</code></p></td>
+<td><p><code>cloudWatchLogsRetention</code>, <code>constructId</code>, <code>enableFileValidation</code>, <code>includeGlobalServiceEvents</code>, <code>isMultiRegionTrail</code>, <code>isOrganizationTrail</code>, <code>managementEvents</code>, <code>s3Bucket</code>, <code>sendToCloudWatchLogs</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Cors Rule</strong></p></td>
+<td><p><code>corsRule</code></p></td>
+<td><p><code>allowedHeaders</code>, <code>allowedMethods</code>, <code>allowedOrigins</code>, <code>exposedHeaders</code>, <code>id</code>, <code>maxAgeSeconds</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Custom Resource</strong></p></td>
+<td><p><code>customResource</code></p></td>
+<td><p><code>constructId</code>, <code>installLatestAwsSdk</code>, <code>logRetention</code>, <code>onCreate</code>, <code>onDelete</code>, <code>onUpdate</code>, <code>policy</code>, <code>timeout</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Database Instance</strong></p></td>
+<td><p><code>rdsInstance</code></p></td>
+<td><p><code>allocatedStorage</code>, <code>autoMinorVersionUpgrade</code>, <code>backupRetentionDays</code>, <code>constructId</code>, <code>credentials</code>, <code>databaseName</code>, <code>deleteAutomatedBackups</code>, <code>deletionProtection</code>, <code>enablePerformanceInsights</code>, <code>engine</code>, <code>iamAuthentication</code>, <code>instanceType</code>, <code>masterUsername</code>, <code>monitoringInterval</code>, <code>multiAz</code>, <code>performanceInsightRetention</code>, <code>postgresEngine</code>, <code>preferredBackupWindow</code>, <code>preferredMaintenanceWindow</code>, <code>publiclyAccessible</code>, <code>removalPolicy</code>, <code>securityGroup</code>, <code>storageEncrypted</code>, <code>storageType</code>, <code>vpc</code>, <code>vpcSubnets</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Distribution</strong></p></td>
+<td><p><code>cloudFrontDistribution</code></p></td>
+<td><p><code>additionalBehavior</code>, <code>additionalHttpBehavior</code>, <code>additionalS3Behavior</code>, <code>certificate</code>, <code>comment</code>, <code>constructId</code>, <code>defaultBehavior</code>, <code>defaultRootObject</code>, <code>domainName</code>, <code>enableIpv6</code>, <code>enableLogging</code>, <code>enabled</code>, <code>httpDefaultBehavior</code>, <code>httpVersion</code>, <code>minimumProtocolVersion</code>, <code>priceClass</code>, <code>s3DefaultBehavior</code>, <code>webAclId</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>DocumentDB Cluster</strong></p></td>
+<td><p><code>documentDBCluster</code></p></td>
+<td><p><code>backupRetentionDays</code>, <code>backupWindow</code>, <code>constructId</code>, <code>deletionProtection</code>, <code>instanceType</code>, <code>instances</code>, <code>maintenanceWindow</code>, <code>masterPassword</code>, <code>masterUsername</code>, <code>port</code>, <code>removalPolicy</code>, <code>securityGroup</code>, <code>storageEncrypted</code>, <code>tag</code>, <code>tags</code>, <code>vpc</code>, <code>vpcSubnets</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>ECR Lifecycle Rule</strong></p></td>
+<td><p>(helpers)</p></td>
+<td><p><code>deleteUntaggedAfterDays</code>, <code>keepLastNImages</code>, <code>deleteTaggedAfterDays</code>, <code>standardDevLifecycleRules</code>, <code>standardProdLifecycleRules</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>ECR Repository</strong></p></td>
+<td><p><code>ecrRepository</code></p></td>
+<td><p><code>constructId</code>, <code>emptyOnDelete</code>, <code>imageScanOnPush</code>, <code>imageTagMutability</code>, <code>lifecycleRule</code>, <code>removalPolicy</code>, <code>repositoryName</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>ECS Cluster</strong></p></td>
+<td><p><code>ecsCluster</code></p></td>
+<td><p><code>constructId</code>, <code>containerInsights</code>, <code>enableFargateCapacityProviders</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>ECS Fargate Service</strong></p></td>
+<td><p><code>ecsFargateService</code></p></td>
+<td><p><code>assignPublicIp</code>, <code>circuitBreaker</code>, <code>cluster</code>, <code>constructId</code>, <code>desiredCount</code>, <code>enableExecuteCommand</code>, <code>healthCheckGracePeriod</code>, <code>maxHealthyPercent</code>, <code>minHealthyPercent</code>, <code>securityGroups</code>, <code>serviceName</code>, <code>taskDefinition</code>, <code>vpcSubnets</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>EKS Cluster</strong></p></td>
+<td><p><code>eksCluster</code></p></td>
+<td><p><code>addFargateProfile</code>, <code>addHelmChart</code>, <code>addNodegroupCapacity</code>, <code>addServiceAccount</code>, <code>constructId</code>, <code>coreDnsComputeType</code>, <code>defaultCapacity</code>, <code>defaultCapacityInstance</code>, <code>disableClusterLogging</code>, <code>enableAlbController</code>, <code>encryptionKey</code>, <code>endpointAccess</code>, <code>mastersRole</code>, <code>setClusterLogging</code>, <code>version</code>, <code>vpc</code>, <code>vpcSubnet</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>ElastiCache Redis</strong></p></td>
+<td><p><code>elastiCacheRedis</code></p></td>
+<td><p><code>autoMinorVersionUpgrade</code>, <code>availabilityZone</code>, <code>cacheNodeType</code>, <code>constructId</code>, <code>engineVersion</code>, <code>maintenanceWindow</code>, <code>numCacheNodes</code>, <code>port</code>, <code>securityGroupId</code>, <code>securityGroupIds</code>, <code>snapshotRetentionLimit</code>, <code>snapshotWindow</code>, <code>subnetGroup</code>, <code>tag</code>, <code>tags</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Elastic Beanstalk Application</strong></p></td>
+<td><p><code>elasticBeanstalkApplication</code></p></td>
+<td><p><code>constructId</code>, <code>description</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Elastic Beanstalk Environment</strong></p></td>
+<td><p><code>elasticBeanstalkEnvironment</code></p></td>
+<td><p><code>applicationName</code>, <code>constructId</code>, <code>description</code>, <code>optionSettings</code>, <code>solutionStackName</code>, <code>tier</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Event BridgeRule</strong></p></td>
+<td><p><code>eventBridgeRule</code></p></td>
+<td><p><code>constructId</code>, <code>description</code>, <code>enabled</code>, <code>eventBus</code>, <code>eventPattern</code>, <code>ruleName</code>, <code>schedule</code>, <code>target</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Event Bus</strong></p></td>
+<td><p><code>eventBus</code></p></td>
+<td><p><code>constructId</code>, <code>customEventBusName</code>, <code>eventSourceName</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Fargate Task Definition</strong></p></td>
+<td><p><code>fargateTaskDefinition</code></p></td>
+<td><p><code>constructId</code>, <code>cpu</code>, <code>ephemeralStorageGiB</code>, <code>executionRole</code>, <code>family</code>, <code>memory</code>, <code>runtimePlatform</code>, <code>taskRole</code>, <code>volume</code>, <code>volumes</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Function</strong></p></td>
+<td><p><code>lambda</code></p></td>
+<td><p><code>architecture</code>, <code>code</code>, <code>constructId</code>, <code>deadLetterQueue</code>, <code>deadLetterQueueEnabled</code>, <code>description</code>, <code>dockerImageCode</code>, <code>environment</code>, <code>environmentEncryption</code>, <code>envVar</code>, <code>ephemeralStorageSize</code>, <code>handler</code>, <code>inlineCode</code>, <code>insightsVersion</code>, <code>layer</code>, <code>layers</code>, <code>loggingFormat</code>, <code>logGroup</code>, <code>maxEventAge</code>, <code>memory</code>, <code>reservedConcurrentExecutions</code>, <code>retryAttempts</code>, <code>role</code>, <code>runtime</code>, <code>securityGroups</code>, <code>timeout</code>, <code>tracing</code>, <code>xrayEnabled</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Gateway VPC Endpoint</strong></p></td>
+<td><p><code>gatewayVpcEndpoint</code></p></td>
+<td><p><code>constructId</code>, <code>service</code>, <code>subnets</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Grant</strong></p></td>
+<td><p><code>grant</code></p></td>
+<td><p><code>customAccess</code>, <code>lambda</code>, <code>readAccess</code>, <code>readWriteAccess</code>, <code>table</code>, <code>writeAccess</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>HTTP API (API Gateway V2)</strong></p></td>
+<td><p><code>httpApi</code></p></td>
+<td><p><code>apiName</code>, <code>constructId</code>, <code>cors</code>, <code>createDefaultStage</code>, <code>defaultIntegration</code>, <code>description</code>, <code>disableExecuteApiEndpoint</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>IAM PolicyStatement</strong></p></td>
+<td><p><code>policyStatement</code></p></td>
+<td><p>(none - uses method chaining, not CustomOperations)</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Import Source</strong></p></td>
+<td><p><code>importSource</code></p></td>
+<td><p><code>bucket</code>, <code>bucketOwner</code>, <code>compressionType</code>, <code>inputFormat</code>, <code>keyPrefix</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Interface VPC Endpoint</strong></p></td>
+<td><p><code>interfaceVpcEndpoint</code></p></td>
+<td><p><code>constructId</code>, <code>privateDnsEnabled</code>, <code>securityGroups</code>, <code>service</code>, <code>subnets</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Kinesis Stream</strong></p></td>
+<td><p><code>kinesisStream</code></p></td>
+<td><p><code>constructId</code>, <code>encryption</code>, <code>encryptionKey</code>, <code>grantRead</code>, <code>grantWrite</code>, <code>onDemand</code>, <code>retentionPeriod</code>, <code>shardCount</code>, <code>streamMode</code>, <code>streamName</code>, <code>unencrypted</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>KMS Key</strong></p></td>
+<td><p><code>kmsKey</code></p></td>
+<td><p><code>admissionPrincipal</code>, <code>alias</code>, <code>constructId</code>, <code>description</code>, <code>disableKeyRotation</code>, <code>enableKeyRotation</code>, <code>enabled</code>, <code>keySpec</code>, <code>keyUsage</code>, <code>pendingWindow</code>, <code>policy</code>, <code>removalPolicy</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>LambdaRole</strong></p></td>
+<td><p><code>lambdaRole</code></p></td>
+<td><p><code>assumeRolePrincipal</code>, <code>basicExecution</code>, <code>constructId</code>, <code>inlinePolicy</code>, <code>kmsDecrypt</code>, <code>managedPolicy</code>, <code>vpcExecution</code>, <code>xrayTracing</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Origin Access Identity</strong></p></td>
+<td><p><code>originAccessIdentity</code></p></td>
+<td><p><code>constructId</code>, <code>comment</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Queue</strong></p></td>
+<td><p><code>queue</code></p></td>
+<td><p><code>constructId</code>, <code>contentBasedDeduplication</code>, <code>deadLetterQueue</code>, <code>delaySeconds</code>, <code>fifo</code>, <code>messageRetention</code>, <code>visibilityTimeout</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>RDS Proxy</strong></p></td>
+<td><p><code>rdsProxy</code></p></td>
+<td><p><code>constructId</code>, <code>debugLogging</code>, <code>iamAuth</code>, <code>idleClientTimeout</code>, <code>initQuery</code>, <code>maxConnectionsPercent</code>, <code>maxIdleConnectionsPercent</code>, <code>proxyTarget</code>, <code>requireTLS</code>, <code>secrets</code>, <code>sessionPinningFilters</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>REST API (API Gateway V1)</strong></p></td>
+<td><p><code>restApi</code></p></td>
+<td><p><code>binaryMediaTypes</code>, <code>cloneFrom</code>, <code>constructId</code>, <code>defaultCorsPreflightOptions</code>, <code>defaultIntegration</code>, <code>defaultMethodOptions</code>, <code>deployOptions</code>, <code>description</code>, <code>disableExecuteApiEndpoint</code>, <code>endpointTypes</code>, <code>failOnWarnings</code>, <code>parameters</code>, <code>policy</code>, <code>restApiName</code>, <code>retainDeployments</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Route53 ARecord</strong></p></td>
+<td><p><code>aRecord</code></p></td>
+<td><p><code>comment</code>, <code>constructId</code>, <code>target</code>, <code>ttl</code>, <code>zone</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Route53 HostedZone</strong></p></td>
+<td><p><code>hostedZone</code></p></td>
+<td><p><code>comment</code>, <code>constructId</code>, <code>queryLogsLogGroupArn</code>, <code>vpc</code>, <code>vpcs</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Route53 PrivateHostedZone</strong></p></td>
+<td><p><code>privateHostedZone</code></p></td>
+<td><p><code>constructId</code>, <code>comment</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Route Table</strong></p></td>
+<td><p><code>routeTable</code></p></td>
+<td><p><code>constructId</code>, <code>tag</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Route</strong></p></td>
+<td><p><code>route</code></p></td>
+<td><p><code>constructId</code>, <code>destinationCidrBlock</code>, <code>destinationIpv6CidrBlock</code>, <code>gatewayId</code>, <code>natGatewayId</code>, <code>networkInterfaceId</code>, <code>routeTable</code>, <code>transitGatewayId</code>, <code>vpcPeeringConnectionId</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Secrets Manager Secret</strong></p></td>
+<td><p><code>secretsManager</code></p></td>
+<td><p><code>constructId</code>, <code>description</code>, <code>encryptionKey</code>, <code>generateSecretString</code>, <code>removalPolicy</code>, <code>replicaRegions</code>, <code>secretStringValue</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Security Group</strong></p></td>
+<td><p><code>securityGroup</code></p></td>
+<td><p><code>allowAllOutbound</code>, <code>constructId</code>, <code>description</code>, <code>disableInlineRules</code>, <code>vpc</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>SSM Parameter</strong></p></td>
+<td><p><code>ssmParameter</code></p></td>
+<td><p><code>allowedPattern</code>, <code>constructId</code>, <code>description</code>, <code>stringValue</code>, <code>tier</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>SSM Document</strong></p></td>
+<td><p><code>ssmDocument</code></p></td>
+<td><p><code>constructId</code>, <code>content</code>, <code>documentFormat</code>, <code>documentType</code>, <code>targetType</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Stack</strong></p></td>
+<td><p><code>stack</code></p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Step Functions</strong></p></td>
+<td><p><code>stepFunction</code></p></td>
+<td><p><code>comment</code>, <code>constructId</code>, <code>definition</code>, <code>logDestination</code>, <code>loggingLevel</code>, <code>logs</code>, <code>role</code>, <code>stateMachineName</code>, <code>stateMachineType</code>, <code>timeout</code>, <code>tracingEnabled</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Subscription</strong></p></td>
+<td><p><code>subscription</code></p></td>
+<td><p><code>email</code>, <code>filterPolicy</code>, <code>http</code>, <code>https</code>, <code>lambda</code>, <code>queue</code>, <code>sms</code>, <code>subscriptionDeadLetterQueue</code>, <code>topic</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Table</strong></p></td>
+<td><p><code>table</code></p></td>
+<td><p><code>billingMode</code>, <code>constructId</code>, <code>kinesisStream</code>, <code>partitionKey</code>, <code>pointInTimeRecovery</code>, <code>removalPolicy</code>, <code>sortKey</code>, <code>stream</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Token Authorizer</strong></p></td>
+<td><p><code>tokenAuthorizer</code></p></td>
+<td><p><code>assumeRole</code>, <code>constructId</code>, <code>handler</code>, <code>identitySource</code>, <code>resultsCacheTtl</code>, <code>validationRegex</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Topic</strong></p></td>
+<td><p><code>topic</code></p></td>
+<td><p><code>constructId</code>, <code>displayName</code>, <code>fifo</code>, <code>contentBasedDeduplication</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>User Pool</strong></p></td>
+<td><p><code>userPool</code></p></td>
+<td><p><code>accountRecovery</code>, <code>autoVerify</code>, <code>constructId</code>, <code>customAttribute</code>, <code>emailSettings</code>, <code>lambdaTriggers</code>, <code>mfa</code>, <code>mfaSecondFactor</code>, <code>passwordPolicy</code>, <code>removalPolicy</code>, <code>selfSignUpEnabled</code>, <code>signInAliases</code>, <code>signInWithEmail</code>, <code>signInWithEmailAndUsername</code>, <code>smsRole</code>, <code>standardAttributes</code>, <code>userPoolName</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>User Pool Client</strong></p></td>
+<td><p><code>userPoolClient</code></p></td>
+<td><p><code>authFlows</code>, <code>constructId</code>, <code>generateSecret</code>, <code>oAuth</code>, <code>preventUserExistenceErrors</code>, <code>supportedIdentityProvider</code>, <code>tokenValidities</code>, <code>userPool</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Vpc</strong></p></td>
+<td><p><code>vpc</code></p></td>
+<td><p><code>cidr</code>, <code>constructId</code>, <code>defaultInstanceTenancy</code>, <code>enableDnsHostnames</code>, <code>enableDnsSupport</code>, <code>ipAddresses</code>, <code>maxAzs</code>, <code>natGateways</code>, <code>subnet</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>VPC Link</strong></p></td>
+<td><p><code>vpcLink</code></p></td>
+<td><p><code>constructId</code>, <code>description</code>, <code>targets</code>, <code>vpcLinkName</code></p></td>
+</tr>
+<tr class="even">
+<td><p><strong>X-Ray Group</strong></p></td>
+<td><p><code>xrayGroup</code></p></td>
+<td><p><code>constructId</code>, <code>filterExpression</code>, <code>insightsEnabled</code>, <code>tag</code>, <code>tags</code></p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>X-Ray Sampling Rule</strong></p></td>
+<td><p><code>xraySamplingRule</code></p></td>
+<td><p><code>constructId</code>, <code>fixedRate</code>, <code>host</code>, <code>httpMethod</code>, <code>priority</code>, <code>reservoirSize</code>, <code>resourceArn</code>, <code>serviceName</code>, <code>serviceType</code>, <code>tag</code>, <code>tags</code>, <code>urlPath</code></p></td>
+</tr>
+</tbody>
+</table>
+
+<h2><a name="The-following-AWS-services-are-supported-by-FsCDK" class="anchor" href="#The-following-AWS-services-are-supported-by-FsCDK">The following AWS services are supported by FsCDK</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th><p>Service</p></th>
+<th><p>What it does</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><a href="alb-secrets-route53.html"><img src="img/icons/Arch_Elastic-Load-Balancing_48.png" alt="ALB" /></a></p></td>
+<td><p><a href="alb-secrets-route53.html"><strong>ALB</strong> (Application Load Balancer)</a></p></td>
+<td><p>Distributes incoming HTTP/HTTPS traffic across multiple targets 📚 <em>with curated learning resources</em></p></td>
+</tr>
+<tr class="even">
+<td><p><a href="api-gateway-v2.html"><img src="img/icons/Arch_Amazon-API-Gateway_48.png" alt="API Gateway" /></a></p></td>
+<td><p><a href="api-gateway-v2.html"><strong>API Gateway</strong> (REST &amp; HTTP API)</a></p></td>
+<td><p>Creates REST and HTTP APIs to expose your backend services 📚 <em>with curated learning resources</em></p></td>
+</tr>
+<tr class="odd">
+<td><p><img src="img/icons/Arch_AWS-App-Runner_48.png" alt="App Runner" /></p></td>
+<td><p><strong>App Runner</strong></p></td>
+<td><p>Fully managed container service for web apps and APIs</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="img/icons/Arch_AWS-AppSync_48.png" alt="AppSync" /></p></td>
+<td><p><strong>AppSync</strong></p></td>
+<td><p>Builds managed GraphQL APIs with real-time data synchronization</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="bastion-host.html"><img src="img/icons/Res_Amazon-EC2_Instance_48.png" alt="Bastion Host" /></a></p></td>
+<td><p><a href="bastion-host.html"><strong>Bastion Host</strong></a></p></td>
+<td><p>Secure SSH access to instances in private subnets 📚 <em>with curated learning resources</em></p></td>
+</tr>
+<tr class="even">
+<td><p><a href="certificate-manager.html"><img src="img/icons/Arch_AWS-Certificate-Manager_48.png" alt="Certificate Manager" /></a></p></td>
+<td><p><a href="certificate-manager.html"><strong>Certificate Manager</strong></a></p></td>
+<td><p>Manages SSL/TLS certificates for secure connections 📚 <em>with curated learning resources</em></p></td>
+</tr>
+<tr class="odd">
+<td><p><img src="img/icons/Arch_Amazon-CloudFront_48.png" alt="CloudFront" /></p></td>
+<td><p><strong>CloudFront</strong></p></td>
+<td><p>Content delivery network (CDN) for fast global content distribution</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="img/icons/Arch_AWS-CloudHSM_48.png" alt="CloudHSM" /></p></td>
+<td><p><strong>CloudHSM</strong></p></td>
+<td><p>Hardware security modules for cryptographic key storage</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="cloudwatch-dashboard.html"><img src="img/icons/Arch_Amazon-CloudWatch_48.png" alt="CloudWatch" /></a></p></td>
+<td><p><a href="cloudwatch-dashboard.html"><strong>CloudWatch</strong></a></p></td>
+<td><p>Monitors resources with alarms, log groups, metric filters, subscription filters, dashboards, and synthetic canaries</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="img/icons/Arch_Amazon-Cognito_48.png" alt="Cognito" /></p></td>
+<td><p><strong>Cognito</strong></p></td>
+<td><p>User authentication and authorization for web and mobile apps</p></td>
+</tr>
+<tr class="odd">
+<td><p><img src="img/icons/Arch_Amazon-DocumentDB_48.png" alt="DocumentDB" /></p></td>
+<td><p><strong>DocumentDB</strong></p></td>
+<td><p>MongoDB-compatible document database</p></td>
+</tr>
+<tr class="even">
+<td><p><a href="dynamodb.html"><img src="img/icons/Arch_Amazon-DynamoDB_48.png" alt="DynamoDB" /></a></p></td>
+<td><p><a href="dynamodb.html"><strong>DynamoDB</strong></a></p></td>
+<td><p>Fully managed NoSQL database for key-value and document data</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="ec2-ecs.html"><img src="img/icons/Arch_Amazon-EC2_48.png" alt="EC2" /></a></p></td>
+<td><p><a href="ec2-ecs.html"><strong>EC2</strong></a></p></td>
+<td><p>Virtual servers in the cloud</p></td>
+</tr>
+<tr class="even">
+<td><p><a href="ecr-repository.html"><img src="img/icons/Arch_Amazon-Elastic-Container-Registry_48.png" alt="ECR" /></a></p></td>
+<td><p><a href="ecr-repository.html"><strong>ECR</strong> (Elastic Container Registry)</a></p></td>
+<td><p>Stores and manages Docker container images</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="ec2-ecs.html"><img src="img/icons/Arch_Amazon-Elastic-Container-Service_48.png" alt="ECS" /></a></p></td>
+<td><p><a href="ec2-ecs.html"><strong>ECS</strong> (Elastic Container Service)</a></p></td>
+<td><p>Runs containerized applications using Docker and Fargate</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="img/icons/Arch_Amazon-EFS_48.png" alt="EFS" /></p></td>
+<td><p><strong>EFS</strong> (Elastic File System)</p></td>
+<td><p>Scalable file storage for Lambda and EC2</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="eks-kubernetes.html"><img src="img/icons/Arch_Amazon-Elastic-Kubernetes-Service_48.png" alt="EKS" /></a></p></td>
+<td><p><a href="eks-kubernetes.html"><strong>EKS</strong> (Elastic Kubernetes Service)</a></p></td>
+<td><p>Managed Kubernetes clusters for container orchestration</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="img/icons/Arch_Amazon-ElastiCache_48.png" alt="ElastiCache" /></p></td>
+<td><p><strong>ElastiCache</strong></p></td>
+<td><p>In-memory caching with Redis and Memcached</p></td>
+</tr>
+<tr class="odd">
+<td><p><img src="img/icons/Arch_AWS-Elastic-Beanstalk_48.png" alt="Elastic Beanstalk" /></p></td>
+<td><p><strong>Elastic Beanstalk</strong></p></td>
+<td><p>Platform-as-a-Service (PaaS) for deploying applications</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="img/icons/Res_Amazon-EC2_Elastic-IP-Address_48.png" alt="Elastic IP" /></p></td>
+<td><p><strong>Elastic IP</strong></p></td>
+<td><p>Static IPv4 addresses for dynamic cloud computing</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="eventbridge.html"><img src="img/icons/Arch_Amazon-EventBridge_48.png" alt="EventBridge" /></a></p></td>
+<td><p><a href="eventbridge.html"><strong>EventBridge</strong></a></p></td>
+<td><p>Event bus for connecting applications with event-driven architecture</p></td>
+</tr>
+<tr class="even">
+<td><p><a href="iam-best-practices.html"><img src="img/icons/Arch_AWS-Identity-and-Access-Management_48.png" alt="IAM" /></a></p></td>
+<td><p><a href="iam-best-practices.html"><strong>IAM</strong> (Identity &amp; Access Management)</a></p></td>
+<td><p>Controls access to AWS resources with users, roles, and policies</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="kinesis-streams.html"><img src="img/icons/Arch_Amazon-Kinesis_48.png" alt="Kinesis" /></a></p></td>
+<td><p><a href="kinesis-streams.html"><strong>Kinesis</strong></a></p></td>
+<td><p>Real-time data streaming for analytics and processing</p></td>
+</tr>
+<tr class="even">
+<td><p><a href="kms-encryption.html"><img src="img/icons/Arch_AWS-Key-Management-Service_48.png" alt="KMS" /></a></p></td>
+<td><p><a href="kms-encryption.html"><strong>KMS</strong> (Key Management Service)</a></p></td>
+<td><p>Creates and manages encryption keys</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="lambda-quickstart.html"><img src="img/icons/Arch_AWS-Lambda_48.png" alt="Lambda" /></a></p></td>
+<td><p><a href="lambda-quickstart.html"><strong>Lambda</strong></a></p></td>
+<td><p>Runs code without managing servers (serverless functions) with cost optimization controls</p></td>
+</tr>
+<tr class="even">
+<td><p><a href="network-load-balancer.html"><img src="img/icons/Arch_Elastic-Load-Balancing_48.png" alt="NLB" /></a></p></td>
+<td><p><a href="network-load-balancer.html"><strong>Network Load Balancer</strong></a></p></td>
+<td><p>High-performance TCP/UDP load balancer</p></td>
+</tr>
+<tr class="odd">
+<td><p><img src="img/icons/Arch_AWS-IAM-Identity-Center_48.png" alt="OIDC Provider" /></p></td>
+<td><p><strong>OIDC Provider</strong></p></td>
+<td><p>Federated identity using OpenID Connect</p></td>
+</tr>
+<tr class="even">
+<td><p><a href="rds-database.html"><img src="img/icons/Arch_Amazon-RDS_48.png" alt="RDS" /></a></p></td>
+<td><p><a href="rds-database.html"><strong>RDS</strong> (Relational Database Service)</a></p></td>
+<td><p>Managed relational databases (PostgreSQL, MySQL, etc.)</p></td>
+</tr>
+<tr class="odd">
+<td><p><img src="img/icons/Arch_Amazon-Route-53_48.png" alt="Route53" /></p></td>
+<td><p><strong>Route53</strong></p></td>
+<td><p>DNS service and domain name management</p></td>
+</tr>
+<tr class="even">
+<td><p><a href="s3-quickstart.html"><img src="img/icons/Arch_Amazon-Simple-Storage-Service_48.png" alt="S3" /></a></p></td>
+<td><p><a href="s3-quickstart.html"><strong>S3</strong> (Simple Storage Service)</a></p></td>
+<td><p>Object storage for files, backups, and static websites</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="alb-secrets-route53.html"><img src="img/icons/Arch_AWS-Secrets-Manager_48.png" alt="Secrets Manager" /></a></p></td>
+<td><p><a href="alb-secrets-route53.html"><strong>Secrets Manager</strong></a></p></td>
+<td><p>Securely stores and rotates database credentials and API keys</p></td>
+</tr>
+<tr class="even">
+<td><p><a href="sns-sqs-messaging.html"><img src="img/icons/Arch_Amazon-Simple-Notification-Service_48.png" alt="SNS" /></a></p></td>
+<td><p><a href="sns-sqs-messaging.html"><strong>SNS</strong> (Simple Notification Service)</a></p></td>
+<td><p>Pub/sub messaging for sending notifications</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="sns-sqs-messaging.html"><img src="img/icons/Arch_Amazon-Simple-Queue-Service_48.png" alt="SQS" /></a></p></td>
+<td><p><a href="sns-sqs-messaging.html"><strong>SQS</strong> (Simple Queue Service)</a></p></td>
+<td><p>Message queuing for decoupling and scaling applications</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="img/icons/Arch_AWS-Systems-Manager_48.png" alt="SSM" /></p></td>
+<td><p><strong>SSM</strong> (Systems Manager)</p></td>
+<td><p>Manages parameters and documents for configuration</p></td>
+</tr>
+<tr class="odd">
+<td><p><a href="step-functions.html"><img src="img/icons/Arch_AWS-Step-Functions_48.png" alt="Step Functions" /></a></p></td>
+<td><p><a href="step-functions.html"><strong>Step Functions</strong></a></p></td>
+<td><p>Coordinates multiple AWS services into serverless workflows</p></td>
+</tr>
+<tr class="even">
+<td><p><img src="img/icons/Arch_Amazon-Virtual-Private-Cloud_48.png" alt="VPC" /></p></td>
+<td><p><strong>VPC</strong> (Virtual Private Cloud)</p></td>
+<td><p>Isolated network environment for your AWS resources</p></td>
+</tr>
+<tr class="odd">
+<td><p><img src="img/icons/Arch_AWS-X-Ray_48.png" alt="X-Ray" /></p></td>
+<td><p><strong>X-Ray</strong></p></td>
+<td><p>Distributed tracing for debugging and analyzing microservices</p></td>
+</tr>
+</tbody>
+</table>
+
+<h4><a name="Additional-Capabilities" class="anchor" href="#Additional-Capabilities">Additional Capabilities</a></h4>
+<ul>
+<li><strong>Custom Resources</strong> - Define custom CloudFormation resources</li>
+<li><strong>Lambda Powertools</strong> - Production-ready observability for Lambda functions</li>
+<li><strong>Grants</strong> - Simplified IAM permission management between resources</li>
+<li><strong>Tags</strong> - Resource tagging across stacks</li>
+<li><strong>Production-Safe Defaults</strong> - Security and reliability best practices built-in</li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.DynamoDB</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs7">val devEnv: Environment</div>
+<div class="fsdocs-tip" id="fs8">val environment: EnvironmentBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Environment configuration.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">custom operation: account (string)
+
+Calls EnvironmentBuilder.Account<br /><em>&lt;summary&gt;Sets the AWS account ID for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;accountId&quot;&gt;The AWS account ID.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">custom operation: region (string)
+
+Calls EnvironmentBuilder.Region<br /><em>&lt;summary&gt;Sets the AWS region for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;regionName&quot;&gt;The AWS region name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">val prodEnv: Environment</div>
+<div class="fsdocs-tip" id="fs12">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">custom operation: description (string)
+
+Calls StackBuilder.Description<br /><em>&lt;summary&gt;Sets the stack description.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;desc&quot;&gt;A description of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     description &quot;My application stack&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: tags ((string * string) seq)
+
+Calls StackBuilder.Tags<br /><em>&lt;summary&gt;Adds tags to the stack.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;tags&quot;&gt;A list of key-value pairs for tagging.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     tags [ &quot;Environment&quot;, &quot;Production&quot;; &quot;Team&quot;, &quot;DevOps&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">val table: name: string -&gt; TableBuilder<br /><em>&lt;summary&gt;Creates a DynamoDB table configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The table name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: partitionKey (string) (AttributeType)
+
+Calls TableBuilder.PartitionKey<br /><em>&lt;summary&gt;Sets the partition key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the partition key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">[&lt;Struct&gt;]
+type AttributeType =
+  | BINARY = 0
+  | NUMBER = 1
+  | STRING = 2</div>
+<div class="fsdocs-tip" id="fs18">field AttributeType.STRING: AttributeType = 2</div>
+<div class="fsdocs-tip" id="fs19">custom operation: billingMode (BillingMode)
+
+Calls TableBuilder.BillingMode<br /><em>&lt;summary&gt;Sets the billing mode for the table.&lt;/summary&gt;<br />&lt;param name=&quot;mode&quot;&gt;The billing mode (PAY_PER_REQUEST or PROVISIONED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">[&lt;Struct&gt;]
+type BillingMode =
+  | PAY_PER_REQUEST = 0
+  | PROVISIONED = 1</div>
+<div class="fsdocs-tip" id="fs21">field BillingMode.PAY_PER_REQUEST: BillingMode = 0</div>
+<div class="fsdocs-tip" id="fs22">custom operation: removalPolicy (RemovalPolicy)
+
+Calls TableBuilder.RemovalPolicy<br /><em>&lt;summary&gt;Sets the removal policy for the table.&lt;/summary&gt;<br />&lt;param name=&quot;policy&quot;&gt;The removal policy (DESTROY, RETAIN, or SNAPSHOT).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     removalPolicy RemovalPolicy.DESTROY
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">[&lt;Struct&gt;]
+type RemovalPolicy =
+  | DESTROY = 0
+  | RETAIN = 1
+  | SNAPSHOT = 2
+  | RETAIN_ON_UPDATE_OR_DELETE = 3</div>
+<div class="fsdocs-tip" id="fs24">field RemovalPolicy.DESTROY: RemovalPolicy = 0</div>
+<div class="fsdocs-tip" id="fs25">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs29">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs30">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">custom operation: memory (int)
+
+Calls FunctionBuilder.Memory<br /><em>&lt;summary&gt;Sets the memory allocation for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;mb&quot;&gt;The memory size in megabytes.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     memory 512
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs32">custom operation: timeout (float)
+
+Calls FunctionBuilder.Timeout<br /><em>&lt;summary&gt;Sets the timeout for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">custom operation: description (string)
+
+Calls FunctionBuilder.Description<br /><em>&lt;summary&gt;Sets the description for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;desc&quot;&gt;The function description.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     description &quot;Processes incoming orders&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">val queue: name: string -&gt; QueueBuilder<br /><em>&lt;summary&gt;Creates an SQS queue configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The queue name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     visibilityTimeout 30.0
+     fifo true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">custom operation: messageRetention (float)
+
+Calls QueueBuilder.MessageRetention<br /><em>&lt;summary&gt;Sets the message retention period for the queue.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The retention period in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     messageRetention 345600.0 // 4 days
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs36">custom operation: deadLetterQueue (string) (int)
+
+Calls QueueBuilder.DeadLetterQueue<br /><em>&lt;summary&gt;Configures a dead-letter queue for the queue.&lt;/summary&gt;<br />&lt;param name=&quot;dlqName&quot;&gt;The name of the dead-letter queue.&lt;/param&gt;<br />&lt;param name=&quot;maxReceiveCount&quot;&gt;Maximum receives before sending to DLQ.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     deadLetterQueue &quot;MyDLQ&quot; 3
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs37">custom operation: visibilityTimeout (float)
+
+Calls QueueBuilder.VisibilityTimeout<br /><em>&lt;summary&gt;Sets the visibility timeout for messages in the queue.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The visibility timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     visibilityTimeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">val topic: name: string -&gt; TopicBuilder<br /><em>&lt;summary&gt;Creates an SNS topic configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The topic name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ topic &quot;MyTopic&quot; {
+     displayName &quot;My Notification Topic&quot;
+     fifo true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">custom operation: displayName (string)
+
+Calls TopicBuilder.DisplayName<br /><em>&lt;summary&gt;Sets the display name for the topic.&lt;/summary&gt;<br />&lt;param name=&quot;displayName&quot;&gt;The display name shown in email notifications.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ topic &quot;MyTopic&quot; {
+     displayName &quot;Order Notifications&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">val subscription: SubscriptionBuilder<br /><em>&lt;summary&gt;Creates an SNS subscription configuration.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ subscription {
+     topic &quot;MyTopic&quot;
+     lambda &quot;MyFunction&quot;
+     filterPolicy [ &quot;eventType&quot;, &quot;order&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs41">custom operation: topic (string)
+
+Calls SubscriptionBuilder.Topic<br /><em>&lt;summary&gt;Sets the SNS topic for the subscription.&lt;/summary&gt;<br />&lt;param name=&quot;topicConstructId&quot;&gt;The construct ID of the topic.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ subscription {
+     topic &quot;MyTopic&quot;
+     lambda &quot;MyFunction&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">custom operation: queue (string)
+
+Calls SubscriptionBuilder.Queue<br /><em>&lt;summary&gt;Subscribes an SQS queue to the topic.&lt;/summary&gt;<br />&lt;param name=&quot;queueConstructId&quot;&gt;The construct ID of the queue.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ subscription {
+     topic &quot;MyTopic&quot;
+     queue &quot;MyQueue&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs43">val grant: GrantBuilder<br /><em>&lt;summary&gt;Creates a grant configuration for permissions between resources.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ grant {
+     table &quot;MyTable&quot;
+     lambda &quot;MyFunction&quot;
+     readWriteAccess
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs44">custom operation: table (string)
+
+Calls GrantBuilder.Table<br /><em>&lt;summary&gt;Sets the DynamoDB table for the grant.&lt;/summary&gt;<br />&lt;param name=&quot;tableConstructId&quot;&gt;The construct ID of the table.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ grant {
+     table &quot;MyTable&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs45">custom operation: lambda (string)
+
+Calls GrantBuilder.Lambda<br /><em>&lt;summary&gt;Sets the Lambda function for the grant.&lt;/summary&gt;<br />&lt;param name=&quot;lambdaConstructId&quot;&gt;The construct ID of the Lambda function.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ grant {
+     lambda &quot;MyFunction&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">custom operation: readWriteAccess
+
+Calls GrantBuilder.ReadWriteAccess<br /><em>&lt;summary&gt;Grants read and write access to the table.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ grant {
+     table &quot;MyTable&quot;
+     lambda &quot;MyFunction&quot;
+     readWriteAccess
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">custom operation: terminationProtection (bool)
+
+Calls StackBuilder.TerminationProtection<br /><em>&lt;summary&gt;Enables or disables termination protection for the stack.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether termination protection is enabled.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     terminationProtection true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs48">field RemovalPolicy.RETAIN: RemovalPolicy = 1</div>
+<div class="fsdocs-tip" id="fs49">custom operation: pointInTimeRecovery (bool)
+
+Calls TableBuilder.PointInTimeRecovery<br /><em>&lt;summary&gt;Enables or disables point-in-time recovery.&lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether point-in-time recovery is enabled.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     pointInTimeRecovery true
+ }
+ &lt;/code&gt;</em></div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Why-FsCDK">
+      Why FsCDK?
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#FsCDK-Architecture-Overview">
+      FsCDK Architecture Overview
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#List-of-builders-and-their-operations">
+      List of builders and their operations
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#The-following-AWS-services-are-supported-by-FsCDK">
+      The following AWS services are supported by FsCDK
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Additional-Capabilities">
+      Additional Capabilities
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

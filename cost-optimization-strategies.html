@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="AWS Cost Optimization Strategies" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="AWS Cost Optimization Strategies">
+    
+    <title>AWS Cost Optimization Strategies | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header active">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header active">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="AWS-Cost-Optimization-Strategies" class="anchor" href="#AWS-Cost-Optimization-Strategies">AWS Cost Optimization Strategies</a></h1>
+<p><img src="img/AWS-cost-optimization.png" alt="AWS Cost Optimization" /></p>
+<p>Price estimates based on November 2025.
+Practical approaches to reduce infrastructure costs while maintaining security and functionality.</p>
+<h2><a name="Environment-Specific-Cost-Tiers" class="anchor" href="#Environment-Specific-Cost-Tiers">Environment-Specific Cost Tiers</a></h2>
+<p>Different environments have different cost/security trade-offs:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">EC2</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">RDS</span>
+</code></pre>
+<h2><a name="Cost-Optimized-Development-Environment" class="anchor" href="#Cost-Optimized-Development-Environment">Cost-Optimized Development Environment</a></h2>
+<p>Minimize costs in development without sacrificing functionality:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">stack</span> <span class="s">&quot;DevEnvironment&quot;</span> <span class="pn">{</span>
+    <span class="c">// Minimal VPC - single NAT or no NAT</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="fn">devVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="fn">vpc</span> <span class="s">&quot;DevVPC&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="k">natGateways</span> <span class="n">0</span> <span class="c">// Save ~$32/month - use public subnets</span>
+            <span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Smallest viable database</span>
+    <span onmouseout="hideTip(event, 'fs13', 18)" onmouseover="showTip(event, 'fs13', 18)" class="fn">rdsInstance</span> <span class="s">&quot;DevDatabase&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 19)" onmouseover="showTip(event, 'fs14', 19)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs8', 20)" onmouseover="showTip(event, 'fs8', 20)" class="fn">devVpc</span>
+        <span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="k">postgresEngine</span> <span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="rt">PostgresEngineVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 23)" onmouseover="showTip(event, 'fs17', 23)" class="id">VER_15</span>
+        <span onmouseout="hideTip(event, 'fs18', 24)" onmouseover="showTip(event, 'fs18', 24)" class="k">instanceType</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 25)" onmouseover="showTip(event, 'fs19', 25)" class="rt">InstanceType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 26)" onmouseover="showTip(event, 'fs20', 26)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs21', 27)" onmouseover="showTip(event, 'fs21', 27)" class="en">InstanceClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 28)" onmouseover="showTip(event, 'fs22', 28)" class="id">BURSTABLE3</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs23', 29)" onmouseover="showTip(event, 'fs23', 29)" class="en">InstanceSize</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 30)" onmouseover="showTip(event, 'fs24', 30)" class="id">MICRO</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs25', 31)" onmouseover="showTip(event, 'fs25', 31)" class="k">databaseName</span> <span class="s">&quot;devdb&quot;</span>
+
+        <span class="c">// Cost optimizations</span>
+        <span onmouseout="hideTip(event, 'fs26', 32)" onmouseover="showTip(event, 'fs26', 32)" class="k">multiAz</span> <span class="k">false</span> <span class="c">// Save ~50% on RDS</span>
+        <span onmouseout="hideTip(event, 'fs27', 33)" onmouseover="showTip(event, 'fs27', 33)" class="k">backupRetentionDays</span> <span class="n">1.0</span> <span class="c">// Minimal backups</span>
+        <span onmouseout="hideTip(event, 'fs28', 34)" onmouseover="showTip(event, 'fs28', 34)" class="k">deletionProtection</span> <span class="k">false</span> <span class="c">// Easy to tear down</span>
+
+        <span class="c">// Security maintained</span>
+        <span onmouseout="hideTip(event, 'fs29', 35)" onmouseover="showTip(event, 'fs29', 35)" class="k">storageEncrypted</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs30', 36)" onmouseover="showTip(event, 'fs30', 36)" class="k">publiclyAccessible</span> <span class="k">false</span>
+
+        <span onmouseout="hideTip(event, 'fs31', 37)" onmouseover="showTip(event, 'fs31', 37)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs32', 38)" onmouseover="showTip(event, 'fs32', 38)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 39)" onmouseover="showTip(event, 'fs33', 39)" class="id">DESTROY</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p><strong>Dev Environment Cost: ~$20-40/month</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Service</p></th>
+<th><p>Cost Saving</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>NAT Gateway removal</p></td>
+<td><p>-$32/month</p></td>
+</tr>
+<tr class="even">
+<td><p>Single-AZ RDS</p></td>
+<td><p>-$25/month</p></td>
+</tr>
+<tr class="odd">
+<td><p>No VPC Endpoints</p></td>
+<td><p>-$7-15/month</p></td>
+</tr>
+<tr class="even">
+<td><p>Smaller instances</p></td>
+<td><p>-$20-50/month</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2><a name="Production-Environment-with-Security" class="anchor" href="#Production-Environment-with-Security">Production Environment with Security</a></h2>
+<p>Full security and high availability:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 40)" onmouseover="showTip(event, 'fs7', 40)" class="fn">stack</span> <span class="s">&quot;ProductionEnvironment&quot;</span> <span class="pn">{</span>
+    <span class="c">// Production VPC with HA</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 41)" onmouseover="showTip(event, 'fs34', 41)" class="fn">prodVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 42)" onmouseover="showTip(event, 'fs9', 42)" class="fn">vpc</span> <span class="s">&quot;ProdVPC&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 43)" onmouseover="showTip(event, 'fs10', 43)" class="k">maxAzs</span> <span class="n">3</span>
+            <span onmouseout="hideTip(event, 'fs11', 44)" onmouseover="showTip(event, 'fs11', 44)" class="k">natGateways</span> <span class="n">2</span> <span class="c">// HA: one per AZ</span>
+            <span onmouseout="hideTip(event, 'fs12', 45)" onmouseover="showTip(event, 'fs12', 45)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Production-grade database</span>
+    <span onmouseout="hideTip(event, 'fs13', 46)" onmouseover="showTip(event, 'fs13', 46)" class="fn">rdsInstance</span> <span class="s">&quot;ProdDatabase&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 47)" onmouseover="showTip(event, 'fs14', 47)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs34', 48)" onmouseover="showTip(event, 'fs34', 48)" class="fn">prodVpc</span>
+        <span onmouseout="hideTip(event, 'fs15', 49)" onmouseover="showTip(event, 'fs15', 49)" class="k">postgresEngine</span> <span onmouseout="hideTip(event, 'fs16', 50)" onmouseover="showTip(event, 'fs16', 50)" class="rt">PostgresEngineVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 51)" onmouseover="showTip(event, 'fs17', 51)" class="id">VER_15</span>
+        <span onmouseout="hideTip(event, 'fs18', 52)" onmouseover="showTip(event, 'fs18', 52)" class="k">instanceType</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 53)" onmouseover="showTip(event, 'fs19', 53)" class="rt">InstanceType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 54)" onmouseover="showTip(event, 'fs20', 54)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs21', 55)" onmouseover="showTip(event, 'fs21', 55)" class="en">InstanceClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 56)" onmouseover="showTip(event, 'fs35', 56)" class="id">MEMORY5</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs23', 57)" onmouseover="showTip(event, 'fs23', 57)" class="en">InstanceSize</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 58)" onmouseover="showTip(event, 'fs36', 58)" class="id">LARGE</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs25', 59)" onmouseover="showTip(event, 'fs25', 59)" class="k">databaseName</span> <span class="s">&quot;proddb&quot;</span>
+
+        <span class="c">// High availability</span>
+        <span onmouseout="hideTip(event, 'fs26', 60)" onmouseover="showTip(event, 'fs26', 60)" class="k">multiAz</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs27', 61)" onmouseover="showTip(event, 'fs27', 61)" class="k">backupRetentionDays</span> <span class="n">30.0</span>
+
+        <span class="c">// Production security</span>
+        <span onmouseout="hideTip(event, 'fs28', 62)" onmouseover="showTip(event, 'fs28', 62)" class="k">deletionProtection</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs29', 63)" onmouseover="showTip(event, 'fs29', 63)" class="k">storageEncrypted</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs37', 64)" onmouseover="showTip(event, 'fs37', 64)" class="k">enablePerformanceInsights</span> <span class="k">true</span>
+
+        <span onmouseout="hideTip(event, 'fs31', 65)" onmouseover="showTip(event, 'fs31', 65)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs32', 66)" onmouseover="showTip(event, 'fs32', 66)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 67)" onmouseover="showTip(event, 'fs38', 67)" class="id">RETAIN</span>
+    <span class="pn">}</span>
+
+    <span class="c">// VPC Endpoints for private AWS service access</span>
+    <span onmouseout="hideTip(event, 'fs39', 68)" onmouseover="showTip(event, 'fs39', 68)" class="fn">gatewayVpcEndpoint</span> <span class="s">&quot;S3Endpoint&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs40', 69)" onmouseover="showTip(event, 'fs40', 69)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs34', 70)" onmouseover="showTip(event, 'fs34', 70)" class="fn">prodVpc</span>
+        <span onmouseout="hideTip(event, 'fs41', 71)" onmouseover="showTip(event, 'fs41', 71)" class="k">service</span> <span onmouseout="hideTip(event, 'fs42', 72)" onmouseover="showTip(event, 'fs42', 72)" class="rt">GatewayVpcEndpointAwsService</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 73)" onmouseover="showTip(event, 'fs43', 73)" class="id">S3</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs39', 74)" onmouseover="showTip(event, 'fs39', 74)" class="fn">gatewayVpcEndpoint</span> <span class="s">&quot;DynamoDBEndpoint&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs40', 75)" onmouseover="showTip(event, 'fs40', 75)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs34', 76)" onmouseover="showTip(event, 'fs34', 76)" class="fn">prodVpc</span>
+        <span onmouseout="hideTip(event, 'fs41', 77)" onmouseover="showTip(event, 'fs41', 77)" class="k">service</span> <span onmouseout="hideTip(event, 'fs42', 78)" onmouseover="showTip(event, 'fs42', 78)" class="rt">GatewayVpcEndpointAwsService</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 79)" onmouseover="showTip(event, 'fs44', 79)" class="id">DYNAMODB</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p><strong>Production Environment Cost: ~$150-300/month</strong></p>
+<h2><a name="NAT-Gateway-Cost-Analysis" class="anchor" href="#NAT-Gateway-Cost-Analysis">NAT Gateway Cost Analysis</a></h2>
+<p>NAT Gateways are often the largest single cost in VPC architecture:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Configuration</p></th>
+<th><p>Monthly Cost</p></th>
+<th><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>No NAT</strong></p></td>
+<td><p>$0</p></td>
+<td><p>Dev with public subnets</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>1 NAT Gateway</strong></p></td>
+<td><p>~$32 + data</p></td>
+<td><p>Dev/staging</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>2 NAT Gateways</strong></p></td>
+<td><p>~$64 + data</p></td>
+<td><p>Production (HA)</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>3+ NAT Gateways</strong></p></td>
+<td><p>~$96+</p></td>
+<td><p>Enterprise (multi-AZ HA)</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="Alternatives-to-NAT-Gateways" class="anchor" href="#Alternatives-to-NAT-Gateways">Alternatives to NAT Gateways</a></h3>
+<ol>
+<li><strong>Public Subnets</strong> - Lambda/ECS in public subnets (dev only)</li>
+<li><strong>VPC Endpoints</strong> - Private AWS service access without NAT</li>
+<li><strong>AWS PrivateLink</strong> - Direct service connections</li>
+<li><strong>Proxy Instances</strong> - Single t4g.nano as NAT (~$3/month)</li>
+</ol>
+<h2><a name="VPC-Endpoint-Cost-Trade-offs" class="anchor" href="#VPC-Endpoint-Cost-Trade-offs">VPC Endpoint Cost Trade-offs</a></h2>
+<p>Interface VPC Endpoints cost ~$7-15/month each but save NAT data transfer costs:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Scenario</p></th>
+<th><p>NAT Cost</p></th>
+<th><p>VPC Endpoint</p></th>
+<th><p>Recommendation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Low traffic</strong></p></td>
+<td><p><span class="math">\(32 +\)</span>5/mo data</p></td>
+<td><p>$7/mo fixed</p></td>
+<td><p>Use NAT</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Medium traffic</strong></p></td>
+<td><p><span class="math">\(32 +\)</span>20/mo data</p></td>
+<td><p>$7/mo fixed</p></td>
+<td><p>Use VPC Endpoint</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>High traffic</strong></p></td>
+<td><p><span class="math">\(32 +\)</span>50+/mo data</p></td>
+<td><p>$7/mo fixed</p></td>
+<td><p>Use VPC Endpoint</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>Gateway endpoints (S3, DynamoDB) are <strong>free</strong> - always use them!</p>
+<h2><a name="Database-Cost-Optimization" class="anchor" href="#Database-Cost-Optimization">Database Cost Optimization</a></h2>
+<h3><a name="Instance-Class-Selection" class="anchor" href="#Instance-Class-Selection">Instance Class Selection</a></h3>
+<table>
+<thead>
+<tr class="header">
+<th><p>Workload</p></th>
+<th><p>Dev</p></th>
+<th><p>Staging</p></th>
+<th><p>Production</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Low traffic</strong></p></td>
+<td><p>t3.micro (<span class="math">\(13) | t3.small (\)</span>25)</p></td>
+<td><p>t3.medium ($50)</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p><strong>Medium traffic</strong></p></td>
+<td><p>t3.small (<span class="math">\(25) | t3.medium (\)</span>50)</p></td>
+<td><p>m5.large ($140)</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p><strong>High traffic</strong></p></td>
+<td><p>t3.medium (<span class="math">\(50) | m5.large (\)</span>140)</p></td>
+<td><p>r5.xlarge ($370)</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="Multi-AZ-Cost-Impact" class="anchor" href="#Multi-AZ-Cost-Impact">Multi-AZ Cost Impact</a></h3>
+<ul>
+<li>Single-AZ: Base cost</li>
+<li>Multi-AZ: <strong>~2x base cost</strong> (full instance standby)</li>
+<li>Use Multi-AZ only in production or staging</li>
+</ul>
+<h3><a name="Storage-Optimization" class="anchor" href="#Storage-Optimization">Storage Optimization</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Define VPC first</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 80)" onmouseover="showTip(event, 'fs45', 80)" class="id">myVpc</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs9', 81)" onmouseover="showTip(event, 'fs9', 81)" class="fn">vpc</span> <span class="s">&quot;MyVpc&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 82)" onmouseover="showTip(event, 'fs10', 82)" class="k">maxAzs</span> <span class="n">2</span>
+        <span onmouseout="hideTip(event, 'fs11', 83)" onmouseover="showTip(event, 'fs11', 83)" class="k">natGateways</span> <span class="n">1</span>
+        <span onmouseout="hideTip(event, 'fs12', 84)" onmouseover="showTip(event, 'fs12', 84)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+    <span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs13', 85)" onmouseover="showTip(event, 'fs13', 85)" class="fn">rdsInstance</span> <span class="s">&quot;OptimizedDB&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs14', 86)" onmouseover="showTip(event, 'fs14', 86)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs45', 87)" onmouseover="showTip(event, 'fs45', 87)" class="id">myVpc</span>
+    <span onmouseout="hideTip(event, 'fs15', 88)" onmouseover="showTip(event, 'fs15', 88)" class="k">postgresEngine</span>
+
+    <span class="c">// Auto-scaling storage - pay only for what you use</span>
+    <span onmouseout="hideTip(event, 'fs46', 89)" onmouseover="showTip(event, 'fs46', 89)" class="k">allocatedStorage</span> <span class="n">20</span> <span class="c">// Start small (20GB minimum)</span>
+    <span onmouseout="hideTip(event, 'fs47', 90)" onmouseover="showTip(event, 'fs47', 90)" class="k">maxAllocatedStorage</span> <span class="n">100</span> <span class="c">// Auto-scale up to 100GB as needed</span>
+
+    <span onmouseout="hideTip(event, 'fs48', 91)" onmouseover="showTip(event, 'fs48', 91)" class="k">storageType</span> <span onmouseout="hideTip(event, 'fs49', 92)" onmouseover="showTip(event, 'fs49', 92)" class="en">StorageType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 93)" onmouseover="showTip(event, 'fs50', 93)" class="id">GP3</span> <span class="c">// 20% cheaper than gp2, better performance</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Lambda-Cost-Optimization" class="anchor" href="#Lambda-Cost-Optimization">Lambda Cost Optimization</a></h2>
+<p>Lambda with FsCDK production defaults is already optimized:</p>
+<ul>
+<li><strong>Reserved concurrency (10)</strong> - Prevents runaway costs</li>
+<li><strong>Memory/CPU ratio</strong> - Use Lambda Power Tuning to find optimal memory</li>
+<li><strong>Ephemeral storage</strong> - 512 MB default (free tier)</li>
+</ul>
+<h3><a name="Lambda-Cost-Formula" class="anchor" href="#Lambda-Cost-Formula">Lambda Cost Formula</a></h3>
+<p><strong>Cost = (Duration × Memory × Price) + Requests</strong></p>
+<ul>
+<li>Duration: Optimize cold starts and execution time</li>
+<li>Memory: More memory = more CPU = potentially faster (cheaper)</li>
+<li>Use Lambda Power Tuning to find sweet spot</li>
+</ul>
+<h2><a name="Load-Balancer-Cost-Analysis" class="anchor" href="#Load-Balancer-Cost-Analysis">Load Balancer Cost Analysis</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th><p>Load Balancer</p></th>
+<th><p>Monthly Cost</p></th>
+<th><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Application LB</strong></p></td>
+<td><p>~$16 + data</p></td>
+<td><p>HTTP/HTTPS traffic</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Network LB</strong></p></td>
+<td><p>~$16 + data</p></td>
+<td><p>TCP/UDP traffic</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Classic LB</strong></p></td>
+<td><p>~$18 + data</p></td>
+<td><p>Legacy (avoid)</p></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Anti-pattern:</strong> Using both ALB + NLB together (~$32/month)
+<strong>Better:</strong> Use ALB only for HTTP/HTTPS APIs</p>
+<h2><a name="CloudWatch-Costs" class="anchor" href="#CloudWatch-Costs">CloudWatch Costs</a></h2>
+<p>Reduce monitoring costs without losing visibility:</p>
+<h3><a name="Log-Retention-Strategy" class="anchor" href="#Log-Retention-Strategy">Log Retention Strategy</a></h3>
+<table>
+<thead>
+<tr class="header">
+<th><p>Environment</p></th>
+<th><p>Retention</p></th>
+<th><p>Cost Impact</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Dev</strong></p></td>
+<td><p>3-7 days</p></td>
+<td><p>Minimal</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Staging</strong></p></td>
+<td><p>14 days</p></td>
+<td><p>Low</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Production</strong></p></td>
+<td><p>30-90 days</p></td>
+<td><p>Moderate</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="Custom-Metrics" class="anchor" href="#Custom-Metrics">Custom Metrics</a></h3>
+<ul>
+<li>CloudWatch custom metrics: <strong>$0.30/metric/month</strong></li>
+<li>Reduce cardinality: Use dimensions wisely</li>
+<li>Consider metric sampling for high-volume metrics</li>
+</ul>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// ❌ BAD: Too many unique metric combinations</span>
+<span class="id">CloudWatch</span><span class="pn">.</span><span class="id">putMetric</span><span class="pn">(</span><span class="s">&quot;RequestCount&quot;</span><span class="pn">,</span> <span class="id">dimensions</span> <span class="o">=</span> <span class="pn">[</span>
+    <span class="pn">(</span><span class="s">&quot;UserId&quot;</span><span class="pn">,</span> <span class="id">userId</span><span class="pn">)</span><span class="pn">,</span>        <span class="c">// High cardinality!</span>
+    <span class="pn">(</span><span class="s">&quot;Endpoint&quot;</span><span class="pn">,</span> <span class="id">endpoint</span><span class="pn">)</span><span class="pn">,</span>
+    <span class="pn">(</span><span class="s">&quot;Method&quot;</span><span class="pn">,</span> <span class="id">method</span><span class="pn">)</span>
+<span class="pn">]</span><span class="pn">)</span>
+
+<span class="c">// ✅ GOOD: Aggregate high-cardinality dimensions</span>
+<span class="id">CloudWatch</span><span class="pn">.</span><span class="id">putMetric</span><span class="pn">(</span><span class="s">&quot;RequestCount&quot;</span><span class="pn">,</span> <span class="id">dimensions</span> <span class="o">=</span> <span class="pn">[</span>
+    <span class="pn">(</span><span class="s">&quot;Endpoint&quot;</span><span class="pn">,</span> <span class="id">endpoint</span><span class="pn">)</span><span class="pn">,</span>    <span class="c">// Low cardinality</span>
+    <span class="pn">(</span><span class="s">&quot;Method&quot;</span><span class="pn">,</span> <span class="id">method</span><span class="pn">)</span>
+<span class="pn">]</span><span class="pn">)</span>
+</code></pre>
+<h2><a name="S3-Cost-Optimization" class="anchor" href="#S3-Cost-Optimization">S3 Cost Optimization</a></h2>
+<h3><a name="Storage-Classes" class="anchor" href="#Storage-Classes">Storage Classes</a></h3>
+<table>
+<thead>
+<tr class="header">
+<th><p>Class</p></th>
+<th><p>Cost/GB</p></th>
+<th><p>Retrieval</p></th>
+<th><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Standard</strong></p></td>
+<td><p>$0.023</p></td>
+<td><p>Free</p></td>
+<td><p>Active data</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>IA</strong></p></td>
+<td><p><span class="math">\(0.0125 |\)</span>0.01/GB</p></td>
+<td><blockquote>
+<p>30 days old</p>
+</blockquote></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Glacier</strong></p></td>
+<td><p>$0.004</p></td>
+<td><p>Hours</p></td>
+<td><blockquote>
+<p>90 days old</p>
+</blockquote></td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="Lifecycle-Policies" class="anchor" href="#Lifecycle-Policies">Lifecycle Policies</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs51', 94)" onmouseover="showTip(event, 'fs51', 94)" class="fn">bucket</span> <span class="s">&quot;CostOptimizedStorage&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs52', 95)" onmouseover="showTip(event, 'fs52', 95)" class="k">versioned</span> <span class="k">true</span>
+
+    <span class="k">yield</span>
+        <span onmouseout="hideTip(event, 'fs53', 96)" onmouseover="showTip(event, 'fs53', 96)" class="k">lifecycleRule</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs54', 97)" onmouseover="showTip(event, 'fs54', 97)" class="k">enabled</span> <span class="k">true</span>
+
+            <span onmouseout="hideTip(event, 'fs55', 98)" onmouseover="showTip(event, 'fs55', 98)" class="k">transitions</span>
+                <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs56', 99)" onmouseover="showTip(event, 'fs56', 99)" class="k">transition</span> <span class="pn">{</span>
+                      <span onmouseout="hideTip(event, 'fs57', 100)" onmouseover="showTip(event, 'fs57', 100)" class="k">storageClass</span> <span onmouseout="hideTip(event, 'fs2', 101)" onmouseover="showTip(event, 'fs2', 101)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 102)" onmouseover="showTip(event, 'fs3', 102)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 103)" onmouseover="showTip(event, 'fs4', 103)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 104)" onmouseover="showTip(event, 'fs58', 104)" class="id">S3</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 105)" onmouseover="showTip(event, 'fs59', 105)" class="rt">StorageClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 106)" onmouseover="showTip(event, 'fs60', 106)" class="id">INFREQUENT_ACCESS</span>
+                      <span onmouseout="hideTip(event, 'fs61', 107)" onmouseover="showTip(event, 'fs61', 107)" class="k">transitionAfter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs62', 108)" onmouseover="showTip(event, 'fs62', 108)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 109)" onmouseover="showTip(event, 'fs63', 109)" class="id">Days</span> <span class="n">30.0</span><span class="pn">)</span>
+                  <span class="pn">}</span>
+                  <span onmouseout="hideTip(event, 'fs56', 110)" onmouseover="showTip(event, 'fs56', 110)" class="k">transition</span> <span class="pn">{</span>
+                      <span onmouseout="hideTip(event, 'fs57', 111)" onmouseover="showTip(event, 'fs57', 111)" class="k">storageClass</span> <span onmouseout="hideTip(event, 'fs2', 112)" onmouseover="showTip(event, 'fs2', 112)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 113)" onmouseover="showTip(event, 'fs3', 113)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 114)" onmouseover="showTip(event, 'fs4', 114)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 115)" onmouseover="showTip(event, 'fs58', 115)" class="id">S3</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 116)" onmouseover="showTip(event, 'fs59', 116)" class="rt">StorageClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 117)" onmouseover="showTip(event, 'fs64', 117)" class="id">GLACIER</span>
+                      <span onmouseout="hideTip(event, 'fs61', 118)" onmouseover="showTip(event, 'fs61', 118)" class="k">transitionAfter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs62', 119)" onmouseover="showTip(event, 'fs62', 119)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 120)" onmouseover="showTip(event, 'fs63', 120)" class="id">Days</span> <span class="n">90.0</span><span class="pn">)</span>
+                  <span class="pn">}</span> <span class="pn">]</span>
+
+            <span class="c">// Delete old versions</span>
+            <span onmouseout="hideTip(event, 'fs65', 121)" onmouseover="showTip(event, 'fs65', 121)" class="k">noncurrentVersionExpiration</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs62', 122)" onmouseover="showTip(event, 'fs62', 122)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 123)" onmouseover="showTip(event, 'fs63', 123)" class="id">Days</span> <span class="n">90.0</span><span class="pn">)</span>
+        <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Environment-Cost-Comparison" class="anchor" href="#Environment-Cost-Comparison">Environment Cost Comparison</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th><p>Component</p></th>
+<th><p>Dev</p></th>
+<th><p>Staging</p></th>
+<th><p>Production</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>VPC (NAT)</strong></p></td>
+<td><p><span class="math">\(0 |\)</span>32</p></td>
+<td><p>$64</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p><strong>RDS</strong></p></td>
+<td><p><span class="math">\(13 |\)</span>50</p></td>
+<td><p>$100+</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Lambda</strong></p></td>
+<td><p><span class="math">\(5 |\)</span>20</p></td>
+<td><p>$50+</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p><strong>ALB</strong></p></td>
+<td><p><span class="math">\(16 |\)</span>16</p></td>
+<td><p>$16</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p><strong>S3</strong></p></td>
+<td><p><span class="math">\(2 |\)</span>5</p></td>
+<td><p>$20+</p></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><p><strong>CloudWatch</strong></p></td>
+<td><p><span class="math">\(2 |\)</span>5</p></td>
+<td><p>$20+</p></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Total</strong></p></td>
+<td><p>*<em>~$40*</em> | <strong>~$130</strong></p></td>
+<td><p>*<em>~$270+*</em></p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h2><a name="Cost-Monitoring-and-Alerts" class="anchor" href="#Cost-Monitoring-and-Alerts">Cost Monitoring and Alerts</a></h2>
+<p>Set up budget alerts for each environment:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Use AWS Budgets to alert on cost thresholds</span>
+<span class="c">// Dev: Alert at $50</span>
+<span class="c">// Staging: Alert at $150  </span>
+<span class="c">// Production: Alert at $300</span>
+</code></pre>
+<h2><a name="Quick-Wins-Checklist" class="anchor" href="#Quick-Wins-Checklist">Quick Wins Checklist</a></h2>
+<ul>
+<li>[ ] Remove NAT Gateways in dev environments</li>
+<li>[ ] Use t3.micro RDS instances in dev</li>
+<li>[ ] Single-AZ RDS in non-production</li>
+<li>[ ] S3 lifecycle policies on all buckets</li>
+<li>[ ] Gateway VPC Endpoints for S3/DynamoDB</li>
+<li>[ ] 7-day log retention in dev</li>
+<li>[ ] Reserved concurrency on all Lambdas</li>
+<li>[ ] Delete unused resources regularly</li>
+</ul>
+<h2><a name="Common-Cost-Anti-Patterns" class="anchor" href="#Common-Cost-Anti-Patterns">Common Cost Anti-Patterns</a></h2>
+<h3><a name="Don-t-Do-This" class="anchor" href="#Don-t-Do-This">❌ Don't Do This</a></h3>
+<ol>
+<li><strong>Multi-AZ in dev</strong> - Wastes 50% on RDS</li>
+<li><strong>NAT Gateways everywhere</strong> - $32/month per gateway</li>
+<li><strong>Interface VPC Endpoints without traffic analysis</strong> - $7-15/month each</li>
+<li><strong>Oversized RDS instances</strong> - Start small, scale up</li>
+<li><strong>Infinite log retention</strong> - Use 7-30 days max</li>
+<li><strong>No resource tagging</strong> - Can't track costs per project</li>
+<li><strong>Unused load balancers</strong> - $16/month even with no traffic</li>
+</ol>
+<h3><a name="Do-This-Instead" class="anchor" href="#Do-This-Instead">✅ Do This Instead</a></h3>
+<ol>
+<li>Single-AZ in dev/staging</li>
+<li>Public subnets in dev (no NAT)</li>
+<li>Gateway endpoints (free) first, interface endpoints only if high traffic</li>
+<li>Right-size instances based on CloudWatch metrics</li>
+<li>7-day retention in dev, 30 days in prod</li>
+<li>Tag everything: <code>Environment</code>, <code>Project</code>, <code>Owner</code></li>
+<li>Delete unused resources in automated cleanup</li>
+</ol>
+<h2><a name="Monthly-Cost-Targets" class="anchor" href="#Monthly-Cost-Targets">Monthly Cost Targets</a></h2>
+<p>Set realistic cost targets per environment:</p>
+<ul>
+<li><strong>Sandbox/POC:</strong> $10-30/month</li>
+<li><strong>Development:</strong> $40-80/month</li>
+<li><strong>Staging:</strong> $100-150/month</li>
+<li><strong>Production (small):</strong> $200-500/month</li>
+<li><strong>Production (medium):</strong> $500-2000/month</li>
+</ul>
+<h2><a name="Resources" class="anchor" href="#Resources">Resources</a></h2>
+<ul>
+<li><a href="https://aws.amazon.com/pricing/cost-optimization/">AWS Cost Optimization</a></li>
+<li><a href="https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html">AWS Well-Architected Cost Optimization Pillar</a></li>
+<li><a href="https://aws.amazon.com/aws-cost-management/aws-cost-explorer/">AWS Cost Explorer</a></li>
+<li><a href="https://aws.amazon.com/premiumsupport/technology/trusted-advisor/">AWS Trusted Advisor</a></li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.EC2</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.RDS</div>
+<div class="fsdocs-tip" id="fs7">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">val devVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs9">val vpc: name: string -&gt; VpcBuilder<br /><em>&lt;summary&gt;Creates a VPC configuration with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The VPC name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ vpc &quot;MyVpc&quot; {
+     maxAzs 2
+     natGateways 1
+     cidr &quot;10.0.0.0/16&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">custom operation: maxAzs (int)
+
+Calls VpcBuilder.MaxAzs<br /><em>&lt;summary&gt;Sets the maximum number of Availability Zones to use.&lt;/summary&gt;<br />&lt;param name=&quot;maxAzs&quot;&gt;The maximum number of AZs (default: 2 for HA).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: natGateways (int)
+
+Calls VpcBuilder.NatGateways<br /><em>&lt;summary&gt;Sets the number of NAT Gateways.&lt;/summary&gt;<br />&lt;param name=&quot;natGateways&quot;&gt;The number of NAT gateways (default: 1 for cost optimization).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">custom operation: cidr (string)
+
+Calls VpcBuilder.Cidr<br /><em>&lt;summary&gt;Sets the CIDR block for the VPC.&lt;/summary&gt;<br />&lt;param name=&quot;cidr&quot;&gt;The CIDR block (e.g., &quot;10.0.0.0/16&quot;).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val rdsInstance: name: string -&gt; DatabaseInstanceBuilder<br /><em>&lt;summary&gt;Creates an RDS Database Instance with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The database instance name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ rdsInstance &quot;MyDatabase&quot; {
+     vpc myVpc
+     postgresEngine PostgresEngineVersion.VER_15
+     instanceType (InstanceType.Of(InstanceClass.BURSTABLE3, InstanceSize.SMALL))
+     multiAz true
+     backupRetentionDays 7.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: vpc (VpcSpec)
+
+Calls DatabaseInstanceBuilder.Vpc<br /><em>&lt;summary&gt;Sets the VPC.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: postgresEngine (PostgresEngineVersion option)
+
+Calls DatabaseInstanceBuilder.PostgresEngine<br /><em>&lt;summary&gt;Sets PostgreSQL as the database engine with specific version.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">type PostgresEngineVersion =
+  inherit DeputyBase
+  static member Of: postgresFullVersion: string * postgresMajorVersion: string * ?postgresFeatures: IPostgresEngineFeatures -&gt; PostgresEngineVersion
+  member PostgresFullVersion: string
+  member PostgresMajorVersion: string
+  static member VER_10: PostgresEngineVersion
+  static member VER_10_1: PostgresEngineVersion
+  static member VER_10_10: PostgresEngineVersion
+  static member VER_10_11: PostgresEngineVersion
+  static member VER_10_12: PostgresEngineVersion
+  static member VER_10_13: PostgresEngineVersion
+  ...</div>
+<div class="fsdocs-tip" id="fs17">property PostgresEngineVersion.VER_15: PostgresEngineVersion with get</div>
+<div class="fsdocs-tip" id="fs18">custom operation: instanceType (InstanceType)
+
+Calls DatabaseInstanceBuilder.InstanceType<br /><em>&lt;summary&gt;Sets the instance type.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">[&lt;Struct&gt;]
+type InstanceType =
+  | PROVISIONED = 0
+  | SERVERLESS_V2 = 1</div>
+<div class="fsdocs-tip" id="fs20">InstanceType.Of(instanceClass: InstanceClass, instanceSize: InstanceSize) : InstanceType</div>
+<div class="fsdocs-tip" id="fs21">[&lt;Struct&gt;]
+type InstanceClass =
+  | STANDARD3 = 0
+  | M3 = 1
+  | STANDARD4 = 2
+  | M4 = 3
+  | STANDARD5 = 4
+  | M5 = 5
+  | STANDARD5_NVME_DRIVE = 6
+  | M5D = 7
+  | STANDARD5_AMD = 8
+  | M5A = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs22">field InstanceClass.BURSTABLE3: InstanceClass = 172</div>
+<div class="fsdocs-tip" id="fs23">[&lt;Struct&gt;]
+type InstanceSize =
+  | NANO = 0
+  | MICRO = 1
+  | SMALL = 2
+  | MEDIUM = 3
+  | LARGE = 4
+  | XLARGE = 5
+  | XLARGE2 = 6
+  | XLARGE3 = 7
+  | XLARGE4 = 8
+  | XLARGE6 = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs24">field InstanceSize.MICRO: InstanceSize = 1</div>
+<div class="fsdocs-tip" id="fs25">custom operation: databaseName (string)
+
+Calls DatabaseInstanceBuilder.DatabaseName<br /><em>&lt;summary&gt;Sets the database name.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">custom operation: multiAz (bool)
+
+Calls DatabaseInstanceBuilder.MultiAz<br /><em>&lt;summary&gt;Enables or disables Multi-AZ deployment.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">custom operation: backupRetentionDays (float)
+
+Calls DatabaseInstanceBuilder.BackupRetentionDays<br /><em>&lt;summary&gt;Sets the backup retention period in days.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">custom operation: deletionProtection (bool)
+
+Calls DatabaseInstanceBuilder.DeletionProtection<br /><em>&lt;summary&gt;Enables or disables deletion protection.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs29">custom operation: storageEncrypted (bool)
+
+Calls DatabaseInstanceBuilder.StorageEncrypted<br /><em>&lt;summary&gt;Enables storage encryption.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">custom operation: publiclyAccessible (bool)
+
+Calls DatabaseInstanceBuilder.PubliclyAccessible<br /><em>&lt;summary&gt;Sets whether the database is publicly accessible.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">custom operation: removalPolicy (RemovalPolicy)
+
+Calls DatabaseInstanceBuilder.RemovalPolicy<br /><em>&lt;summary&gt;Sets the removal policy.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs32">[&lt;Struct&gt;]
+type RemovalPolicy =
+  | DESTROY = 0
+  | RETAIN = 1
+  | SNAPSHOT = 2
+  | RETAIN_ON_UPDATE_OR_DELETE = 3</div>
+<div class="fsdocs-tip" id="fs33">field RemovalPolicy.DESTROY: RemovalPolicy = 0</div>
+<div class="fsdocs-tip" id="fs34">val prodVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs35">field InstanceClass.MEMORY5: InstanceClass = 22</div>
+<div class="fsdocs-tip" id="fs36">field InstanceSize.LARGE: InstanceSize = 4</div>
+<div class="fsdocs-tip" id="fs37">custom operation: enablePerformanceInsights (bool)
+
+Calls DatabaseInstanceBuilder.EnablePerformanceInsights<br /><em>&lt;summary&gt;Enables performance insights.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">field RemovalPolicy.RETAIN: RemovalPolicy = 1</div>
+<div class="fsdocs-tip" id="fs39">val gatewayVpcEndpoint: name: string -&gt; GatewayVpcEndpointBuilder<br /><em>&lt;summary&gt;Creates a Gateway VPC Endpoint (for S3, DynamoDB).&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The endpoint name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ gatewayVpcEndpoint &quot;S3Endpoint&quot; {
+     vpc myVpc
+     service GatewayVpcEndpointAwsService.S3
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">custom operation: vpc (VpcSpec)
+
+Calls GatewayVpcEndpointBuilder.Vpc<br /><em>&lt;summary&gt;Sets the VPC for the endpoint from a VpcSpec.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs41">custom operation: service (IGatewayVpcEndpointService)
+
+Calls GatewayVpcEndpointBuilder.Service<br /><em>&lt;summary&gt;Sets the service for the endpoint (e.g., S3, DynamoDB).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">Multiple items<br />type GatewayVpcEndpointAwsService =
+  inherit DeputyBase
+  interface IGatewayVpcEndpointService
+  new: name: string * ?prefix: string -&gt; unit
+  member Name: string
+  static member DYNAMODB: GatewayVpcEndpointAwsService
+  static member S3: GatewayVpcEndpointAwsService
+  static member S3_EXPRESS: GatewayVpcEndpointAwsService<br /><br />--------------------<br />GatewayVpcEndpointAwsService(name: string, ?prefix: string) : GatewayVpcEndpointAwsService</div>
+<div class="fsdocs-tip" id="fs43">property GatewayVpcEndpointAwsService.S3: GatewayVpcEndpointAwsService with get</div>
+<div class="fsdocs-tip" id="fs44">property GatewayVpcEndpointAwsService.DYNAMODB: GatewayVpcEndpointAwsService with get</div>
+<div class="fsdocs-tip" id="fs45">val myVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs46">custom operation: allocatedStorage (int)
+
+Calls DatabaseInstanceBuilder.AllocatedStorage<br /><em>&lt;summary&gt;Sets the allocated storage in GB.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">custom operation: maxAllocatedStorage (int)
+
+Calls DatabaseInstanceBuilder.MaxAllocatedStorage<br /><em>&lt;summary&gt;Sets the maximum allocated storage in GB for autoscaling.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs48">custom operation: storageType (StorageType)
+
+Calls DatabaseInstanceBuilder.StorageType<br /><em>&lt;summary&gt;Sets the storage type.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs49">[&lt;Struct&gt;]
+type StorageType =
+  | STANDARD = 0
+  | GP2 = 1
+  | GP3 = 2
+  | IO1 = 3
+  | IO2 = 4</div>
+<div class="fsdocs-tip" id="fs50">field StorageType.GP3: StorageType = 2</div>
+<div class="fsdocs-tip" id="fs51">val bucket: name: string -&gt; BucketBuilder</div>
+<div class="fsdocs-tip" id="fs52">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs53">val lifecycleRule: LifecycleRuleBuilder</div>
+<div class="fsdocs-tip" id="fs54">custom operation: enabled (bool)
+
+Calls LifecycleRuleBuilder.Enabled</div>
+<div class="fsdocs-tip" id="fs55">custom operation: transitions (AWS.S3.ITransition list)
+
+Calls LifecycleRuleBuilder.Transitions</div>
+<div class="fsdocs-tip" id="fs56">val transition: TransitionBuilder<br /><em>&lt;summary&gt;
+ Creates an S3 lifecycle transition rule for moving objects to different storage classes.
+ Transitions reduce storage costs by automatically moving objects to cheaper storage tiers.
+ &lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ transition {
+     storageClass StorageClass.GLACIER
+     transitionAfter (Duration.Days(90.0))
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs57">custom operation: storageClass (AWS.S3.StorageClass)
+
+Calls TransitionBuilder.StorageClass<br /><em>&lt;summary&gt;
+ Sets the storage class to transition to.
+ Common classes: GLACIER (low-cost archival), DEEP_ARCHIVE (lowest cost, rare access),
+ INTELLIGENT_TIERING (automatic cost optimization), GLACIER_IR (instant retrieval).
+ &lt;/summary&gt;<br />&lt;param name=&quot;storageClass&quot;&gt;The target storage class.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs58">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs59">Multiple items<br />type StorageClass =
+  inherit DeputyBase
+  new: value: string -&gt; unit
+  member ToString: unit -&gt; string
+  member Value: string
+  static member DEEP_ARCHIVE: StorageClass
+  static member GLACIER: StorageClass
+  static member GLACIER_INSTANT_RETRIEVAL: StorageClass
+  static member INFREQUENT_ACCESS: StorageClass
+  static member INTELLIGENT_TIERING: StorageClass
+  static member ONE_ZONE_INFREQUENT_ACCESS: StorageClass<br /><br />--------------------<br />AWS.S3.StorageClass(value: string) : AWS.S3.StorageClass</div>
+<div class="fsdocs-tip" id="fs60">property AWS.S3.StorageClass.INFREQUENT_ACCESS: AWS.S3.StorageClass with get</div>
+<div class="fsdocs-tip" id="fs61">custom operation: transitionAfter (Duration)
+
+Calls TransitionBuilder.TransitionAfter<br /><em>&lt;summary&gt;
+ Sets when objects transition after creation (use Duration.Days()).
+ Example: transitionAfter (Duration.Days(90.0)) moves objects after 90 days.
+ &lt;/summary&gt;<br />&lt;param name=&quot;duration&quot;&gt;Time after object creation to transition.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs62">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs63">Duration.Days(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs64">property AWS.S3.StorageClass.GLACIER: AWS.S3.StorageClass with get</div>
+<div class="fsdocs-tip" id="fs65">custom operation: noncurrentVersionExpiration (Duration)
+
+Calls LifecycleRuleBuilder.NoncurrentVersionExpiration</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#AWS-Cost-Optimization-Strategies">
+      AWS Cost Optimization Strategies
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Environment-Specific-Cost-Tiers">
+      Environment-Specific Cost Tiers
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Optimized-Development-Environment">
+      Cost-Optimized Development Environment
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Production-Environment-with-Security">
+      Production Environment with Security
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#NAT-Gateway-Cost-Analysis">
+      NAT Gateway Cost Analysis
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Alternatives-to-NAT-Gateways">
+      Alternatives to NAT Gateways
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#VPC-Endpoint-Cost-Trade-offs">
+      VPC Endpoint Cost Trade-offs
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Database-Cost-Optimization">
+      Database Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Instance-Class-Selection">
+      Instance Class Selection
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Multi-AZ-Cost-Impact">
+      Multi-AZ Cost Impact
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Storage-Optimization">
+      Storage Optimization
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Lambda-Cost-Optimization">
+      Lambda Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Lambda-Cost-Formula">
+      Lambda Cost Formula
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Load-Balancer-Cost-Analysis">
+      Load Balancer Cost Analysis
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#CloudWatch-Costs">
+      CloudWatch Costs
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Log-Retention-Strategy">
+      Log Retention Strategy
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Custom-Metrics">
+      Custom Metrics
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#S3-Cost-Optimization">
+      S3 Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Storage-Classes">
+      Storage Classes
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Lifecycle-Policies">
+      Lifecycle Policies
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Environment-Cost-Comparison">
+      Environment Cost Comparison
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Monitoring-and-Alerts">
+      Cost Monitoring and Alerts
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Quick-Wins-Checklist">
+      Quick Wins Checklist
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Common-Cost-Anti-Patterns">
+      Common Cost Anti-Patterns
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Don-t-Do-This">
+      ❌ Don't Do This
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Do-This-Instead">
+      ✅ Do This Instead
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Monthly-Cost-Targets">
+      Monthly Cost Targets
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Resources">
+      Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

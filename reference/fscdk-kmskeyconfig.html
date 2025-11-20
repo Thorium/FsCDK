@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="KMSKeyConfig (FsCDK)" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="KMSKeyConfig (FsCDK)">
+    
+    <title>KMSKeyConfig (FsCDK) | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    KMSKeyConfig Type
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://totallymoney.github.io/FsCDK/reference/fscdk.html">
+        FsCDK
+      </a>
+    </dt>
+    <dt>
+      Assembly: FsCDK.dll
+    </dt>
+    <dt>
+      Base Type: 
+      <code>obj</code>
+    </dt>
+    <dt>
+      All Interfaces: 
+      <code><span><a href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a href="https://totallymoney.github.io/FsCDK/reference/fscdk-kmskeyconfig.html">KMSKeyConfig</a>&gt;</span></code>
+      , 
+      <code><a href="https://learn.microsoft.com/dotnet/api/system.collections.istructuralequatable">IStructuralEquatable</a></code>
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+         High-level KMS Key builder following AWS security best practices.
+
+ **Default Security Settings:**
+ - Key rotation = enabled (automatic yearly rotation)
+ - Removal policy = RETAIN (prevents accidental key deletion)
+ - Key spec = SYMMETRIC_DEFAULT (AES-256-GCM)
+ - Key usage = ENCRYPT_DECRYPT
+
+ **Rationale:**
+ These defaults follow AWS Well-Architected Framework:
+ - Automatic rotation reduces risk of key compromise
+ - Retained keys prevent data loss (encrypted data becomes unreadable without key)
+ - Symmetric encryption is most common use case
+ - CloudTrail provides audit trails for all key usage
+
+ **Use Cases:**
+ - Encrypt data at rest (S3, EBS, RDS, DynamoDB)
+ - Encrypt secrets (Secrets Manager, Parameter Store)
+ - Sign and verify (asymmetric keys)
+ - Generate HMACs
+
+ **Escape Hatch:**
+ Access the underlying CDK Key via the `Key` property on the returned resource
+ for advanced scenarios not covered by this builder.
+      </p>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div>
+    <h3>
+      Record fields
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Record Field
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1982', 1982)" onmouseover="showTip(event, '1982', 1982)">
+                <p>
+                  <a id="AdmissionPrincipal">
+                    <a href="#AdmissionPrincipal">
+                      <code>AdmissionPrincipal</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1982">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>AdmissionPrincipal</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.iam.iprincipal">IPrincipal</a>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.iam.iprincipal">IPrincipal</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1983', 1983)" onmouseover="showTip(event, '1983', 1983)">
+                <p>
+                  <a id="Alias">
+                    <a href="#Alias">
+                      <code>Alias</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1983">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Alias</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span>string&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1984', 1984)" onmouseover="showTip(event, '1984', 1984)">
+                <p>
+                  <a id="ConstructId">
+                    <a href="#ConstructId">
+                      <code>ConstructId</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1984">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>ConstructId</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span>string&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1985', 1985)" onmouseover="showTip(event, '1985', 1985)">
+                <p>
+                  <a id="Description">
+                    <a href="#Description">
+                      <code>Description</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1985">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Description</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span>string&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span>string&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1986', 1986)" onmouseover="showTip(event, '1986', 1986)">
+                <p>
+                  <a id="EnableKeyRotation">
+                    <a href="#EnableKeyRotation">
+                      <code>EnableKeyRotation</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1986">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>EnableKeyRotation</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span>bool&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span>bool&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1987', 1987)" onmouseover="showTip(event, '1987', 1987)">
+                <p>
+                  <a id="Enabled">
+                    <a href="#Enabled">
+                      <code>Enabled</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1987">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Enabled</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span>bool&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span>bool&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1988', 1988)" onmouseover="showTip(event, '1988', 1988)">
+                <p>
+                  <a id="KeyName">
+                    <a href="#KeyName">
+                      <code>KeyName</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1988">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>KeyName</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code>string</code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code>string</code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1989', 1989)" onmouseover="showTip(event, '1989', 1989)">
+                <p>
+                  <a id="KeySpec">
+                    <a href="#KeySpec">
+                      <code>KeySpec</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1989">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>KeySpec</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.kms.keyspec">KeySpec</a>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.kms.keyspec">KeySpec</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1990', 1990)" onmouseover="showTip(event, '1990', 1990)">
+                <p>
+                  <a id="KeyUsage">
+                    <a href="#KeyUsage">
+                      <code>KeyUsage</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1990">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>KeyUsage</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.kms.keyusage">KeyUsage</a>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.kms.keyusage">KeyUsage</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1991', 1991)" onmouseover="showTip(event, '1991', 1991)">
+                <p>
+                  <a id="PendingWindow">
+                    <a href="#PendingWindow">
+                      <code>PendingWindow</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1991">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>PendingWindow</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.duration">Duration</a>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.duration">Duration</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1992', 1992)" onmouseover="showTip(event, '1992', 1992)">
+                <p>
+                  <a id="Policy">
+                    <a href="#Policy">
+                      <code>Policy</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1992">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>Policy</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.iam.policydocument">PolicyDocument</a>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.iam.policydocument">PolicyDocument</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '1993', 1993)" onmouseover="showTip(event, '1993', 1993)">
+                <p>
+                  <a id="RemovalPolicy">
+                    <a href="#RemovalPolicy">
+                      <code>RemovalPolicy</code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="1993">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code>RemovalPolicy</code>
+                  <br/>
+                  <br/>
+                  <span>
+                    Field type: 
+                    <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.removalpolicy">RemovalPolicy</a>&#32;option</span></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <dl class="fsdocs-returns">
+              <dt>
+                <span class="fsdocs-return-name">
+                  Field type: 
+                </span>
+                <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.removalpolicy">RemovalPolicy</a>&#32;option</span></code>
+              </dt>
+              <dd class="fsdocs-return-docs"></dd>
+            </dl>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

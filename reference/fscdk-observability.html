@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Observability (FsCDK)" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/{{fsdocs-source-basename}}.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Observability (FsCDK)">
+    
+    <title>Observability (FsCDK) | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="api-docs">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <div>
+  <h2>
+    Observability Module
+  </h2>
+  <dl class="fsdocs-metadata">
+    <dt>
+      Namespace: 
+      <a href="https://totallymoney.github.io/FsCDK/reference/fscdk.html">
+        FsCDK
+      </a>
+    </dt>
+    <dt>
+      Assembly: FsCDK.dll
+    </dt>
+  </dl>
+  <div class="fsdocs-xmldoc">
+    <div>
+      <p class="fsdocs-summary">
+         Observability helpers for CloudTrail, CloudWatch, GuardDuty, and AWS Config.
+
+ **Rationale:**
+ - CloudTrail provides audit logs for compliance and security investigations
+ - CloudWatch alarms enable proactive incident response
+ - GuardDuty detects threats and anomalous behavior
+ - AWS Config tracks resource configuration changes
+
+ These tools are essential for:
+ - Security monitoring and threat detection
+ - Compliance auditing (SOC2, HIPAA, PCI-DSS)
+ - Operational visibility and troubleshooting
+ - Cost optimization through usage tracking
+      </p>
+    </div>
+  </div>
+  <div>
+    <h3>
+      Types
+    </h3>
+    <table class="table outer-list fsdocs-entity-list">
+      <thead>
+        <tr>
+          <td>
+            Type
+          </td>
+          <td>
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-entity-name">
+            <p>
+              <a name="AlarmTemplate">
+                <a href="https://totallymoney.github.io/FsCDK/reference/fscdk-observability-alarmtemplate.html">
+                  AlarmTemplate
+                </a>
+              </a>
+            </p>
+          </td>
+          <td class="fsdocs-entity-xmldoc">
+            <div>
+              <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:T:FsCDK.Observability.AlarmTemplate`')">
+                <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+              </div>
+              <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'T:FsCDK.Observability.AlarmTemplate\'/>')">
+                <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+              </div>
+              <a href="https://github.com/totallymoney/FsCDK/tree/master/src/Observability.fs#L155-155" class="fsdocs-source-link" title="Source on GitHub">
+                <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+              </a>
+              <p class="fsdocs-summary">
+                 Template for common CloudWatch alarm configurations
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h3>
+      Functions and values
+    </h3>
+    <table class="table outer-list fsdocs-member-list">
+      <thead>
+        <tr>
+          <td class="fsdocs-member-list-header">
+            Function or value
+          </td>
+          <td class="fsdocs-member-list-header">
+            Description
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '239', 239)" onmouseover="showTip(event, '239', 239)">
+                <p>
+                  <a id="createALB5xxAlarm">
+                    <a href="#createALB5xxAlarm">
+                      <code><span>createALB5xxAlarm&#32;<span>alarmName&#32;loadBalancerFullName&#32;threshold&#32;evaluationPeriods</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="239">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createALB5xxAlarm&#32;<span>alarmName&#32;loadBalancerFullName&#32;threshold&#32;evaluationPeriods</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        alarmName
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Name of the alarm
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        loadBalancerFullName
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      ALB full name (e.g., app/my-lb/1234567890abcdef)
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        threshold
+                      </b>
+                      :
+                      <code><span>float&#32;option</span></code>
+                       - 
+                      Error count threshold (default: 10)
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        evaluationPeriods
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                       - 
+                      Number of periods to evaluate (default: 2)
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudwatch.alarmprops">AlarmProps</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FsCDK.Observability.createALB5xxAlarm`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FsCDK.Observability.createALB5xxAlarm\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/totallymoney/FsCDK/tree/master/src/Observability.fs#L124-124" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Creates a CloudWatch alarm for ALB 5xx errors
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    alarmName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Name of the alarm
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    loadBalancerFullName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    ALB full name (e.g., app/my-lb/1234567890abcdef)
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    threshold
+                  </span>
+                  :
+                  <code><span>float&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Error count threshold (default: 10)
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    evaluationPeriods
+                  </span>
+                  :
+                  <code><span>int&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Number of periods to evaluate (default: 2)
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudwatch.alarmprops">AlarmProps</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '240', 240)" onmouseover="showTip(event, '240', 240)">
+                <p>
+                  <a id="createAlarmFromTemplate">
+                    <a href="#createAlarmFromTemplate">
+                      <code><span>createAlarmFromTemplate&#32;<span>alarmName&#32;template</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="240">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createAlarmFromTemplate&#32;<span>alarmName&#32;template</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        alarmName
+                      </b>
+                      :
+                      <code>string</code>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        template
+                      </b>
+                      :
+                      <code><a href="https://totallymoney.github.io/FsCDK/reference/fscdk-observability-alarmtemplate.html">AlarmTemplate</a></code>
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudwatch.alarmprops">AlarmProps</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FsCDK.Observability.createAlarmFromTemplate`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FsCDK.Observability.createAlarmFromTemplate\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/totallymoney/FsCDK/tree/master/src/Observability.fs#L163-163" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                     Creates a CloudWatch alarm from a template
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    alarmName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    template
+                  </span>
+                  :
+                  <code><a href="https://totallymoney.github.io/FsCDK/reference/fscdk-observability-alarmtemplate.html">AlarmTemplate</a></code>
+                </dt>
+                <dd class="fsdocs-param-docs"></dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudwatch.alarmprops">AlarmProps</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '241', 241)" onmouseover="showTip(event, '241', 241)">
+                <p>
+                  <a id="createCloudTrail">
+                    <a href="#createCloudTrail">
+                      <code><span>createCloudTrail&#32;<span>trailName&#32;bucket&#32;includeGlobalEvents</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="241">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createCloudTrail&#32;<span>trailName&#32;bucket&#32;includeGlobalEvents</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        trailName
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Name of the CloudTrail
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        bucket
+                      </b>
+                      :
+                      <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.s3.ibucket">IBucket</a>&#32;option</span></code>
+                       - 
+                      Optional S3 bucket for logs (creates one if not provided)
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        includeGlobalEvents
+                      </b>
+                      :
+                      <code>bool</code>
+                       - 
+                      Include global service events (IAM, CloudFront, etc.)
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudtrail.trailprops">TrailProps</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FsCDK.Observability.createCloudTrail`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FsCDK.Observability.createCloudTrail\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/totallymoney/FsCDK/tree/master/src/Observability.fs#L34-34" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Creates a CloudTrail with encrypted logs stored in S3
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    trailName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Name of the CloudTrail
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    bucket
+                  </span>
+                  :
+                  <code><span><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.s3.ibucket">IBucket</a>&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Optional S3 bucket for logs (creates one if not provided)
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    includeGlobalEvents
+                  </span>
+                  :
+                  <code>bool</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Include global service events (IAM, CloudFront, etc.)
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudtrail.trailprops">TrailProps</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
+                <p>
+                  <a id="createLambdaErrorAlarm">
+                    <a href="#createLambdaErrorAlarm">
+                      <code><span>createLambdaErrorAlarm&#32;<span>alarmName&#32;functionName&#32;threshold&#32;evaluationPeriods</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="242">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createLambdaErrorAlarm&#32;<span>alarmName&#32;functionName&#32;threshold&#32;evaluationPeriods</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        alarmName
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Name of the alarm
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        functionName
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Lambda function name to monitor
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        threshold
+                      </b>
+                      :
+                      <code><span>float&#32;option</span></code>
+                       - 
+                      Error count threshold (default: 5)
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        evaluationPeriods
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                       - 
+                      Number of periods to evaluate (default: 1)
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudwatch.alarmprops">AlarmProps</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FsCDK.Observability.createLambdaErrorAlarm`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FsCDK.Observability.createLambdaErrorAlarm\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/totallymoney/FsCDK/tree/master/src/Observability.fs#L54-54" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Creates a CloudWatch alarm for Lambda function errors
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    alarmName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Name of the alarm
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    functionName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Lambda function name to monitor
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    threshold
+                  </span>
+                  :
+                  <code><span>float&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Error count threshold (default: 5)
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    evaluationPeriods
+                  </span>
+                  :
+                  <code><span>int&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Number of periods to evaluate (default: 1)
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudwatch.alarmprops">AlarmProps</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+        <tr>
+          <td class="fsdocs-member-usage">
+            <div>
+              <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
+                <p>
+                  <a id="createRDSCpuAlarm">
+                    <a href="#createRDSCpuAlarm">
+                      <code><span>createRDSCpuAlarm&#32;<span>alarmName&#32;dbInstanceIdentifier&#32;threshold&#32;evaluationPeriods</span></span></code>
+                    </a>
+                  </a>
+                </p>
+              </code>
+              <div class="fsdocs-tip" id="243">
+                <div class="member-tooltip">
+                  Full Usage: 
+                  <code><span>createRDSCpuAlarm&#32;<span>alarmName&#32;dbInstanceIdentifier&#32;threshold&#32;evaluationPeriods</span></span></code>
+                  <br/>
+                  <br/>
+                  Parameters: 
+                  <ul>
+                    <span>
+                      <b>
+                        alarmName
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      Name of the alarm
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        dbInstanceIdentifier
+                      </b>
+                      :
+                      <code>string</code>
+                       - 
+                      RDS instance identifier
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        threshold
+                      </b>
+                      :
+                      <code><span>float&#32;option</span></code>
+                       - 
+                      CPU percentage threshold (default: 80)
+                    </span>
+                    <br/>
+                    <span>
+                      <b>
+                        evaluationPeriods
+                      </b>
+                      :
+                      <code><span>int&#32;option</span></code>
+                       - 
+                      Number of periods to evaluate (default: 2)
+                    </span>
+                    <br/>
+                  </ul>
+                  <br/>
+                  <span>
+                    Returns: 
+                    <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudwatch.alarmprops">AlarmProps</a></code>
+                  </span>
+                  <br/>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="fsdocs-member-xmldoc">
+            <details>
+              <summary>
+                <div class="fsdocs-summary">
+                  <div class="fsdocs-source-link" title="Copy signature (Markdown)" onclick="Clipboard_CopyTo('`cref:M:FsCDK.Observability.createRDSCpuAlarm`')">
+                    <iconify-icon icon="bi:filetype-md" height="24" width="24"></iconify-icon>
+                  </div>
+                  <div class="fsdocs-source-link" title="Copy signature (XML)" onclick="Clipboard_CopyTo('<see cref=\'M:FsCDK.Observability.createRDSCpuAlarm\'/>')">
+                    <iconify-icon icon="bi:filetype-xml" height="24" width="24"></iconify-icon>
+                  </div>
+                  <a href="https://github.com/totallymoney/FsCDK/tree/master/src/Observability.fs#L89-89" class="fsdocs-source-link" title="Source on GitHub">
+                    <iconify-icon icon="ri:github-fill" height="24" width="24"></iconify-icon>
+                  </a>
+                  <p class="fsdocs-summary">
+                    
+ Creates a CloudWatch alarm for RDS CPU utilization
+ 
+                  </p>
+                </div>
+              </summary>
+              <dl class="fsdocs-params">
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    alarmName
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Name of the alarm
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    dbInstanceIdentifier
+                  </span>
+                  :
+                  <code>string</code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    RDS instance identifier
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    threshold
+                  </span>
+                  :
+                  <code><span>float&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    CPU percentage threshold (default: 80)
+                  </p>
+                </dd>
+                <dt class="fsdocs-param">
+                  <span class="fsdocs-param-name">
+                    evaluationPeriods
+                  </span>
+                  :
+                  <code><span>int&#32;option</span></code>
+                </dt>
+                <dd class="fsdocs-param-docs">
+                  <p>
+                    Number of periods to evaluate (default: 2)
+                  </p>
+                </dd>
+              </dl>
+              <dl class="fsdocs-returns">
+                <dt>
+                  <span class="fsdocs-return-name">
+                    Returns: 
+                  </span>
+                  <code><a href="https://learn.microsoft.com/dotnet/api/amazon.cdk.aws.cloudwatch.alarmprops">AlarmProps</a></code>
+                </dt>
+                <dd class="fsdocs-return-docs"></dd>
+              </dl>
+            </details>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <div class="empty"></div>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

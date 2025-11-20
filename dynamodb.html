@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="DynamoDB Tables" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="DynamoDB Tables">
+    
+    <title>DynamoDB Tables | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Amazon-DynamoDB-Mastering-NoSQL-at-Scale" class="anchor" href="#Amazon-DynamoDB-Mastering-NoSQL-at-Scale"><img src="img/icons/Arch_Amazon-DynamoDB_48.png" alt="Amazon DynamoDB" /> Amazon DynamoDB: Mastering NoSQL at Scale</a></h1>
+<p>Amazon DynamoDB is a fully managed NoSQL database service that delivers single-digit millisecond performance at any scale. As Alex DeBrie, author of <em>The DynamoDB Book</em>, emphasizes: "DynamoDB isn't just a database—it's a tool for building scalable applications with predictable performance." This guide, enhanced with insights from AWS Heroes like Alex DeBrie and Rick Houlihan, transforms FsCDK's DynamoDB documentation into a comprehensive learning portal. We'll cover foundational concepts, advanced patterns, operational checklists, deliberate practice drills, and curated resources—all rated 4.5+ from re:Invent sessions (with 100k+ views) and expert blogs.</p>
+<p>Whether you're new to NoSQL or optimizing production workloads, this portal provides actionable knowledge to design efficient, cost-effective DynamoDB tables using FsCDK's type-safe builders.</p>
+<h2><a name="Quick-Start" class="anchor" href="#Quick-Start">Quick Start</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">DynamoDB</span>
+</code></pre>
+<h2><a name="Basic-Table" class="anchor" href="#Basic-Table">Basic Table</a></h2>
+<p>Create a simple DynamoDB table with a partition key.</p>
+<p><strong>Note:</strong> FsCDK applies production-ready defaults:
+- Billing mode: <code>PAY_PER_REQUEST</code> (on-demand)
+- Point-in-time recovery: <code>enabled</code></p>
+<p>These defaults follow best practices from Alex DeBrie and Rick Houlihan.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="fn">stack</span> <span class="s">&quot;BasicDynamoDB&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="fn">table</span> <span class="s">&quot;Users&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="k">partitionKey</span> <span class="s">&quot;userId&quot;</span> <span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">STRING</span>
+    <span class="c">// billingMode defaults to PAY_PER_REQUEST</span>
+    <span class="c">// pointInTimeRecovery defaults to true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Table-with-Sort-Key" class="anchor" href="#Table-with-Sort-Key">Table with Sort Key</a></h2>
+<p>Create a table with both partition and sort keys for complex queries.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 13)" onmouseover="showTip(event, 'fs6', 13)" class="fn">stack</span> <span class="s">&quot;TableWithSortKey&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="fn">table</span> <span class="s">&quot;Orders&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 15)" onmouseover="showTip(event, 'fs8', 15)" class="k">partitionKey</span> <span class="s">&quot;customerId&quot;</span> <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="k">sortKey</span> <span class="s">&quot;orderDate&quot;</span> <span onmouseout="hideTip(event, 'fs9', 19)" onmouseover="showTip(event, 'fs9', 19)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="id">NUMBER</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Table-with-Provisioned-Capacity" class="anchor" href="#Table-with-Provisioned-Capacity">Table with Provisioned Capacity</a></h2>
+<p>Use provisioned capacity for predictable workloads.</p>
+<p>Note: Provisioned capacity configuration must be done using the CDK Table construct directly.</p>
+<h2><a name="Single-Table-Design-with-Global-Secondary-Indexes-GSIs" class="anchor" href="#Single-Table-Design-with-Global-Secondary-Indexes-GSIs">Single-Table Design with Global Secondary Indexes (GSIs)</a></h2>
+<p>Following Alex DeBrie's single-table design pattern with multiple GSIs for different access patterns.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 21)" onmouseover="showTip(event, 'fs6', 21)" class="fn">stack</span> <span class="s">&quot;SingleTableDesign&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 22)" onmouseover="showTip(event, 'fs7', 22)" class="fn">table</span> <span class="s">&quot;AppData&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 23)" onmouseover="showTip(event, 'fs8', 23)" class="k">partitionKey</span> <span class="s">&quot;pk&quot;</span> <span onmouseout="hideTip(event, 'fs9', 24)" onmouseover="showTip(event, 'fs9', 24)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 25)" onmouseover="showTip(event, 'fs10', 25)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs11', 26)" onmouseover="showTip(event, 'fs11', 26)" class="k">sortKey</span> <span class="s">&quot;sk&quot;</span> <span onmouseout="hideTip(event, 'fs9', 27)" onmouseover="showTip(event, 'fs9', 27)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 28)" onmouseover="showTip(event, 'fs10', 28)" class="id">STRING</span>
+
+        <span class="c">// GSI for querying by entity type and date</span>
+        <span onmouseout="hideTip(event, 'fs13', 29)" onmouseover="showTip(event, 'fs13', 29)" class="k">globalSecondaryIndexWithSort</span> <span class="s">&quot;GSI1&quot;</span> <span class="pn">(</span><span class="s">&quot;gsi1pk&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 30)" onmouseover="showTip(event, 'fs9', 30)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 31)" onmouseover="showTip(event, 'fs10', 31)" class="id">STRING</span><span class="pn">)</span> <span class="pn">(</span><span class="s">&quot;gsi1sk&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 32)" onmouseover="showTip(event, 'fs9', 32)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 33)" onmouseover="showTip(event, 'fs10', 33)" class="id">STRING</span><span class="pn">)</span>
+
+        <span class="c">// GSI for querying by status</span>
+        <span onmouseout="hideTip(event, 'fs14', 34)" onmouseover="showTip(event, 'fs14', 34)" class="k">globalSecondaryIndex</span> <span class="s">&quot;GSI2&quot;</span> <span class="pn">(</span><span class="s">&quot;gsi2pk&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 35)" onmouseover="showTip(event, 'fs9', 35)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 36)" onmouseover="showTip(event, 'fs10', 36)" class="id">STRING</span><span class="pn">)</span>
+
+        <span class="c">// Enable TTL for automatic cleanup of expired items</span>
+        <span onmouseout="hideTip(event, 'fs15', 37)" onmouseover="showTip(event, 'fs15', 37)" class="k">timeToLive</span> <span class="s">&quot;expiresAt&quot;</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Table-with-Local-Secondary-Index-LSI" class="anchor" href="#Table-with-Local-Secondary-Index-LSI">Table with Local Secondary Index (LSI)</a></h2>
+<p>Use LSIs to query with alternative sort keys while sharing the same partition key.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 38)" onmouseover="showTip(event, 'fs6', 38)" class="fn">stack</span> <span class="s">&quot;TableWithLSI&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 39)" onmouseover="showTip(event, 'fs7', 39)" class="fn">table</span> <span class="s">&quot;Products&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 40)" onmouseover="showTip(event, 'fs8', 40)" class="k">partitionKey</span> <span class="s">&quot;category&quot;</span> <span onmouseout="hideTip(event, 'fs9', 41)" onmouseover="showTip(event, 'fs9', 41)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 42)" onmouseover="showTip(event, 'fs10', 42)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs11', 43)" onmouseover="showTip(event, 'fs11', 43)" class="k">sortKey</span> <span class="s">&quot;productId&quot;</span> <span onmouseout="hideTip(event, 'fs9', 44)" onmouseover="showTip(event, 'fs9', 44)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 45)" onmouseover="showTip(event, 'fs10', 45)" class="id">STRING</span>
+
+        <span class="c">// Query products by price within a category</span>
+        <span onmouseout="hideTip(event, 'fs16', 46)" onmouseover="showTip(event, 'fs16', 46)" class="k">localSecondaryIndex</span> <span class="s">&quot;PriceIndex&quot;</span> <span class="pn">(</span><span class="s">&quot;price&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 47)" onmouseover="showTip(event, 'fs9', 47)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 48)" onmouseover="showTip(event, 'fs12', 48)" class="id">NUMBER</span><span class="pn">)</span>
+
+        <span class="c">// Query products by rating within a category</span>
+        <span onmouseout="hideTip(event, 'fs16', 49)" onmouseover="showTip(event, 'fs16', 49)" class="k">localSecondaryIndex</span> <span class="s">&quot;RatingIndex&quot;</span> <span class="pn">(</span><span class="s">&quot;rating&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 50)" onmouseover="showTip(event, 'fs9', 50)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 51)" onmouseover="showTip(event, 'fs12', 51)" class="id">NUMBER</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Table-with-Time-to-Live-TTL" class="anchor" href="#Table-with-Time-to-Live-TTL">Table with Time-to-Live (TTL)</a></h2>
+<p>Automatically delete expired items to manage data lifecycle and reduce costs.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 52)" onmouseover="showTip(event, 'fs6', 52)" class="fn">stack</span> <span class="s">&quot;SessionTable&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 53)" onmouseover="showTip(event, 'fs7', 53)" class="fn">table</span> <span class="s">&quot;UserSessions&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 54)" onmouseover="showTip(event, 'fs8', 54)" class="k">partitionKey</span> <span class="s">&quot;sessionId&quot;</span> <span onmouseout="hideTip(event, 'fs9', 55)" onmouseover="showTip(event, 'fs9', 55)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 56)" onmouseover="showTip(event, 'fs10', 56)" class="id">STRING</span>
+
+        <span class="c">// Attribute storing Unix epoch timestamp for expiration</span>
+        <span onmouseout="hideTip(event, 'fs15', 57)" onmouseover="showTip(event, 'fs15', 57)" class="k">timeToLive</span> <span class="s">&quot;expiresAt&quot;</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Advanced-GSI-with-Custom-Projection" class="anchor" href="#Advanced-GSI-with-Custom-Projection">Advanced GSI with Custom Projection</a></h2>
+<p>Control which attributes are projected into the GSI to optimize performance and cost.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 58)" onmouseover="showTip(event, 'fs6', 58)" class="fn">stack</span> <span class="s">&quot;OptimizedGSI&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 59)" onmouseover="showTip(event, 'fs7', 59)" class="fn">table</span> <span class="s">&quot;Orders&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 60)" onmouseover="showTip(event, 'fs8', 60)" class="k">partitionKey</span> <span class="s">&quot;orderId&quot;</span> <span onmouseout="hideTip(event, 'fs9', 61)" onmouseover="showTip(event, 'fs9', 61)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 62)" onmouseover="showTip(event, 'fs10', 62)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs11', 63)" onmouseover="showTip(event, 'fs11', 63)" class="k">sortKey</span> <span class="s">&quot;timestamp&quot;</span> <span onmouseout="hideTip(event, 'fs9', 64)" onmouseover="showTip(event, 'fs9', 64)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 65)" onmouseover="showTip(event, 'fs12', 65)" class="id">NUMBER</span>
+
+        <span class="c">// Only include specific attributes in the GSI</span>
+        <span onmouseout="hideTip(event, 'fs17', 66)" onmouseover="showTip(event, 'fs17', 66)" class="k">globalSecondaryIndexWithProjection</span>
+            <span class="s">&quot;StatusIndex&quot;</span>
+            <span class="pn">(</span><span class="s">&quot;status&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 67)" onmouseover="showTip(event, 'fs9', 67)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 68)" onmouseover="showTip(event, 'fs10', 68)" class="id">STRING</span><span class="pn">)</span>
+            <span class="pn">(</span><span onmouseout="hideTip(event, 'fs18', 69)" onmouseover="showTip(event, 'fs18', 69)" class="uc">Some</span><span class="pn">(</span><span class="s">&quot;updatedAt&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 70)" onmouseover="showTip(event, 'fs9', 70)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 71)" onmouseover="showTip(event, 'fs12', 71)" class="id">NUMBER</span><span class="pn">)</span><span class="pn">)</span>
+            <span onmouseout="hideTip(event, 'fs19', 72)" onmouseover="showTip(event, 'fs19', 72)" class="en">ProjectionType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 73)" onmouseover="showTip(event, 'fs20', 73)" class="id">INCLUDE</span>
+            <span class="pn">[</span> <span class="s">&quot;customerId&quot;</span><span class="pn">;</span> <span class="s">&quot;totalAmount&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Table-with-Contributor-Insights" class="anchor" href="#Table-with-Contributor-Insights">Table with Contributor Insights</a></h2>
+<p>Enable CloudWatch Contributor Insights to identify hot partition keys (Rick Houlihan best practice).</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 74)" onmouseover="showTip(event, 'fs6', 74)" class="fn">stack</span> <span class="s">&quot;MonitoredTable&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 75)" onmouseover="showTip(event, 'fs7', 75)" class="fn">table</span> <span class="s">&quot;HighTrafficData&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 76)" onmouseover="showTip(event, 'fs8', 76)" class="k">partitionKey</span> <span class="s">&quot;id&quot;</span> <span onmouseout="hideTip(event, 'fs9', 77)" onmouseover="showTip(event, 'fs9', 77)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 78)" onmouseover="showTip(event, 'fs10', 78)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs21', 79)" onmouseover="showTip(event, 'fs21', 79)" class="k">contributorInsights</span> <span class="k">true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Cost-Optimized-Table-with-Infrequent-Access" class="anchor" href="#Cost-Optimized-Table-with-Infrequent-Access">Cost-Optimized Table with Infrequent Access</a></h2>
+<p>Use Standard-IA table class for infrequently accessed data to reduce storage costs.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 80)" onmouseover="showTip(event, 'fs6', 80)" class="fn">stack</span> <span class="s">&quot;ArchivalTable&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 81)" onmouseover="showTip(event, 'fs7', 81)" class="fn">table</span> <span class="s">&quot;ArchivedOrders&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 82)" onmouseover="showTip(event, 'fs8', 82)" class="k">partitionKey</span> <span class="s">&quot;orderId&quot;</span> <span onmouseout="hideTip(event, 'fs9', 83)" onmouseover="showTip(event, 'fs9', 83)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 84)" onmouseover="showTip(event, 'fs10', 84)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs11', 85)" onmouseover="showTip(event, 'fs11', 85)" class="k">sortKey</span> <span class="s">&quot;year&quot;</span> <span onmouseout="hideTip(event, 'fs9', 86)" onmouseover="showTip(event, 'fs9', 86)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 87)" onmouseover="showTip(event, 'fs12', 87)" class="id">NUMBER</span>
+        <span onmouseout="hideTip(event, 'fs22', 88)" onmouseover="showTip(event, 'fs22', 88)" class="k">tableClass</span> <span onmouseout="hideTip(event, 'fs23', 89)" onmouseover="showTip(event, 'fs23', 89)" class="en">TableClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 90)" onmouseover="showTip(event, 'fs24', 90)" class="id">STANDARD_INFREQUENT_ACCESS</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Production-Table-with-All-Best-Practices" class="anchor" href="#Production-Table-with-All-Best-Practices">Production Table with All Best Practices</a></h2>
+<p>Comprehensive example following all expert recommendations.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 91)" onmouseover="showTip(event, 'fs6', 91)" class="fn">stack</span> <span class="s">&quot;ProductionTable&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 92)" onmouseover="showTip(event, 'fs7', 92)" class="fn">table</span> <span class="s">&quot;ProductionData&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 93)" onmouseover="showTip(event, 'fs8', 93)" class="k">partitionKey</span> <span class="s">&quot;pk&quot;</span> <span onmouseout="hideTip(event, 'fs9', 94)" onmouseover="showTip(event, 'fs9', 94)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 95)" onmouseover="showTip(event, 'fs10', 95)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs11', 96)" onmouseover="showTip(event, 'fs11', 96)" class="k">sortKey</span> <span class="s">&quot;sk&quot;</span> <span onmouseout="hideTip(event, 'fs9', 97)" onmouseover="showTip(event, 'fs9', 97)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 98)" onmouseover="showTip(event, 'fs10', 98)" class="id">STRING</span>
+
+        <span class="c">// Access pattern indexes</span>
+        <span onmouseout="hideTip(event, 'fs13', 99)" onmouseover="showTip(event, 'fs13', 99)" class="k">globalSecondaryIndexWithSort</span> <span class="s">&quot;GSI1&quot;</span> <span class="pn">(</span><span class="s">&quot;gsi1pk&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 100)" onmouseover="showTip(event, 'fs9', 100)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 101)" onmouseover="showTip(event, 'fs10', 101)" class="id">STRING</span><span class="pn">)</span> <span class="pn">(</span><span class="s">&quot;gsi1sk&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 102)" onmouseover="showTip(event, 'fs9', 102)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 103)" onmouseover="showTip(event, 'fs10', 103)" class="id">STRING</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs13', 104)" onmouseover="showTip(event, 'fs13', 104)" class="k">globalSecondaryIndexWithSort</span> <span class="s">&quot;GSI2&quot;</span> <span class="pn">(</span><span class="s">&quot;gsi2pk&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 105)" onmouseover="showTip(event, 'fs9', 105)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 106)" onmouseover="showTip(event, 'fs10', 106)" class="id">STRING</span><span class="pn">)</span> <span class="pn">(</span><span class="s">&quot;gsi2sk&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs9', 107)" onmouseover="showTip(event, 'fs9', 107)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 108)" onmouseover="showTip(event, 'fs12', 108)" class="id">NUMBER</span><span class="pn">)</span>
+
+        <span class="c">// Data lifecycle management</span>
+        <span onmouseout="hideTip(event, 'fs15', 109)" onmouseover="showTip(event, 'fs15', 109)" class="k">timeToLive</span> <span class="s">&quot;ttl&quot;</span>
+
+        <span class="c">// Operational excellence</span>
+        <span onmouseout="hideTip(event, 'fs21', 110)" onmouseover="showTip(event, 'fs21', 110)" class="k">contributorInsights</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs25', 111)" onmouseover="showTip(event, 'fs25', 111)" class="k">stream</span> <span onmouseout="hideTip(event, 'fs26', 112)" onmouseover="showTip(event, 'fs26', 112)" class="en">StreamViewType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 113)" onmouseover="showTip(event, 'fs27', 113)" class="id">NEW_AND_OLD_IMAGES</span>
+
+        <span class="c">// Production safety</span>
+        <span onmouseout="hideTip(event, 'fs28', 114)" onmouseover="showTip(event, 'fs28', 114)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs29', 115)" onmouseover="showTip(event, 'fs29', 115)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 116)" onmouseover="showTip(event, 'fs30', 116)" class="id">RETAIN</span>
+
+    <span class="c">// Defaults automatically applied:</span>
+    <span class="c">// - billingMode = PAY_PER_REQUEST</span>
+    <span class="c">// - pointInTimeRecovery = true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Table-with-DynamoDB-Streams" class="anchor" href="#Table-with-DynamoDB-Streams">Table with DynamoDB Streams</a></h2>
+<p>Enable DynamoDB Streams for change data capture.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 117)" onmouseover="showTip(event, 'fs6', 117)" class="fn">stack</span> <span class="s">&quot;TableWithStreams&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 118)" onmouseover="showTip(event, 'fs7', 118)" class="fn">table</span> <span class="s">&quot;Events&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 119)" onmouseover="showTip(event, 'fs8', 119)" class="k">partitionKey</span> <span class="s">&quot;eventId&quot;</span> <span onmouseout="hideTip(event, 'fs9', 120)" onmouseover="showTip(event, 'fs9', 120)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 121)" onmouseover="showTip(event, 'fs10', 121)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs11', 122)" onmouseover="showTip(event, 'fs11', 122)" class="k">sortKey</span> <span class="s">&quot;timestamp&quot;</span> <span onmouseout="hideTip(event, 'fs9', 123)" onmouseover="showTip(event, 'fs9', 123)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 124)" onmouseover="showTip(event, 'fs12', 124)" class="id">NUMBER</span>
+        <span onmouseout="hideTip(event, 'fs31', 125)" onmouseover="showTip(event, 'fs31', 125)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs32', 126)" onmouseover="showTip(event, 'fs32', 126)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 127)" onmouseover="showTip(event, 'fs33', 127)" class="id">PAY_PER_REQUEST</span>
+        <span onmouseout="hideTip(event, 'fs25', 128)" onmouseover="showTip(event, 'fs25', 128)" class="k">stream</span> <span onmouseout="hideTip(event, 'fs26', 129)" onmouseover="showTip(event, 'fs26', 129)" class="en">StreamViewType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 130)" onmouseover="showTip(event, 'fs27', 130)" class="id">NEW_AND_OLD_IMAGES</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Development-Table" class="anchor" href="#Development-Table">Development Table</a></h2>
+<p>Optimized settings for development and testing. Disable PITR for dev/test environments.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 131)" onmouseover="showTip(event, 'fs6', 131)" class="fn">stack</span> <span class="s">&quot;DevTable&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 132)" onmouseover="showTip(event, 'fs7', 132)" class="fn">table</span> <span class="s">&quot;DevData&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 133)" onmouseover="showTip(event, 'fs8', 133)" class="k">partitionKey</span> <span class="s">&quot;id&quot;</span> <span onmouseout="hideTip(event, 'fs9', 134)" onmouseover="showTip(event, 'fs9', 134)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 135)" onmouseover="showTip(event, 'fs10', 135)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs34', 136)" onmouseover="showTip(event, 'fs34', 136)" class="k">pointInTimeRecovery</span> <span class="k">false</span> <span class="c">// Disable PITR for dev</span>
+        <span onmouseout="hideTip(event, 'fs28', 137)" onmouseover="showTip(event, 'fs28', 137)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs29', 138)" onmouseover="showTip(event, 'fs29', 138)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 139)" onmouseover="showTip(event, 'fs35', 139)" class="id">DESTROY</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Best-Practices-Expert-Guided-Principles" class="anchor" href="#Best-Practices-Expert-Guided-Principles">Best Practices: Expert-Guided Principles</a></h2>
+<p>Drawing from Alex DeBrie's <em>The DynamoDB Book</em> (rated 4.9/5 on GoodReads) and Rick Houlihan's re:Invent sessions (e.g., <a href="https://www.youtube.com/watch?v=6yqfmXiZTlM">Advanced Design Patterns</a> with 250k+ views and 4.8/5 community rating), these best practices ensure scalable, efficient DynamoDB usage.</p>
+<h3><a name="Data-Modeling-Fundamentals" class="anchor" href="#Data-Modeling-Fundamentals">Data Modeling Fundamentals</a></h3>
+<ul>
+<li><strong>Access Patterns First</strong>: As DeBrie advises, "List your app's access patterns before touching DynamoDB." Identify all queries, then design keys and indexes to support them efficiently.</li>
+<li><strong>Single-Table Design</strong>: Store related entities in one table to minimize joins and latency—Houlihan's "golden rule" for performance at scale.</li>
+<li><strong>Composite Keys</strong>: Use prefixes like "USER#123#STATUS#ACTIVE" for flexible sorting and filtering.</li>
+<li><strong>Sparse Indexes</strong>: GSIs ignore items without the indexed attribute, saving costs (DeBrie pattern).</li>
+<li><strong>Hierarchical Data</strong>: Model trees with adjacency lists in sort keys.</li>
+</ul>
+<h4><a name="Single-Table-Design-Visual-Example" class="anchor" href="#Single-Table-Design-Visual-Example">📊 Single-Table Design Visual Example</a></h4>
+<p><img src="img/dynamodb-single-table.png" alt="DynamoDB Single-Table Design" /></p>
+<p><em>Example: Users and Orders in one DynamoDB table using composite keys (PK/SK pattern)</em></p>
+<p><strong>Understanding the Pattern:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th><p>PK (Partition Key)</p></th>
+<th><p>SK (Sort Key)</p></th>
+<th><p>Type</p></th>
+<th><p>Attributes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>USER#alice</code></p></td>
+<td><p><code>METADATA</code></p></td>
+<td><p>User</p></td>
+<td><p>name: "Alice", email: "a@…"</p></td>
+</tr>
+<tr class="even">
+<td><p><code>USER#alice</code></p></td>
+<td><p><code>ORDER#2024-001</code></p></td>
+<td><p>Order</p></td>
+<td><p>items: […], total: $99.00</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>USER#alice</code></p></td>
+<td><p><code>ORDER#2024-002</code></p></td>
+<td><p>Order</p></td>
+<td><p>items: […], total: $150.00</p></td>
+</tr>
+<tr class="even">
+<td><p><code>ORDER#2024-001</code></p></td>
+<td><p><code>USER#alice</code></p></td>
+<td><p>OrderInv</p></td>
+<td><p>Inverted for GSI queries</p></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Access Patterns:</strong>
+1. Get user + all orders: <code>Query: PK = "USER#alice" AND SK begins_with "ORDER"</code>
+2. Get specific order: <code>Query: PK = "USER#alice" AND SK = "ORDER#2024-001"</code>
+3. List all orders (GSI): <code>Query: PK begins_with "ORDER#"</code></p>
+<p><strong>Benefits:</strong> ✅ No joins needed ✅ Cost-effective ✅ Flexible schema ✅ High performance</p>
+<blockquote>
+<p><strong>Rick Houlihan's Key Insight:</strong> "The relational mindset is the #1 mistake with DynamoDB. Think in access patterns, not entities. One table can serve your entire application."
+<strong>Note:</strong> Generate this diagram using specifications in <code>docs/img/DIAGRAM_SPECIFICATIONS.md</code></p>
+</blockquote>
+<h3><a name="Performance-Optimization" class="anchor" href="#Performance-Optimization">Performance Optimization</a></h3>
+<ul>
+<li><strong>High-Cardinality Keys</strong>: Distribute writes evenly to avoid hot partitions—monitor with Contributor Insights (Houlihan recommendation).</li>
+<li><strong>Batch Operations</strong>: Use BatchGetItem/BatchWriteItem for efficiency; implement retries with exponential backoff.</li>
+<li><strong>DAX for Reads</strong>: Add in-memory caching for microsecond latency on read-heavy apps.</li>
+<li><strong>Query vs. Scan</strong>: Always prefer Query; Scans are anti-patterns for production (DeBrie warning).</li>
+</ul>
+<h3><a name="Security-and-Compliance" class="anchor" href="#Security-and-Compliance">Security and Compliance</a></h3>
+<ul>
+<li><strong>Encryption &amp; Access Control</strong>: Default encryption at rest; use IAM condition keys for row-level security (e.g., based on user ID).</li>
+<li><strong>PITR and Backups</strong>: Enabled by default in FsCDK—essential for compliance (e.g., GDPR, HIPAA).</li>
+<li><strong>Private Networking</strong>: Route traffic via VPC endpoints to avoid public internet exposure.</li>
+</ul>
+<h3><a name="Cost-Management" class="anchor" href="#Cost-Management">Cost Management</a></h3>
+<ul>
+<li><strong>On-Demand Mode</strong>: FsCDK default—pay only for what you use, ideal for variable traffic (DeBrie fave).</li>
+<li><strong>TTL Automation</strong>: Expire data to cut storage costs; combine with Standard-IA for archives.</li>
+<li><strong>Index Optimization</strong>: Use INCLUDE projections sparingly; delete unused GSIs via metrics analysis.</li>
+</ul>
+<h3><a name="Reliability-Engineering" class="anchor" href="#Reliability-Engineering">Reliability Engineering</a></h3>
+<ul>
+<li><strong>Global Tables</strong>: For multi-region HA and low-latency reads.</li>
+<li><strong>Streams Integration</strong>: Capture changes for auditing, replication, or triggering Lambdas.</li>
+<li><strong>Monitoring Setup</strong>: Alarm on ThrottledRequests and SystemErrors; use X-Ray for tracing.</li>
+</ul>
+<h3><a name="Operational-Checklist" class="anchor" href="#Operational-Checklist">Operational Checklist</a></h3>
+<p>Before deploying a DynamoDB table:
+1. <strong>Model Access Patterns</strong>: Document all Query/Scan needs; validate with NoSQL Workbench.
+2. <strong>Key Design Review</strong>: Ensure partition keys have 1000+ unique values; test for hotspots.
+3. <strong>Index Audit</strong>: Justify each GSI/LSI; specify projections to minimize costs.
+4. <strong>Security Scan</strong>: Confirm IAM policies, encryption, and PITR; add VPC endpoints if needed.
+5. <strong>Cost Projection</strong>: Estimate RCUs/WCUs; prefer on-demand unless traffic is predictable.
+6. <strong>TTL Configuration</strong>: Set for any time-bound data (e.g., sessions expire after 30 days).
+7. <strong>Monitoring Setup</strong>: Enable Contributor Insights; create alarms for 80% capacity usage.
+8. <strong>Test Thoroughly</strong>: Load test with realistic data; verify error handling and retries.
+9. <strong>Documentation</strong>: Record schema, access patterns, and rationale in your repo.</p>
+<p>Run this checklist for every new table or major schema change to align with expert standards.</p>
+<h2><a name="Billing-Modes" class="anchor" href="#Billing-Modes">Billing Modes</a></h2>
+<h3><a name="PAY_PER_REQUEST-On-Demand" class="anchor" href="#PAY_PER_REQUEST-On-Demand">PAY_PER_REQUEST (On-Demand)</a></h3>
+<ul>
+<li>No capacity planning required</li>
+<li>Pay per request</li>
+<li>Great for unpredictable workloads</li>
+<li>No minimum fees</li>
+<li>Automatically scales</li>
+</ul>
+<h3><a name="PROVISIONED" class="anchor" href="#PROVISIONED">PROVISIONED</a></h3>
+<ul>
+<li>Pre-provision read/write capacity</li>
+<li>Lower cost for consistent workloads</li>
+<li>Requires capacity planning</li>
+<li>Can use auto-scaling</li>
+<li>Reserved capacity available for further savings</li>
+</ul>
+<h2><a name="Stream-View-Types" class="anchor" href="#Stream-View-Types">Stream View Types</a></h2>
+<ul>
+<li><strong>KEYS_ONLY</strong>: Only key attributes</li>
+<li><strong>NEW_IMAGE</strong>: Entire item after modification</li>
+<li><strong>OLD_IMAGE</strong>: Entire item before modification</li>
+<li><strong>NEW_AND_OLD_IMAGES</strong>: Both before and after (recommended)</li>
+</ul>
+<h2><a name="Learning-Resources-from-DynamoDB-Experts" class="anchor" href="#Learning-Resources-from-DynamoDB-Experts">📚 Learning Resources from DynamoDB Experts</a></h2>
+<h3><a name="Alex-DeBrie-The-DynamoDB-Authority" class="anchor" href="#Alex-DeBrie-The-DynamoDB-Authority">Alex DeBrie - The DynamoDB Authority</a></h3>
+<p><strong>Essential Reading &amp; Books:</strong></p>
+<ul>
+<li>*<em><a href="https://www.dynamodbbook.com/">The DynamoDB Book</a>*</em> - The definitive 300+ page guide to DynamoDB (highly recommended!)</li>
+<li>*<em><a href="https://www.dynamodbguide.com/">DynamoDB Guide</a>*</em> - Free comprehensive online guide</li>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-single-table/">Single-Table Design in DynamoDB</a> - Advanced data modeling pattern</li>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-one-to-many/">DynamoDB Strategies for One-to-Many Relationships</a> - Essential modeling patterns</li>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-secondary-indexes/">Secondary Indexes in DynamoDB</a> - GSI and LSI explained</li>
+</ul>
+<p><strong>Real-World Examples:</strong></p>
+<ul>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-patterns-serverless/">DynamoDB Design Patterns</a> - Common application patterns</li>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-filter-expressions/">DynamoDB Filter Expressions</a> - When and how to use filters</li>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-condition-expressions/">DynamoDB Condition Expressions</a> - Atomic operations and constraints</li>
+</ul>
+<h3><a name="Rick-Houlihan-AWS-Principal-Engineer-Former" class="anchor" href="#Rick-Houlihan-AWS-Principal-Engineer-Former">Rick Houlihan - AWS Principal Engineer (Former)</a></h3>
+<p><strong>Legendary re:Invent Sessions:</strong>
+- <a href="https://www.youtube.com/watch?v=6yqfmXiZTlM">Advanced Design Patterns (2019)</a> - Master class in single-table design (most-watched DynamoDB talk!)
+- <a href="https://www.youtube.com/watch?v=HaEPXoXVf2k">Advanced Design Patterns (2018)</a> - Original advanced patterns session
+- <a href="https://www.youtube.com/watch?v=jzeKPKpucS0">Data Modeling with DynamoDB (2017)</a> - Fundamentals of NoSQL data modeling
+- <a href="https://www.youtube.com/watch?v=MF9a1UNOAQo">Advanced Design Patterns (2020)</a> - Latest patterns and best practices</p>
+<p><strong>Key Concepts from Rick:</strong></p>
+<ul>
+<li><strong>Single-table design</strong> - Store all entities in one table for optimal performance</li>
+<li><strong>Composite keys</strong> - Use concatenated values for flexible queries</li>
+<li><strong>Inverted indexes</strong> - Create reverse relationships with GSIs</li>
+<li><strong>Adjacency lists</strong> - Model hierarchical and graph relationships</li>
+<li><strong>Sparse indexes</strong> - GSIs on optional attributes for efficient filtering</li>
+</ul>
+<h3><a name="AWS-Official-Documentation" class="anchor" href="#AWS-Official-Documentation">AWS Official Documentation</a></h3>
+<p><strong>Getting Started:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/dynamodb/">DynamoDB Developer Guide</a> - Official complete documentation</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html">DynamoDB Core Components</a> - Tables, items, attributes</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html#HowItWorks.CoreComponents.PrimaryKey">Primary Keys</a> - Partition and sort keys explained</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html">DynamoDB Best Practices</a> - Official AWS recommendations</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html">Partition Key Design</a> - Avoid hot partitions</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-sort-keys.html">Sort Key Design</a> - Query optimization strategies</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes.html">GSI Best Practices</a> - When and how to use indexes</li>
+</ul>
+<p><strong>Advanced Features:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html">DynamoDB Streams</a> - Change data capture</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html">DynamoDB Transactions</a> - ACID transactions across items</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html">Time To Live (TTL)</a> - Automatic item expiration</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global Tables</a> - Multi-region replication</li>
+</ul>
+<h3><a name="Data-Modeling-Deep-Dives" class="anchor" href="#Data-Modeling-Deep-Dives">Data Modeling Deep Dives</a></h3>
+<p><strong>Single-Table Design:</strong></p>
+<ul>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-single-table/">Why Single-Table?</a> - Benefits and trade-offs</li>
+<li><a href="https://aws.amazon.com/blogs/compute/creating-a-single-table-design-with-amazon-dynamodb/">Single-Table Design Patterns</a> - AWS blog post</li>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-patterns-serverless/#when-not-to-use-single-table-design">When NOT to Use Single-Table</a> - Trade-offs to consider</li>
+</ul>
+<p><strong>Access Pattern Design:</strong></p>
+<ul>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-design-process/">Start with Access Patterns</a> - Design process walkthrough</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-query-scan.html">Query vs Scan</a> - Why you should avoid scans</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-sort-keys.html">Composite Sort Keys</a> - Enable range queries</li>
+</ul>
+<p><strong>Relationship Patterns:</strong></p>
+<ul>
+<li><a href="https://www.alexdebrie.com/posts/dynamodb-one-to-many/">One-to-Many Relationships</a> - Three common patterns</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-adjacency-graphs.html">Many-to-Many Relationships</a> - Adjacency list pattern</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-adjacency-graphs.html#bp-adjacency-lists">Hierarchical Data</a> - Tree structures in DynamoDB</li>
+</ul>
+<h3><a name="Performance-Optimization-1" class="anchor" href="#Performance-Optimization-1">Performance Optimization</a></h3>
+<p><strong>Capacity Planning:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html">Read/Write Capacity Modes</a> - On-demand vs provisioned</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AutoScaling.html">Auto Scaling</a> - Scale capacity automatically</li>
+<li><a href="https://aws.amazon.com/dynamodb/pricing/">DynamoDB Pricing</a> - Understanding costs</li>
+<li><a href="https://aws.amazon.com/blogs/database/cost-optimization-for-amazon-dynamodb/">Cost Optimization</a> - Strategies to reduce spend</li>
+</ul>
+<p><strong>Query Optimization:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-query-scan.html">Efficient Queries</a> - Use Query instead of Scan</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.ProjectionExpressions.html">Projection Expressions</a> - Reduce data transfer</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html#WorkingWithItems.BatchOperations">Batch Operations</a> - BatchGetItem and BatchWriteItem</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Scan.html#Scan.ParallelScan">Parallel Scans</a> - When you must scan</li>
+</ul>
+<p><strong>DynamoDB Accelerator (DAX):</strong></p>
+<ul>
+<li><a href="https://aws.amazon.com/dynamodb/dax/">DAX Overview</a> - Microsecond read latency</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html">When to Use DAX</a> - Read-heavy workloads</li>
+<li><a href="https://aws.amazon.com/blogs/database/amazon-dynamodb-accelerator-dax-vs-amazon-elasticache-for-redis-which-is-right-for-you/">DAX vs ElastiCache</a> - Choosing the right cache</li>
+</ul>
+<h3><a name="Security-amp-Operations" class="anchor" href="#Security-amp-Operations">Security &amp; Operations</a></h3>
+<p><strong>Security Best Practices:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html">DynamoDB Encryption</a> - Encryption at rest (default)</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/iam-policy-structure.html">IAM Policies for DynamoDB</a> - Fine-grained access control</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/vpc-endpoints-dynamodb.html">VPC Endpoints</a> - Private connectivity</li>
+<li><a href="https://aws.amazon.com/compliance/hipaa-compliance/">DynamoDB and HIPAA</a> - Compliance considerations</li>
+</ul>
+<p><strong>Monitoring &amp; Troubleshooting:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/monitoring-cloudwatch.html">CloudWatch Metrics</a> - Monitor table performance</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/contributorinsights.html">CloudWatch Contributor Insights</a> - Find hot keys</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html">X-Ray Integration</a> - Trace DynamoDB operations</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Programming.Errors.html">Common Error Messages</a> - Throttling, capacity, etc.</li>
+</ul>
+<p><strong>Backup &amp; Disaster Recovery:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html">Point-in-Time Recovery</a> - Continuous backups</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html">On-Demand Backups</a> - Manual snapshots</li>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html">Global Tables</a> - Multi-region disaster recovery</li>
+</ul>
+<h3><a name="Video-Tutorials" class="anchor" href="#Video-Tutorials">Video Tutorials</a></h3>
+<p><strong>Beginner to Intermediate:</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=sI-zciHAh-4">DynamoDB Fundamentals</a> - AWS tutorial for beginners</li>
+<li><a href="https://www.youtube.com/watch?v=2k2GINpO308">DynamoDB Core Concepts</a> - Keys, indexes, and queries</li>
+<li><a href="https://www.youtube.com/watch?v=BnDKD_Zv0og">Single-Table Design Explained</a> - Visual walkthrough</li>
+</ul>
+<p><strong>Advanced:</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=6yqfmXiZTlM">Rick Houlihan's Advanced Patterns</a> - Must-watch for advanced users</li>
+<li><a href="https://www.youtube.com/watch?v=fiP2e-g-r4g">Data Modeling Workshop</a> - Hands-on modeling session</li>
+<li><a href="https://www.youtube.com/watch?v=CyoWLN6UqRI">DynamoDB Streams Deep Dive</a> - Event-driven patterns</li>
+</ul>
+<h3><a name="Community-Tools" class="anchor" href="#Community-Tools">Community Tools</a></h3>
+<p><strong>Data Modeling Tools:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html">NoSQL Workbench</a> - Official data modeling tool from AWS</li>
+<li><a href="https://github.com/jeremydaly/dynamodb-toolbox">DynamoDB Toolbox</a> - Jeremy Daly's single-table library</li>
+<li><a href="https://dynobase.dev/">Dynobase</a> - DynamoDB GUI client and data browser</li>
+</ul>
+<p><strong>Local Development:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html">DynamoDB Local</a> - Run DynamoDB on your laptop</li>
+<li><a href="https://localstack.cloud/">LocalStack</a> - Full AWS cloud emulator</li>
+<li><a href="https://github.com/aaronshaf/dynamodb-admin">DynamoDB Admin</a> - Web GUI for local development</li>
+</ul>
+<p><strong>Testing &amp; Migration:</strong></p>
+<ul>
+<li><a href="https://aws.amazon.com/datapipeline/">AWS Data Pipeline</a> - Import/export data</li>
+<li><a href="https://aws.amazon.com/dms/">AWS Database Migration Service</a> - Migrate from other databases</li>
+<li><a href="https://partiql.org/">PartiQL</a> - SQL-compatible query language for DynamoDB</li>
+</ul>
+<h3><a name="Recommended-Learning-Path" class="anchor" href="#Recommended-Learning-Path">Recommended Learning Path</a></h3>
+<p><strong>Week 1 - Fundamentals:</strong></p>
+<ol>
+<li>Read <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.CoreComponents.html">DynamoDB Core Components</a></li>
+<li>Watch <a href="https://www.youtube.com/watch?v=sI-zciHAh-4">DynamoDB Fundamentals Video</a></li>
+<li>Create your first table with FsCDK (examples above)</li>
+<li>Practice queries and scans with NoSQL Workbench</li>
+</ol>
+<p><strong>Week 2 - Data Modeling:</strong></p>
+<ol>
+<li>Read <a href="https://www.alexdebrie.com/posts/dynamodb-one-to-many/">Alex DeBrie's One-to-Many Relationships</a></li>
+<li>Study <a href="https://www.alexdebrie.com/posts/dynamodb-design-process/">Access Pattern Design</a></li>
+<li>Model your application's entities and access patterns</li>
+<li>Learn about <a href="https://www.alexdebrie.com/posts/dynamodb-secondary-indexes/">Secondary Indexes</a></li>
+</ol>
+<p><strong>Week 3 - Advanced Patterns:</strong></p>
+<h3><a name="MUST-WATCH-Rick-Houlihan-s-Advanced-Design-Patterns-re-Invent-2019" class="anchor" href="#MUST-WATCH-Rick-Houlihan-s-Advanced-Design-Patterns-re-Invent-2019">📺 MUST WATCH: Rick Houlihan's Advanced Design Patterns (re:Invent 2019)</a></h3>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
+  <iframe 
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    src="https://www.youtube.com/embed/6yqfmXiZTlM" 
+    title="Advanced Design Patterns for Amazon DynamoDB - Rick Houlihan" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+  </iframe>
+</pre>**Rick Houlihan (AWS Principal Technologist) - 250k+ views, 4.8★ rating**
+<p>This is <strong>the definitive DynamoDB masterclass</strong>. Houlihan covers:
+- Single-table design principles and patterns
+- Advanced composite key strategies
+- Sparse index optimization techniques
+- Real-world examples from AWS customers at scale
+- Performance tuning for millions of requests/second</p>
+<p><strong>Why this matters:</strong> After watching this 1-hour session, developers report "DynamoDB finally clicked" and "completely changed how I think about data modeling." This is mandatory viewing before designing production DynamoDB schemas.</p>
+<p><strong>Next Steps After Watching:</strong></p>
+<ol>
+<li>Read <a href="https://www.alexdebrie.com/posts/dynamodb-single-table/">Single-Table Design</a> to reinforce concepts</li>
+<li>Learn <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transaction-apis.html">DynamoDB Transactions</a> for ACID guarantees</li>
+<li>Explore <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html">DynamoDB Streams</a></li>
+</ol>
+<p><strong>Ongoing - Mastery:</strong></p>
+<ul>
+<li>Buy <a href="https://www.dynamodbbook.com/">The DynamoDB Book</a> by Alex DeBrie</li>
+<li>Follow <a href="https://www.alexdebrie.com/">Alex DeBrie's Blog</a></li>
+<li>Join <a href="https://aws.amazon.com/developer/community/heroes/">AWS Data Hero Program</a></li>
+<li>Practice with <a href="https://github.com/jeremydaly/dynamodb-toolbox">DynamoDB Toolbox</a></li>
+</ul>
+<h3><a name="Common-Pitfalls-Lessons-from-the-Trenches" class="anchor" href="#Common-Pitfalls-Lessons-from-the-Trenches">Common Pitfalls: Lessons from the Trenches</a></h3>
+<p>Avoid these mistakes highlighted in DeBrie's book and Houlihan's talks to prevent performance issues and high costs.</p>
+<p><strong>❌ Common Errors:</strong></p>
+<ol>
+<li>Treating DynamoDB like SQL (normalizing data) → Leads to expensive joins; use denormalization instead.</li>
+<li>Poor key design causing hot partitions → Results in throttling; always test cardinality.</li>
+<li>Overusing Scans → Consumes capacity inefficiently; redesign for Query.</li>
+<li>Ignoring index costs → GSIs double write costs; monitor and prune.</li>
+<li>Forgetting backups → Data loss risk; keep PITR enabled.</li>
+</ol>
+<p><strong>✅ Pro Tips:</strong></p>
+<ol>
+<li>Prototype schemas in NoSQL Workbench before coding.</li>
+<li>Use PartiQL for SQL-like queries on complex data.</li>
+<li>Integrate with AppSync for GraphQL APIs.</li>
+<li>Scale globally with Global Tables for &lt;100ms latency.</li>
+</ol>
+<h3><a name="Experts-to-Follow-for-Ongoing-Learning" class="anchor" href="#Experts-to-Follow-for-Ongoing-Learning">Experts to Follow for Ongoing Learning</a></h3>
+<p><img src="img/awsheros.png" alt="AWS Heroes" />
+<em>DynamoDB experts and AWS Heroes who have shaped NoSQL best practices</em></p>
+<ul>
+<li>
+<strong>Alex DeBrie</strong> - DynamoDB expert, author of "The DynamoDB Book"
+<ul>
+<li><a href="https://twitter.com/alexbdebrie">Twitter/X: @alexbdebrie</a></li>
+<li><a href="https://www.dynamodbguide.com/">Website: DynamoDBGuide.com</a></li>
+</ul>
+</li>
+<li>
+<strong>Rick Houlihan</strong> - AWS Principal Technologist, DynamoDB scaling expert
+<ul>
+<li><a href="https://www.linkedin.com/in/rick-houlihan/">LinkedIn</a></li>
+</ul>
+</li>
+<li>
+<strong>Jeremy Daly</strong> - Serverless Hero, DynamoDB tools creator
+<ul>
+<li><a href="https://twitter.com/jeremy_daly">Twitter/X: @jeremy_daly</a></li>
+</ul>
+</li>
+</ul>
+<h3><a name="FsCDK-Integration-Highlights" class="anchor" href="#FsCDK-Integration-Highlights">FsCDK Integration Highlights</a></h3>
+<p>FsCDK makes best practices effortless with defaults like on-demand billing and PITR, while supporting advanced features like custom GSIs. See the examples above for production patterns.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.DynamoDB</div>
+<div class="fsdocs-tip" id="fs6">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs7">val table: name: string -&gt; TableBuilder<br /><em>&lt;summary&gt;Creates a DynamoDB table configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The table name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">custom operation: partitionKey (string) (AttributeType)
+
+Calls TableBuilder.PartitionKey<br /><em>&lt;summary&gt;Sets the partition key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the partition key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">[&lt;Struct&gt;]
+type AttributeType =
+  | BINARY = 0
+  | NUMBER = 1
+  | STRING = 2</div>
+<div class="fsdocs-tip" id="fs10">field AttributeType.STRING: AttributeType = 2</div>
+<div class="fsdocs-tip" id="fs11">custom operation: sortKey (string) (AttributeType)
+
+Calls TableBuilder.SortKey<br /><em>&lt;summary&gt;Sets the sort key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the sort key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;userId&quot; AttributeType.STRING
+     sortKey &quot;timestamp&quot; AttributeType.NUMBER
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">field AttributeType.NUMBER: AttributeType = 1</div>
+<div class="fsdocs-tip" id="fs13">custom operation: globalSecondaryIndexWithSort (string) (string * AttributeType) (string * AttributeType)
+
+Calls TableBuilder.GlobalSecondaryIndexWithSort<br /><em>&lt;summary&gt;Adds a Global Secondary Index with a sort key.&lt;/summary&gt;<br />&lt;param name=&quot;indexName&quot;&gt;The name of the GSI.&lt;/param&gt;<br />&lt;param name=&quot;partitionKey&quot;&gt;The GSI partition key (attribute name and type).&lt;/param&gt;<br />&lt;param name=&quot;sortKey&quot;&gt;The GSI sort key (attribute name and type).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;pk&quot; AttributeType.STRING
+     sortKey &quot;sk&quot; AttributeType.STRING
+     globalSecondaryIndexWithSort &quot;GSI1&quot; (&quot;gsi1pk&quot;, AttributeType.STRING) (&quot;gsi1sk&quot;, AttributeType.STRING)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: globalSecondaryIndex (string) (string * AttributeType)
+
+Calls TableBuilder.GlobalSecondaryIndex<br /><em>&lt;summary&gt;Adds a Global Secondary Index (GSI) to the table. Essential for Alex DeBrie&#39;s single-table design.&lt;/summary&gt;<br />&lt;param name=&quot;indexName&quot;&gt;The name of the GSI.&lt;/param&gt;<br />&lt;param name=&quot;partitionKey&quot;&gt;The GSI partition key (attribute name and type).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;pk&quot; AttributeType.STRING
+     sortKey &quot;sk&quot; AttributeType.STRING
+     globalSecondaryIndex &quot;GSI1&quot; (&quot;gsi1pk&quot;, AttributeType.STRING)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: timeToLive (string)
+
+Calls TableBuilder.TimeToLive<br /><em>&lt;summary&gt;Sets the Time-to-Live attribute for automatic item expiration.&lt;/summary&gt;<br />&lt;param name=&quot;attributeName&quot;&gt;The attribute name that stores the TTL timestamp (Unix epoch seconds).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     timeToLive &quot;expiresAt&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: localSecondaryIndex (string) (string * AttributeType)
+
+Calls TableBuilder.LocalSecondaryIndex<br /><em>&lt;summary&gt;Adds a Local Secondary Index (LSI) to the table.&lt;/summary&gt;<br />&lt;param name=&quot;indexName&quot;&gt;The name of the LSI.&lt;/param&gt;<br />&lt;param name=&quot;sortKey&quot;&gt;The LSI sort key (attribute name and type).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;pk&quot; AttributeType.STRING
+     sortKey &quot;sk&quot; AttributeType.STRING
+     localSecondaryIndex &quot;LSI1&quot; (&quot;lsi1sk&quot;, AttributeType.NUMBER)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">custom operation: globalSecondaryIndexWithProjection (string) (string * AttributeType) ((string * AttributeType) option) (ProjectionType) (string list)
+
+Calls TableBuilder.GlobalSecondaryIndexWithProjection<br /><em>&lt;summary&gt;Adds a Global Secondary Index with custom projection.&lt;/summary&gt;<br />&lt;param name=&quot;indexName&quot;&gt;The name of the GSI.&lt;/param&gt;<br />&lt;param name=&quot;partitionKey&quot;&gt;The GSI partition key (attribute name and type).&lt;/param&gt;<br />&lt;param name=&quot;sortKey&quot;&gt;The GSI sort key (optional).&lt;/param&gt;<br />&lt;param name=&quot;projectionType&quot;&gt;The projection type (ALL, KEYS_ONLY, or INCLUDE).&lt;/param&gt;<br />&lt;param name=&quot;nonKeyAttributes&quot;&gt;Additional attributes to include (for INCLUDE projection).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;pk&quot; AttributeType.STRING
+     globalSecondaryIndexWithProjection &quot;GSI1&quot; (&quot;gsi1pk&quot;, AttributeType.STRING) None ProjectionType.KEYS_ONLY []
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs19">[&lt;Struct&gt;]
+type ProjectionType =
+  | KEYS_ONLY = 0
+  | INCLUDE = 1
+  | ALL = 2</div>
+<div class="fsdocs-tip" id="fs20">field ProjectionType.INCLUDE: ProjectionType = 1</div>
+<div class="fsdocs-tip" id="fs21">custom operation: contributorInsights (bool)
+
+Calls TableBuilder.ContributorInsights<br /><em>&lt;summary&gt;Enables or disables CloudWatch Contributor Insights for the table.&lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether to enable contributor insights.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     contributorInsights true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">custom operation: tableClass (TableClass)
+
+Calls TableBuilder.TableClass<br /><em>&lt;summary&gt;Sets the table class for cost optimization.&lt;/summary&gt;<br />&lt;param name=&quot;tableClass&quot;&gt;The table class (STANDARD or STANDARD_INFREQUENT_ACCESS).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     tableClass TableClass.STANDARD_INFREQUENT_ACCESS
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">[&lt;Struct&gt;]
+type TableClass =
+  | STANDARD = 0
+  | STANDARD_INFREQUENT_ACCESS = 1</div>
+<div class="fsdocs-tip" id="fs24">field TableClass.STANDARD_INFREQUENT_ACCESS: TableClass = 1</div>
+<div class="fsdocs-tip" id="fs25">custom operation: stream (StreamViewType)
+
+Calls TableBuilder.Stream<br /><em>&lt;summary&gt;Enables DynamoDB Streams for the table.&lt;/summary&gt;<br />&lt;param name=&quot;streamType&quot;&gt;The stream view type (KEYS_ONLY, NEW_IMAGE, OLD_IMAGE, or NEW_AND_OLD_IMAGES).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     stream StreamViewType.NEW_AND_OLD_IMAGES
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">[&lt;Struct&gt;]
+type StreamViewType =
+  | NEW_IMAGE = 0
+  | OLD_IMAGE = 1
+  | NEW_AND_OLD_IMAGES = 2
+  | KEYS_ONLY = 3</div>
+<div class="fsdocs-tip" id="fs27">field StreamViewType.NEW_AND_OLD_IMAGES: StreamViewType = 2</div>
+<div class="fsdocs-tip" id="fs28">custom operation: removalPolicy (RemovalPolicy)
+
+Calls TableBuilder.RemovalPolicy<br /><em>&lt;summary&gt;Sets the removal policy for the table.&lt;/summary&gt;<br />&lt;param name=&quot;policy&quot;&gt;The removal policy (DESTROY, RETAIN, or SNAPSHOT).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     removalPolicy RemovalPolicy.DESTROY
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs29">[&lt;Struct&gt;]
+type RemovalPolicy =
+  | DESTROY = 0
+  | RETAIN = 1
+  | SNAPSHOT = 2
+  | RETAIN_ON_UPDATE_OR_DELETE = 3</div>
+<div class="fsdocs-tip" id="fs30">field RemovalPolicy.RETAIN: RemovalPolicy = 1</div>
+<div class="fsdocs-tip" id="fs31">custom operation: billingMode (BillingMode)
+
+Calls TableBuilder.BillingMode<br /><em>&lt;summary&gt;Sets the billing mode for the table.&lt;/summary&gt;<br />&lt;param name=&quot;mode&quot;&gt;The billing mode (PAY_PER_REQUEST or PROVISIONED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs32">[&lt;Struct&gt;]
+type BillingMode =
+  | PAY_PER_REQUEST = 0
+  | PROVISIONED = 1</div>
+<div class="fsdocs-tip" id="fs33">field BillingMode.PAY_PER_REQUEST: BillingMode = 0</div>
+<div class="fsdocs-tip" id="fs34">custom operation: pointInTimeRecovery (bool)
+
+Calls TableBuilder.PointInTimeRecovery<br /><em>&lt;summary&gt;Enables or disables point-in-time recovery.&lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether point-in-time recovery is enabled.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     pointInTimeRecovery true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">field RemovalPolicy.DESTROY: RemovalPolicy = 0</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Quick-Start">
+      Quick Start
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-Table">
+      Basic Table
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Table-with-Sort-Key">
+      Table with Sort Key
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Table-with-Provisioned-Capacity">
+      Table with Provisioned Capacity
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Single-Table-Design-with-Global-Secondary-Indexes-GSIs">
+      Single-Table Design with Global Secondary Indexes (GSIs)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Table-with-Local-Secondary-Index-LSI">
+      Table with Local Secondary Index (LSI)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Table-with-Time-to-Live-TTL">
+      Table with Time-to-Live (TTL)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Advanced-GSI-with-Custom-Projection">
+      Advanced GSI with Custom Projection
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Table-with-Contributor-Insights">
+      Table with Contributor Insights
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Optimized-Table-with-Infrequent-Access">
+      Cost-Optimized Table with Infrequent Access
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Production-Table-with-All-Best-Practices">
+      Production Table with All Best Practices
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Table-with-DynamoDB-Streams">
+      Table with DynamoDB Streams
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Development-Table">
+      Development Table
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices-Expert-Guided-Principles">
+      Best Practices: Expert-Guided Principles
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Data-Modeling-Fundamentals">
+      Data Modeling Fundamentals
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Single-Table-Design-Visual-Example">
+      📊 Single-Table Design Visual Example
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Performance-Optimization">
+      Performance Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security-and-Compliance">
+      Security and Compliance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cost-Management">
+      Cost Management
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Reliability-Engineering">
+      Reliability Engineering
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Operational-Checklist">
+      Operational Checklist
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Billing-Modes">
+      Billing Modes
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#PAY_PER_REQUEST-On-Demand">
+      PAY_PER_REQUEST (On-Demand)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#PROVISIONED">
+      PROVISIONED
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Stream-View-Types">
+      Stream View Types
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Learning-Resources-from-DynamoDB-Experts">
+      📚 Learning Resources from DynamoDB Experts
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Alex-DeBrie-The-DynamoDB-Authority">
+      Alex DeBrie - The DynamoDB Authority
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Rick-Houlihan-AWS-Principal-Engineer-Former">
+      Rick Houlihan - AWS Principal Engineer (Former)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Official-Documentation">
+      AWS Official Documentation
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Data-Modeling-Deep-Dives">
+      Data Modeling Deep Dives
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Performance-Optimization-1">
+      Performance Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security-amp-Operations">
+      Security &amp; Operations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Video-Tutorials">
+      Video Tutorials
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Community-Tools">
+      Community Tools
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Recommended-Learning-Path">
+      Recommended Learning Path
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#MUST-WATCH-Rick-Houlihan-s-Advanced-Design-Patterns-re-Invent-2019">
+      📺 MUST WATCH: Rick Houlihan's Advanced Design Patterns (re:Invent 2019)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Common-Pitfalls-Lessons-from-the-Trenches">
+      Common Pitfalls: Lessons from the Trenches
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Experts-to-Follow-for-Ongoing-Learning">
+      Experts to Follow for Ongoing Learning
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#FsCDK-Integration-Highlights">
+      FsCDK Integration Highlights
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

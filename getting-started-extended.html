@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Getting Started with FsCDK - Extended Features" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Getting Started with FsCDK - Extended Features">
+    
+    <title>Getting Started with FsCDK - Extended Features | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header active">
+  Getting Started
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header active">
+  Getting Started
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Getting-Started-with-FsCDK-Extended-Features" class="anchor" href="#Getting-Started-with-FsCDK-Extended-Features">Getting Started with FsCDK - Extended Features</a></h1>
+<p>Welcome to the extended FsCDK! This guide will help you understand the new features and how to use them effectively.</p>
+<h2><a name="What-s-New" class="anchor" href="#What-s-New">What's New?</a></h2>
+<p>FsCDK now includes builders for:</p>
+<ul>
+<li><strong>VPC &amp; Networking</strong> - Secure, multi-AZ virtual private clouds</li>
+<li><strong>RDS PostgreSQL</strong> - Managed databases with automated backups</li>
+<li><strong>CloudFront</strong> - Global CDN for fast content delivery</li>
+<li><strong>Cognito</strong> - User authentication with MFA support</li>
+</ul>
+<p>All following AWS Well-Architected Framework best practices!</p>
+<h2><a name="Quick-Start-Examples" class="anchor" href="#Quick-Start-Examples">Quick Start Examples</a></h2>
+<h3><a name="1-Create-a-Secure-VPC" class="anchor" href="#1-Create-a-Secure-VPC">1. Create a Secure VPC</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/System.Text.Json.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 5)" onmouseover="showTip(event, 'fs5', 5)" class="id">EC2</span>
+
+<span onmouseout="hideTip(event, 'fs6', 6)" onmouseover="showTip(event, 'fs6', 6)" class="fn">vpc</span> <span class="s">&quot;MyVpc&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs7', 7)" onmouseover="showTip(event, 'fs7', 7)" class="k">maxAzs</span> <span class="n">2</span> <span class="c">// Multi-AZ for high availability</span>
+    <span onmouseout="hideTip(event, 'fs8', 8)" onmouseover="showTip(event, 'fs8', 8)" class="k">natGateways</span> <span class="n">1</span> <span class="c">// Cost-optimized</span>
+    <span onmouseout="hideTip(event, 'fs9', 9)" onmouseover="showTip(event, 'fs9', 9)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span> <span class="c">// IP address range</span>
+<span class="pn">}</span>
+</code></pre>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>2 public subnets (one per AZ)</li>
+<li>2 private subnets with NAT gateway access</li>
+<li>DNS hostnames and support enabled</li>
+<li>Best practices baked in!</li>
+</ul>
+<h3><a name="2-Add-a-PostgreSQL-Database" class="anchor" href="#2-Add-a-PostgreSQL-Database">2. Add a PostgreSQL Database</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 10)" onmouseover="showTip(event, 'fs2', 10)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 11)" onmouseover="showTip(event, 'fs3', 11)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 12)" onmouseover="showTip(event, 'fs4', 12)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="id">RDS</span>
+</code></pre>
+<p>Here's how to add a PostgreSQL database (shown in full stack example below):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">rdsInstance</span> <span class="s">&quot;MyDatabase&quot;</span> <span class="pn">{</span>
+    <span class="id">vpc</span> <span class="id">myVpc</span>
+    <span class="id">postgresEngine</span>                     <span class="c">// PostgreSQL 15</span>
+    <span class="id">instanceType</span> <span class="pn">(</span><span class="id">InstanceType</span><span class="pn">.</span><span class="id">Of</span><span class="pn">(</span><span class="id">InstanceClass</span><span class="pn">.</span><span class="id">BURSTABLE3</span><span class="pn">,</span> <span class="id">InstanceSize</span><span class="pn">.</span><span class="id">SMALL</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="id">allocatedStorage</span> <span class="n">20</span>
+
+    <span class="c">// Automatic best practices:</span>
+    <span class="c">// Encrypted storage</span>
+    <span class="c">// 7-day automated backups</span>
+    <span class="c">// Auto minor version upgrades</span>
+    <span class="c">// Private subnet placement</span>
+
+    <span class="id">multiAz</span> <span class="k">true</span>                       <span class="c">// High availability</span>
+    <span class="id">databaseName</span> <span class="s">&quot;myapp&quot;</span>
+<span class="pn">}</span>
+</code></pre>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>Encrypted database in private subnet</li>
+<li>Automated backups with 7-day retention</li>
+<li>Multi-AZ replication for HA</li>
+<li>Not publicly accessible (secure!)</li>
+</ul>
+<h3><a name="3-Set-Up-User-Authentication" class="anchor" href="#3-Set-Up-User-Authentication">3. Set Up User Authentication</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 14)" onmouseover="showTip(event, 'fs2', 14)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 15)" onmouseover="showTip(event, 'fs3', 15)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 16)" onmouseover="showTip(event, 'fs4', 16)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="id">Cognito</span>
+
+<span class="c">// Create user pool</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs12', 18)" onmouseover="showTip(event, 'fs12', 18)" class="id">myUserPool</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="fn">userPool</span> <span class="s">&quot;MyUserPool&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="k">signInWithEmail</span> <span class="c">// Users sign in with email</span>
+        <span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="k">selfSignUpEnabled</span> <span class="k">true</span> <span class="c">// Allow self-registration</span>
+        <span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="k">mfa</span> <span onmouseout="hideTip(event, 'fs17', 23)" onmouseover="showTip(event, 'fs17', 23)" class="en">Mfa</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 24)" onmouseover="showTip(event, 'fs18', 24)" class="id">OPTIONAL</span> <span class="c">// Users can enable MFA</span>
+
+    <span class="c">// Automatic best practices:</span>
+    <span class="c">// Strong password policy (8+ chars, mixed case, digits, symbols)</span>
+    <span class="c">// Email verification required</span>
+    <span class="c">// Account recovery via email</span>
+    <span class="pn">}</span>
+
+<span class="c">// Create app client</span>
+<span onmouseout="hideTip(event, 'fs19', 25)" onmouseover="showTip(event, 'fs19', 25)" class="fn">userPoolClient</span> <span class="s">&quot;MyAppClient&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 26)" onmouseover="showTip(event, 'fs20', 26)" class="k">userPool</span> <span onmouseout="hideTip(event, 'fs12', 27)" onmouseover="showTip(event, 'fs12', 27)" class="id">myUserPool</span>
+    <span onmouseout="hideTip(event, 'fs21', 28)" onmouseover="showTip(event, 'fs21', 28)" class="k">generateSecret</span> <span class="k">false</span> <span class="c">// For web/mobile apps</span>
+
+<span class="c">// Automatic best practices:</span>
+<span class="c">// SRP authentication flow</span>
+<span class="c">// Prevents user existence errors</span>
+<span class="c">// Reasonable token expiration times</span>
+<span class="pn">}</span>
+</code></pre>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>Secure authentication with strong passwords</li>
+<li>Email verification out of the box</li>
+<li>MFA support for enhanced security</li>
+<li>Industry-standard OAuth flows</li>
+</ul>
+<h3><a name="4-Add-a-CDN-for-Fast-Delivery" class="anchor" href="#4-Add-a-CDN-for-Fast-Delivery">4. Add a CDN for Fast Delivery</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 29)" onmouseover="showTip(event, 'fs2', 29)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 30)" onmouseover="showTip(event, 'fs3', 30)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 31)" onmouseover="showTip(event, 'fs4', 31)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 32)" onmouseover="showTip(event, 'fs22', 32)" class="id">CloudFront</span>
+</code></pre>
+<p><strong>What you get:</strong></p>
+<ul>
+<li>Global content delivery network</li>
+<li>Modern protocols (HTTP/2, IPv6)</li>
+<li>Secure by default (TLS 1.2+)</li>
+<li>Cost-optimized for common use cases</li>
+</ul>
+<h2><a name="Complete-Application-Stack" class="anchor" href="#Complete-Application-Stack">Complete Application Stack</a></h2>
+<p><img src="img/FsCDK-Stack.png" alt="FsCDK Stack Architecture" /></p>
+<p><em>FsCDK App structure showing multiple stacks with constructs organized hierarchically. Each stack contains AWS resources (S3, Lambda, EC2) managed by your infrastructure-as-code heroes!</em></p>
+<p>Here's how to combine everything into a production-ready stack:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 41)" onmouseover="showTip(event, 'fs2', 41)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 42)" onmouseover="showTip(event, 'fs3', 42)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 43)" onmouseover="showTip(event, 'fs2', 43)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 44)" onmouseover="showTip(event, 'fs3', 44)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 45)" onmouseover="showTip(event, 'fs4', 45)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 46)" onmouseover="showTip(event, 'fs30', 46)" class="id">S3</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 47)" onmouseover="showTip(event, 'fs2', 47)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 48)" onmouseover="showTip(event, 'fs3', 48)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 49)" onmouseover="showTip(event, 'fs4', 49)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 50)" onmouseover="showTip(event, 'fs31', 50)" class="id">Lambda</span>
+</code></pre>
+<h2><a name="Best-Practices-Baked-In" class="anchor" href="#Best-Practices-Baked-In">Best Practices Baked In</a></h2>
+<p>FsCDK automatically applies AWS best practices:</p>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>Encryption enabled by default (S3, RDS)</li>
+<li>Security groups deny all by default</li>
+<li>Strong password policies</li>
+<li>Private subnet placement for databases</li>
+<li>No public database access</li>
+</ul>
+<h3><a name="High-Availability" class="anchor" href="#High-Availability">High Availability</a></h3>
+<ul>
+<li>Multi-AZ VPC configuration</li>
+<li>Multi-AZ database replication</li>
+<li>Automated backups (7-day retention)</li>
+<li>Global CDN distribution</li>
+</ul>
+<h3><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h3>
+<ul>
+<li>Right-sized instance defaults (t3.micro)</li>
+<li>Single NAT gateway for dev/test</li>
+<li>Regional CDN pricing (PriceClass100)</li>
+<li>Pay-per-request database options</li>
+</ul>
+<h3><a name="Performance" class="anchor" href="#Performance">Performance</a></h3>
+<ul>
+<li>HTTP/2 enabled for CDN</li>
+<li>IPv6 support</li>
+<li>Proper subnet segmentation</li>
+<li>Monitoring capabilities built-in</li>
+</ul>
+<h2><a name="Common-Patterns" class="anchor" href="#Common-Patterns">Common Patterns</a></h2>
+<h3><a name="Pattern-1-Web-Application-with-Auth" class="anchor" href="#Pattern-1-Web-Application-with-Auth">Pattern 1: Web Application with Auth</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs39', 114)" onmouseover="showTip(event, 'fs39', 114)" class="fn">stack</span> <span class="s">&quot;WebApp&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs6', 115)" onmouseover="showTip(event, 'fs6', 115)" class="fn">vpc</span> <span class="s">&quot;WebVpc&quot;</span> <span class="pn">{</span> <span class="pn">(</span><span class="pn">)</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 116)" onmouseover="showTip(event, 'fs13', 116)" class="fn">userPool</span> <span class="s">&quot;Users&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 117)" onmouseover="showTip(event, 'fs14', 117)" class="k">signInWithEmail</span>
+        <span onmouseout="hideTip(event, 'fs15', 118)" onmouseover="showTip(event, 'fs15', 118)" class="k">selfSignUpEnabled</span> <span class="k">true</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs62', 119)" onmouseover="showTip(event, 'fs62', 119)" class="fn">lambda</span> <span class="s">&quot;Api&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs63', 120)" onmouseover="showTip(event, 'fs63', 120)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs64', 121)" onmouseover="showTip(event, 'fs64', 121)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 122)" onmouseover="showTip(event, 'fs65', 122)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs66', 123)" onmouseover="showTip(event, 'fs66', 123)" class="k">handler</span> <span class="s">&quot;Api::Handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs67', 124)" onmouseover="showTip(event, 'fs67', 124)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs54', 125)" onmouseover="showTip(event, 'fs54', 125)" class="fn">bucket</span> <span class="s">&quot;Assets&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs55', 126)" onmouseover="showTip(event, 'fs55', 126)" class="k">versioned</span> <span class="k">true</span> <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Pattern-2-Data-Processing-Pipeline" class="anchor" href="#Pattern-2-Data-Processing-Pipeline">Pattern 2: Data Processing Pipeline</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs39', 127)" onmouseover="showTip(event, 'fs39', 127)" class="fn">stack</span> <span class="s">&quot;DataPipeline&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 128)" onmouseover="showTip(event, 'fs47', 128)" class="fn">myVpc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 129)" onmouseover="showTip(event, 'fs6', 129)" class="fn">vpc</span> <span class="s">&quot;DataVpc&quot;</span> <span class="pn">{</span> <span class="pn">(</span><span class="pn">)</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs48', 130)" onmouseover="showTip(event, 'fs48', 130)" class="fn">rdsInstance</span> <span class="s">&quot;DataWarehouse&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs49', 131)" onmouseover="showTip(event, 'fs49', 131)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs47', 132)" onmouseover="showTip(event, 'fs47', 132)" class="fn">myVpc</span>
+        <span onmouseout="hideTip(event, 'fs50', 133)" onmouseover="showTip(event, 'fs50', 133)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs51', 134)" onmouseover="showTip(event, 'fs51', 134)" class="k">multiAz</span> <span class="k">true</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs62', 135)" onmouseover="showTip(event, 'fs62', 135)" class="fn">lambda</span> <span class="s">&quot;Processor&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs63', 136)" onmouseover="showTip(event, 'fs63', 136)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs64', 137)" onmouseover="showTip(event, 'fs64', 137)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 138)" onmouseover="showTip(event, 'fs65', 138)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs66', 139)" onmouseover="showTip(event, 'fs66', 139)" class="k">handler</span> <span class="s">&quot;Processor::Handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs67', 140)" onmouseover="showTip(event, 'fs67', 140)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+        <span onmouseout="hideTip(event, 'fs68', 141)" onmouseover="showTip(event, 'fs68', 141)" class="k">timeout</span> <span class="n">300.0</span> <span class="c">// 5 minutes for data processing</span>
+        <span onmouseout="hideTip(event, 'fs69', 142)" onmouseover="showTip(event, 'fs69', 142)" class="k">memory</span> <span class="n">1024</span> <span class="c">// More memory for processing</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs54', 143)" onmouseover="showTip(event, 'fs54', 143)" class="fn">bucket</span> <span class="s">&quot;DataLake&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs55', 144)" onmouseover="showTip(event, 'fs55', 144)" class="k">versioned</span> <span class="k">true</span>
+    <span class="c">// lifecycleRules [ /* ... */ ]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Pattern-3-Serverless-API-with-CDN" class="anchor" href="#Pattern-3-Serverless-API-with-CDN">Pattern 3: Serverless API with CDN</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 145)" onmouseover="showTip(event, 'fs2', 145)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 146)" onmouseover="showTip(event, 'fs3', 146)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 147)" onmouseover="showTip(event, 'fs4', 147)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs71', 148)" onmouseover="showTip(event, 'fs71', 148)" class="id">DynamoDB</span>
+</code></pre>
+<h2><a name="Migration-from-Existing-FsCDK" class="anchor" href="#Migration-from-Existing-FsCDK">Migration from Existing FsCDK</a></h2>
+<p>Good news! <strong>No breaking changes!</strong> Your existing code continues to work:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Your existing code still works!</span>
+<span onmouseout="hideTip(event, 'fs39', 176)" onmouseover="showTip(event, 'fs39', 176)" class="fn">stack</span> <span class="s">&quot;MyStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs62', 177)" onmouseover="showTip(event, 'fs62', 177)" class="fn">lambda</span> <span class="s">&quot;MyFunction&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs63', 178)" onmouseover="showTip(event, 'fs63', 178)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs64', 179)" onmouseover="showTip(event, 'fs64', 179)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 180)" onmouseover="showTip(event, 'fs65', 180)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs66', 181)" onmouseover="showTip(event, 'fs66', 181)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs67', 182)" onmouseover="showTip(event, 'fs67', 182)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs73', 183)" onmouseover="showTip(event, 'fs73', 183)" class="fn">table</span> <span class="s">&quot;MyTable&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs74', 184)" onmouseover="showTip(event, 'fs74', 184)" class="k">partitionKey</span> <span class="s">&quot;id&quot;</span> <span onmouseout="hideTip(event, 'fs75', 185)" onmouseover="showTip(event, 'fs75', 185)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs76', 186)" onmouseover="showTip(event, 'fs76', 186)" class="id">STRING</span> <span class="pn">}</span>
+<span class="pn">}</span>
+
+<span class="c">// Just add new features when you need them</span>
+<span onmouseout="hideTip(event, 'fs39', 187)" onmouseover="showTip(event, 'fs39', 187)" class="fn">stack</span> <span class="s">&quot;EnhancedStack&quot;</span> <span class="pn">{</span>
+    <span class="c">// Existing services</span>
+    <span onmouseout="hideTip(event, 'fs62', 188)" onmouseover="showTip(event, 'fs62', 188)" class="fn">lambda</span> <span class="s">&quot;MyFunction&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs63', 189)" onmouseover="showTip(event, 'fs63', 189)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs64', 190)" onmouseover="showTip(event, 'fs64', 190)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 191)" onmouseover="showTip(event, 'fs65', 191)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs66', 192)" onmouseover="showTip(event, 'fs66', 192)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs67', 193)" onmouseover="showTip(event, 'fs67', 193)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+    <span class="pn">}</span>
+
+    <span class="c">// New services</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 194)" onmouseover="showTip(event, 'fs47', 194)" class="fn">myVpc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs6', 195)" onmouseover="showTip(event, 'fs6', 195)" class="fn">vpc</span> <span class="s">&quot;MyVpc&quot;</span> <span class="pn">{</span> <span class="pn">(</span><span class="pn">)</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs48', 196)" onmouseover="showTip(event, 'fs48', 196)" class="fn">rdsInstance</span> <span class="s">&quot;MyDB&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs49', 197)" onmouseover="showTip(event, 'fs49', 197)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs47', 198)" onmouseover="showTip(event, 'fs47', 198)" class="fn">myVpc</span>
+        <span onmouseout="hideTip(event, 'fs50', 199)" onmouseover="showTip(event, 'fs50', 199)" class="k">postgresEngine</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 200)" onmouseover="showTip(event, 'fs13', 200)" class="fn">userPool</span> <span class="s">&quot;MyAuth&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs14', 201)" onmouseover="showTip(event, 'fs14', 201)" class="k">signInWithEmail</span> <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Learning-Resources" class="anchor" href="#Learning-Resources">Learning Resources</a></h2>
+<ol>
+<li><strong>Examples</strong>: See <a href="multi-tier-example.html">Multi-Tier Example</a> for a complete application</li>
+<li><strong>Security</strong>: Read <a href="iam-best-practices.html">IAM Best Practices</a> for security guidance</li>
+<li><strong>API Docs</strong>: Check XML documentation comments in code</li>
+<li><strong>AWS Docs</strong>: <a href="https://docs.aws.amazon.com/cdk/">AWS CDK Documentation</a></li>
+</ol>
+<h2><a name="Next-Steps" class="anchor" href="#Next-Steps">Next Steps</a></h2>
+<ol>
+<li>Install FsCDK: <code>dotnet add package FsCDK</code></li>
+<li>Create your first VPC: <code>vpc "MyVpc" { }</code></li>
+<li>Add a database: <code>rdsInstance "MyDB" { vpc myVpc; postgresEngine }</code></li>
+<li>Deploy: <code>cdk deploy</code></li>
+<li>Monitor in AWS Console</li>
+</ol>
+<h2><a name="Getting-Help" class="anchor" href="#Getting-Help">Getting Help</a></h2>
+<ul>
+<li>Read the examples in the docs</li>
+<li>Check the test files for usage patterns</li>
+<li>Ask questions in GitHub Issues</li>
+<li>Reference AWS CDK documentation</li>
+</ul>
+<h2><a name="Tips-for-Success" class="anchor" href="#Tips-for-Success">Tips for Success</a></h2>
+<ol>
+<li><strong>Start Small</strong>: Begin with a simple VPC or database</li>
+<li><strong>Use Defaults</strong>: FsCDK defaults are production-ready</li>
+<li><strong>Review Generated Templates</strong>: Run <code>cdk synth</code> to see CloudFormation</li>
+<li><strong>Test Incrementally</strong>: Deploy small changes frequently</li>
+<li><strong>Follow Best Practices</strong>: Read the IAM best practices guide</li>
+</ol>
+<h2><a name="Cost-Management" class="anchor" href="#Cost-Management">Cost Management</a></h2>
+<p>Monitor your costs:</p>
+<ul>
+<li>Use <code>aws ce get-cost-and-usage</code> CLI command</li>
+<li>Set up AWS Budgets</li>
+<li>Review the cost estimates in examples</li>
+<li>Start with smaller instance types</li>
+<li>Use t3.micro for development</li>
+</ul>
+<h2><a name="Troubleshooting" class="anchor" href="#Troubleshooting">Troubleshooting</a></h2>
+<h3><a name="Build-Errors" class="anchor" href="#Build-Errors">Build Errors</a></h3>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Clean and rebuild
+dotnet clean
+dotnet build
+</code></pre></td></tr></table>
+<h3><a name="Deployment-Issues" class="anchor" href="#Deployment-Issues">Deployment Issues</a></h3>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Verify CDK bootstrap
+cdk bootstrap aws://ACCOUNT/REGION
+
+# Check diff before deploying
+cdk diff
+
+# Deploy with verbose output
+cdk deploy --verbose
+</code></pre></td></tr></table>
+<h3><a name="Resource-Already-Exists" class="anchor" href="#Resource-Already-Exists">Resource Already Exists</a></h3>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Import existing resources
+cdk import
+
+# Or use different names
+vpc "MyVpc-v2" { ... }
+</code></pre></td></tr></table>
+<h2><a name="What-s-Available" class="anchor" href="#What-s-Available">What's Available?</a></h2>
+<p>FsCDK supports 30+ AWS services including:</p>
+<ul>
+<li><strong>Load Balancers</strong>: Application Load Balancer (ALB), Network Load Balancer (NLB)</li>
+<li><strong>DNS &amp; Certificates</strong>: Route53 hosted zones, private zones, A records, Certificate Manager</li>
+<li><strong>Containers</strong>: ECS/Fargate task definitions and services, ECR repositories, EKS clusters</li>
+<li><strong>Databases</strong>: RDS (PostgreSQL, MySQL, etc.), DynamoDB, DocumentDB, ElastiCache</li>
+<li><strong>Messaging</strong>: SNS, SQS, Kinesis streams, EventBridge</li>
+<li><strong>Monitoring</strong>: CloudWatch alarms, dashboards, log groups, metric filters, X-Ray, Synthetics</li>
+<li><strong>Security</strong>: KMS encryption, Secrets Manager, IAM roles and policies, OIDC providers</li>
+<li><strong>API &amp; Integration</strong>: API Gateway (REST &amp; HTTP), AppSync GraphQL, Step Functions</li>
+<li><strong>Storage &amp; CDN</strong>: S3, CloudFront distributions</li>
+<li><strong>Compute</strong>: Lambda functions with Powertools, App Runner, Elastic Beanstalk</li>
+</ul>
+<p>See the <a href="https://totallymoney.github.io/FsCDK/">full list of supported services</a> in the documentation.</p>
+<hr />
+<p>Ready to build secure, scalable infrastructure with F#? Let's go!</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.EC2</div>
+<div class="fsdocs-tip" id="fs6">val vpc: name: string -&gt; VpcBuilder<br /><em>&lt;summary&gt;Creates a VPC configuration with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The VPC name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ vpc &quot;MyVpc&quot; {
+     maxAzs 2
+     natGateways 1
+     cidr &quot;10.0.0.0/16&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs7">custom operation: maxAzs (int)
+
+Calls VpcBuilder.MaxAzs<br /><em>&lt;summary&gt;Sets the maximum number of Availability Zones to use.&lt;/summary&gt;<br />&lt;param name=&quot;maxAzs&quot;&gt;The maximum number of AZs (default: 2 for HA).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">custom operation: natGateways (int)
+
+Calls VpcBuilder.NatGateways<br /><em>&lt;summary&gt;Sets the number of NAT Gateways.&lt;/summary&gt;<br />&lt;param name=&quot;natGateways&quot;&gt;The number of NAT gateways (default: 1 for cost optimization).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">custom operation: cidr (string)
+
+Calls VpcBuilder.Cidr<br /><em>&lt;summary&gt;Sets the CIDR block for the VPC.&lt;/summary&gt;<br />&lt;param name=&quot;cidr&quot;&gt;The CIDR block (e.g., &quot;10.0.0.0/16&quot;).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">namespace Amazon.CDK.AWS.RDS</div>
+<div class="fsdocs-tip" id="fs11">namespace Amazon.CDK.AWS.Cognito</div>
+<div class="fsdocs-tip" id="fs12">val myUserPool: UserPoolSpec</div>
+<div class="fsdocs-tip" id="fs13">val userPool: name: string -&gt; UserPoolBuilder<br /><em>&lt;summary&gt;Creates a Cognito User Pool with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The user pool name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ userPool &quot;MyUserPool&quot; {
+     signInWithEmail
+     selfSignUpEnabled true
+     mfa Mfa.OPTIONAL
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: signInWithEmail
+
+Calls UserPoolBuilder.SignInWithEmail<br /><em>&lt;summary&gt;Enables email only as sign-in alias.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: selfSignUpEnabled (bool)
+
+Calls UserPoolBuilder.SelfSignUpEnabled<br /><em>&lt;summary&gt;Enables or disables self sign-up.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: mfa (Mfa)
+
+Calls UserPoolBuilder.Mfa<br /><em>&lt;summary&gt;Sets MFA configuration.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">[&lt;Struct&gt;]
+type Mfa =
+  | OFF = 0
+  | OPTIONAL = 1
+  | REQUIRED = 2</div>
+<div class="fsdocs-tip" id="fs18">field Mfa.OPTIONAL: Mfa = 1</div>
+<div class="fsdocs-tip" id="fs19">val userPoolClient: name: string -&gt; UserPoolClientBuilder<br /><em>&lt;summary&gt;Creates a Cognito User Pool Client.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The client name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ userPoolClient &quot;MyAppClient&quot; {
+     userPool myUserPool
+     generateSecret false
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">custom operation: userPool (UserPoolSpec)
+
+Calls UserPoolClientBuilder.UserPool<br /><em>&lt;summary&gt;Sets the user pool.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">custom operation: generateSecret (bool)
+
+Calls UserPoolClientBuilder.GenerateSecret<br /><em>&lt;summary&gt;Enables or disables secret generation.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">namespace Amazon.CDK.AWS.CloudFront</div>
+<div class="fsdocs-tip" id="fs23">val myBehavior: IBehaviorOptions</div>
+<div class="fsdocs-tip" id="fs24">module CloudFrontBehaviors
+
+from FsCDK<br /><em>&lt;summary&gt;
+ Factory helpers to build common IBehaviorOptions for S3 and HTTP origins.
+ These helpers are useful if you prefer to construct behaviors and pass them via defaultBehavior/additionalBehavior.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">val httpBehaviorDefault: domainName: string -&gt; (bool option -&gt; IBehaviorOptions)</div>
+<div class="fsdocs-tip" id="fs26">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs27">val cloudFrontDistribution: name: string -&gt; DistributionBuilder<br /><em>&lt;summary&gt;Creates a CloudFront distribution with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The distribution name.&lt;/param&gt;<br />&lt;remarks&gt;
+ Example:
+ cloudFrontDistribution &quot;MyCDN&quot; {
+     s3DefaultBehavior myBucket
+     defaultRootObject &quot;index.html&quot;
+     domainName &quot;static.example.com&quot;
+     priceClass PriceClass.PRICE_CLASS_100
+ }
+ &lt;/remarks&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">custom operation: defaultBehavior (IBehaviorOptions)
+
+Calls DistributionBuilder.DefaultBehavior<br /><em>&lt;summary&gt;Sets the default behavior from a pre-built IBehaviorOptions.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs29">custom operation: defaultRootObject (string)
+
+Calls DistributionBuilder.DefaultRootObject<br /><em>&lt;summary&gt;Sets the default root object (e.g., &quot;index.html&quot;).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs31">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs32">val get: unit -&gt; {| Account: string; Region: string |}</div>
+<div class="fsdocs-tip" id="fs33">namespace System</div>
+<div class="fsdocs-tip" id="fs34">type Environment =
+  static member Exit: exitCode: int -&gt; unit
+  static member ExpandEnvironmentVariables: name: string -&gt; string
+  static member FailFast: message: string -&gt; unit + 1 overload
+  static member GetCommandLineArgs: unit -&gt; string array
+  static member GetEnvironmentVariable: variable: string -&gt; string + 1 overload
+  static member GetEnvironmentVariables: unit -&gt; IDictionary + 1 overload
+  static member GetFolderPath: folder: SpecialFolder -&gt; string + 1 overload
+  static member GetLogicalDrives: unit -&gt; string array
+  static member SetEnvironmentVariable: variable: string * value: string -&gt; unit + 1 overload
+  static member CommandLine: string
+  ...<br /><em>&lt;summary&gt;Provides information about, and means to manipulate, the current environment and platform. This class cannot be inherited.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">System.Environment.GetEnvironmentVariable(variable: string) : string<br />System.Environment.GetEnvironmentVariable(variable: string, target: System.EnvironmentVariableTarget) : string</div>
+<div class="fsdocs-tip" id="fs36">val config: {| Account: string; Region: string |}</div>
+<div class="fsdocs-tip" id="fs37">module Config
+
+from Getting-started-extended</div>
+<div class="fsdocs-tip" id="fs38">val cdnBehavior: IBehaviorOptions</div>
+<div class="fsdocs-tip" id="fs39">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">val environment: EnvironmentBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Environment configuration.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs41">custom operation: account (string)
+
+Calls EnvironmentBuilder.Account<br /><em>&lt;summary&gt;Sets the AWS account ID for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;accountId&quot;&gt;The AWS account ID.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">anonymous record field Account: string</div>
+<div class="fsdocs-tip" id="fs43">custom operation: region (string)
+
+Calls EnvironmentBuilder.Region<br /><em>&lt;summary&gt;Sets the AWS region for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;regionName&quot;&gt;The AWS region name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs44">anonymous record field Region: string</div>
+<div class="fsdocs-tip" id="fs45">custom operation: description (string)
+
+Calls StackBuilder.Description<br /><em>&lt;summary&gt;Sets the stack description.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;desc&quot;&gt;A description of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     description &quot;My application stack&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">custom operation: tags ((string * string) seq)
+
+Calls StackBuilder.Tags<br /><em>&lt;summary&gt;Adds tags to the stack.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;tags&quot;&gt;A list of key-value pairs for tagging.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     tags [ &quot;Environment&quot;, &quot;Production&quot;; &quot;Team&quot;, &quot;DevOps&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">val myVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs48">val rdsInstance: name: string -&gt; DatabaseInstanceBuilder<br /><em>&lt;summary&gt;Creates an RDS Database Instance with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The database instance name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ rdsInstance &quot;MyDatabase&quot; {
+     vpc myVpc
+     postgresEngine PostgresEngineVersion.VER_15
+     instanceType (InstanceType.Of(InstanceClass.BURSTABLE3, InstanceSize.SMALL))
+     multiAz true
+     backupRetentionDays 7.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs49">custom operation: vpc (VpcSpec)
+
+Calls DatabaseInstanceBuilder.Vpc<br /><em>&lt;summary&gt;Sets the VPC.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs50">custom operation: postgresEngine (PostgresEngineVersion option)
+
+Calls DatabaseInstanceBuilder.PostgresEngine<br /><em>&lt;summary&gt;Sets PostgreSQL as the database engine with specific version.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs51">custom operation: multiAz (bool)
+
+Calls DatabaseInstanceBuilder.MultiAz<br /><em>&lt;summary&gt;Enables or disables Multi-AZ deployment.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs52">custom operation: allocatedStorage (int)
+
+Calls DatabaseInstanceBuilder.AllocatedStorage<br /><em>&lt;summary&gt;Sets the allocated storage in GB.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs53">custom operation: databaseName (string)
+
+Calls DatabaseInstanceBuilder.DatabaseName<br /><em>&lt;summary&gt;Sets the database name.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs54">val bucket: name: string -&gt; BucketBuilder</div>
+<div class="fsdocs-tip" id="fs55">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs56">custom operation: encryption (BucketEncryption)
+
+Calls BucketBuilder.Encryption</div>
+<div class="fsdocs-tip" id="fs57">[&lt;Struct&gt;]
+type BucketEncryption =
+  | UNENCRYPTED = 0
+  | KMS_MANAGED = 1
+  | S3_MANAGED = 2
+  | KMS = 3
+  | DSSE_MANAGED = 4
+  | DSSE = 5</div>
+<div class="fsdocs-tip" id="fs58">field BucketEncryption.S3_MANAGED: BucketEncryption = 2</div>
+<div class="fsdocs-tip" id="fs59">custom operation: blockPublicAccess (BlockPublicAccess)
+
+Calls BucketBuilder.BlockPublicAccess</div>
+<div class="fsdocs-tip" id="fs60">Multiple items<br />type BlockPublicAccess =
+  inherit DeputyBase
+  new: options: IBlockPublicAccessOptions -&gt; unit
+  member BlockPublicAcls: Nullable&lt;bool&gt;
+  member BlockPublicPolicy: Nullable&lt;bool&gt;
+  member IgnorePublicAcls: Nullable&lt;bool&gt;
+  member RestrictPublicBuckets: Nullable&lt;bool&gt;
+  static member BLOCK_ACLS: BlockPublicAccess
+  static member BLOCK_ACLS_ONLY: BlockPublicAccess
+  static member BLOCK_ALL: BlockPublicAccess<br /><br />--------------------<br />BlockPublicAccess(options: IBlockPublicAccessOptions) : BlockPublicAccess</div>
+<div class="fsdocs-tip" id="fs61">property BlockPublicAccess.BLOCK_ALL: BlockPublicAccess with get</div>
+<div class="fsdocs-tip" id="fs62">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs63">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs64">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs65">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs66">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs67">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs68">custom operation: timeout (float)
+
+Calls FunctionBuilder.Timeout<br /><em>&lt;summary&gt;Sets the timeout for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs69">custom operation: memory (int)
+
+Calls FunctionBuilder.Memory<br /><em>&lt;summary&gt;Sets the memory allocation for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;mb&quot;&gt;The memory size in megabytes.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     memory 512
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs70">custom operation: environment ((string * string) list)
+
+Calls FunctionBuilder.Environment<br /><em>&lt;summary&gt;Sets environment variables for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;env&quot;&gt;List of key-value pairs for environment variables.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     environment [ &quot;KEY1&quot;, &quot;value1&quot;; &quot;KEY2&quot;, &quot;value2&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs71">namespace Amazon.CDK.AWS.DynamoDB</div>
+<div class="fsdocs-tip" id="fs72">val apiOrigin: IBehaviorOptions</div>
+<div class="fsdocs-tip" id="fs73">val table: name: string -&gt; TableBuilder<br /><em>&lt;summary&gt;Creates a DynamoDB table configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The table name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs74">custom operation: partitionKey (string) (AttributeType)
+
+Calls TableBuilder.PartitionKey<br /><em>&lt;summary&gt;Sets the partition key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the partition key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs75">[&lt;Struct&gt;]
+type AttributeType =
+  | BINARY = 0
+  | NUMBER = 1
+  | STRING = 2</div>
+<div class="fsdocs-tip" id="fs76">field AttributeType.STRING: AttributeType = 2</div>
+<div class="fsdocs-tip" id="fs77">custom operation: billingMode (BillingMode)
+
+Calls TableBuilder.BillingMode<br /><em>&lt;summary&gt;Sets the billing mode for the table.&lt;/summary&gt;<br />&lt;param name=&quot;mode&quot;&gt;The billing mode (PAY_PER_REQUEST or PROVISIONED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs78">[&lt;Struct&gt;]
+type BillingMode =
+  | PAY_PER_REQUEST = 0
+  | PROVISIONED = 1</div>
+<div class="fsdocs-tip" id="fs79">field BillingMode.PAY_PER_REQUEST: BillingMode = 0</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Getting-Started-with-FsCDK-Extended-Features">
+      Getting Started with FsCDK - Extended Features
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#What-s-New">
+      What's New?
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Quick-Start-Examples">
+      Quick Start Examples
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#1-Create-a-Secure-VPC">
+      1. Create a Secure VPC
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#2-Add-a-PostgreSQL-Database">
+      2. Add a PostgreSQL Database
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#3-Set-Up-User-Authentication">
+      3. Set Up User Authentication
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#4-Add-a-CDN-for-Fast-Delivery">
+      4. Add a CDN for Fast Delivery
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Complete-Application-Stack">
+      Complete Application Stack
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices-Baked-In">
+      Best Practices Baked In
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#High-Availability">
+      High Availability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Performance">
+      Performance
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Common-Patterns">
+      Common Patterns
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Pattern-1-Web-Application-with-Auth">
+      Pattern 1: Web Application with Auth
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Pattern-2-Data-Processing-Pipeline">
+      Pattern 2: Data Processing Pipeline
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Pattern-3-Serverless-API-with-CDN">
+      Pattern 3: Serverless API with CDN
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Migration-from-Existing-FsCDK">
+      Migration from Existing FsCDK
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Learning-Resources">
+      Learning Resources
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Next-Steps">
+      Next Steps
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Getting-Help">
+      Getting Help
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Tips-for-Success">
+      Tips for Success
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Management">
+      Cost Management
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Troubleshooting">
+      Troubleshooting
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Build-Errors">
+      Build Errors
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Deployment-Issues">
+      Deployment Issues
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Resource-Already-Exists">
+      Resource Already Exists
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#What-s-Available">
+      What's Available?
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

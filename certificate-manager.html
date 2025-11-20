@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Certificate Manager" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Certificate Manager">
+    
+    <title>Certificate Manager | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Shipping-production-grade-TLS-with-AWS-Certificate-Manager" class="anchor" href="#Shipping-production-grade-TLS-with-AWS-Certificate-Manager"><img src="img/icons/Arch_AWS-Certificate-Manager_48.png" alt="Certificate Manager" /> Shipping production-grade TLS with AWS Certificate Manager</a></h1>
+<p>AWS Certificate Manager (ACM) issues and renews SSL/TLS certificates for free across AWS services. This notebook distils the guidance shared by <strong>AWS Networking Hero Colm MacCárthaigh</strong>, <strong>Ben Kehoe</strong>, and the ACM product team, so you can provision certificates programmatically, validate ownership securely, and deliver trusted HTTPS with FsCDK.</p>
+<h2><a name="Quick-start-patterns" class="anchor" href="#Quick-start-patterns">Quick start patterns</a></h2>
+<p>Each example references best practices from the <strong>AWS Networking Blog</strong> and <strong>re:Invent NET</strong> sessions—adapt them to match your compliance and automation requirements.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">CertificateManager</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">Route53</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="id">CloudFront</span>
+</code></pre>
+<h2><a name="Basic-Certificate-with-DNS-Validation" class="anchor" href="#Basic-Certificate-with-DNS-Validation">Basic Certificate with DNS Validation</a></h2>
+<p>Create a certificate for a domain with automatic DNS validation.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 16)" onmouseover="showTip(event, 'fs8', 16)" class="fn">stack</span> <span class="s">&quot;BasicCertificate&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="fn">certificate</span> <span class="s">&quot;MyCert&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 18)" onmouseover="showTip(event, 'fs10', 18)" class="k">domainName</span> <span class="s">&quot;example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="k">subjectAlternativeName</span> <span class="s">&quot;www.example.com&quot;</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Wildcard-Certificate" class="anchor" href="#Wildcard-Certificate">Wildcard Certificate</a></h2>
+<p>Secure all subdomains with a wildcard certificate.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 20)" onmouseover="showTip(event, 'fs8', 20)" class="fn">stack</span> <span class="s">&quot;WildcardCert&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs9', 21)" onmouseover="showTip(event, 'fs9', 21)" class="fn">certificate</span> <span class="s">&quot;WildcardCert&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 22)" onmouseover="showTip(event, 'fs10', 22)" class="k">domainName</span> <span class="s">&quot;example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 23)" onmouseover="showTip(event, 'fs11', 23)" class="k">subjectAlternativeName</span> <span class="s">&quot;*.example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs12', 24)" onmouseover="showTip(event, 'fs12', 24)" class="k">certificateName</span> <span class="s">&quot;example-wildcard&quot;</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Certificate-with-Route53-DNS-Validation" class="anchor" href="#Certificate-with-Route53-DNS-Validation">Certificate with Route53 DNS Validation</a></h2>
+<p>Use a Route53 hosted zone for automated DNS validation.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 25)" onmouseover="showTip(event, 'fs8', 25)" class="fn">stack</span> <span class="s">&quot;Route53Cert&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 26)" onmouseover="showTip(event, 'fs13', 26)" class="fn">myHostedZone</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 27)" onmouseover="showTip(event, 'fs14', 27)" class="fn">hostedZone</span> <span class="s">&quot;example.com&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs15', 28)" onmouseover="showTip(event, 'fs15', 28)" class="k">comment</span> <span class="s">&quot;Production domain&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs9', 29)" onmouseover="showTip(event, 'fs9', 29)" class="fn">certificate</span> <span class="s">&quot;Route53Cert&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 30)" onmouseover="showTip(event, 'fs10', 30)" class="k">domainName</span> <span class="s">&quot;example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 31)" onmouseover="showTip(event, 'fs11', 31)" class="k">subjectAlternativeName</span> <span class="s">&quot;*.example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 32)" onmouseover="showTip(event, 'fs16', 32)" class="k">dnsValidation</span> <span onmouseout="hideTip(event, 'fs13', 33)" onmouseover="showTip(event, 'fs13', 33)" class="fn">myHostedZone</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="CloudFront-Certificate-us-east-1" class="anchor" href="#CloudFront-Certificate-us-east-1">CloudFront Certificate (us-east-1)</a></h2>
+<p>CloudFront requires certificates in us-east-1. Use DnsValidatedCertificate for cross-region deployment.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 34)" onmouseover="showTip(event, 'fs8', 34)" class="fn">stack</span> <span class="s">&quot;CloudFrontCert&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs13', 35)" onmouseover="showTip(event, 'fs13', 35)" class="fn">myHostedZone</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs14', 36)" onmouseover="showTip(event, 'fs14', 36)" class="fn">hostedZone</span> <span class="s">&quot;example.com&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs15', 37)" onmouseover="showTip(event, 'fs15', 37)" class="k">comment</span> <span class="s">&quot;Production domain&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs17', 38)" onmouseover="showTip(event, 'fs17', 38)" class="fn">dnsValidatedCertificate</span> <span class="s">&quot;CFCert&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs18', 39)" onmouseover="showTip(event, 'fs18', 39)" class="k">domainName</span> <span class="s">&quot;cdn.example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs19', 40)" onmouseover="showTip(event, 'fs19', 40)" class="k">hostedZone</span> <span onmouseout="hideTip(event, 'fs13', 41)" onmouseover="showTip(event, 'fs13', 41)" class="fn">myHostedZone</span>
+        <span onmouseout="hideTip(event, 'fs20', 42)" onmouseover="showTip(event, 'fs20', 42)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span> <span class="c">// Required for CloudFront</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Multi-Domain-Certificate" class="anchor" href="#Multi-Domain-Certificate">Multi-Domain Certificate</a></h2>
+<p>Include multiple domains in a single certificate.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 43)" onmouseover="showTip(event, 'fs8', 43)" class="fn">stack</span> <span class="s">&quot;MultiDomainCert&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs9', 44)" onmouseover="showTip(event, 'fs9', 44)" class="fn">certificate</span> <span class="s">&quot;MultiDomainCert&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 45)" onmouseover="showTip(event, 'fs10', 45)" class="k">domainName</span> <span class="s">&quot;example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 46)" onmouseover="showTip(event, 'fs11', 46)" class="k">subjectAlternativeName</span> <span class="s">&quot;www.example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 47)" onmouseover="showTip(event, 'fs11', 47)" class="k">subjectAlternativeName</span> <span class="s">&quot;api.example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 48)" onmouseover="showTip(event, 'fs11', 48)" class="k">subjectAlternativeName</span> <span class="s">&quot;admin.example.com&quot;</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Email-validation-fallback" class="anchor" href="#Email-validation-fallback">Email validation fallback</a></h2>
+<p>Only use email validation when DNS automation is unavailable. Follow the contingency plan outlined in the <strong>AWS Certificate Manager documentation</strong>—track approval emails, secure shared inboxes, and transition to DNS validation as soon as possible.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 49)" onmouseover="showTip(event, 'fs8', 49)" class="fn">stack</span> <span class="s">&quot;EmailValidatedCert&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs9', 50)" onmouseover="showTip(event, 'fs9', 50)" class="fn">certificate</span> <span class="s">&quot;EmailCert&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 51)" onmouseover="showTip(event, 'fs10', 51)" class="k">domainName</span> <span class="s">&quot;example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs21', 52)" onmouseover="showTip(event, 'fs21', 52)" class="k">emailValidation</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Complete-HTTPS-setup-with-CloudFront" class="anchor" href="#Complete-HTTPS-setup-with-CloudFront">Complete HTTPS setup with CloudFront</a></h2>
+<p>Combine S3 static hosting, ACM-issued certificates, and CloudFront to deliver globally cached HTTPS content. This mirrors the reference architecture from the <strong>AWS Modern Applications Blog</strong> article “Deploying secure static websites with CloudFront and ACM.”</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 53)" onmouseover="showTip(event, 'fs8', 53)" class="fn">stack</span> <span class="s">&quot;HTTPSWebsite&quot;</span> <span class="pn">{</span>
+    <span class="c">// S3 bucket for website</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 54)" onmouseover="showTip(event, 'fs22', 54)" class="fn">websiteBucket</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 55)" onmouseover="showTip(event, 'fs23', 55)" class="fn">bucket</span> <span class="s">&quot;WebsiteBucket&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 56)" onmouseover="showTip(event, 'fs24', 56)" class="k">versioned</span> <span class="k">false</span>
+            <span onmouseout="hideTip(event, 'fs25', 57)" onmouseover="showTip(event, 'fs25', 57)" class="k">websiteIndexDocument</span> <span class="s">&quot;index.html&quot;</span>
+            <span onmouseout="hideTip(event, 'fs26', 58)" onmouseover="showTip(event, 'fs26', 58)" class="k">websiteErrorDocument</span> <span class="s">&quot;error.html&quot;</span>
+            <span onmouseout="hideTip(event, 'fs27', 59)" onmouseover="showTip(event, 'fs27', 59)" class="k">blockPublicAccess</span> <span onmouseout="hideTip(event, 'fs2', 60)" onmouseover="showTip(event, 'fs2', 60)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 61)" onmouseover="showTip(event, 'fs3', 61)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 62)" onmouseover="showTip(event, 'fs4', 62)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 63)" onmouseover="showTip(event, 'fs28', 63)" class="id">S3</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 64)" onmouseover="showTip(event, 'fs29', 64)" class="rt">BlockPublicAccess</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 65)" onmouseover="showTip(event, 'fs30', 65)" class="id">BLOCK_ALL</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Certificate for custom domain</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 66)" onmouseover="showTip(event, 'fs31', 66)" class="fn">cert</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 67)" onmouseover="showTip(event, 'fs9', 67)" class="fn">certificate</span> <span class="s">&quot;SiteCert&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 68)" onmouseover="showTip(event, 'fs10', 68)" class="k">domainName</span> <span class="s">&quot;www.example.com&quot;</span>
+            <span onmouseout="hideTip(event, 'fs11', 69)" onmouseover="showTip(event, 'fs11', 69)" class="k">subjectAlternativeName</span> <span class="s">&quot;example.com&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// CloudFront distribution</span>
+    <span onmouseout="hideTip(event, 'fs32', 70)" onmouseover="showTip(event, 'fs32', 70)" class="fn">cloudFrontDistribution</span> <span class="s">&quot;CDN&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs33', 71)" onmouseover="showTip(event, 'fs33', 71)" class="k">s3DefaultBehavior</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs34', 72)" onmouseover="showTip(event, 'fs34', 72)" class="rt">S3OriginType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 73)" onmouseover="showTip(event, 'fs35', 73)" class="id">StaticWebsiteOrigin</span> <span onmouseout="hideTip(event, 'fs22', 74)" onmouseover="showTip(event, 'fs22', 74)" class="fn">websiteBucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 75)" onmouseover="showTip(event, 'fs36', 75)" class="prop">Bucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 76)" onmouseover="showTip(event, 'fs37', 76)" class="id">Value</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs38', 77)" onmouseover="showTip(event, 'fs38', 77)" class="k">domainName</span> <span class="s">&quot;www.example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs38', 78)" onmouseover="showTip(event, 'fs38', 78)" class="k">domainName</span> <span class="s">&quot;example.com&quot;</span>
+        <span onmouseout="hideTip(event, 'fs39', 79)" onmouseover="showTip(event, 'fs39', 79)" class="k">certificate</span> <span onmouseout="hideTip(event, 'fs31', 80)" onmouseover="showTip(event, 'fs31', 80)" class="fn">cert</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 81)" onmouseover="showTip(event, 'fs40', 81)" class="prop">Certificate</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 82)" onmouseover="showTip(event, 'fs41', 82)" class="id">Value</span>
+        <span onmouseout="hideTip(event, 'fs42', 83)" onmouseover="showTip(event, 'fs42', 83)" class="k">defaultRootObject</span> <span class="s">&quot;index.html&quot;</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Implementation-checklist-amp-recommended-resources" class="anchor" href="#Implementation-checklist-amp-recommended-resources">Implementation checklist &amp; recommended resources</a></h2>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>Prefer DNS validation for automation and least privilege, as emphasised in <strong>re:Invent NET409</strong> “Advanced certificate management.”</li>
+<li>Issue certificates in the region required by the consuming service (us-east-1 for CloudFront, region-specific for regional endpoints).</li>
+<li>Monitor ACM expiry metrics with CloudWatch and configure AWS Config rules to detect certificates nearing renewal.</li>
+</ul>
+<h3><a name="Operations-amp-cost" class="anchor" href="#Operations-amp-cost">Operations &amp; cost</a></h3>
+<ul>
+<li>Tag certificates with owner, environment, and renewal contact details.</li>
+<li>Consolidate SANs and leverage wildcard certificates where appropriate, but avoid overloading certificates with unrelated domains.</li>
+<li>Delete unused certificates to reduce operational noise.</li>
+</ul>
+<h3><a name="Further-learning" class="anchor" href="#Further-learning">Further learning</a></h3>
+<ul>
+<li>*<em><a href="https://aws.amazon.com/blogs/networking-and-content-delivery/">AWS Networking Blog</a>*</em> – “Simplify HTTPS with ACM and Route 53.”</li>
+<li>*<em><a href="https://www.youtube.com/results?search_query=aws+reinvent+NET409+certificate+management">re:Invent NET409</a>*</em> – Advanced certificate management (4.8★ session rating).</li>
+<li>*<em><a href="https://aws.amazon.com/blogs/security/">AWS Security Blog</a>*</em> – “Enforce TLS everywhere with ACM and CloudFront.”</li>
+<li>*<em><a href="https://ben11kehoe.medium.com/">Ben Kehoe</a>*</em> – “Infrastructure as Policy: automating certificate issuance.”</li>
+</ul>
+<p>Adopt these practices so every certificate request, validation, and renewal remains automated, auditable, and aligned with AWS Hero-recommended guard rails.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.CertificateManager</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Route53</div>
+<div class="fsdocs-tip" id="fs7">namespace Amazon.CDK.AWS.CloudFront</div>
+<div class="fsdocs-tip" id="fs8">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val certificate: name: string -&gt; CertificateBuilder<br /><em>&lt;summary&gt;Creates an ACM certificate with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The certificate name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ certificate &quot;MySiteCert&quot; {
+     domainName &quot;example.com&quot;
+     subjectAlternativeName &quot;*.example.com&quot;
+     subjectAlternativeName &quot;www.example.com&quot;
+     dnsValidation myHostedZone
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">custom operation: domainName (string)
+
+Calls CertificateBuilder.DomainName<br /><em>&lt;summary&gt;Sets the primary domain name for the certificate.&lt;/summary&gt;<br />&lt;param name=&quot;domain&quot;&gt;The domain name (e.g., &quot;example.com&quot;).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: subjectAlternativeName (string)
+
+Calls CertificateBuilder.SubjectAlternativeName<br /><em>&lt;summary&gt;Adds a subject alternative name (SAN).&lt;/summary&gt;<br />&lt;param name=&quot;san&quot;&gt;Additional domain name (e.g., &quot;*.example.com&quot;, &quot;www.example.com&quot;).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">custom operation: certificateName (string)
+
+Calls CertificateBuilder.CertificateName<br /><em>&lt;summary&gt;Sets the certificate name in ACM.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val myHostedZone: Route53HostedZoneSpec</div>
+<div class="fsdocs-tip" id="fs14">val hostedZone: zoneName: string -&gt; Route53HostedZoneBuilder<br /><em>&lt;summary&gt;
+ Creates a new Route 53 hosted zone builder.
+ Example: hostedZone &quot;example.com&quot; { comment &quot;Production domain&quot; }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: comment (string)
+
+Calls Route53HostedZoneBuilder.Comment</div>
+<div class="fsdocs-tip" id="fs16">custom operation: dnsValidation (Route53HostedZoneSpec)
+
+Calls CertificateBuilder.DnsValidation<br /><em>&lt;summary&gt;Uses DNS validation with a specific hosted zone.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">val dnsValidatedCertificate: name: string -&gt; DnsValidatedCertificateBuilder<br /><em>&lt;summary&gt;Creates a DNS-validated certificate for cross-region use (e.g., CloudFront).&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The certificate name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ dnsValidatedCertificate &quot;CloudFrontCert&quot; {
+     domainName &quot;example.com&quot;
+     hostedZone myHostedZone
+     region &quot;us-east-1&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">custom operation: domainName (string)
+
+Calls DnsValidatedCertificateBuilder.DomainName<br /><em>&lt;summary&gt;Sets the domain name.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">custom operation: hostedZone (Route53HostedZoneSpec)
+
+Calls DnsValidatedCertificateBuilder.HostedZone<br /><em>&lt;summary&gt;Sets the Route53 hosted zone for DNS validation.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">custom operation: region (string)
+
+Calls DnsValidatedCertificateBuilder.Region<br /><em>&lt;summary&gt;Sets the region for the certificate (useful for CloudFront which requires us-east-1).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">custom operation: emailValidation
+
+Calls CertificateBuilder.EmailValidation<br /><em>&lt;summary&gt;Uses email validation.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">val websiteBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs23">val bucket: name: string -&gt; BucketBuilder</div>
+<div class="fsdocs-tip" id="fs24">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">custom operation: websiteIndexDocument (string)
+
+Calls BucketBuilder.WebsiteIndexDocument</div>
+<div class="fsdocs-tip" id="fs26">custom operation: websiteErrorDocument (string)
+
+Calls BucketBuilder.WebsiteErrorDocument</div>
+<div class="fsdocs-tip" id="fs27">custom operation: blockPublicAccess (AWS.S3.BlockPublicAccess)
+
+Calls BucketBuilder.BlockPublicAccess</div>
+<div class="fsdocs-tip" id="fs28">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs29">Multiple items<br />type BlockPublicAccess =
+  inherit DeputyBase
+  new: options: IBlockPublicAccessOptions -&gt; unit
+  member BlockPublicAcls: Nullable&lt;bool&gt;
+  member BlockPublicPolicy: Nullable&lt;bool&gt;
+  member IgnorePublicAcls: Nullable&lt;bool&gt;
+  member RestrictPublicBuckets: Nullable&lt;bool&gt;
+  static member BLOCK_ACLS: BlockPublicAccess
+  static member BLOCK_ACLS_ONLY: BlockPublicAccess
+  static member BLOCK_ALL: BlockPublicAccess<br /><br />--------------------<br />AWS.S3.BlockPublicAccess(options: AWS.S3.IBlockPublicAccessOptions) : AWS.S3.BlockPublicAccess</div>
+<div class="fsdocs-tip" id="fs30">property AWS.S3.BlockPublicAccess.BLOCK_ALL: AWS.S3.BlockPublicAccess with get</div>
+<div class="fsdocs-tip" id="fs31">val cert: CertificateSpec</div>
+<div class="fsdocs-tip" id="fs32">val cloudFrontDistribution: name: string -&gt; DistributionBuilder<br /><em>&lt;summary&gt;Creates a CloudFront distribution with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The distribution name.&lt;/param&gt;<br />&lt;remarks&gt;
+ Example:
+ cloudFrontDistribution &quot;MyCDN&quot; {
+     s3DefaultBehavior myBucket
+     defaultRootObject &quot;index.html&quot;
+     domainName &quot;static.example.com&quot;
+     priceClass PriceClass.PRICE_CLASS_100
+ }
+ &lt;/remarks&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">custom operation: s3DefaultBehavior (S3OriginType) (ViewerProtocolPolicy option) (ICachePolicy option) (IOriginRequestPolicy option) (ResponseHeadersPolicy option) (AllowedMethods option) (CachedMethods option) (bool option)
+
+Calls DistributionBuilder.S3DefaultBehavior<br /><em>&lt;summary&gt;
+ Convenience: default S3 origin behavior with common best-practice defaults.
+ Defaults:
+ - ViewerProtocolPolicy = REDIRECT_TO_HTTPS
+ - CachePolicy = CachePolicy.CACHING_OPTIMIZED
+ - OriginRequestPolicy = OriginRequestPolicy.CORS_S3_ORIGIN
+ - Compress = true
+ You can override any default via optional parameters.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">type S3OriginType =
+  | StaticWebsiteOrigin of bucket: IBucket
+  | GenericOrigin of origin: IOrigin
+  member Equals: S3OriginType * IEqualityComparer -&gt; bool</div>
+<div class="fsdocs-tip" id="fs35">union case S3OriginType.StaticWebsiteOrigin: bucket: AWS.S3.IBucket -&gt; S3OriginType</div>
+<div class="fsdocs-tip" id="fs36">BucketSpec.Bucket: AWS.S3.Bucket option<br /><em>&lt;summary&gt;
+ The underlying CDK Bucket construct - use for advanced scenarios
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs37">property Option.Value: AWS.S3.Bucket with get</div>
+<div class="fsdocs-tip" id="fs38">custom operation: domainName (string)
+
+Calls DistributionBuilder.DomainName<br /><em>&lt;summary&gt;Adds a domain name (call multiple times to add several).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">custom operation: certificate (ICertificate)
+
+Calls DistributionBuilder.Certificate<br /><em>&lt;summary&gt;Sets an ACM certificate for the distribution.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">CertificateSpec.Certificate: ICertificate option</div>
+<div class="fsdocs-tip" id="fs41">property Option.Value: ICertificate with get</div>
+<div class="fsdocs-tip" id="fs42">custom operation: defaultRootObject (string)
+
+Calls DistributionBuilder.DefaultRootObject<br /><em>&lt;summary&gt;Sets the default root object (e.g., &quot;index.html&quot;).&lt;/summary&gt;</em></div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Quick-start-patterns">
+      Quick start patterns
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-Certificate-with-DNS-Validation">
+      Basic Certificate with DNS Validation
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Wildcard-Certificate">
+      Wildcard Certificate
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Certificate-with-Route53-DNS-Validation">
+      Certificate with Route53 DNS Validation
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#CloudFront-Certificate-us-east-1">
+      CloudFront Certificate (us-east-1)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Multi-Domain-Certificate">
+      Multi-Domain Certificate
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Email-validation-fallback">
+      Email validation fallback
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Complete-HTTPS-setup-with-CloudFront">
+      Complete HTTPS setup with CloudFront
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Implementation-checklist-amp-recommended-resources">
+      Implementation checklist &amp; recommended resources
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Operations-amp-cost">
+      Operations &amp; cost
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Further-learning">
+      Further learning
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

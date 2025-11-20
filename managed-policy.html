@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Managed IAM Policy" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Managed IAM Policy">
+    
+    <title>Managed IAM Policy | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="AWS-IAM-Managed-Policy" class="anchor" href="#AWS-IAM-Managed-Policy"><img src="img/icons/Arch_AWS-Identity-and-Access-Management_48.png" alt="IAM" /> AWS IAM Managed Policy</a></h1>
+<p>AWS Managed Policies are standalone identity-based policies that you can attach to multiple users, groups, and roles.
+They provide reusable permission sets following the principle of least privilege.</p>
+<h2><a name="Quick-Start" class="anchor" href="#Quick-Start">Quick Start</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">IAM</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">S3</span>
+</code></pre>
+<h2><a name="Basic-Managed-Policy" class="anchor" href="#Basic-Managed-Policy">Basic Managed Policy</a></h2>
+<p>Create a managed policy with explicit permissions.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">stack</span> <span class="s">&quot;BasicManagedPolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="fn">readOnlyStatement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 18)" onmouseover="showTip(event, 'fs12', 18)" class="id">ALLOW</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:GetObject&quot;</span><span class="pn">;</span> <span class="s">&quot;s3:ListBucket&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;arn:aws:s3:::my-bucket&quot;</span><span class="pn">;</span> <span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span> <span class="pn">|]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="fn">managedPolicy</span> <span class="s">&quot;S3ReadPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="k">description</span> <span class="s">&quot;Read-only access to S3 bucket&quot;</span>
+        <span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="k">managedPolicyName</span> <span class="s">&quot;S3ReadOnlyPolicy&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs8', 23)" onmouseover="showTip(event, 'fs8', 23)" class="fn">readOnlyStatement</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Policy-with-Multiple-Statements" class="anchor" href="#Policy-with-Multiple-Statements">Policy with Multiple Statements</a></h2>
+<p>Combine multiple permissions in a single policy.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 24)" onmouseover="showTip(event, 'fs7', 24)" class="fn">stack</span> <span class="s">&quot;MultiStatementPolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 25)" onmouseover="showTip(event, 'fs17', 25)" class="fn">s3Statement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 26)" onmouseover="showTip(event, 'fs9', 26)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs10', 27)" onmouseover="showTip(event, 'fs10', 27)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span class="fn">Sid</span> <span class="o">=</span> <span class="s">&quot;S3Access&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs11', 28)" onmouseover="showTip(event, 'fs11', 28)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 29)" onmouseover="showTip(event, 'fs11', 29)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 30)" onmouseover="showTip(event, 'fs12', 30)" class="id">ALLOW</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:GetObject&quot;</span><span class="pn">;</span> <span class="s">&quot;s3:PutObject&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;arn:aws:s3:::data-bucket/*&quot;</span> <span class="pn">|]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 31)" onmouseover="showTip(event, 'fs18', 31)" class="fn">dynamoStatement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 32)" onmouseover="showTip(event, 'fs9', 32)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs10', 33)" onmouseover="showTip(event, 'fs10', 33)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span class="fn">Sid</span> <span class="o">=</span> <span class="s">&quot;DynamoDBAccess&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs11', 34)" onmouseover="showTip(event, 'fs11', 34)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 35)" onmouseover="showTip(event, 'fs11', 35)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 36)" onmouseover="showTip(event, 'fs12', 36)" class="id">ALLOW</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;dynamodb:GetItem&quot;</span><span class="pn">;</span> <span class="s">&quot;dynamodb:PutItem&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;arn:aws:dynamodb:us-east-1:123456789012:table/MyTable&quot;</span> <span class="pn">|]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 37)" onmouseover="showTip(event, 'fs13', 37)" class="fn">managedPolicy</span> <span class="s">&quot;DataAccessPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 38)" onmouseover="showTip(event, 'fs14', 38)" class="k">description</span> <span class="s">&quot;Access to S3 and DynamoDB&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 39)" onmouseover="showTip(event, 'fs16', 39)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs17', 40)" onmouseover="showTip(event, 'fs17', 40)" class="fn">s3Statement</span>
+        <span onmouseout="hideTip(event, 'fs16', 41)" onmouseover="showTip(event, 'fs16', 41)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs18', 42)" onmouseover="showTip(event, 'fs18', 42)" class="fn">dynamoStatement</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Using-Helper-Methods" class="anchor" href="#Using-Helper-Methods">Using Helper Methods</a></h2>
+<p>FsCDK provides convenient helpers for common permission patterns.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 43)" onmouseover="showTip(event, 'fs7', 43)" class="fn">stack</span> <span class="s">&quot;HelperMethodsPolicy&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs13', 44)" onmouseover="showTip(event, 'fs13', 44)" class="fn">managedPolicy</span> <span class="s">&quot;QuickAccessPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 45)" onmouseover="showTip(event, 'fs14', 45)" class="k">description</span> <span class="s">&quot;Quick policy using helpers&quot;</span>
+        <span onmouseout="hideTip(event, 'fs19', 46)" onmouseover="showTip(event, 'fs19', 46)" class="k">allow</span> <span class="pn">[</span> <span class="s">&quot;s3:GetObject&quot;</span><span class="pn">;</span> <span class="s">&quot;s3:ListBucket&quot;</span> <span class="pn">]</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs20', 47)" onmouseover="showTip(event, 'fs20', 47)" class="k">deny</span> <span class="pn">[</span> <span class="s">&quot;s3:DeleteObject&quot;</span> <span class="pn">]</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Using-Pre-Built-Statements" class="anchor" href="#Using-Pre-Built-Statements">Using Pre-Built Statements</a></h2>
+<p>Use the <code>ManagedPolicyStatements</code> module for common scenarios.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 48)" onmouseover="showTip(event, 'fs7', 48)" class="fn">stack</span> <span class="s">&quot;PreBuiltStatements&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 49)" onmouseover="showTip(event, 'fs21', 49)" class="fn">bucketArn</span> <span class="o">=</span> <span class="s">&quot;arn:aws:s3:::my-bucket&quot;</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 50)" onmouseover="showTip(event, 'fs22', 50)" class="fn">tableArn</span> <span class="o">=</span> <span class="s">&quot;arn:aws:dynamodb:us-east-1:123456789012:table/MyTable&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 51)" onmouseover="showTip(event, 'fs13', 51)" class="fn">managedPolicy</span> <span class="s">&quot;ApplicationPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 52)" onmouseover="showTip(event, 'fs14', 52)" class="k">description</span> <span class="s">&quot;Standard application permissions&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 53)" onmouseover="showTip(event, 'fs16', 53)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 54)" onmouseover="showTip(event, 'fs23', 54)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 55)" onmouseover="showTip(event, 'fs24', 55)" class="id">s3ReadOnly</span> <span onmouseout="hideTip(event, 'fs21', 56)" onmouseover="showTip(event, 'fs21', 56)" class="fn">bucketArn</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs16', 57)" onmouseover="showTip(event, 'fs16', 57)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 58)" onmouseover="showTip(event, 'fs23', 58)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 59)" onmouseover="showTip(event, 'fs25', 59)" class="id">dynamoDBFullAccess</span> <span onmouseout="hideTip(event, 'fs22', 60)" onmouseover="showTip(event, 'fs22', 60)" class="fn">tableArn</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs16', 61)" onmouseover="showTip(event, 'fs16', 61)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 62)" onmouseover="showTip(event, 'fs23', 62)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 63)" onmouseover="showTip(event, 'fs26', 63)" class="id">cloudWatchLogsWrite</span> <span class="s">&quot;/aws/lambda/my-function&quot;</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Attaching-to-Roles" class="anchor" href="#Attaching-to-Roles">Attaching to Roles</a></h2>
+<p>Attach policies to IAM roles for EC2, Lambda, or other services.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">stack</span> <span class="s">&quot;PolicyWithRole&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create a role for Lambda</span>
+    <span class="k">let</span> <span class="id">lambdaRole1</span> <span class="o">=</span>
+        <span class="id">lambdaRole</span> <span class="s">&quot;my-function-role&quot;</span> <span class="pn">{</span>
+            <span class="id">basicExecution</span>
+            <span class="id">vpcExecution</span>
+            <span class="id">kmsDecrypt</span>
+            <span class="id">xrayTracing</span>
+            <span class="id">managedPolicy</span> <span class="s">&quot;AmazonS3ReadOnlyAccess&quot;</span>
+            <span class="id">inlinePolicy</span> <span class="pn">(</span><span class="id">IAM</span><span class="pn">.</span><span class="id">allow</span> <span class="pn">[</span> <span class="s">&quot;dynamodb:Query&quot;</span> <span class="pn">]</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:dynamodb:*:*:table/MyTable&quot;</span> <span class="pn">]</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create and attach policy</span>
+    <span class="id">managedPolicy</span> <span class="s">&quot;LambdaS3Policy&quot;</span> <span class="pn">{</span>
+        <span class="id">description</span> <span class="s">&quot;Lambda S3 access&quot;</span>
+        <span class="id">statement</span> <span class="pn">(</span><span class="id">ManagedPolicyStatements</span><span class="pn">.</span><span class="id">s3FullAccess</span> <span class="s">&quot;arn:aws:s3:::lambda-bucket&quot;</span><span class="pn">)</span>
+        <span class="id">attachToRole</span> <span class="id">lambdaRole1</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Cross-Account-Access-Policy" class="anchor" href="#Cross-Account-Access-Policy">Cross-Account Access Policy</a></h2>
+<p>Grant permissions for cross-account access.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 64)" onmouseover="showTip(event, 'fs7', 64)" class="fn">stack</span> <span class="s">&quot;CrossAccountPolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 65)" onmouseover="showTip(event, 'fs27', 65)" class="fn">crossAccountStatement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 66)" onmouseover="showTip(event, 'fs9', 66)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs10', 67)" onmouseover="showTip(event, 'fs10', 67)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span class="fn">Sid</span> <span class="o">=</span> <span class="s">&quot;CrossAccountS3Access&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs11', 68)" onmouseover="showTip(event, 'fs11', 68)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 69)" onmouseover="showTip(event, 'fs11', 69)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 70)" onmouseover="showTip(event, 'fs12', 70)" class="id">ALLOW</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:GetObject&quot;</span><span class="pn">;</span> <span class="s">&quot;s3:ListBucket&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;arn:aws:s3:::shared-bucket&quot;</span><span class="pn">;</span> <span class="s">&quot;arn:aws:s3:::shared-bucket/*&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Principals</span> <span class="o">=</span> <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs28', 71)" onmouseover="showTip(event, 'fs28', 71)" class="fn">AccountPrincipal</span><span class="pn">(</span><span class="s">&quot;123456789012&quot;</span><span class="pn">)</span> <span class="o">:&gt;</span> <span onmouseout="hideTip(event, 'fs29', 72)" onmouseover="showTip(event, 'fs29', 72)" class="if">IPrincipal</span> <span class="pn">|]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 73)" onmouseover="showTip(event, 'fs13', 73)" class="fn">managedPolicy</span> <span class="s">&quot;CrossAccountPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 74)" onmouseover="showTip(event, 'fs14', 74)" class="k">description</span> <span class="s">&quot;Allow access from partner account&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 75)" onmouseover="showTip(event, 'fs16', 75)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs27', 76)" onmouseover="showTip(event, 'fs27', 76)" class="fn">crossAccountStatement</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Conditional-Permissions" class="anchor" href="#Conditional-Permissions">Conditional Permissions</a></h2>
+<p>Use conditions to restrict permissions based on context.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 77)" onmouseover="showTip(event, 'fs7', 77)" class="fn">stack</span> <span class="s">&quot;ConditionalPolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs30', 78)" onmouseover="showTip(event, 'fs30', 78)" class="fn">conditions</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs31', 79)" onmouseover="showTip(event, 'fs31', 79)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 80)" onmouseover="showTip(event, 'fs32', 80)" class="id">Collections</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 81)" onmouseover="showTip(event, 'fs33', 81)" class="id">Generic</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 82)" onmouseover="showTip(event, 'fs34', 82)" class="id">Dictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs35', 83)" onmouseover="showTip(event, 'fs35', 83)" class="rt">string</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs36', 84)" onmouseover="showTip(event, 'fs36', 84)" class="rt">obj</span><span class="pn">&gt;</span><span class="pn">(</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs30', 85)" onmouseover="showTip(event, 'fs30', 85)" class="fn">conditions</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 86)" onmouseover="showTip(event, 'fs37', 86)" class="id">Add</span><span class="pn">(</span><span class="s">&quot;aws:SourceIp&quot;</span><span class="pn">,</span> <span class="pn">[|</span> <span class="s">&quot;203.0.113.0/24&quot;</span> <span class="pn">|]</span> <span class="o">:&gt;</span> <span onmouseout="hideTip(event, 'fs36', 87)" onmouseover="showTip(event, 'fs36', 87)" class="rt">obj</span><span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 88)" onmouseover="showTip(event, 'fs38', 88)" class="fn">conditionalStatement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 89)" onmouseover="showTip(event, 'fs9', 89)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs10', 90)" onmouseover="showTip(event, 'fs10', 90)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span class="fn">Sid</span> <span class="o">=</span> <span class="s">&quot;IPRestrictedAccess&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs11', 91)" onmouseover="showTip(event, 'fs11', 91)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 92)" onmouseover="showTip(event, 'fs11', 92)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 93)" onmouseover="showTip(event, 'fs12', 93)" class="id">ALLOW</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:*&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;arn:aws:s3:::secure-bucket/*&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Conditions</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs39', 94)" onmouseover="showTip(event, 'fs39', 94)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;IpAddress&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs30', 95)" onmouseover="showTip(event, 'fs30', 95)" class="fn">conditions</span> <span class="pn">]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 96)" onmouseover="showTip(event, 'fs13', 96)" class="fn">managedPolicy</span> <span class="s">&quot;IPRestrictedPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 97)" onmouseover="showTip(event, 'fs14', 97)" class="k">description</span> <span class="s">&quot;S3 access only from specific IP range&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 98)" onmouseover="showTip(event, 'fs16', 98)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs38', 99)" onmouseover="showTip(event, 'fs38', 99)" class="fn">conditionalStatement</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Secrets-Manager-Access" class="anchor" href="#Secrets-Manager-Access">Secrets Manager Access</a></h2>
+<p>Grant access to AWS Secrets Manager secrets.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 100)" onmouseover="showTip(event, 'fs7', 100)" class="fn">stack</span> <span class="s">&quot;SecretsPolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 101)" onmouseover="showTip(event, 'fs40', 101)" class="fn">secretArn</span> <span class="o">=</span>
+        <span class="s">&quot;arn:aws:secretsmanager:us-east-1:123456789012:secret:MySecret-AbCdEf&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 102)" onmouseover="showTip(event, 'fs13', 102)" class="fn">managedPolicy</span> <span class="s">&quot;SecretsAccessPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 103)" onmouseover="showTip(event, 'fs14', 103)" class="k">description</span> <span class="s">&quot;Access to application secrets&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 104)" onmouseover="showTip(event, 'fs16', 104)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 105)" onmouseover="showTip(event, 'fs23', 105)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 106)" onmouseover="showTip(event, 'fs41', 106)" class="id">secretsManagerRead</span> <span onmouseout="hideTip(event, 'fs40', 107)" onmouseover="showTip(event, 'fs40', 107)" class="fn">secretArn</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="KMS-Encryption-Policy" class="anchor" href="#KMS-Encryption-Policy">KMS Encryption Policy</a></h2>
+<p>Grant permissions to use KMS keys for encryption/decryption.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 108)" onmouseover="showTip(event, 'fs7', 108)" class="fn">stack</span> <span class="s">&quot;KMSPolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs42', 109)" onmouseover="showTip(event, 'fs42', 109)" class="fn">kmsKeyArn</span> <span class="o">=</span>
+        <span class="s">&quot;arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 110)" onmouseover="showTip(event, 'fs13', 110)" class="fn">managedPolicy</span> <span class="s">&quot;KMSAccessPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 111)" onmouseover="showTip(event, 'fs14', 111)" class="k">description</span> <span class="s">&quot;KMS key usage for encryption&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 112)" onmouseover="showTip(event, 'fs16', 112)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 113)" onmouseover="showTip(event, 'fs23', 113)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 114)" onmouseover="showTip(event, 'fs43', 114)" class="id">kmsDecrypt</span> <span onmouseout="hideTip(event, 'fs42', 115)" onmouseover="showTip(event, 'fs42', 115)" class="fn">kmsKeyArn</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Lambda-Execution-Policy" class="anchor" href="#Lambda-Execution-Policy">Lambda Execution Policy</a></h2>
+<p>Complete policy for Lambda function execution.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 116)" onmouseover="showTip(event, 'fs7', 116)" class="fn">stack</span> <span class="s">&quot;LambdaExecutionPolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 117)" onmouseover="showTip(event, 'fs44', 117)" class="fn">functionName</span> <span class="o">=</span> <span class="s">&quot;my-function&quot;</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 118)" onmouseover="showTip(event, 'fs45', 118)" class="fn">logGroupArn</span> <span class="o">=</span> <span class="s">$&quot;/aws/lambda/{</span><span onmouseout="hideTip(event, 'fs44', 119)" onmouseover="showTip(event, 'fs44', 119)" class="fn">functionName</span><span class="s">}&quot;</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 120)" onmouseover="showTip(event, 'fs21', 120)" class="fn">bucketArn</span> <span class="o">=</span> <span class="s">&quot;arn:aws:s3:::lambda-data&quot;</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 121)" onmouseover="showTip(event, 'fs22', 121)" class="fn">tableArn</span> <span class="o">=</span> <span class="s">&quot;arn:aws:dynamodb:us-east-1:123456789012:table/MyTable&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 122)" onmouseover="showTip(event, 'fs13', 122)" class="fn">managedPolicy</span> <span class="s">&quot;LambdaFullAccessPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 123)" onmouseover="showTip(event, 'fs14', 123)" class="k">description</span> <span class="s">&quot;Complete Lambda execution permissions&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 124)" onmouseover="showTip(event, 'fs16', 124)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 125)" onmouseover="showTip(event, 'fs23', 125)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 126)" onmouseover="showTip(event, 'fs26', 126)" class="id">cloudWatchLogsWrite</span> <span onmouseout="hideTip(event, 'fs45', 127)" onmouseover="showTip(event, 'fs45', 127)" class="fn">logGroupArn</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs16', 128)" onmouseover="showTip(event, 'fs16', 128)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 129)" onmouseover="showTip(event, 'fs23', 129)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 130)" onmouseover="showTip(event, 'fs46', 130)" class="id">s3FullAccess</span> <span onmouseout="hideTip(event, 'fs21', 131)" onmouseover="showTip(event, 'fs21', 131)" class="fn">bucketArn</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs16', 132)" onmouseover="showTip(event, 'fs16', 132)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 133)" onmouseover="showTip(event, 'fs23', 133)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 134)" onmouseover="showTip(event, 'fs25', 134)" class="id">dynamoDBFullAccess</span> <span onmouseout="hideTip(event, 'fs22', 135)" onmouseover="showTip(event, 'fs22', 135)" class="fn">tableArn</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Read-Only-Policy" class="anchor" href="#Read-Only-Policy">Read-Only Policy</a></h2>
+<p>Create a read-only policy for auditors or monitoring.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 136)" onmouseover="showTip(event, 'fs7', 136)" class="fn">stack</span> <span class="s">&quot;ReadOnlyPolicy&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs13', 137)" onmouseover="showTip(event, 'fs13', 137)" class="fn">managedPolicy</span> <span class="s">&quot;AuditorPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 138)" onmouseover="showTip(event, 'fs14', 138)" class="k">description</span> <span class="s">&quot;Read-only access for auditing&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 139)" onmouseover="showTip(event, 'fs16', 139)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 140)" onmouseover="showTip(event, 'fs23', 140)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 141)" onmouseover="showTip(event, 'fs47', 141)" class="id">ec2Describe</span> <span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs16', 142)" onmouseover="showTip(event, 'fs16', 142)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 143)" onmouseover="showTip(event, 'fs23', 143)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 144)" onmouseover="showTip(event, 'fs24', 144)" class="id">s3ReadOnly</span> <span class="s">&quot;arn:aws:s3:::audit-logs&quot;</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs16', 145)" onmouseover="showTip(event, 'fs16', 145)" class="k">statement</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 146)" onmouseover="showTip(event, 'fs23', 146)" class="m">ManagedPolicyStatements</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 147)" onmouseover="showTip(event, 'fs48', 147)" class="id">dynamoDBReadOnly</span> <span class="s">&quot;arn:aws:dynamodb:us-east-1:123456789012:table/*&quot;</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Deny-Override-Policy" class="anchor" href="#Deny-Override-Policy">Deny Override Policy</a></h2>
+<p>Use deny statements to prevent specific actions (overrides allows).</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 148)" onmouseover="showTip(event, 'fs7', 148)" class="fn">stack</span> <span class="s">&quot;DenyOverridePolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 149)" onmouseover="showTip(event, 'fs49', 149)" class="fn">allowStatement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 150)" onmouseover="showTip(event, 'fs9', 150)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs10', 151)" onmouseover="showTip(event, 'fs10', 151)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span class="fn">Sid</span> <span class="o">=</span> <span class="s">&quot;AllowS3Access&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs11', 152)" onmouseover="showTip(event, 'fs11', 152)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 153)" onmouseover="showTip(event, 'fs11', 153)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 154)" onmouseover="showTip(event, 'fs12', 154)" class="id">ALLOW</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:*&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span> <span class="pn">|]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs50', 155)" onmouseover="showTip(event, 'fs50', 155)" class="fn">denyStatement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 156)" onmouseover="showTip(event, 'fs9', 156)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs10', 157)" onmouseover="showTip(event, 'fs10', 157)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span class="fn">Sid</span> <span class="o">=</span> <span class="s">&quot;DenyDeleteActions&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs11', 158)" onmouseover="showTip(event, 'fs11', 158)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 159)" onmouseover="showTip(event, 'fs11', 159)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 160)" onmouseover="showTip(event, 'fs51', 160)" class="id">DENY</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:DeleteObject&quot;</span><span class="pn">;</span> <span class="s">&quot;s3:DeleteBucket&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;arn:aws:s3:::my-bucket&quot;</span><span class="pn">;</span> <span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span> <span class="pn">|]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs13', 161)" onmouseover="showTip(event, 'fs13', 161)" class="fn">managedPolicy</span> <span class="s">&quot;SafeS3Policy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 162)" onmouseover="showTip(event, 'fs14', 162)" class="k">description</span> <span class="s">&quot;S3 access without delete permissions&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 163)" onmouseover="showTip(event, 'fs16', 163)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs49', 164)" onmouseover="showTip(event, 'fs49', 164)" class="fn">allowStatement</span>
+        <span onmouseout="hideTip(event, 'fs16', 165)" onmouseover="showTip(event, 'fs16', 165)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs50', 166)" onmouseover="showTip(event, 'fs50', 166)" class="fn">denyStatement</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>Follow principle of least privilege</li>
+<li>Use specific resources instead of wildcards when possible</li>
+<li>Add explicit deny statements for sensitive actions</li>
+<li>Use conditions to limit scope (IP, time, MFA)</li>
+<li>Regularly audit and review policies</li>
+</ul>
+<h3><a name="Operational-Excellence" class="anchor" href="#Operational-Excellence">Operational Excellence</a></h3>
+<ul>
+<li>Use descriptive Sid values for each statement</li>
+<li>Add meaningful descriptions to policies</li>
+<li>Group related permissions together</li>
+<li>Version policies using Git</li>
+<li>Test policies in non-production first</li>
+</ul>
+<h3><a name="Organization" class="anchor" href="#Organization">Organization</a></h3>
+<ul>
+<li>Create reusable policies for common patterns</li>
+<li>Use consistent naming conventions</li>
+<li>Organize policies by service or team</li>
+<li>Use paths to organize policies hierarchically</li>
+<li>Attach policies to roles, not users directly</li>
+</ul>
+<h3><a name="Compliance" class="anchor" href="#Compliance">Compliance</a></h3>
+<ul>
+<li>Document why each permission is needed</li>
+<li>Set up AWS Config rules to monitor policies</li>
+<li>Enable CloudTrail to audit policy usage</li>
+<li>Review policies during security audits</li>
+<li>Implement policy change approval workflows</li>
+</ul>
+<h3><a name="Maintenance" class="anchor" href="#Maintenance">Maintenance</a></h3>
+<ul>
+<li>Remove unused policies regularly</li>
+<li>Consolidate duplicate policies</li>
+<li>Update policies when AWS introduces new services</li>
+<li>Monitor for policy changes in CloudTrail</li>
+<li>Use IAM Access Analyzer to validate policies</li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.IAM</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs7">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">val readOnlyStatement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs9">Multiple items<br />type PolicyStatement =
+  inherit DeputyBase
+  new: ?props: IPolicyStatementProps -&gt; unit
+  member AddAccountCondition: accountId: string -&gt; unit
+  member AddAccountRootPrincipal: unit -&gt; unit
+  member AddActions: [&lt;ParamArray&gt;] actions: string array -&gt; unit
+  member AddAllResources: unit -&gt; unit
+  member AddAnyPrincipal: unit -&gt; unit
+  member AddArnPrincipal: arn: string -&gt; unit
+  member AddAwsAccountPrincipal: accountId: string -&gt; unit
+  member AddCanonicalUserPrincipal: canonicalUserId: string -&gt; unit
+  ...<br /><br />--------------------<br />PolicyStatement(?props: IPolicyStatementProps) : PolicyStatement</div>
+<div class="fsdocs-tip" id="fs10">Multiple items<br />type PolicyStatementProps =
+  interface IPolicyStatementProps
+  new: unit -&gt; unit
+  member Actions: string array
+  member Conditions: IDictionary&lt;string,obj&gt;
+  member Effect: Nullable&lt;Effect&gt;
+  member NotActions: string array
+  member NotPrincipals: IPrincipal array
+  member NotResources: string array
+  member Principals: IPrincipal array
+  member Resources: string array
+  ...<br /><br />--------------------<br />PolicyStatementProps() : PolicyStatementProps</div>
+<div class="fsdocs-tip" id="fs11">[&lt;Struct&gt;]
+type Effect =
+  | ALLOW = 0
+  | DENY = 1</div>
+<div class="fsdocs-tip" id="fs12">field Effect.ALLOW: Effect = 0</div>
+<div class="fsdocs-tip" id="fs13">val managedPolicy: name: string -&gt; ManagedPolicyBuilder<br /><em>&lt;summary&gt;Creates a Managed Policy with AWS IAM best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The policy name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ managedPolicy &quot;S3ReadPolicy&quot; {
+     description &quot;Read-only access to S3 buckets&quot;
+     statement (ManagedPolicyStatements.s3ReadOnly &quot;arn:aws:s3:::my-bucket&quot;)
+     attachToRole myRole
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: description (string)
+
+Calls ManagedPolicyBuilder.Description<br /><em>&lt;summary&gt;Sets the policy description.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: managedPolicyName (string)
+
+Calls ManagedPolicyBuilder.ManagedPolicyName<br /><em>&lt;summary&gt;Sets the managed policy name.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The policy name as it appears in IAM.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: statement (PolicyStatement)
+
+Calls ManagedPolicyBuilder.Statement<br /><em>&lt;summary&gt;Adds a policy statement.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">val s3Statement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs18">val dynamoStatement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs19">custom operation: allow (string list) (string list)
+
+Calls ManagedPolicyBuilder.Allow<br /><em>&lt;summary&gt;Adds a statement allowing specific actions on specific resources.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">custom operation: deny (string list) (string list)
+
+Calls ManagedPolicyBuilder.Deny<br /><em>&lt;summary&gt;Adds a statement denying specific actions on specific resources.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">val bucketArn: string</div>
+<div class="fsdocs-tip" id="fs22">val tableArn: string</div>
+<div class="fsdocs-tip" id="fs23">module ManagedPolicyStatements
+
+from FsCDK</div>
+<div class="fsdocs-tip" id="fs24">val s3ReadOnly: bucketArn: string -&gt; PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a statement for S3 read-only access
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">val dynamoDBFullAccess: tableArn: string -&gt; PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a statement for DynamoDB full access
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">val cloudWatchLogsWrite: logGroupArn: string -&gt; PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a statement for CloudWatch Logs write access
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">val crossAccountStatement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs28">Multiple items<br />type AccountPrincipal =
+  inherit ArnPrincipal
+  new: accountId: obj -&gt; unit
+  member ToString: unit -&gt; string
+  member AccountId: obj
+  member PrincipalAccount: string<br /><br />--------------------<br />AccountPrincipal(accountId: obj) : AccountPrincipal</div>
+<div class="fsdocs-tip" id="fs29">type IPrincipal =
+  inherit IGrantable
+  override AddToPrincipalPolicy: statement: PolicyStatement -&gt; IAddToPrincipalPolicyResult
+  member AssumeRoleAction: string
+  member PolicyFragment: PrincipalPolicyFragment
+  member PrincipalAccount: string</div>
+<div class="fsdocs-tip" id="fs30">val conditions: System.Collections.Generic.Dictionary&lt;string,obj&gt;</div>
+<div class="fsdocs-tip" id="fs31">namespace System</div>
+<div class="fsdocs-tip" id="fs32">namespace System.Collections</div>
+<div class="fsdocs-tip" id="fs33">namespace System.Collections.Generic</div>
+<div class="fsdocs-tip" id="fs34">Multiple items<br />type Dictionary&lt;&#39;TKey,&#39;TValue&gt; =
+  interface ICollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable
+  interface IDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface IReadOnlyCollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IReadOnlyDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface ICollection
+  interface IDictionary
+  interface IDeserializationCallback
+  interface ISerializable
+  ...<br /><em>&lt;summary&gt;Represents a collection of keys and values.&lt;/summary&gt;<br />&lt;typeparam name=&quot;TKey&quot;&gt;The type of the keys in the dictionary.&lt;/typeparam&gt;<br />&lt;typeparam name=&quot;TValue&quot;&gt;The type of the values in the dictionary.&lt;/typeparam&gt;</em><br /><br />--------------------<br />System.Collections.Generic.Dictionary() : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(dictionary: System.Collections.Generic.IDictionary&lt;&#39;TKey,&#39;TValue&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(collection: System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(comparer: System.Collections.Generic.IEqualityComparer&lt;&#39;TKey&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(capacity: int) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(dictionary: System.Collections.Generic.IDictionary&lt;&#39;TKey,&#39;TValue&gt;, comparer: System.Collections.Generic.IEqualityComparer&lt;&#39;TKey&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(collection: System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;, comparer: System.Collections.Generic.IEqualityComparer&lt;&#39;TKey&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(capacity: int, comparer: System.Collections.Generic.IEqualityComparer&lt;&#39;TKey&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;</div>
+<div class="fsdocs-tip" id="fs35">Multiple items<br />val string: value: &#39;T -&gt; string<br /><br />--------------------<br />type string = System.String</div>
+<div class="fsdocs-tip" id="fs36">type obj = System.Object</div>
+<div class="fsdocs-tip" id="fs37">System.Collections.Generic.Dictionary.Add(key: string, value: obj) : unit</div>
+<div class="fsdocs-tip" id="fs38">val conditionalStatement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs39">val dict: keyValuePairs: (&#39;Key * &#39;Value) seq -&gt; System.Collections.Generic.IDictionary&lt;&#39;Key,&#39;Value&gt; (requires equality)</div>
+<div class="fsdocs-tip" id="fs40">val secretArn: string</div>
+<div class="fsdocs-tip" id="fs41">val secretsManagerRead: secretArn: string -&gt; PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a statement for Secrets Manager read access
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">val kmsKeyArn: string</div>
+<div class="fsdocs-tip" id="fs43">val kmsDecrypt: keyArn: string -&gt; PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a statement for KMS decrypt permissions
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs44">val functionName: string</div>
+<div class="fsdocs-tip" id="fs45">val logGroupArn: string</div>
+<div class="fsdocs-tip" id="fs46">val s3FullAccess: bucketArn: string -&gt; PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a statement for S3 full access
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">val ec2Describe: unit -&gt; PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a statement for EC2 describe permissions (read-only)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs48">val dynamoDBReadOnly: tableArn: string -&gt; PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a statement for DynamoDB read-only access
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs49">val allowStatement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs50">val denyStatement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs51">field Effect.DENY: Effect = 1</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Quick-Start">
+      Quick Start
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-Managed-Policy">
+      Basic Managed Policy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Policy-with-Multiple-Statements">
+      Policy with Multiple Statements
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-Helper-Methods">
+      Using Helper Methods
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-Pre-Built-Statements">
+      Using Pre-Built Statements
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Attaching-to-Roles">
+      Attaching to Roles
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cross-Account-Access-Policy">
+      Cross-Account Access Policy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Conditional-Permissions">
+      Conditional Permissions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Secrets-Manager-Access">
+      Secrets Manager Access
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#KMS-Encryption-Policy">
+      KMS Encryption Policy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Lambda-Execution-Policy">
+      Lambda Execution Policy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Read-Only-Policy">
+      Read-Only Policy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Deny-Override-Policy">
+      Deny Override Policy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Operational-Excellence">
+      Operational Excellence
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Organization">
+      Organization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Compliance">
+      Compliance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Maintenance">
+      Maintenance
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

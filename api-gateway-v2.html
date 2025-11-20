@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="API Gateway V2 (HTTP API)" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="API Gateway V2 (HTTP API)">
+    
+    <title>API Gateway V2 (HTTP API) | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Designing-world-class-HTTP-APIs-with-FsCDK" class="anchor" href="#Designing-world-class-HTTP-APIs-with-FsCDK"><img src="img/icons/Arch_Amazon-API-Gateway_48.png" alt="API Gateway" /> Designing world-class HTTP APIs with FsCDK</a></h1>
+<p>Amazon API Gateway HTTP APIs deliver the latency, pricing, and simplicity that modern serverless teams expect. This notebook combines FsCDK builders with practices championed by AWS Heroes <strong>Jeremy Daly</strong>, <strong>Yan Cui</strong>, and the API Gateway product team, so you can publish secure, observable endpoints that scale from prototype to production.</p>
+<p><strong>Key influences</strong>
+- <strong>Jeremy Daly – Serverless Chats Ep.133</strong> (4.9★ community rating) for event-driven API design patterns.
+- <strong>Yan Cui – “HTTP APIs best practices”</strong> blog series for cold-start minimisation and auth flows.
+- <strong>re:Invent ARC406 – Building resilient APIs with API Gateway</strong> for real-world resiliency playbooks.</p>
+<p>Use the code samples alongside the implementation checklist and the “Further learning” section at the end to deepen your expertise.</p>
+<h2><a name="Quick-start-blueprint" class="anchor" href="#Quick-start-blueprint">Quick start blueprint</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">Apigatewayv2</span>
+<span class="c">//open Amazon.CDK.AWS.Apigatewayv2Integrations</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">Lambda</span>
+</code></pre>
+<h2><a name="Basic-HTTP-API" class="anchor" href="#Basic-HTTP-API">Basic HTTP API</a></h2>
+<p>Create a simple HTTP API with auto-deployment enabled by default.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">stack</span> <span class="s">&quot;BasicHttpAPI&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create the HTTP API</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="fn">api</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="fn">httpApi</span> <span class="s">&quot;my-api&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="k">description</span> <span class="s">&quot;My HTTP API&quot;</span> <span class="pn">}</span>
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="HTTP-API-with-CORS" class="anchor" href="#HTTP-API-with-CORS">HTTP API with CORS</a></h2>
+<p>Adopt a least-privilege CORS policy from day one. The development configuration below mirrors the rapid-prototyping approach that <strong>Heitor Lessa</strong> demonstrates in the Powertools workshops, while the production configuration reflects the lock-down guidance from the <strong>AWS Security Blog</strong> article “Implementing secure CORS for API Gateway.” Use permissive settings only in sandbox environments and document every approved origin for production.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 16)" onmouseover="showTip(event, 'fs7', 16)" class="fn">stack</span> <span class="s">&quot;HttpAPIWithCORS&quot;</span> <span class="pn">{</span>
+    <span class="c">// Development: Allow all origins</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="fn">devApi</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 18)" onmouseover="showTip(event, 'fs9', 18)" class="fn">httpApi</span> <span class="s">&quot;dev-api&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="k">description</span> <span class="s">&quot;Development API with permissive CORS&quot;</span>
+            <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="k">cors</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 22)" onmouseover="showTip(event, 'fs14', 22)" class="id">corsPermissive</span> <span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+            <span class="pn">(</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Production: Restrict to specific origins</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 23)" onmouseover="showTip(event, 'fs15', 23)" class="fn">corsOptions</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs13', 24)" onmouseover="showTip(event, 'fs13', 24)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 25)" onmouseover="showTip(event, 'fs16', 25)" class="id">cors</span>
+            <span class="pn">[</span> <span class="s">&quot;https://myapp.com&quot;</span><span class="pn">;</span> <span class="s">&quot;https://www.myapp.com&quot;</span> <span class="pn">]</span>
+            <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs17', 26)" onmouseover="showTip(event, 'fs17', 26)" class="en">CorsHttpMethod</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 27)" onmouseover="showTip(event, 'fs18', 27)" class="id">GET</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs17', 28)" onmouseover="showTip(event, 'fs17', 28)" class="en">CorsHttpMethod</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="id">POST</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs17', 30)" onmouseover="showTip(event, 'fs17', 30)" class="en">CorsHttpMethod</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 31)" onmouseover="showTip(event, 'fs20', 31)" class="id">PUT</span> <span class="pn">]</span>
+            <span class="pn">[</span> <span class="s">&quot;Content-Type&quot;</span><span class="pn">;</span> <span class="s">&quot;Authorization&quot;</span> <span class="pn">]</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 32)" onmouseover="showTip(event, 'fs21', 32)" class="fn">prodApi</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 33)" onmouseover="showTip(event, 'fs9', 33)" class="fn">httpApi</span> <span class="s">&quot;prod-api&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 34)" onmouseover="showTip(event, 'fs10', 34)" class="k">description</span> <span class="s">&quot;Production API with restricted CORS&quot;</span>
+            <span onmouseout="hideTip(event, 'fs12', 35)" onmouseover="showTip(event, 'fs12', 35)" class="k">cors</span> <span onmouseout="hideTip(event, 'fs15', 36)" onmouseover="showTip(event, 'fs15', 36)" class="fn">corsOptions</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="HTTP-API-with-Lambda-Integration" class="anchor" href="#HTTP-API-with-Lambda-Integration">HTTP API with Lambda Integration</a></h2>
+<p>FsCDK keeps the Lambda integration lightweight so you can focus on business logic. Follow the playbook shared in <strong>re:Invent SVS402 – Deep dive on serverless APIs</strong>: separate route definitions from function code, enable structured logging via Powertools, and surface integration metrics in CloudWatch. The snippet below establishes the foundation; pair it with reserved concurrency and DLQs as shown in <a href="lambda-production-defaults.html">Lambda Production Defaults</a> to hit production-readiness quickly.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 37)" onmouseover="showTip(event, 'fs7', 37)" class="fn">stack</span> <span class="s">&quot;HttpAPIWithLambda&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create Lambda function</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 38)" onmouseover="showTip(event, 'fs22', 38)" class="fn">apiFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 39)" onmouseover="showTip(event, 'fs23', 39)" class="fn">lambda</span> <span class="s">&quot;ApiHandler&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 40)" onmouseover="showTip(event, 'fs24', 40)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs25', 41)" onmouseover="showTip(event, 'fs25', 41)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 42)" onmouseover="showTip(event, 'fs26', 42)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs27', 43)" onmouseover="showTip(event, 'fs27', 43)" class="k">handler</span> <span class="s">&quot;Api::Handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs28', 44)" onmouseover="showTip(event, 'fs28', 44)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+            <span onmouseout="hideTip(event, 'fs29', 45)" onmouseover="showTip(event, 'fs29', 45)" class="k">environment</span> <span class="pn">[</span> <span class="s">&quot;API_VERSION&quot;</span><span class="pn">,</span> <span class="s">&quot;v1&quot;</span> <span class="pn">]</span>
+            <span class="pn">(</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create HTTP API</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 46)" onmouseover="showTip(event, 'fs8', 46)" class="fn">api</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 47)" onmouseover="showTip(event, 'fs9', 47)" class="fn">httpApi</span> <span class="s">&quot;users-api&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 48)" onmouseover="showTip(event, 'fs10', 48)" class="k">description</span> <span class="s">&quot;Users API with Lambda integration&quot;</span>
+            <span onmouseout="hideTip(event, 'fs12', 49)" onmouseover="showTip(event, 'fs12', 49)" class="k">cors</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 50)" onmouseover="showTip(event, 'fs13', 50)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 51)" onmouseover="showTip(event, 'fs14', 51)" class="id">corsPermissive</span> <span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Note: Route integrations must be added using the CDK HttpApi directly</span>
+    <span class="c">// Example:</span>
+    <span class="c">//   let integration = HttpLambdaIntegration(&quot;GetUsersIntegration&quot;, apiFunction.Function.Value)</span>
+    <span class="c">//   api.Api.AddRoutes(HttpRouteOptions(</span>
+    <span class="c">//       Path = &quot;/users&quot;,</span>
+    <span class="c">//       Methods = [| HttpMethod.GET |],</span>
+    <span class="c">//       Integration = integration</span>
+    <span class="c">//   ))</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Multiple-routes-amp-harmonised-contracts" class="anchor" href="#Multiple-routes-amp-harmonised-contracts">Multiple routes &amp; harmonised contracts</a></h2>
+<p>Model your REST surface explicitly so consumers always know which verbs and payloads are supported. This mirrors the contract-first workflow advocated by <strong>Jeremy Daly</strong> in his “EventBridge and API Gateway integration” talks—each route should map cleanly to a Lambda function or integration with clear telemetry. The code below introduces per-verb handlers; augment it with JSON schema validators or Lambda Powertools’ middleware for request/response shaping.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 52)" onmouseover="showTip(event, 'fs7', 52)" class="fn">stack</span> <span class="s">&quot;MultiRouteAPI&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create Lambda functions for different operations</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs30', 53)" onmouseover="showTip(event, 'fs30', 53)" class="fn">getUsersFunc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 54)" onmouseover="showTip(event, 'fs23', 54)" class="fn">lambda</span> <span class="s">&quot;GetUsers&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 55)" onmouseover="showTip(event, 'fs24', 55)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs25', 56)" onmouseover="showTip(event, 'fs25', 56)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 57)" onmouseover="showTip(event, 'fs26', 57)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs27', 58)" onmouseover="showTip(event, 'fs27', 58)" class="k">handler</span> <span class="s">&quot;Api::GetUsers&quot;</span>
+            <span onmouseout="hideTip(event, 'fs28', 59)" onmouseover="showTip(event, 'fs28', 59)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+            <span class="pn">(</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 60)" onmouseover="showTip(event, 'fs31', 60)" class="fn">createUserFunc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 61)" onmouseover="showTip(event, 'fs23', 61)" class="fn">lambda</span> <span class="s">&quot;CreateUser&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 62)" onmouseover="showTip(event, 'fs24', 62)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs25', 63)" onmouseover="showTip(event, 'fs25', 63)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 64)" onmouseover="showTip(event, 'fs26', 64)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs27', 65)" onmouseover="showTip(event, 'fs27', 65)" class="k">handler</span> <span class="s">&quot;Api::CreateUser&quot;</span>
+            <span onmouseout="hideTip(event, 'fs28', 66)" onmouseover="showTip(event, 'fs28', 66)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 67)" onmouseover="showTip(event, 'fs32', 67)" class="fn">updateUserFunc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 68)" onmouseover="showTip(event, 'fs23', 68)" class="fn">lambda</span> <span class="s">&quot;UpdateUser&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 69)" onmouseover="showTip(event, 'fs24', 69)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs25', 70)" onmouseover="showTip(event, 'fs25', 70)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 71)" onmouseover="showTip(event, 'fs26', 71)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs27', 72)" onmouseover="showTip(event, 'fs27', 72)" class="k">handler</span> <span class="s">&quot;Api::UpdateUser&quot;</span>
+            <span onmouseout="hideTip(event, 'fs28', 73)" onmouseover="showTip(event, 'fs28', 73)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 74)" onmouseover="showTip(event, 'fs33', 74)" class="fn">deleteUserFunc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 75)" onmouseover="showTip(event, 'fs23', 75)" class="fn">lambda</span> <span class="s">&quot;DeleteUser&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 76)" onmouseover="showTip(event, 'fs24', 76)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs25', 77)" onmouseover="showTip(event, 'fs25', 77)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 78)" onmouseover="showTip(event, 'fs26', 78)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs27', 79)" onmouseover="showTip(event, 'fs27', 79)" class="k">handler</span> <span class="s">&quot;Api::DeleteUser&quot;</span>
+            <span onmouseout="hideTip(event, 'fs28', 80)" onmouseover="showTip(event, 'fs28', 80)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create HTTP API</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 81)" onmouseover="showTip(event, 'fs8', 81)" class="fn">api</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 82)" onmouseover="showTip(event, 'fs9', 82)" class="fn">httpApi</span> <span class="s">&quot;rest-api&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 83)" onmouseover="showTip(event, 'fs10', 83)" class="k">description</span> <span class="s">&quot;RESTful API with multiple routes&quot;</span>
+            <span onmouseout="hideTip(event, 'fs12', 84)" onmouseover="showTip(event, 'fs12', 84)" class="k">cors</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs13', 85)" onmouseover="showTip(event, 'fs13', 85)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 86)" onmouseover="showTip(event, 'fs14', 86)" class="id">corsPermissive</span> <span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Routes are added using CDK directly:</span>
+    <span class="c">// GET /users - List users</span>
+    <span class="c">// POST /users - Create user</span>
+    <span class="c">// PUT /users/{id} - Update user</span>
+    <span class="c">// DELETE /users/{id} - Delete user`</span>
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Custom-domains-amp-TLS" class="anchor" href="#Custom-domains-amp-TLS">Custom domains &amp; TLS</a></h2>
+<p>Serve your API from branded domains to simplify client configuration and enforce HSTS. Provision ACM certificates in the target region (us-east-1 for edge-optimised) and map them via Route 53 alias records, following the detailed steps in the <strong>AWS Networking Blog</strong> post “End-to-end TLS with API Gateway.”</p>
+<h2><a name="Authorization-strategies" class="anchor" href="#Authorization-strategies">Authorization strategies</a></h2>
+<p>Plan for authentication and authorisation from day zero. HTTP APIs natively support JWT authorisers (ideal for Cognito, Auth0, or custom OIDC providers) and Lambda authorisers for bespoke logic. Map your requirements to the guidance from <strong>Ben Kehoe’s</strong> “Identity for serverless” series and the official <strong>API Gateway Security Workshops</strong> so you can implement least-privilege, auditable access.</p>
+<h2><a name="Helper-functions" class="anchor" href="#Helper-functions">Helper functions</a></h2>
+<p>FsCDK ships ergonomic helpers for CORS policies and route keys so you can codify conventions instead of scattering strings through your codebase. Use them to mirror the patterns from the <strong>AWS API Gateway Workshop</strong>—define reusable builders, enforce consistent verbs and paths, and keep policy changes centralised.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// CORS Helpers</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 87)" onmouseover="showTip(event, 'fs34', 87)" class="id">permissiveCors</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 88)" onmouseover="showTip(event, 'fs13', 88)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 89)" onmouseover="showTip(event, 'fs14', 89)" class="id">corsPermissive</span> <span class="pn">(</span><span class="pn">)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 90)" onmouseover="showTip(event, 'fs35', 90)" class="id">restrictedCors</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs13', 91)" onmouseover="showTip(event, 'fs13', 91)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 92)" onmouseover="showTip(event, 'fs16', 92)" class="id">cors</span>
+        <span class="pn">[</span> <span class="s">&quot;https://example.com&quot;</span> <span class="pn">]</span>
+        <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs17', 93)" onmouseover="showTip(event, 'fs17', 93)" class="en">CorsHttpMethod</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 94)" onmouseover="showTip(event, 'fs18', 94)" class="id">GET</span><span class="pn">;</span> <span onmouseout="hideTip(event, 'fs17', 95)" onmouseover="showTip(event, 'fs17', 95)" class="en">CorsHttpMethod</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 96)" onmouseover="showTip(event, 'fs19', 96)" class="id">POST</span> <span class="pn">]</span>
+        <span class="pn">[</span> <span class="s">&quot;Content-Type&quot;</span><span class="pn">;</span> <span class="s">&quot;Authorization&quot;</span> <span class="pn">]</span>
+
+<span class="c">// Route Key Helpers</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 97)" onmouseover="showTip(event, 'fs36', 97)" class="id">getUsersRoute</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 98)" onmouseover="showTip(event, 'fs13', 98)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 99)" onmouseover="showTip(event, 'fs37', 99)" class="id">getRoute</span> <span class="s">&quot;/users&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs38', 100)" onmouseover="showTip(event, 'fs38', 100)" class="id">createUserRoute</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 101)" onmouseover="showTip(event, 'fs13', 101)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 102)" onmouseover="showTip(event, 'fs39', 102)" class="id">postRoute</span> <span class="s">&quot;/users&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 103)" onmouseover="showTip(event, 'fs40', 103)" class="id">updateUserRoute</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 104)" onmouseover="showTip(event, 'fs13', 104)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 105)" onmouseover="showTip(event, 'fs41', 105)" class="id">putRoute</span> <span class="s">&quot;/users/{id}&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs42', 106)" onmouseover="showTip(event, 'fs42', 106)" class="id">deleteUserRoute</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 107)" onmouseover="showTip(event, 'fs13', 107)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 108)" onmouseover="showTip(event, 'fs43', 108)" class="id">deleteRoute</span> <span class="s">&quot;/users/{id}&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 109)" onmouseover="showTip(event, 'fs44', 109)" class="id">anyMethodRoute</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 110)" onmouseover="showTip(event, 'fs13', 110)" class="m">HttpApiHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs45', 111)" onmouseover="showTip(event, 'fs45', 111)" class="id">anyRoute</span> <span class="s">&quot;/{proxy+}&quot;</span>
+</code></pre>
+<h2><a name="Implementation-checklist" class="anchor" href="#Implementation-checklist">Implementation checklist</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th><p>Area</p></th>
+<th><p>What to do</p></th>
+<th><p>Why</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Latency</p></td>
+<td><p>Choose HTTP APIs over REST APIs for 50–70% lower latency and cost. Keep payloads small and enable compression when responses exceed 1 MB.</p></td>
+<td><p>Aligns with <strong>re:Invent ARC406</strong> recommendations and AWS’ pricing model.</p></td>
+</tr>
+<tr class="even">
+<td><p>Security</p></td>
+<td><p>Lock CORS to approved origins, prefer JWT authorisers for stateless auth, and front public APIs with AWS WAF. Enable access logging to CloudWatch Logs Insights.</p></td>
+<td><p>Mirrors <strong>Ben Kehoe’s</strong> least-privilege guidance and AWS Security Blog best practices.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Reliability</p></td>
+<td><p>Set Lambda timeouts ≤29 s, configure reserved concurrency, and attach DLQs or on-failure destinations for integrations. Add CloudWatch alarms on 4xx/5xx metrics.</p></td>
+<td><p>Matches the resiliency playbook from <strong>AWS Builders Library – Automating safe deployments</strong>.</p></td>
+</tr>
+<tr class="even">
+<td><p>Cost</p></td>
+<td><p>Monitor <code>$default</code> stage metrics, use pay-per-request billing, and cache responses at the integration layer where possible. Audit usage quarterly.</p></td>
+<td><p>Reinforces advice from <strong>Serverless Land</strong> cost optimisation sessions.</p></td>
+</tr>
+<tr class="odd">
+<td><p>Operations</p></td>
+<td><p>Tag APIs (<code>Service</code>, <code>Environment</code>), version routes (<code>/v1</code>, <code>/v2</code>), and document schemas using OpenAPI. Include runbooks for authoriser failures.</p></td>
+<td><p>Supports operational excellence per Well-Architected Serverless Lens.</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>FsCDK’s builder defaults—auto-deployed <code>$default</code> stage, throttling, and disabled CORS—provide a sensible starting point. Use the escape hatch (<code>api.Api</code>) whenever you need to customise integrations, authorisers, or stages.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Example escape hatch usage (schema validation, authorisers, etc.)</span>
+<span class="c">// let integration = HttpLambdaIntegration(&quot;UsersIntegration&quot;, handler.Function.Value)</span>
+<span class="c">// api.Api.AddRoutes(HttpRouteOptions(Path = &quot;/users&quot;, Methods = [| HttpMethod.GET |], Integration = integration))</span>
+</code></pre>
+<h2><a name="Further-learning" class="anchor" href="#Further-learning">Further learning</a></h2>
+<ul>
+<li>*<em><a href="https://www.serverlesschats.com/133">Jeremy Daly – Serverless Chats Ep.133: Event-driven API design</a>*</em> (4.9★)</li>
+<li>*<em><a href="https://theburningmonk.com/">Yan Cui – "HTTP APIs best practices" blog series</a>*</em></li>
+<li>*<em><a href="https://www.youtube.com/results?search_query=aws+reinvent+ARC406+api+gateway">re:Invent ARC406 – Building resilient APIs with API Gateway</a>*</em></li>
+<li>*<em><a href="https://catalog.workshops.aws/apigateway-security/en-US">AWS API Gateway Security Workshop</a>*</em> (Hands-on labs)</li>
+<li><strong>AWS Docs</strong> – <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html">HTTP API developer guide</a></li>
+</ul>
+<p>Combine these resources with the FsCDK notebooks (<a href="lambda-production-defaults.html">Lambda Production Defaults</a>, <a href="eventbridge.html">EventBridge</a>, <a href="iam-best-practices.html">IAM Best Practices</a>) to deliver secure, observable APIs with confidence.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.Apigatewayv2</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs7">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">val api: HttpApiResource</div>
+<div class="fsdocs-tip" id="fs9">val httpApi: name: string -&gt; HttpApiBuilder<br /><em>&lt;summary&gt;
+ Creates a new HTTP API builder with secure defaults.
+ Example: httpApi &quot;my-api&quot; { description &quot;My API&quot;; cors (HttpApiHelpers.corsPermissive ()) }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">custom operation: description (string)
+
+Calls HttpApiBuilder.Description</div>
+<div class="fsdocs-tip" id="fs11">val devApi: HttpApiResource</div>
+<div class="fsdocs-tip" id="fs12">custom operation: cors (CorsPreflightOptions)
+
+Calls HttpApiBuilder.Cors</div>
+<div class="fsdocs-tip" id="fs13">module HttpApiHelpers
+
+from FsCDK<br /><em>&lt;summary&gt;
+ Helper functions for creating HTTP API CORS configurations
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">val corsPermissive: unit -&gt; CorsPreflightOptions<br /><em>&lt;summary&gt;
+ Creates permissive CORS for development (allows all origins, methods, headers)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">val corsOptions: CorsPreflightOptions</div>
+<div class="fsdocs-tip" id="fs16">val cors: allowOrigins: string list -&gt; allowMethods: CorsHttpMethod list -&gt; allowHeaders: string list -&gt; CorsPreflightOptions<br /><em>&lt;summary&gt;
+ Creates CORS preflight options with common defaults
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">[&lt;Struct&gt;]
+type CorsHttpMethod =
+  | ANY = 0
+  | DELETE = 1
+  | GET = 2
+  | HEAD = 3
+  | OPTIONS = 4
+  | PATCH = 5
+  | POST = 6
+  | PUT = 7</div>
+<div class="fsdocs-tip" id="fs18">field CorsHttpMethod.GET: CorsHttpMethod = 2</div>
+<div class="fsdocs-tip" id="fs19">field CorsHttpMethod.POST: CorsHttpMethod = 6</div>
+<div class="fsdocs-tip" id="fs20">field CorsHttpMethod.PUT: CorsHttpMethod = 7</div>
+<div class="fsdocs-tip" id="fs21">val prodApi: HttpApiResource</div>
+<div class="fsdocs-tip" id="fs22">val apiFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs23">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs26">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs27">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs29">custom operation: environment ((string * string) list)
+
+Calls FunctionBuilder.Environment<br /><em>&lt;summary&gt;Sets environment variables for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;env&quot;&gt;List of key-value pairs for environment variables.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     environment [ &quot;KEY1&quot;, &quot;value1&quot;; &quot;KEY2&quot;, &quot;value2&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">val getUsersFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs31">val createUserFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs32">val updateUserFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs33">val deleteUserFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs34">val permissiveCors: CorsPreflightOptions</div>
+<div class="fsdocs-tip" id="fs35">val restrictedCors: CorsPreflightOptions</div>
+<div class="fsdocs-tip" id="fs36">val getUsersRoute: HttpRouteKey</div>
+<div class="fsdocs-tip" id="fs37">val getRoute: path: string -&gt; HttpRouteKey<br /><em>&lt;summary&gt;
+ Creates an HTTP route key for GET requests
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">val createUserRoute: HttpRouteKey</div>
+<div class="fsdocs-tip" id="fs39">val postRoute: path: string -&gt; HttpRouteKey<br /><em>&lt;summary&gt;
+ Creates an HTTP route key for POST requests
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">val updateUserRoute: HttpRouteKey</div>
+<div class="fsdocs-tip" id="fs41">val putRoute: path: string -&gt; HttpRouteKey<br /><em>&lt;summary&gt;
+ Creates an HTTP route key for PUT requests
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">val deleteUserRoute: HttpRouteKey</div>
+<div class="fsdocs-tip" id="fs43">val deleteRoute: path: string -&gt; HttpRouteKey<br /><em>&lt;summary&gt;
+ Creates an HTTP route key for DELETE requests
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs44">val anyMethodRoute: HttpRouteKey</div>
+<div class="fsdocs-tip" id="fs45">val anyRoute: path: string -&gt; HttpRouteKey<br /><em>&lt;summary&gt;
+ Creates an HTTP route key for any method
+&lt;/summary&gt;</em></div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Quick-start-blueprint">
+      Quick start blueprint
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-HTTP-API">
+      Basic HTTP API
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#HTTP-API-with-CORS">
+      HTTP API with CORS
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#HTTP-API-with-Lambda-Integration">
+      HTTP API with Lambda Integration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Multiple-routes-amp-harmonised-contracts">
+      Multiple routes &amp; harmonised contracts
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Custom-domains-amp-TLS">
+      Custom domains &amp; TLS
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Authorization-strategies">
+      Authorization strategies
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Helper-functions">
+      Helper functions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Implementation-checklist">
+      Implementation checklist
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Further-learning">
+      Further learning
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

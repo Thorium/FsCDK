@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="CloudTrail Audit Logging" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="CloudTrail Audit Logging">
+    
+    <title>CloudTrail Audit Logging | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="AWS-CloudTrail-Audit-Logging" class="anchor" href="#AWS-CloudTrail-Audit-Logging"><img src="img/icons/Arch_AWS-CloudTrail_48.png" alt="CloudTrail" /> AWS CloudTrail - Audit Logging</a></h1>
+<p>AWS CloudTrail provides governance, compliance, and audit capabilities for your AWS account. CloudTrail logs,
+continuously monitors, and retains account activity related to actions across your AWS infrastructure.</p>
+<p><strong>Security Best Practice:</strong> Per O'Reilly "Security as Code" - "Log all API calls with CloudTrail. This is non-negotiable for security monitoring."</p>
+<h2><a name="Quick-Start" class="anchor" href="#Quick-Start">Quick Start</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">CloudTrail</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">Logs</span>
+</code></pre>
+<h2><a name="Basic-CloudTrail-Secure-Defaults" class="anchor" href="#Basic-CloudTrail-Secure-Defaults">Basic CloudTrail (Secure Defaults)</a></h2>
+<p>Create a CloudTrail with all security best practices enabled by default.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">stack</span> <span class="s">&quot;BasicCloudTrail&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="fn">cloudTrail</span> <span class="s">&quot;SecurityAudit&quot;</span> <span class="pn">{</span>
+        <span class="c">// All secure defaults are automatically applied:</span>
+        <span class="c">// - Multi-region trail (captures all regions)</span>
+        <span class="c">// - Global service events included (IAM, STS, CloudFront)</span>
+        <span class="c">// - Log file validation enabled (integrity checking)</span>
+        <span class="c">// - CloudWatch Logs integration enabled</span>
+        <span class="c">// - S3 bucket auto-created with encryption</span>
+        <span class="pn">(</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Production-CloudTrail" class="anchor" href="#Production-CloudTrail">Production CloudTrail</a></h2>
+<p>Production-ready configuration with custom retention and monitoring.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 14)" onmouseover="showTip(event, 'fs7', 14)" class="fn">stack</span> <span class="s">&quot;ProductionCloudTrail&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 15)" onmouseover="showTip(event, 'fs8', 15)" class="fn">cloudTrail</span> <span class="s">&quot;ProductionAudit&quot;</span> <span class="pn">{</span>
+        <span class="c">// Multi-region and global events (defaults)</span>
+        <span onmouseout="hideTip(event, 'fs9', 16)" onmouseover="showTip(event, 'fs9', 16)" class="k">isMultiRegionTrail</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="k">includeGlobalServiceEvents</span> <span class="k">true</span>
+
+        <span class="c">// Log integrity validation (detect tampering)</span>
+        <span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="k">enableFileValidation</span> <span class="k">true</span>
+
+        <span class="c">// CloudWatch Logs for real-time monitoring</span>
+        <span onmouseout="hideTip(event, 'fs12', 19)" onmouseover="showTip(event, 'fs12', 19)" class="k">sendToCloudWatchLogs</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs13', 20)" onmouseover="showTip(event, 'fs13', 20)" class="k">cloudWatchLogsRetention</span> <span onmouseout="hideTip(event, 'fs14', 21)" onmouseover="showTip(event, 'fs14', 21)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs15', 22)" onmouseover="showTip(event, 'fs15', 22)" class="id">THREE_MONTHS</span>
+
+        <span class="c">// Log all management events (default)</span>
+        <span onmouseout="hideTip(event, 'fs16', 23)" onmouseover="showTip(event, 'fs16', 23)" class="k">managementEvents</span> <span onmouseout="hideTip(event, 'fs17', 24)" onmouseover="showTip(event, 'fs17', 24)" class="en">ReadWriteType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 25)" onmouseover="showTip(event, 'fs18', 25)" class="id">ALL</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Organization-Trail" class="anchor" href="#Organization-Trail">Organization Trail</a></h2>
+<p>For AWS Organizations, create an organization-wide trail that logs events for all accounts.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 26)" onmouseover="showTip(event, 'fs7', 26)" class="fn">stack</span> <span class="s">&quot;OrganizationCloudTrail&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 27)" onmouseover="showTip(event, 'fs8', 27)" class="fn">cloudTrail</span> <span class="s">&quot;OrgSecurityAudit&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="k">isOrganizationTrail</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs9', 29)" onmouseover="showTip(event, 'fs9', 29)" class="k">isMultiRegionTrail</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs10', 30)" onmouseover="showTip(event, 'fs10', 30)" class="k">includeGlobalServiceEvents</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs11', 31)" onmouseover="showTip(event, 'fs11', 31)" class="k">enableFileValidation</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs13', 32)" onmouseover="showTip(event, 'fs13', 32)" class="k">cloudWatchLogsRetention</span> <span onmouseout="hideTip(event, 'fs14', 33)" onmouseover="showTip(event, 'fs14', 33)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 34)" onmouseover="showTip(event, 'fs20', 34)" class="id">SIX_MONTHS</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Custom-S3-Bucket" class="anchor" href="#Custom-S3-Bucket">Custom S3 Bucket</a></h2>
+<p>Use a custom S3 bucket for CloudTrail logs (with lifecycle rules for cost optimization).</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 35)" onmouseover="showTip(event, 'fs7', 35)" class="fn">stack</span> <span class="s">&quot;CustomBucketCloudTrail&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create custom S3 bucket with lifecycle rules</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 36)" onmouseover="showTip(event, 'fs21', 36)" class="fn">trailBucket</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs22', 37)" onmouseover="showTip(event, 'fs22', 37)" class="fn">s3Bucket</span> <span class="s">&quot;CloudTrailLogs&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs23', 38)" onmouseover="showTip(event, 'fs23', 38)" class="k">versioned</span> <span class="k">true</span> <span class="c">// Enable versioning for audit trail integrity</span>
+
+            <span onmouseout="hideTip(event, 'fs24', 39)" onmouseover="showTip(event, 'fs24', 39)" class="id">lifecycleRule</span> <span class="pn">{</span>
+                <span onmouseout="hideTip(event, 'fs25', 40)" onmouseover="showTip(event, 'fs25', 40)" class="k">transitions</span>
+                    <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs26', 41)" onmouseover="showTip(event, 'fs26', 41)" class="id">transition</span> <span class="pn">{</span>
+                          <span onmouseout="hideTip(event, 'fs27', 42)" onmouseover="showTip(event, 'fs27', 42)" class="k">storageClass</span> <span onmouseout="hideTip(event, 'fs2', 43)" onmouseover="showTip(event, 'fs2', 43)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 44)" onmouseover="showTip(event, 'fs3', 44)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 45)" onmouseover="showTip(event, 'fs4', 45)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 46)" onmouseover="showTip(event, 'fs28', 46)" class="id">S3</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 47)" onmouseover="showTip(event, 'fs29', 47)" class="rt">StorageClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 48)" onmouseover="showTip(event, 'fs30', 48)" class="id">GLACIER</span>
+                          <span onmouseout="hideTip(event, 'fs31', 49)" onmouseover="showTip(event, 'fs31', 49)" class="k">transitionAfter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs32', 50)" onmouseover="showTip(event, 'fs32', 50)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 51)" onmouseover="showTip(event, 'fs33', 51)" class="id">Days</span><span class="pn">(</span><span class="n">90.0</span><span class="pn">)</span><span class="pn">)</span>
+                      <span class="pn">}</span>
+                      <span onmouseout="hideTip(event, 'fs26', 52)" onmouseover="showTip(event, 'fs26', 52)" class="id">transition</span> <span class="pn">{</span>
+                          <span onmouseout="hideTip(event, 'fs27', 53)" onmouseover="showTip(event, 'fs27', 53)" class="k">storageClass</span> <span onmouseout="hideTip(event, 'fs2', 54)" onmouseover="showTip(event, 'fs2', 54)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 55)" onmouseover="showTip(event, 'fs3', 55)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 56)" onmouseover="showTip(event, 'fs4', 56)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 57)" onmouseover="showTip(event, 'fs28', 57)" class="id">S3</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 58)" onmouseover="showTip(event, 'fs29', 58)" class="rt">StorageClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 59)" onmouseover="showTip(event, 'fs34', 59)" class="id">DEEP_ARCHIVE</span>
+                          <span onmouseout="hideTip(event, 'fs31', 60)" onmouseover="showTip(event, 'fs31', 60)" class="k">transitionAfter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs32', 61)" onmouseover="showTip(event, 'fs32', 61)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 62)" onmouseover="showTip(event, 'fs33', 62)" class="id">Days</span><span class="pn">(</span><span class="n">365.0</span><span class="pn">)</span><span class="pn">)</span>
+                      <span class="pn">}</span> <span class="pn">]</span>
+            <span class="pn">}</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs8', 63)" onmouseover="showTip(event, 'fs8', 63)" class="fn">cloudTrail</span> <span class="s">&quot;CustomBucketAudit&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs35', 64)" onmouseover="showTip(event, 'fs35', 64)" class="k">s3Bucket</span> <span onmouseout="hideTip(event, 'fs21', 65)" onmouseover="showTip(event, 'fs21', 65)" class="fn">trailBucket</span>
+        <span onmouseout="hideTip(event, 'fs9', 66)" onmouseover="showTip(event, 'fs9', 66)" class="k">isMultiRegionTrail</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs10', 67)" onmouseover="showTip(event, 'fs10', 67)" class="k">includeGlobalServiceEvents</span> <span class="k">true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Compliance-Trail-Long-Retention" class="anchor" href="#Compliance-Trail-Long-Retention">Compliance Trail (Long Retention)</a></h2>
+<p>For compliance requirements (HIPAA, PCI-DSS, SOC2), use longer retention periods.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 68)" onmouseover="showTip(event, 'fs7', 68)" class="fn">stack</span> <span class="s">&quot;ComplianceCloudTrail&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 69)" onmouseover="showTip(event, 'fs8', 69)" class="fn">cloudTrail</span> <span class="s">&quot;ComplianceAudit&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs9', 70)" onmouseover="showTip(event, 'fs9', 70)" class="k">isMultiRegionTrail</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs10', 71)" onmouseover="showTip(event, 'fs10', 71)" class="k">includeGlobalServiceEvents</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs11', 72)" onmouseover="showTip(event, 'fs11', 72)" class="k">enableFileValidation</span> <span class="k">true</span>
+
+        <span class="c">// Extended retention for compliance</span>
+        <span onmouseout="hideTip(event, 'fs13', 73)" onmouseover="showTip(event, 'fs13', 73)" class="k">cloudWatchLogsRetention</span> <span onmouseout="hideTip(event, 'fs14', 74)" onmouseover="showTip(event, 'fs14', 74)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 75)" onmouseover="showTip(event, 'fs36', 75)" class="id">ONE_YEAR</span>
+
+        <span class="c">// All management events</span>
+        <span onmouseout="hideTip(event, 'fs16', 76)" onmouseover="showTip(event, 'fs16', 76)" class="k">managementEvents</span> <span onmouseout="hideTip(event, 'fs17', 77)" onmouseover="showTip(event, 'fs17', 77)" class="en">ReadWriteType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 78)" onmouseover="showTip(event, 'fs18', 78)" class="id">ALL</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Read-Only-Trail-Cost-Optimization" class="anchor" href="#Read-Only-Trail-Cost-Optimization">Read-Only Trail (Cost Optimization)</a></h2>
+<p>For read-only monitoring, log only read operations (reduces volume and cost).</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 79)" onmouseover="showTip(event, 'fs7', 79)" class="fn">stack</span> <span class="s">&quot;ReadOnlyCloudTrail&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 80)" onmouseover="showTip(event, 'fs8', 80)" class="fn">cloudTrail</span> <span class="s">&quot;ReadOnlyAudit&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs9', 81)" onmouseover="showTip(event, 'fs9', 81)" class="k">isMultiRegionTrail</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs10', 82)" onmouseover="showTip(event, 'fs10', 82)" class="k">includeGlobalServiceEvents</span> <span class="k">true</span>
+
+        <span class="c">// Only log read operations</span>
+        <span onmouseout="hideTip(event, 'fs16', 83)" onmouseover="showTip(event, 'fs16', 83)" class="k">managementEvents</span> <span onmouseout="hideTip(event, 'fs17', 84)" onmouseover="showTip(event, 'fs17', 84)" class="en">ReadWriteType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 85)" onmouseover="showTip(event, 'fs37', 85)" class="id">READ_ONLY</span>
+
+        <span class="c">// Shorter retention for cost savings</span>
+        <span onmouseout="hideTip(event, 'fs13', 86)" onmouseover="showTip(event, 'fs13', 86)" class="k">cloudWatchLogsRetention</span> <span onmouseout="hideTip(event, 'fs14', 87)" onmouseover="showTip(event, 'fs14', 87)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 88)" onmouseover="showTip(event, 'fs38', 88)" class="id">ONE_WEEK</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Write-Only-Trail-Security-Focus" class="anchor" href="#Write-Only-Trail-Security-Focus">Write-Only Trail (Security Focus)</a></h2>
+<p>For security monitoring, focus on write operations (changes to infrastructure).</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 89)" onmouseover="showTip(event, 'fs7', 89)" class="fn">stack</span> <span class="s">&quot;SecurityFocusCloudTrail&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 90)" onmouseover="showTip(event, 'fs8', 90)" class="fn">cloudTrail</span> <span class="s">&quot;SecurityMonitoring&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs9', 91)" onmouseover="showTip(event, 'fs9', 91)" class="k">isMultiRegionTrail</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs10', 92)" onmouseover="showTip(event, 'fs10', 92)" class="k">includeGlobalServiceEvents</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs11', 93)" onmouseover="showTip(event, 'fs11', 93)" class="k">enableFileValidation</span> <span class="k">true</span>
+
+        <span class="c">// Only log write/delete operations</span>
+        <span onmouseout="hideTip(event, 'fs16', 94)" onmouseover="showTip(event, 'fs16', 94)" class="k">managementEvents</span> <span onmouseout="hideTip(event, 'fs17', 95)" onmouseover="showTip(event, 'fs17', 95)" class="en">ReadWriteType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 96)" onmouseover="showTip(event, 'fs39', 96)" class="id">WRITE_ONLY</span>
+
+        <span onmouseout="hideTip(event, 'fs13', 97)" onmouseover="showTip(event, 'fs13', 97)" class="k">cloudWatchLogsRetention</span> <span onmouseout="hideTip(event, 'fs14', 98)" onmouseover="showTip(event, 'fs14', 98)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 99)" onmouseover="showTip(event, 'fs40', 99)" class="id">ONE_MONTH</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Single-Region-Trail-Cost-Optimization" class="anchor" href="#Single-Region-Trail-Cost-Optimization">Single Region Trail (Cost Optimization)</a></h2>
+<p>For single-region applications, save costs with a single-region trail.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 100)" onmouseover="showTip(event, 'fs7', 100)" class="fn">stack</span> <span class="s">&quot;SingleRegionCloudTrail&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 101)" onmouseover="showTip(event, 'fs8', 101)" class="fn">cloudTrail</span> <span class="s">&quot;RegionalAudit&quot;</span> <span class="pn">{</span>
+        <span class="c">// Single region only (cost optimization)</span>
+        <span onmouseout="hideTip(event, 'fs9', 102)" onmouseover="showTip(event, 'fs9', 102)" class="k">isMultiRegionTrail</span> <span class="k">false</span>
+
+        <span class="c">// Still include global service events</span>
+        <span onmouseout="hideTip(event, 'fs10', 103)" onmouseover="showTip(event, 'fs10', 103)" class="k">includeGlobalServiceEvents</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs11', 104)" onmouseover="showTip(event, 'fs11', 104)" class="k">enableFileValidation</span> <span class="k">true</span>
+
+        <span onmouseout="hideTip(event, 'fs13', 105)" onmouseover="showTip(event, 'fs13', 105)" class="k">cloudWatchLogsRetention</span> <span onmouseout="hideTip(event, 'fs14', 106)" onmouseover="showTip(event, 'fs14', 106)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 107)" onmouseover="showTip(event, 'fs41', 107)" class="id">TWO_WEEKS</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Disabling-CloudWatch-Logs-S3-Only" class="anchor" href="#Disabling-CloudWatch-Logs-S3-Only">Disabling CloudWatch Logs (S3 Only)</a></h2>
+<p>For cost-conscious deployments, disable CloudWatch Logs and use S3 only.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 108)" onmouseover="showTip(event, 'fs7', 108)" class="fn">stack</span> <span class="s">&quot;S3OnlyCloudTrail&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 109)" onmouseover="showTip(event, 'fs8', 109)" class="fn">cloudTrail</span> <span class="s">&quot;S3OnlyAudit&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs9', 110)" onmouseover="showTip(event, 'fs9', 110)" class="k">isMultiRegionTrail</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs10', 111)" onmouseover="showTip(event, 'fs10', 111)" class="k">includeGlobalServiceEvents</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs11', 112)" onmouseover="showTip(event, 'fs11', 112)" class="k">enableFileValidation</span> <span class="k">true</span>
+
+        <span class="c">// Disable CloudWatch Logs (S3 only)</span>
+        <span onmouseout="hideTip(event, 'fs12', 113)" onmouseover="showTip(event, 'fs12', 113)" class="k">sendToCloudWatchLogs</span> <span class="k">false</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>✅ <strong>Always enable multi-region trails</strong> - Capture events from all regions</li>
+<li>✅ <strong>Include global service events</strong> - Monitor IAM, STS, CloudFront changes</li>
+<li>✅ <strong>Enable log file validation</strong> - Detect if logs have been tampered with</li>
+<li>✅ <strong>Use CloudWatch Logs</strong> - Enable real-time monitoring and alerting</li>
+<li>✅ <strong>Enable for all accounts</strong> - Use organization trails for centralized logging</li>
+<li>✅ <strong>Monitor CloudTrail health</strong> - Set up CloudWatch alarms for delivery failures</li>
+<li>✅ <strong>Restrict S3 bucket access</strong> - Only CloudTrail service should write logs</li>
+</ul>
+<h3><a name="Compliance" class="anchor" href="#Compliance">Compliance</a></h3>
+<p>CloudTrail is <strong>required</strong> for most compliance frameworks:</p>
+<ul>
+<li><strong>HIPAA</strong> - Audit trail of all access to ePHI</li>
+<li><strong>PCI-DSS</strong> - Requirement 10.2 - Audit trail for all system components</li>
+<li><strong>SOC2</strong> - CC7.2 - Monitoring of system components</li>
+<li><strong>GDPR</strong> - Article 32 - Security of processing (audit logs)</li>
+<li><strong>FedRAMP</strong> - AU-2 - Audit Events</li>
+<li><strong>ISO 27001</strong> - A.12.4.1 - Event logging</li>
+</ul>
+<h3><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h3>
+<ul>
+<li><strong>First trail is FREE</strong> - Management events in primary region</li>
+<li><strong>Additional trails</strong> - $2.00 per 100,000 events</li>
+<li><strong>CloudWatch Logs</strong> - $0.50 per GB ingested (optional)</li>
+<li><strong>S3 storage</strong> - Standard S3 rates</li>
+<li><strong>Data events</strong> - $0.10 per 100,000 events (S3, Lambda)</li>
+</ul>
+<p><strong>Cost Reduction Strategies:</strong>
+1. Use read-only or write-only trails if appropriate
+2. Disable CloudWatch Logs for low-priority environments
+3. Use S3 lifecycle policies to transition to Glacier
+4. Use single-region trails for region-specific applications
+5. Filter out high-volume, low-value events</p>
+<h3><a name="Monitoring-amp-Alerting" class="anchor" href="#Monitoring-amp-Alerting">Monitoring &amp; Alerting</a></h3>
+<p>Set up CloudWatch alarms for:</p>
+<ul>
+<li><strong>Failed log delivery</strong> - Alert if CloudTrail can't write logs</li>
+<li><strong>Log file validation failures</strong> - Alert if log integrity is compromised</li>
+<li><strong>Unauthorized API calls</strong> - Alert on suspicious activity</li>
+<li><strong>IAM policy changes</strong> - Alert on privilege escalation attempts</li>
+<li><strong>Security group changes</strong> - Alert on network exposure changes</li>
+<li><strong>Root account usage</strong> - Alert on root account API calls</li>
+</ul>
+<h3><a name="Incident-Investigation" class="anchor" href="#Incident-Investigation">Incident Investigation</a></h3>
+<p>CloudTrail is essential for security incident response:</p>
+<ol>
+<li><strong>Who</strong> - Identity of the caller (IAM user, role, federated user)</li>
+<li><strong>What</strong> - The action that was attempted</li>
+<li><strong>When</strong> - Date and time of the request</li>
+<li><strong>Where</strong> - Source IP address and region</li>
+<li><strong>Why</strong> - Event outcome (success or failure)</li>
+</ol>
+<h3><a name="Data-Events-Advanced" class="anchor" href="#Data-Events-Advanced">Data Events (Advanced)</a></h3>
+<p>For S3 and Lambda, you can enable data event logging (additional cost):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Note: Data events require additional configuration</span>
+<span class="c">// and are not included in the free tier</span>
+</code></pre>
+<h2><a name="Default-Settings" class="anchor" href="#Default-Settings">Default Settings</a></h2>
+<p>FsCDK CloudTrail applies these security best practices by default:</p>
+<ul>
+<li><strong>Multi-Region Trail:</strong> ✅ true (captures all regions)</li>
+<li><strong>Global Service Events:</strong> ✅ true (IAM, STS, CloudFront, etc.)</li>
+<li><strong>Log File Validation:</strong> ✅ true (integrity checking)</li>
+<li><strong>Management Events:</strong> ✅ ReadWriteType.ALL (all API calls)</li>
+<li><strong>CloudWatch Logs:</strong> ✅ true (real-time monitoring)</li>
+<li><strong>CloudWatch Retention:</strong> 📅 ONE_MONTH (balance cost/security)</li>
+<li><strong>S3 Bucket:</strong> 🪣 Auto-created with encryption</li>
+<li><strong>Organization Trail:</strong> ❌ false (opt-in for AWS Organizations)</li>
+</ul>
+<h2><a name="What-is-Logged" class="anchor" href="#What-is-Logged">What is Logged?</a></h2>
+<h3><a name="Management-Events-Always-Logged" class="anchor" href="#Management-Events-Always-Logged">Management Events (Always Logged)</a></h3>
+<ul>
+<li>IAM user/role creation, deletion, policy changes</li>
+<li>EC2 instance start/stop/terminate</li>
+<li>VPC creation, security group changes</li>
+<li>S3 bucket creation, policy changes</li>
+<li>Lambda function creation, updates</li>
+<li>RDS instance creation, configuration changes</li>
+<li>CloudFormation stack operations</li>
+<li>And thousands of other AWS API calls</li>
+</ul>
+<h3><a name="Global-Service-Events" class="anchor" href="#Global-Service-Events">Global Service Events</a></h3>
+<ul>
+<li><strong>IAM</strong> - User, role, policy changes</li>
+<li><strong>AWS STS</strong> - Temporary credential requests</li>
+<li><strong>CloudFront</strong> - Distribution changes</li>
+<li><strong>Route53</strong> - DNS changes (global operations)</li>
+<li><strong>AWS Organizations</strong> - Account management</li>
+</ul>
+<h3><a name="NOT-Logged-by-Default" class="anchor" href="#NOT-Logged-by-Default">NOT Logged by Default</a></h3>
+<ul>
+<li><strong>S3 object-level operations</strong> (GET, PUT, DELETE) - Requires data events</li>
+<li><strong>Lambda invocations</strong> - Requires data events</li>
+<li><strong>DynamoDB operations</strong> - Requires data events</li>
+<li><strong>CloudWatch Logs data</strong> - Not logged</li>
+<li><strong>Service-specific logs</strong> (RDS query logs, VPC Flow Logs, etc.)</li>
+</ul>
+<h2><a name="Log-Format-Example" class="anchor" href="#Log-Format-Example">Log Format Example</a></h2>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="json">{
+  "eventVersion": "1.08",
+  "userIdentity": {
+    "type": "IAMUser",
+    "principalId": "AIDAI...",
+    "arn": "arn:aws:iam::123456789012:user/alice",
+    "accountId": "123456789012",
+    "userName": "alice"
+  },
+  "eventTime": "2025-11-08T10:30:00Z",
+  "eventSource": "ec2.amazonaws.com",
+  "eventName": "RunInstances",
+  "awsRegion": "us-east-1",
+  "sourceIPAddress": "203.0.113.1",
+  "requestParameters": {
+    "instanceType": "t3.micro",
+    "imageId": "ami-12345678"
+  },
+  "responseElements": {
+    "instancesSet": [...]
+  }
+}
+</code></pre></td></tr></table>
+<h2><a name="Integration-with-Other-Services" class="anchor" href="#Integration-with-Other-Services">Integration with Other Services</a></h2>
+<h3><a name="CloudWatch-Logs-Insights" class="anchor" href="#CloudWatch-Logs-Insights">CloudWatch Logs Insights</a></h3>
+<p>Query CloudTrail logs using CloudWatch Logs Insights:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="sql">fields @<span class="k">timestamp</span>, userIdentity.userName, eventName, sourceIPAddress
+| filter eventName = "RunInstances"
+| sort @<span class="k">timestamp</span> <span class="k">desc</span>
+| <span class="k">limit</span> <span class="n">20</span>
+</code></pre></td></tr></table>
+<h3><a name="AWS-Config" class="anchor" href="#AWS-Config">AWS Config</a></h3>
+<p>CloudTrail + AWS Config = Complete compliance solution:
+- <strong>CloudTrail</strong> - Who did what, when
+- <strong>AWS Config</strong> - Current and historical configuration state</p>
+<h3><a name="Amazon-Athena" class="anchor" href="#Amazon-Athena">Amazon Athena</a></h3>
+<p>Query CloudTrail logs in S3 using SQL:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="sql"><span class="k">SELECT</span> useridentity.username, eventname, <span class="k">count</span>(*) <span class="k">as</span> <span class="k">count</span>
+<span class="k">FROM</span> cloudtrail_logs
+<span class="k">WHERE</span> eventtime &gt; <span class="s">'2025-11-01'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> useridentity.username, eventname
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">count</span> <span class="k">DESC</span>
+</code></pre></td></tr></table>
+<h3><a name="AWS-Security-Hub" class="anchor" href="#AWS-Security-Hub">AWS Security Hub</a></h3>
+<p>CloudTrail findings are automatically sent to Security Hub for centralized security management.</p>
+<h2><a name="Resources" class="anchor" href="#Resources">Resources</a></h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/cloudtrail/">AWS CloudTrail Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/best-practices-security.html">CloudTrail Best Practices</a></li>
+<li><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html">CloudTrail Log File Validation</a></li>
+<li><a href="https://aws.amazon.com/cloudtrail/pricing/">CloudTrail Pricing</a></li>
+<li><a href="https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html">Analyzing CloudTrail Logs with Athena</a></li>
+</ul>
+<h2><a name="Summary" class="anchor" href="#Summary">Summary</a></h2>
+<p>CloudTrail is <strong>non-negotiable</strong> for:
+- ✅ Security incident investigation
+- ✅ Compliance requirements
+- ✅ Operational troubleshooting
+- ✅ Detecting unauthorized access
+- ✅ Audit trails for regulated industries</p>
+<p>FsCDK makes it easy with secure-by-default settings. Simply add <code>cloudTrail "name" { }</code> to your stack!</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.CloudTrail</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Logs</div>
+<div class="fsdocs-tip" id="fs7">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">val cloudTrail: name: string -&gt; CloudTrailBuilder<br /><em>&lt;summary&gt;
+ Creates a CloudTrail configuration with AWS security best practices.
+ CloudTrail logs all AWS API calls for security monitoring and compliance.
+ &lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The trail name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ cloudTrail &quot;SecurityAuditTrail&quot; {
+     isMultiRegionTrail true
+     includeGlobalServiceEvents true
+     enableFileValidation true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">custom operation: isMultiRegionTrail (bool)
+
+Calls CloudTrailBuilder.IsMultiRegionTrail<br /><em>&lt;summary&gt;
+ Sets whether this is a multi-region trail.
+ **Security Best Practice:** Multi-region trails are enabled by default to capture events from all AWS regions.
+ &lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether to enable multi-region (default: true).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ cloudTrail &quot;MyTrail&quot; {
+     isMultiRegionTrail false  // Only if single-region monitoring is acceptable
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">custom operation: includeGlobalServiceEvents (bool)
+
+Calls CloudTrailBuilder.IncludeGlobalServiceEvents<br /><em>&lt;summary&gt;
+ Sets whether to include global service events (IAM, STS, CloudFront, etc.).
+ **Security Best Practice:** Enabled by default to capture critical security events.
+ &lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether to include global events (default: true).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: enableFileValidation (bool)
+
+Calls CloudTrailBuilder.EnableFileValidation<br /><em>&lt;summary&gt;
+ Sets whether to enable log file validation.
+ **Security Best Practice:** Enabled by default for log integrity verification.
+ This allows you to detect if log files were tampered with after delivery.
+ &lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether to enable validation (default: true).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">custom operation: sendToCloudWatchLogs (bool)
+
+Calls CloudTrailBuilder.SendToCloudWatchLogs<br /><em>&lt;summary&gt;
+ Sets whether to send trail logs to CloudWatch Logs.
+ **Note:** CloudWatch Logs integration enables real-time monitoring but adds cost.
+ &lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether to send to CloudWatch (default: true).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">custom operation: cloudWatchLogsRetention (RetentionDays)
+
+Calls CloudTrailBuilder.CloudWatchLogsRetention<br /><em>&lt;summary&gt;
+ Sets the CloudWatch Logs retention period for the trail.
+ &lt;/summary&gt;<br />&lt;param name=&quot;retention&quot;&gt;The retention period (default: ONE_MONTH).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ cloudTrail &quot;MyTrail&quot; {
+     cloudWatchLogsRetention RetentionDays.THREE_MONTHS
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">[&lt;Struct&gt;]
+type RetentionDays =
+  | ONE_DAY = 0
+  | THREE_DAYS = 1
+  | FIVE_DAYS = 2
+  | ONE_WEEK = 3
+  | TWO_WEEKS = 4
+  | ONE_MONTH = 5
+  | TWO_MONTHS = 6
+  | THREE_MONTHS = 7
+  | FOUR_MONTHS = 8
+  | FIVE_MONTHS = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs15">field RetentionDays.THREE_MONTHS: RetentionDays = 7</div>
+<div class="fsdocs-tip" id="fs16">custom operation: managementEvents (ReadWriteType)
+
+Calls CloudTrailBuilder.ManagementEvents<br /><em>&lt;summary&gt;
+ Sets the management event logging type.
+ &lt;/summary&gt;<br />&lt;param name=&quot;readWriteType&quot;&gt;The type of events to log (default: ReadWriteType.ALL).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ cloudTrail &quot;MyTrail&quot; {
+     managementEvents ReadWriteType.WRITE_ONLY  // Only log write events
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">[&lt;Struct&gt;]
+type ReadWriteType =
+  | READ_ONLY = 0
+  | WRITE_ONLY = 1
+  | ALL = 2
+  | NONE = 3</div>
+<div class="fsdocs-tip" id="fs18">field ReadWriteType.ALL: ReadWriteType = 2</div>
+<div class="fsdocs-tip" id="fs19">custom operation: isOrganizationTrail (bool)
+
+Calls CloudTrailBuilder.IsOrganizationTrail<br /><em>&lt;summary&gt;
+ Sets whether this is an organization trail (requires AWS Organizations).
+ Organization trails log events for all accounts in the organization.
+ &lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether this is an organization trail.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ cloudTrail &quot;OrgTrail&quot; {
+     isOrganizationTrail true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">field RetentionDays.SIX_MONTHS: RetentionDays = 10</div>
+<div class="fsdocs-tip" id="fs21">val trailBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs22">val s3Bucket: name: string -&gt; BucketBuilder<br /><em>&lt;summary&gt;
+ Creates a new S3 bucket builder with secure defaults.
+ Example: s3Bucket &quot;my-bucket&quot; { versioned true }
+ Alias for bucket builder.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">val lifecycleRule: LifecycleRuleBuilder</div>
+<div class="fsdocs-tip" id="fs25">custom operation: transitions (AWS.S3.ITransition list)
+
+Calls LifecycleRuleBuilder.Transitions</div>
+<div class="fsdocs-tip" id="fs26">val transition: TransitionBuilder<br /><em>&lt;summary&gt;
+ Creates an S3 lifecycle transition rule for moving objects to different storage classes.
+ Transitions reduce storage costs by automatically moving objects to cheaper storage tiers.
+ &lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ transition {
+     storageClass StorageClass.GLACIER
+     transitionAfter (Duration.Days(90.0))
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">custom operation: storageClass (AWS.S3.StorageClass)
+
+Calls TransitionBuilder.StorageClass<br /><em>&lt;summary&gt;
+ Sets the storage class to transition to.
+ Common classes: GLACIER (low-cost archival), DEEP_ARCHIVE (lowest cost, rare access),
+ INTELLIGENT_TIERING (automatic cost optimization), GLACIER_IR (instant retrieval).
+ &lt;/summary&gt;<br />&lt;param name=&quot;storageClass&quot;&gt;The target storage class.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs29">Multiple items<br />type StorageClass =
+  inherit DeputyBase
+  new: value: string -&gt; unit
+  member ToString: unit -&gt; string
+  member Value: string
+  static member DEEP_ARCHIVE: StorageClass
+  static member GLACIER: StorageClass
+  static member GLACIER_INSTANT_RETRIEVAL: StorageClass
+  static member INFREQUENT_ACCESS: StorageClass
+  static member INTELLIGENT_TIERING: StorageClass
+  static member ONE_ZONE_INFREQUENT_ACCESS: StorageClass<br /><br />--------------------<br />AWS.S3.StorageClass(value: string) : AWS.S3.StorageClass</div>
+<div class="fsdocs-tip" id="fs30">property AWS.S3.StorageClass.GLACIER: AWS.S3.StorageClass with get</div>
+<div class="fsdocs-tip" id="fs31">custom operation: transitionAfter (Duration)
+
+Calls TransitionBuilder.TransitionAfter<br /><em>&lt;summary&gt;
+ Sets when objects transition after creation (use Duration.Days()).
+ Example: transitionAfter (Duration.Days(90.0)) moves objects after 90 days.
+ &lt;/summary&gt;<br />&lt;param name=&quot;duration&quot;&gt;Time after object creation to transition.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs32">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs33">Duration.Days(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs34">property AWS.S3.StorageClass.DEEP_ARCHIVE: AWS.S3.StorageClass with get</div>
+<div class="fsdocs-tip" id="fs35">custom operation: s3Bucket (BucketSpec)
+
+Calls CloudTrailBuilder.S3Bucket<br /><em>&lt;summary&gt;
+ Sets a custom S3 bucket for CloudTrail logs from a BucketSpec.
+ &lt;/summary&gt;<br />&lt;param name=&quot;bucketSpec&quot;&gt;The S3 bucket specification.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs36">field RetentionDays.ONE_YEAR: RetentionDays = 11</div>
+<div class="fsdocs-tip" id="fs37">field ReadWriteType.READ_ONLY: ReadWriteType = 0</div>
+<div class="fsdocs-tip" id="fs38">field RetentionDays.ONE_WEEK: RetentionDays = 3</div>
+<div class="fsdocs-tip" id="fs39">field ReadWriteType.WRITE_ONLY: ReadWriteType = 1</div>
+<div class="fsdocs-tip" id="fs40">field RetentionDays.ONE_MONTH: RetentionDays = 5</div>
+<div class="fsdocs-tip" id="fs41">field RetentionDays.TWO_WEEKS: RetentionDays = 4</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Quick-Start">
+      Quick Start
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-CloudTrail-Secure-Defaults">
+      Basic CloudTrail (Secure Defaults)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Production-CloudTrail">
+      Production CloudTrail
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Organization-Trail">
+      Organization Trail
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Custom-S3-Bucket">
+      Custom S3 Bucket
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Compliance-Trail-Long-Retention">
+      Compliance Trail (Long Retention)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Read-Only-Trail-Cost-Optimization">
+      Read-Only Trail (Cost Optimization)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Write-Only-Trail-Security-Focus">
+      Write-Only Trail (Security Focus)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Single-Region-Trail-Cost-Optimization">
+      Single Region Trail (Cost Optimization)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Disabling-CloudWatch-Logs-S3-Only">
+      Disabling CloudWatch Logs (S3 Only)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Compliance">
+      Compliance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Monitoring-amp-Alerting">
+      Monitoring &amp; Alerting
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Incident-Investigation">
+      Incident Investigation
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Data-Events-Advanced">
+      Data Events (Advanced)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Default-Settings">
+      Default Settings
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#What-is-Logged">
+      What is Logged?
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Management-Events-Always-Logged">
+      Management Events (Always Logged)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Global-Service-Events">
+      Global Service Events
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#NOT-Logged-by-Default">
+      NOT Logged by Default
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Log-Format-Example">
+      Log Format Example
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Integration-with-Other-Services">
+      Integration with Other Services
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#CloudWatch-Logs-Insights">
+      CloudWatch Logs Insights
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Config">
+      AWS Config
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Amazon-Athena">
+      Amazon Athena
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Security-Hub">
+      AWS Security Hub
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Resources">
+      Resources
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Summary">
+      Summary
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

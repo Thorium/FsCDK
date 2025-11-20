@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Lambda Production Defaults" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Lambda Production Defaults">
+    <meta name="description" content="Production-safe defaults for AWS Lambda functions based on Yan Cui's serverless best practices">
+<meta name="twitter:site" content="Production-safe defaults for AWS Lambda functions based on Yan Cui's serverless best practices">
+<meta name="og:description" content="Production-safe defaults for AWS Lambda functions based on Yan Cui's serverless best practices">
+    <title>Lambda Production Defaults | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Lambda-production-defaults" class="anchor" href="#Lambda-production-defaults"><img src="img/icons/Arch_AWS-Lambda_48.png" alt="Lambda" /> Lambda production defaults</a></h1>
+<p><img src="img/FsCDK-lambda-production-defaults.png" alt="Lambda Production Defaults" /></p>
+<p>FsCDK bakes in the guidance from AWS Heroes <strong>Yan Cui</strong>, <strong>Heitor Lessa</strong>, and <strong>Alex Casalboni</strong>, along with the <strong>AWS Lambda Operator Guide</strong>, so every function starts production-ready without additional wiring.</p>
+<h3><a name="Lambda-Production-Architecture" class="anchor" href="#Lambda-Production-Architecture">Lambda Production Architecture</a></h3>
+<p><img src="img/diagrams/lambda-production-defaults.svg" alt="Lambda Production Architecture with FsCDK Defaults" /></p>
+<h2><a name="Why-these-defaults-matter" class="anchor" href="#Why-these-defaults-matter">Why these defaults matter</a></h2>
+<p>Serverless workloads succeed when they:
+- <strong>Retain failed events</strong> – DLQs capture payloads for replay and debugging.
+- <strong>Control spend and contention</strong> – Reserved concurrency prevents noisy neighbours.
+- <strong>Emit rich telemetry</strong> – JSON logs, X-Ray tracing, and Powertools illuminate behaviour.
+- <strong>Fail predictably</strong> – Retry and event-age limits avoid infinite loops and stale updates.</p>
+<p>FsCDK turns these best practices into defaults so you don’t have to wire them by hand.</p>
+<hr />
+<h2><a name="Defaults-applied-to-every-function" class="anchor" href="#Defaults-applied-to-every-function">Defaults applied to every function</a></h2>
+<p>Every Lambda function in FsCDK automatically gets these production-safe defaults:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Feature</p></th>
+<th><p>Default value</p></th>
+<th><p>Rationale</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Reserved concurrency</strong></p></td>
+<td><p><code>10</code></p></td>
+<td><p>Limits blast radius and mirrors Yan Cui's cost-control advice.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>X-Ray tracing</strong></p></td>
+<td><p><code>ACTIVE</code></p></td>
+<td><p>Enables end-to-end tracing per Heitor Lessa's observability workshops.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Logging format</strong></p></td>
+<td><p><code>JSON</code></p></td>
+<td><p>Unlocks CloudWatch Logs Insights and downstream analytics.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Log retention</strong></p></td>
+<td><p><code>1 week</code> (via logGroup)</p></td>
+<td><p>Corey Quinn cost optimization: "Never store logs forever." Use logGroup builder for custom retention.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Ephemeral storage</strong></p></td>
+<td><p><code>512 MB</code></p></td>
+<td><p>AWS free tier default. Increase only when processing large files.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Retry attempts</strong></p></td>
+<td><p><code>2</code></p></td>
+<td><p>Prevents infinite retry loops while allowing transient recovery.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Max event age</strong></p></td>
+<td><p><code>6 hours</code></p></td>
+<td><p>Avoids stale data processing as recommended in the Lambda operator guide.</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Dead-letter queue</strong></p></td>
+<td><p>Auto-created SQS (14-day retention)</p></td>
+<td><p>Guarantees recoverability and audit trails.</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Lambda Powertools</strong></p></td>
+<td><p>Enabled</p></td>
+<td><p>Adds structured logging, metrics, and tracing helpers automatically.</p></td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+<h2><a name="Basic-usage-defaults-already-applied" class="anchor" href="#Basic-usage-defaults-already-applied">Basic usage (defaults already applied)</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="pp">#r</span> <span class="s">&quot;nuget: Amazon.CDK.Lib, 2.128.0&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">FsCDK</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="id">app</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="fn">App</span><span class="pn">(</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="fn">stack</span> <span class="s">&quot;ProductionStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">app</span>
+
+    <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="fn">lambda</span> <span class="s">&quot;OrderProcessor&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 13)" onmouseover="showTip(event, 'fs10', 13)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 14)" onmouseover="showTip(event, 'fs11', 14)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 15)" onmouseover="showTip(event, 'fs12', 15)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 16)" onmouseover="showTip(event, 'fs13', 16)" class="id">PYTHON_3_11</span>
+        <span onmouseout="hideTip(event, 'fs14', 17)" onmouseover="showTip(event, 'fs14', 17)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+
+        <span onmouseout="hideTip(event, 'fs15', 18)" onmouseover="showTip(event, 'fs15', 18)" class="k">environment</span> <span class="pn">[</span> <span class="s">&quot;TABLE_NAME&quot;</span><span class="pn">,</span> <span class="s">&quot;orders-table&quot;</span><span class="pn">;</span> <span class="s">&quot;POWERTOOLS_SERVICE_NAME&quot;</span><span class="pn">,</span> <span class="s">&quot;order-service&quot;</span> <span class="pn">]</span> <span class="c">// Powertools auto-configured</span>
+    <span class="pn">}</span>
+<span class="c">// Reserved concurrency = 10</span>
+<span class="c">// X-Ray tracing enabled</span>
+<span class="c">// JSON logging enabled</span>
+<span class="c">// DLQ auto-created: &quot;OrderProcessor-dlq&quot;</span>
+<span class="c">// Powertools layer added automatically</span>
+<span class="c">// Max event age = 6 hours</span>
+<span class="c">// Retry attempts = 2</span>
+<span class="pn">}</span>
+</code></pre>
+<hr />
+<h2><a name="Overriding-defaults" class="anchor" href="#Overriding-defaults">Overriding defaults</a></h2>
+<p>When you understand traffic patterns and operational maturity, override the presets. Follow the decision points outlined in <strong>Production-Ready Serverless</strong> and validate changes through load tests before relaxing safeguards:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 19)" onmouseover="showTip(event, 'fs8', 19)" class="fn">stack</span> <span class="s">&quot;CustomStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs6', 20)" onmouseover="showTip(event, 'fs6', 20)" class="id">app</span>
+
+    <span class="c">// High-throughput function</span>
+    <span onmouseout="hideTip(event, 'fs9', 21)" onmouseover="showTip(event, 'fs9', 21)" class="fn">lambda</span> <span class="s">&quot;HighVolumeProcessor&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 22)" onmouseover="showTip(event, 'fs10', 22)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 23)" onmouseover="showTip(event, 'fs11', 23)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 24)" onmouseover="showTip(event, 'fs12', 24)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 25)" onmouseover="showTip(event, 'fs16', 25)" class="id">NODEJS_20_X</span>
+        <span onmouseout="hideTip(event, 'fs14', 26)" onmouseover="showTip(event, 'fs14', 26)" class="k">code</span> <span class="s">&quot;./dist&quot;</span>
+
+        <span class="c">// Override defaults</span>
+        <span onmouseout="hideTip(event, 'fs17', 27)" onmouseover="showTip(event, 'fs17', 27)" class="k">reservedConcurrentExecutions</span> <span class="n">500</span> <span class="c">// Allow higher concurrency</span>
+        <span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="k">tracing</span> <span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="en">Tracing</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 30)" onmouseover="showTip(event, 'fs20', 30)" class="id">PASS_THROUGH</span> <span class="c">// Disable X-Ray</span>
+        <span onmouseout="hideTip(event, 'fs21', 31)" onmouseover="showTip(event, 'fs21', 31)" class="k">loggingFormat</span> <span onmouseout="hideTip(event, 'fs22', 32)" onmouseover="showTip(event, 'fs22', 32)" class="en">LoggingFormat</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 33)" onmouseover="showTip(event, 'fs23', 33)" class="id">TEXT</span> <span class="c">// Use plain text logs</span>
+        <span onmouseout="hideTip(event, 'fs24', 34)" onmouseover="showTip(event, 'fs24', 34)" class="k">autoCreateDLQ</span> <span class="k">false</span> <span class="c">// Disable DLQ</span>
+        <span onmouseout="hideTip(event, 'fs25', 35)" onmouseover="showTip(event, 'fs25', 35)" class="k">autoAddPowertools</span> <span class="k">false</span> <span class="c">// Skip Powertools layer</span>
+        <span onmouseout="hideTip(event, 'fs26', 36)" onmouseover="showTip(event, 'fs26', 36)" class="k">maxEventAge</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 37)" onmouseover="showTip(event, 'fs27', 37)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 38)" onmouseover="showTip(event, 'fs28', 38)" class="id">Hours</span><span class="pn">(</span><span class="n">1.0</span><span class="pn">)</span><span class="pn">)</span> <span class="c">// 1 hour instead of 6</span>
+        <span onmouseout="hideTip(event, 'fs29', 39)" onmouseover="showTip(event, 'fs29', 39)" class="k">retryAttempts</span> <span class="n">0</span> <span class="c">// No retries</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<hr />
+<h2><a name="Dead-Letter-Queue-DLQ-Auto-Creation" class="anchor" href="#Dead-Letter-Queue-DLQ-Auto-Creation">Dead Letter Queue (DLQ) Auto-Creation</a></h2>
+<h3><a name="How-it-works" class="anchor" href="#How-it-works">How it works</a></h3>
+<p>FsCDK provisions a standard SQS queue and wires it to the Lambda’s asynchronous failure destination—matching the blueprint from the <strong>AWS Lambda Operator Guide</strong>:</p>
+<ul>
+<li><strong>Naming convention</strong>: <code>{FunctionName}-dlq</code></li>
+<li><strong>Retention</strong>: 14 days (enough to investigate issues and reprocess, per Yan Cui’s guidance)</li>
+<li><strong>Queue type</strong>: Standard SQS</li>
+<li><strong>Construct ID</strong>: <code>{ConstructId}-DLQ</code></li>
+</ul>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 40)" onmouseover="showTip(event, 'fs9', 40)" class="fn">lambda</span> <span class="s">&quot;PaymentProcessor&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 41)" onmouseover="showTip(event, 'fs10', 41)" class="k">handler</span> <span class="s">&quot;process_payment&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 42)" onmouseover="showTip(event, 'fs11', 42)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 43)" onmouseover="showTip(event, 'fs12', 43)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 44)" onmouseover="showTip(event, 'fs13', 44)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 45)" onmouseover="showTip(event, 'fs14', 45)" class="k">code</span> <span class="s">&quot;./payment-service&quot;</span>
+<span class="pn">}</span>
+<span class="c">// Automatically creates SQS queue: &quot;PaymentProcessor-dlq&quot;</span>
+<span class="c">// Failed events stored for 14 days</span>
+</code></pre>
+<h3><a name="Manual-DLQ-configuration" class="anchor" href="#Manual-DLQ-configuration">Manual DLQ configuration</a></h3>
+<p>Large or regulated workloads may require custom encryption, retention, or monitoring. The pattern below mirrors the approach described in the <strong>AWS Compute Blog</strong> post “Designing resilient asynchronous workflows with DLQs.”</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 46)" onmouseover="showTip(event, 'fs1', 46)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 47)" onmouseover="showTip(event, 'fs2', 47)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 48)" onmouseover="showTip(event, 'fs3', 48)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 49)" onmouseover="showTip(event, 'fs30', 49)" class="id">SQS</span>
+
+<span onmouseout="hideTip(event, 'fs8', 50)" onmouseover="showTip(event, 'fs8', 50)" class="fn">stack</span> <span class="s">&quot;CustomDLQStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs6', 51)" onmouseover="showTip(event, 'fs6', 51)" class="id">app</span>
+
+    <span class="c">// Create custom DLQ with specific settings</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 52)" onmouseover="showTip(event, 'fs31', 52)" class="fn">customDlq</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs32', 53)" onmouseover="showTip(event, 'fs32', 53)" class="fn">queue</span> <span class="s">&quot;critical-failures&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs33', 54)" onmouseover="showTip(event, 'fs33', 54)" class="k">messageRetention</span> <span class="pn">(</span><span class="n">30.0</span> <span class="o">*</span> <span class="n">24.0</span> <span class="o">*</span> <span class="n">3600.0</span><span class="pn">)</span> <span class="c">// 30 days in seconds</span>
+            <span onmouseout="hideTip(event, 'fs34', 55)" onmouseover="showTip(event, 'fs34', 55)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs35', 56)" onmouseover="showTip(event, 'fs35', 56)" class="en">QueueEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 57)" onmouseover="showTip(event, 'fs36', 57)" class="id">KMS</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs9', 58)" onmouseover="showTip(event, 'fs9', 58)" class="fn">lambda</span> <span class="s">&quot;CriticalFunction&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 59)" onmouseover="showTip(event, 'fs10', 59)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 60)" onmouseover="showTip(event, 'fs11', 60)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 61)" onmouseover="showTip(event, 'fs12', 61)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 62)" onmouseover="showTip(event, 'fs13', 62)" class="id">PYTHON_3_11</span>
+        <span onmouseout="hideTip(event, 'fs14', 63)" onmouseover="showTip(event, 'fs14', 63)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+        <span onmouseout="hideTip(event, 'fs37', 64)" onmouseover="showTip(event, 'fs37', 64)" class="k">deadLetterQueue</span> <span onmouseout="hideTip(event, 'fs31', 65)" onmouseover="showTip(event, 'fs31', 65)" class="fn">customDlq</span> <span class="c">// Use custom DLQ</span>
+        <span onmouseout="hideTip(event, 'fs24', 66)" onmouseover="showTip(event, 'fs24', 66)" class="k">autoCreateDLQ</span> <span class="k">false</span> <span class="c">// Disable auto-creation</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<hr />
+<h2><a name="AWS-Lambda-Powertools-integration" class="anchor" href="#AWS-Lambda-Powertools-integration">AWS Lambda Powertools integration</a></h2>
+<p>Created by AWS Principal Engineer <strong>Heitor Lessa</strong>, Lambda Powertools delivers the structured logging, metrics, and tracing helpers showcased in the <strong>Powertools Live Workshops</strong> (average rating 4.9★). FsCDK automatically layers these utilities so your handlers follow the same blueprint Heitor presents in re:Invent sessions.</p>
+<h3><a name="Key-capabilities" class="anchor" href="#Key-capabilities">Key capabilities</a></h3>
+<ul>
+<li>Structured logging with correlation IDs</li>
+<li>Custom metrics without manual CloudWatch API calls</li>
+<li>X-Ray-compatible tracing helpers</li>
+<li>Input validation, idempotency utilities, and middleware patterns</li>
+</ul>
+<h3><a name="Supported-runtimes" class="anchor" href="#Supported-runtimes">Supported runtimes</a></h3>
+<table>
+<thead>
+<tr class="header">
+<th><p>Runtime</p></th>
+<th><p>Delivery</p></th>
+<th><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Python 3.8–3.12</p></td>
+<td><p>AWSLambdaPowertoolsPython layer</p></td>
+<td><p>Latest version pinned automatically</p></td>
+</tr>
+<tr class="even">
+<td><p>Node.js 14–20</p></td>
+<td><p>AWSLambdaPowertoolsTypeScript layer</p></td>
+<td><p>Includes utilities for ESM and CommonJS</p></td>
+</tr>
+<tr class="odd">
+<td><p>Java 8, 11, 17</p></td>
+<td><p>AWSLambdaPowertoolsJava layer</p></td>
+<td><p>Aligns with Powertools Java starter kit</p></td>
+</tr>
+<tr class="even">
+<td><p>.NET 6+</p></td>
+<td><p>NuGet packages</p></td>
+<td><p>Add <code>AWS.Lambda.Powertools.*</code> packages manually</p></td>
+</tr>
+</tbody>
+</table>
+
+<blockquote>
+<p>For .NET, install the NuGet packages (<code>Logging</code>, <code>Metrics</code>, <code>Tracing</code>) as demonstrated in the official Powertools .NET docs.</p>
+</blockquote>
+<h3><a name="Python-Example" class="anchor" href="#Python-Example">Python Example</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 67)" onmouseover="showTip(event, 'fs9', 67)" class="fn">lambda</span> <span class="s">&quot;PythonFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 68)" onmouseover="showTip(event, 'fs10', 68)" class="k">handler</span> <span class="s">&quot;app.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 69)" onmouseover="showTip(event, 'fs11', 69)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 70)" onmouseover="showTip(event, 'fs12', 70)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 71)" onmouseover="showTip(event, 'fs13', 71)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 72)" onmouseover="showTip(event, 'fs14', 72)" class="k">code</span> <span class="s">&quot;./python-service&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs15', 73)" onmouseover="showTip(event, 'fs15', 73)" class="k">environment</span>
+        <span class="pn">[</span> <span class="s">&quot;POWERTOOLS_SERVICE_NAME&quot;</span><span class="pn">,</span> <span class="s">&quot;user-service&quot;</span>
+          <span class="s">&quot;POWERTOOLS_METRICS_NAMESPACE&quot;</span><span class="pn">,</span> <span class="s">&quot;MyApp&quot;</span>
+          <span class="s">&quot;LOG_LEVEL&quot;</span><span class="pn">,</span> <span class="s">&quot;INFO&quot;</span> <span class="pn">]</span>
+<span class="pn">}</span>
+<span class="c">// Powertools layer added automatically!</span>
+</code></pre>
+<p><strong>In your Python code:</strong></p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="python">from aws_lambda_powertools import Logger, Tracer, Metrics
+from aws_lambda_powertools.utilities.typing import LambdaContext
+
+logger = Logger()
+tracer = Tracer()
+metrics = Metrics()
+
+@logger.inject_lambda_context
+@tracer.capture_lambda_handler
+@metrics.log_metrics(capture_cold_start_metric=True)
+def handler(event: dict, context: LambdaContext) -&gt; dict:
+    logger.info("Processing user request", extra={"user_id": event.get("user_id")})
+    metrics.add_metric(name="UserRequestProcessed", unit="Count", value=1)
+    
+    # Your business logic here
+    
+    return {"statusCode": 200, "body": "Success"}
+</code></pre></td></tr></table>
+<h3><a name="Node-js-TypeScript-Example" class="anchor" href="#Node-js-TypeScript-Example">Node.js/TypeScript Example</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 74)" onmouseover="showTip(event, 'fs9', 74)" class="fn">lambda</span> <span class="s">&quot;NodeFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 75)" onmouseover="showTip(event, 'fs10', 75)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 76)" onmouseover="showTip(event, 'fs11', 76)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 77)" onmouseover="showTip(event, 'fs12', 77)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 78)" onmouseover="showTip(event, 'fs16', 78)" class="id">NODEJS_20_X</span>
+    <span onmouseout="hideTip(event, 'fs14', 79)" onmouseover="showTip(event, 'fs14', 79)" class="k">code</span> <span class="s">&quot;./nodejs-service&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs15', 80)" onmouseover="showTip(event, 'fs15', 80)" class="k">environment</span>
+        <span class="pn">[</span> <span class="s">&quot;POWERTOOLS_SERVICE_NAME&quot;</span><span class="pn">,</span> <span class="s">&quot;order-service&quot;</span>
+          <span class="s">&quot;POWERTOOLS_METRICS_NAMESPACE&quot;</span><span class="pn">,</span> <span class="s">&quot;MyApp&quot;</span>
+          <span class="s">&quot;LOG_LEVEL&quot;</span><span class="pn">,</span> <span class="s">&quot;INFO&quot;</span> <span class="pn">]</span>
+<span class="pn">}</span>
+</code></pre>
+<p><strong>In your TypeScript code:</strong></p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="typescript"><span class="k">import</span> { Logger } <span class="k">from</span> <span class="s">'@aws-lambda-powertools/logger'</span>;
+<span class="k">import</span> { Tracer } <span class="k">from</span> <span class="s">'@aws-lambda-powertools/tracer'</span>;
+<span class="k">import</span> { Metrics } <span class="k">from</span> <span class="s">'@aws-lambda-powertools/metrics'</span>;
+
+<span class="k">const</span> logger <span class="o">=</span> <span class="k">new</span> Logger();
+<span class="k">const</span> tracer <span class="o">=</span> <span class="k">new</span> Tracer();
+<span class="k">const</span> metrics <span class="o">=</span> <span class="k">new</span> Metrics();
+
+<span class="k">export</span> <span class="k">const</span> handler <span class="o">=</span> <span class="k">async</span> (<span class="k">event</span>: any) <span class="o">=</span><span class="o">&gt;</span> {
+    logger.info('Processing order', { orderId: <span class="k">event</span>.orderId });
+    metrics.addMetric(<span class="s">'OrderProcessed'</span>, <span class="s">'Count'</span>, <span class="n">1</span>);
+    
+    <span class="c">// Your business logic here</span>
+    
+    <span class="k">return</span> { statusCode: <span class="n">200</span>, body: <span class="s">'Success'</span> };
+};
+</code></pre></td></tr></table>
+<h3><a name="Disabling-Powertools" class="anchor" href="#Disabling-Powertools">Disabling Powertools</a></h3>
+<p>If you don't want Powertools (e.g., for .NET or custom logging):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 81)" onmouseover="showTip(event, 'fs9', 81)" class="fn">lambda</span> <span class="s">&quot;CustomLoggingFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 82)" onmouseover="showTip(event, 'fs10', 82)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 83)" onmouseover="showTip(event, 'fs11', 83)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 84)" onmouseover="showTip(event, 'fs12', 84)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 85)" onmouseover="showTip(event, 'fs38', 85)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs14', 86)" onmouseover="showTip(event, 'fs14', 86)" class="k">code</span> <span class="s">&quot;./dotnet-service&quot;</span>
+    <span onmouseout="hideTip(event, 'fs25', 87)" onmouseover="showTip(event, 'fs25', 87)" class="k">autoAddPowertools</span> <span class="k">false</span> <span class="c">// Skip Powertools layer</span>
+<span class="pn">}</span>
+</code></pre>
+<hr />
+<h2><a name="Reserved-Concurrency" class="anchor" href="#Reserved-Concurrency">Reserved Concurrency</a></h2>
+<h3><a name="Why-reserved-concurrency" class="anchor" href="#Why-reserved-concurrency">Why reserved concurrency?</a></h3>
+<p>By default, Lambda can consume the entire account concurrency pool (1,000 per Region). Without guard rails you risk surprise costs and throttling other services—a scenario highlighted in <strong>Yan Cui’s “All you need to know about Lambda concurrency”</strong>. FsCDK therefore caps concurrency at 10 by default.</p>
+<h3><a name="When-to-override" class="anchor" href="#When-to-override">When to override</a></h3>
+<p>Increase or remove the cap only after:
+- Load testing confirms throughput requirements
+- You’ve configured cost and error alarms
+- Other critical functions have explicit concurrency protections in place</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Development/staging - keep defaults</span>
+<span onmouseout="hideTip(event, 'fs9', 88)" onmouseover="showTip(event, 'fs9', 88)" class="fn">lambda</span> <span class="s">&quot;DevFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 89)" onmouseover="showTip(event, 'fs10', 89)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 90)" onmouseover="showTip(event, 'fs11', 90)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 91)" onmouseover="showTip(event, 'fs12', 91)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 92)" onmouseover="showTip(event, 'fs13', 92)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 93)" onmouseover="showTip(event, 'fs14', 93)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+<span class="c">// Reserved concurrency = 10 (default)</span>
+<span class="pn">}</span>
+
+<span class="c">// Production - increase based on load testing</span>
+<span onmouseout="hideTip(event, 'fs9', 94)" onmouseover="showTip(event, 'fs9', 94)" class="fn">lambda</span> <span class="s">&quot;ProdFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 95)" onmouseover="showTip(event, 'fs10', 95)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 96)" onmouseover="showTip(event, 'fs11', 96)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 97)" onmouseover="showTip(event, 'fs12', 97)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 98)" onmouseover="showTip(event, 'fs13', 98)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 99)" onmouseover="showTip(event, 'fs14', 99)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+    <span onmouseout="hideTip(event, 'fs17', 100)" onmouseover="showTip(event, 'fs17', 100)" class="k">reservedConcurrentExecutions</span> <span class="n">500</span> <span class="c">// Tested capacity</span>
+<span class="pn">}</span>
+
+<span class="c">// Unlimited (use with caution!)</span>
+<span onmouseout="hideTip(event, 'fs9', 101)" onmouseover="showTip(event, 'fs9', 101)" class="fn">lambda</span> <span class="s">&quot;UnlimitedFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 102)" onmouseover="showTip(event, 'fs10', 102)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 103)" onmouseover="showTip(event, 'fs11', 103)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 104)" onmouseover="showTip(event, 'fs12', 104)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 105)" onmouseover="showTip(event, 'fs13', 105)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 106)" onmouseover="showTip(event, 'fs14', 106)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+    <span onmouseout="hideTip(event, 'fs17', 107)" onmouseover="showTip(event, 'fs17', 107)" class="k">reservedConcurrentExecutions</span> <span class="o">-</span><span class="n">1</span> <span class="c">// Remove limit (not recommended!)</span>
+<span class="pn">}</span>
+</code></pre>
+<hr />
+<h2><a name="X-Ray-Tracing" class="anchor" href="#X-Ray-Tracing">X-Ray Tracing</a></h2>
+<h3><a name="Default-ACTIVE" class="anchor" href="#Default-ACTIVE">Default: ACTIVE</a></h3>
+<p>Active tracing mirrors the workflow taught in <strong>AWS Powertools workshops</strong>—capturing every invocation for dependency mapping, latency analysis, and incident response. Keep it enabled unless regulatory requirements dictate otherwise.</p>
+<h3><a name="Tracing-modes" class="anchor" href="#Tracing-modes">Tracing modes</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Active tracing (default) - traces all requests</span>
+<span onmouseout="hideTip(event, 'fs9', 108)" onmouseover="showTip(event, 'fs9', 108)" class="fn">lambda</span> <span class="s">&quot;ActiveTracing&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 109)" onmouseover="showTip(event, 'fs10', 109)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 110)" onmouseover="showTip(event, 'fs11', 110)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 111)" onmouseover="showTip(event, 'fs12', 111)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 112)" onmouseover="showTip(event, 'fs13', 112)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 113)" onmouseover="showTip(event, 'fs14', 113)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+    <span onmouseout="hideTip(event, 'fs18', 114)" onmouseover="showTip(event, 'fs18', 114)" class="k">tracing</span> <span onmouseout="hideTip(event, 'fs19', 115)" onmouseover="showTip(event, 'fs19', 115)" class="en">Tracing</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 116)" onmouseover="showTip(event, 'fs39', 116)" class="id">ACTIVE</span> <span class="c">// Default</span>
+<span class="pn">}</span>
+
+<span class="c">// Pass-through - only traces if upstream sent trace header</span>
+<span onmouseout="hideTip(event, 'fs9', 117)" onmouseover="showTip(event, 'fs9', 117)" class="fn">lambda</span> <span class="s">&quot;PassThroughTracing&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 118)" onmouseover="showTip(event, 'fs10', 118)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 119)" onmouseover="showTip(event, 'fs11', 119)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 120)" onmouseover="showTip(event, 'fs12', 120)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 121)" onmouseover="showTip(event, 'fs13', 121)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 122)" onmouseover="showTip(event, 'fs14', 122)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+    <span onmouseout="hideTip(event, 'fs18', 123)" onmouseover="showTip(event, 'fs18', 123)" class="k">tracing</span> <span onmouseout="hideTip(event, 'fs19', 124)" onmouseover="showTip(event, 'fs19', 124)" class="en">Tracing</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 125)" onmouseover="showTip(event, 'fs20', 125)" class="id">PASS_THROUGH</span>
+<span class="pn">}</span>
+
+<span class="c">// Disabled - no tracing</span>
+<span onmouseout="hideTip(event, 'fs9', 126)" onmouseover="showTip(event, 'fs9', 126)" class="fn">lambda</span> <span class="s">&quot;NoTracing&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 127)" onmouseover="showTip(event, 'fs10', 127)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 128)" onmouseover="showTip(event, 'fs11', 128)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 129)" onmouseover="showTip(event, 'fs12', 129)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 130)" onmouseover="showTip(event, 'fs13', 130)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 131)" onmouseover="showTip(event, 'fs14', 131)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+    <span onmouseout="hideTip(event, 'fs18', 132)" onmouseover="showTip(event, 'fs18', 132)" class="k">tracing</span> <span onmouseout="hideTip(event, 'fs19', 133)" onmouseover="showTip(event, 'fs19', 133)" class="en">Tracing</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 134)" onmouseover="showTip(event, 'fs40', 134)" class="id">DISABLED</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="X-Ray-with-Powertools" class="anchor" href="#X-Ray-with-Powertools">X-Ray with Powertools</a></h3>
+<p>When using Lambda Powertools, X-Ray tracing is automatically integrated:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="python">from aws_lambda_powertools import Tracer
+
+tracer = Tracer()
+
+@tracer.capture_lambda_handler
+def handler(event, context):
+    # Automatically creates X-Ray segments
+    process_order()
+    
+@tracer.capture_method
+def process_order():
+    # Creates subsegments for detailed tracing
+    validate_order()
+    save_to_database()
+</code></pre></td></tr></table>
+<hr />
+<h2><a name="Structured-Logging-JSON" class="anchor" href="#Structured-Logging-JSON">Structured Logging (JSON)</a></h2>
+<h3><a name="Default-JSON-format" class="anchor" href="#Default-JSON-format">Default: JSON format</a></h3>
+<p>Structured JSON logs are the backbone of Yan Cui’s observability playbook and the <strong>AWS Lambda Operator Guide</strong>. They unlock CloudWatch Logs Insights, make Datadog/Splunk ingestion straightforward, and enforce consistent fields for downstream analytics.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 135)" onmouseover="showTip(event, 'fs9', 135)" class="fn">lambda</span> <span class="s">&quot;JsonLoggingFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 136)" onmouseover="showTip(event, 'fs10', 136)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 137)" onmouseover="showTip(event, 'fs11', 137)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 138)" onmouseover="showTip(event, 'fs12', 138)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 139)" onmouseover="showTip(event, 'fs13', 139)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 140)" onmouseover="showTip(event, 'fs14', 140)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+    <span onmouseout="hideTip(event, 'fs21', 141)" onmouseover="showTip(event, 'fs21', 141)" class="k">loggingFormat</span> <span onmouseout="hideTip(event, 'fs22', 142)" onmouseover="showTip(event, 'fs22', 142)" class="en">LoggingFormat</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 143)" onmouseover="showTip(event, 'fs41', 143)" class="id">JSON</span> <span class="c">// Default</span>
+<span class="pn">}</span>
+
+<span class="c">// Override to text format if needed</span>
+<span onmouseout="hideTip(event, 'fs9', 144)" onmouseover="showTip(event, 'fs9', 144)" class="fn">lambda</span> <span class="s">&quot;TextLoggingFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 145)" onmouseover="showTip(event, 'fs10', 145)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 146)" onmouseover="showTip(event, 'fs11', 146)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 147)" onmouseover="showTip(event, 'fs12', 147)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 148)" onmouseover="showTip(event, 'fs13', 148)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 149)" onmouseover="showTip(event, 'fs14', 149)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+    <span onmouseout="hideTip(event, 'fs21', 150)" onmouseover="showTip(event, 'fs21', 150)" class="k">loggingFormat</span> <span onmouseout="hideTip(event, 'fs22', 151)" onmouseover="showTip(event, 'fs22', 151)" class="en">LoggingFormat</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 152)" onmouseover="showTip(event, 'fs23', 152)" class="id">TEXT</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="CloudWatch-Logs-Insights-Example" class="anchor" href="#CloudWatch-Logs-Insights-Example">CloudWatch Logs Insights Example</a></h3>
+<p>With JSON logging, you can query logs efficiently:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip highlighted"><code lang="sql">fields @<span class="k">timestamp</span>, <span class="k">level</span>, message, userId
+| filter <span class="k">level</span> = "ERROR"
+| filter userId = "<span class="k">user</span><span class="n">-123</span>"
+| sort @<span class="k">timestamp</span> <span class="k">desc</span>
+| <span class="k">limit</span> <span class="n">20</span>
+</code></pre></td></tr></table>
+<hr />
+<h2><a name="Async-Invocation-Configuration" class="anchor" href="#Async-Invocation-Configuration">Async Invocation Configuration</a></h2>
+<h3><a name="Default-event-handling" class="anchor" href="#Default-event-handling">Default event handling</a></h3>
+<p>Async invocations inherit a 6-hour max age and two retry attempts, echoing the configuration recommended in the <strong>AWS Lambda Operator Guide</strong> to balance resiliency with timely processing.</p>
+<h3><a name="When-to-override-1" class="anchor" href="#When-to-override-1">When to override</a></h3>
+<p>Use <code>configureAsyncInvoke</code> when business SLAs require tighter delivery windows or fewer retries—after validating downstream systems can cope.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 153)" onmouseover="showTip(event, 'fs9', 153)" class="fn">lambda</span> <span class="s">&quot;CustomAsyncFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs10', 154)" onmouseover="showTip(event, 'fs10', 154)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs11', 155)" onmouseover="showTip(event, 'fs11', 155)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 156)" onmouseover="showTip(event, 'fs12', 156)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 157)" onmouseover="showTip(event, 'fs13', 157)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs14', 158)" onmouseover="showTip(event, 'fs14', 158)" class="k">code</span> <span class="s">&quot;./src&quot;</span>
+
+    <span class="c">// Custom async configuration</span>
+    <span onmouseout="hideTip(event, 'fs42', 159)" onmouseover="showTip(event, 'fs42', 159)" class="id">configureAsyncInvoke</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs43', 160)" onmouseover="showTip(event, 'fs43', 160)" class="k">maxEventAge</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 161)" onmouseover="showTip(event, 'fs27', 161)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 162)" onmouseover="showTip(event, 'fs44', 162)" class="id">Minutes</span><span class="pn">(</span><span class="n">30.0</span><span class="pn">)</span><span class="pn">)</span> <span class="c">// Process within 30 min</span>
+        <span onmouseout="hideTip(event, 'fs45', 163)" onmouseover="showTip(event, 'fs45', 163)" class="k">retryAttempts</span> <span class="n">1</span> <span class="c">// Only retry once</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+<span class="c">// Note: When using configureAsyncInvoke, MaxEventAge/RetryAttempts</span>
+<span class="c">// are NOT set on the function props to avoid conflicts</span>
+</code></pre>
+<h3><a name="Why-limit-event-age" class="anchor" href="#Why-limit-event-age">Why limit event age?</a></h3>
+<p>Stale events lead to incorrect business logic, wasted compute, and confusing audit trails—an issue repeatedly called out in the <strong>AWS Compute Blog</strong>. FsCDK therefore drops payloads older than six hours by default.</p>
+<hr />
+<h2><a name="Complete-Production-Example" class="anchor" href="#Complete-Production-Example">Complete Production Example</a></h2>
+<p>Here's a complete example showing all production features:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs46', 164)" onmouseover="showTip(event, 'fs46', 164)" class="id">productionApp</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs7', 165)" onmouseover="showTip(event, 'fs7', 165)" class="fn">App</span><span class="pn">(</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs8', 166)" onmouseover="showTip(event, 'fs8', 166)" class="fn">stack</span> <span class="s">&quot;ProductionOrderService&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs46', 167)" onmouseover="showTip(event, 'fs46', 167)" class="id">productionApp</span>
+
+    <span class="c">// DynamoDB table for orders</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 168)" onmouseover="showTip(event, 'fs47', 168)" class="fn">ordersTable</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs48', 169)" onmouseover="showTip(event, 'fs48', 169)" class="fn">table</span> <span class="s">&quot;production-orders&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs49', 170)" onmouseover="showTip(event, 'fs49', 170)" class="k">partitionKey</span> <span class="s">&quot;orderId&quot;</span> <span onmouseout="hideTip(event, 'fs3', 171)" onmouseover="showTip(event, 'fs3', 171)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 172)" onmouseover="showTip(event, 'fs50', 172)" class="id">DynamoDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 173)" onmouseover="showTip(event, 'fs51', 173)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 174)" onmouseover="showTip(event, 'fs52', 174)" class="id">STRING</span>
+            <span onmouseout="hideTip(event, 'fs53', 175)" onmouseover="showTip(event, 'fs53', 175)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs3', 176)" onmouseover="showTip(event, 'fs3', 176)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 177)" onmouseover="showTip(event, 'fs50', 177)" class="id">DynamoDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 178)" onmouseover="showTip(event, 'fs54', 178)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 179)" onmouseover="showTip(event, 'fs55', 179)" class="id">PAY_PER_REQUEST</span>
+            <span onmouseout="hideTip(event, 'fs56', 180)" onmouseover="showTip(event, 'fs56', 180)" class="k">pointInTimeRecovery</span> <span class="k">true</span>
+        <span class="c">// Note: Encryption is managed by AWS by default</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Order processor with all production defaults</span>
+    <span onmouseout="hideTip(event, 'fs9', 181)" onmouseover="showTip(event, 'fs9', 181)" class="fn">lambda</span> <span class="s">&quot;OrderProcessor&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 182)" onmouseover="showTip(event, 'fs10', 182)" class="k">handler</span> <span class="s">&quot;process_order.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 183)" onmouseover="showTip(event, 'fs11', 183)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 184)" onmouseover="showTip(event, 'fs12', 184)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 185)" onmouseover="showTip(event, 'fs13', 185)" class="id">PYTHON_3_11</span>
+        <span onmouseout="hideTip(event, 'fs14', 186)" onmouseover="showTip(event, 'fs14', 186)" class="k">code</span> <span class="s">&quot;./services/order-processor&quot;</span>
+        <span onmouseout="hideTip(event, 'fs57', 187)" onmouseover="showTip(event, 'fs57', 187)" class="k">memory</span> <span class="n">512</span>
+        <span onmouseout="hideTip(event, 'fs58', 188)" onmouseover="showTip(event, 'fs58', 188)" class="k">timeout</span> <span class="n">30.0</span>
+
+        <span class="c">// Environment variables for Powertools</span>
+        <span onmouseout="hideTip(event, 'fs15', 189)" onmouseover="showTip(event, 'fs15', 189)" class="k">environment</span>
+            <span class="pn">[</span> <span class="s">&quot;TABLE_NAME&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs47', 190)" onmouseover="showTip(event, 'fs47', 190)" class="fn">ordersTable</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 191)" onmouseover="showTip(event, 'fs59', 191)" class="id">TableName</span>
+              <span class="s">&quot;POWERTOOLS_SERVICE_NAME&quot;</span><span class="pn">,</span> <span class="s">&quot;order-processor&quot;</span>
+              <span class="s">&quot;POWERTOOLS_METRICS_NAMESPACE&quot;</span><span class="pn">,</span> <span class="s">&quot;OrderService&quot;</span>
+              <span class="s">&quot;LOG_LEVEL&quot;</span><span class="pn">,</span> <span class="s">&quot;INFO&quot;</span> <span class="pn">]</span>
+
+        <span class="c">// Production-safe defaults applied automatically:</span>
+        <span class="c">// Reserved concurrency = 10</span>
+        <span class="c">// X-Ray tracing = ACTIVE</span>
+        <span class="c">// JSON logging</span>
+        <span class="c">// DLQ = &quot;OrderProcessor-dlq&quot; (14-day retention)</span>
+        <span class="c">// Powertools layer added</span>
+        <span class="c">// Max event age = 6 hours</span>
+        <span class="c">// Retry attempts = 2</span>
+
+        <span class="c">// Grant DynamoDB permissions</span>
+        <span onmouseout="hideTip(event, 'fs60', 192)" onmouseover="showTip(event, 'fs60', 192)" class="id">policyStatement</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs61', 193)" onmouseover="showTip(event, 'fs61', 193)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;dynamodb:PutItem&quot;</span><span class="pn">;</span> <span class="s">&quot;dynamodb:UpdateItem&quot;</span> <span class="pn">]</span>
+            <span onmouseout="hideTip(event, 'fs62', 194)" onmouseover="showTip(event, 'fs62', 194)" class="k">resources</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs47', 195)" onmouseover="showTip(event, 'fs47', 195)" class="fn">ordersTable</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 196)" onmouseover="showTip(event, 'fs63', 196)" class="prop">Table</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 197)" onmouseover="showTip(event, 'fs64', 197)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 198)" onmouseover="showTip(event, 'fs65', 198)" class="id">TableArn</span> <span class="pn">]</span>
+        <span class="pn">}</span>
+    <span class="pn">}</span>
+
+    <span class="c">// High-volume notification sender (custom concurrency)</span>
+    <span onmouseout="hideTip(event, 'fs9', 199)" onmouseover="showTip(event, 'fs9', 199)" class="fn">lambda</span> <span class="s">&quot;NotificationSender&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 200)" onmouseover="showTip(event, 'fs10', 200)" class="k">handler</span> <span class="s">&quot;send_notification.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 201)" onmouseover="showTip(event, 'fs11', 201)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 202)" onmouseover="showTip(event, 'fs12', 202)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 203)" onmouseover="showTip(event, 'fs16', 203)" class="id">NODEJS_20_X</span>
+        <span onmouseout="hideTip(event, 'fs14', 204)" onmouseover="showTip(event, 'fs14', 204)" class="k">code</span> <span class="s">&quot;./services/notification-sender&quot;</span>
+        <span onmouseout="hideTip(event, 'fs57', 205)" onmouseover="showTip(event, 'fs57', 205)" class="k">memory</span> <span class="n">256</span>
+        <span onmouseout="hideTip(event, 'fs58', 206)" onmouseover="showTip(event, 'fs58', 206)" class="k">timeout</span> <span class="n">10.0</span>
+
+        <span class="c">// Override concurrency for high volume</span>
+        <span onmouseout="hideTip(event, 'fs17', 207)" onmouseover="showTip(event, 'fs17', 207)" class="k">reservedConcurrentExecutions</span> <span class="n">200</span> <span class="c">// Validated through load testing</span>
+
+        <span onmouseout="hideTip(event, 'fs15', 208)" onmouseover="showTip(event, 'fs15', 208)" class="k">environment</span>
+            <span class="pn">[</span> <span class="s">&quot;POWERTOOLS_SERVICE_NAME&quot;</span><span class="pn">,</span> <span class="s">&quot;notification-sender&quot;</span>
+              <span class="s">&quot;POWERTOOLS_METRICS_NAMESPACE&quot;</span><span class="pn">,</span> <span class="s">&quot;OrderService&quot;</span> <span class="pn">]</span>
+
+    <span class="c">// Other defaults still applied:</span>
+    <span class="c">// X-Ray tracing = ACTIVE</span>
+    <span class="c">// JSON logging</span>
+    <span class="c">// DLQ auto-created</span>
+    <span class="c">// Powertools layer</span>
+    <span class="pn">}</span>
+
+    <span class="c">// Legacy function (custom configuration)</span>
+    <span onmouseout="hideTip(event, 'fs9', 209)" onmouseover="showTip(event, 'fs9', 209)" class="fn">lambda</span> <span class="s">&quot;LegacyProcessor&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 210)" onmouseover="showTip(event, 'fs10', 210)" class="k">handler</span> <span class="s">&quot;legacy.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 211)" onmouseover="showTip(event, 'fs11', 211)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 212)" onmouseover="showTip(event, 'fs12', 212)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 213)" onmouseover="showTip(event, 'fs66', 213)" class="id">JAVA_17</span>
+        <span onmouseout="hideTip(event, 'fs14', 214)" onmouseover="showTip(event, 'fs14', 214)" class="k">code</span> <span class="s">&quot;./legacy-service&quot;</span>
+
+        <span class="c">// Disable new features for legacy compatibility</span>
+        <span onmouseout="hideTip(event, 'fs24', 215)" onmouseover="showTip(event, 'fs24', 215)" class="k">autoCreateDLQ</span> <span class="k">false</span> <span class="c">// Custom error handling</span>
+        <span onmouseout="hideTip(event, 'fs25', 216)" onmouseover="showTip(event, 'fs25', 216)" class="k">autoAddPowertools</span> <span class="k">false</span> <span class="c">// Custom logging library</span>
+        <span onmouseout="hideTip(event, 'fs21', 217)" onmouseover="showTip(event, 'fs21', 217)" class="k">loggingFormat</span> <span onmouseout="hideTip(event, 'fs22', 218)" onmouseover="showTip(event, 'fs22', 218)" class="en">LoggingFormat</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 219)" onmouseover="showTip(event, 'fs23', 219)" class="id">TEXT</span> <span class="c">// Legacy log parser</span>
+
+    <span class="c">// Still protected:</span>
+    <span class="c">// Reserved concurrency = 10</span>
+    <span class="c">// X-Ray tracing = ACTIVE (can disable if needed)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs46', 220)" onmouseover="showTip(event, 'fs46', 220)" class="id">productionApp</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 221)" onmouseover="showTip(event, 'fs67', 221)" class="id">Synth</span><span class="pn">(</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs68', 222)" onmouseover="showTip(event, 'fs68', 222)" class="fn">ignore</span>
+</code></pre>
+<hr />
+<h2><a name="Best-practices-from-AWS-Heroes" class="anchor" href="#Best-practices-from-AWS-Heroes">Best practices (from AWS Heroes)</a></h2>
+<h3><a name="DO" class="anchor" href="#DO">DO</a></h3>
+<ul>
+<li>Keep the defaults for new workloads—Yan Cui calls them "sane guard rails" for any greenfield project.</li>
+<li>Embrace Lambda Powertools to standardise logging, metrics, and tracing without reinventing tooling.</li>
+<li>Monitor DLQs with CloudWatch alarms and establish a replay runbook.</li>
+<li>Load test before raising reserved concurrency or removing limits.</li>
+<li>Retain JSON logging to unlock Logs Insights, OpenSearch, and external observability platforms.</li>
+</ul>
+<h3><a name="DON-T" class="anchor" href="#DON-T">DON’T</a></h3>
+<ul>
+<li>Remove concurrency limits without validated traffic modelling; it’s the fastest path to bill shock.</li>
+<li>Disable DLQs or you’ll lose the audit trail needed during incidents.</li>
+<li>Turn off X-Ray in production unless compliance requires it—the overhead is minimal.</li>
+<li>Set overly tight <code>MaxEventAge</code>; you’ll drop legitimate events unnecessarily.</li>
+<li>Revert to plaintext logging; structured logs are the foundation for analytics.</li>
+</ul>
+<hr />
+<h2><a name="Related-Documentation" class="anchor" href="#Related-Documentation">Related Documentation</a></h2>
+<ul>
+<li><a href="lambda-quickstart.html">Lambda Quickstart</a> - Basic Lambda usage</li>
+<li><a href="getting-started-extended.html">Getting Started</a> - FsCDK fundamentals</li>
+<li><a href="iam-best-practices.html">IAM Best Practices</a> - Securing Lambda permissions</li>
+</ul>
+<hr />
+<h2><a name="Learning-Resources-from-AWS-Heroes" class="anchor" href="#Learning-Resources-from-AWS-Heroes">📚 Learning Resources from AWS Heroes</a></h2>
+<h3><a name="Yan-Cui-The-Burning-Monk-AWS-Serverless-Hero" class="anchor" href="#Yan-Cui-The-Burning-Monk-AWS-Serverless-Hero">Yan Cui (The Burning Monk) - AWS Serverless Hero</a></h3>
+<p><strong>Essential Reading:</strong></p>
+<ul>
+<li><a href="https://productionreadyserverless.com/">Production-Ready Serverless Course</a> - Yan Cui's comprehensive 10-module course covering everything from Lambda basics to production observability</li>
+<li><a href="https://theburningmonk.com/">The Burning Monk Blog</a> - Yan Cui's comprehensive serverless best practices, including articles on concurrency, cold starts, and production patterns</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/operatorguide/intro.html">AWS Lambda Operator Guide</a> - Official production best practices</li>
+</ul>
+<p><strong>Cost Optimization:</strong></p>
+<ul>
+<li><a href="https://aws.amazon.com/blogs/compute/operating-lambda-performance-optimization-part-1/">Lambda Cost Optimization</a> - AWS official strategies for memory optimization and reserved concurrency</li>
+<li><a href="https://github.com/alexcasalboni/aws-lambda-power-tuning">Lambda Power Tuning</a> - Data-driven tool to optimize Lambda memory/cost (created by AWS SA)</li>
+<li><a href="https://cost-calculator.bref.sh/">Serverless Cost Calculator</a> - Estimate Lambda costs vs traditional infrastructure</li>
+</ul>
+<p><strong>Observability &amp; Debugging:</strong></p>
+<ul>
+<li><a href="https://docs.powertools.aws.dev/lambda/python/latest/">AWS Lambda Powertools</a> - Built-in observability with structured logging, tracing, and metrics</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">X-Ray Tracing Guide</a> - Official AWS X-Ray integration documentation</li>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html">CloudWatch Logs Insights</a> - Query and analyze Lambda logs</li>
+</ul>
+<p><strong>Video Content:</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=4_ZEBN8EuG8">AWS re:Invent 2023 - Production-Ready Serverless</a> - Latest Lambda best practices from AWS</li>
+<li><a href="https://www.youtube.com/watch?v=YX4BNX_B6hg">Yan Cui - Serverless Observability</a> - How to achieve observability in serverless apps</li>
+<li><a href="https://www.youtube.com/watch?v=bLVROrCj5ug">Lambda Performance Optimization</a> - Practical tips from AWS experts</li>
+</ul>
+<h3><a name="AWS-Lambda-Powertools" class="anchor" href="#AWS-Lambda-Powertools">AWS Lambda Powertools</a></h3>
+<p><strong>Official Documentation:</strong></p>
+<ul>
+<li><a href="https://docs.powertools.aws.dev/lambda/python/">Lambda Powertools Python</a> - Structured logging, metrics, and tracing for Python</li>
+<li><a href="https://docs.powertools.aws.dev/lambda/typescript/">Lambda Powertools TypeScript</a> - Enterprise-grade utilities for Node.js/TypeScript</li>
+<li><a href="https://docs.powertools.aws.dev/lambda/java/">Lambda Powertools Java</a> - Production-ready utilities for Java Lambda functions</li>
+<li><a href="https://docs.powertools.aws.dev/lambda/dotnet/">Lambda Powertools .NET</a> - Observability utilities for .NET Lambda functions</li>
+</ul>
+<p><strong>Key Features Explained:</strong></p>
+<ul>
+<li><a href="https://docs.powertools.aws.dev/lambda/python/latest/core/logger/">Structured Logging</a> - Automatically log correlation IDs and context</li>
+<li><a href="https://docs.powertools.aws.dev/lambda/python/latest/core/metrics/">Custom Metrics</a> - Emit CloudWatch metrics without API calls</li>
+<li><a href="https://docs.powertools.aws.dev/lambda/python/latest/core/tracer/">Distributed Tracing</a> - X-Ray integration with minimal code</li>
+<li><a href="https://docs.powertools.aws.dev/lambda/python/latest/utilities/validation/">Validation</a> - JSON Schema validation for Lambda events</li>
+</ul>
+<h3><a name="AWS-Official-Resources" class="anchor" href="#AWS-Official-Resources">AWS Official Resources</a></h3>
+<p><strong>Lambda Best Practices:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/operatorguide/intro.html">Lambda Operator Guide</a> - Comprehensive guide for operating Lambda at scale</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-security.html">Lambda Security Best Practices</a> - IAM, VPC, and encryption guidance</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html">Lambda Performance Optimization</a> - Memory, timeout, and concurrency tuning</li>
+</ul>
+<p><strong>Async Invocation &amp; Error Handling:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html">Asynchronous Invocation</a> - How Lambda processes async events</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq">Dead Letter Queues (DLQ)</a> - Capturing failed events</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-eventsourcemapping.html">Event Source Mapping</a> - Stream processing with Lambda</li>
+</ul>
+<p><strong>X-Ray Tracing:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">Using X-Ray with Lambda</a> - Enable distributed tracing</li>
+<li><a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-sdk-nodejs.html">X-Ray SDK for Lambda</a> - Instrument your Lambda code</li>
+<li><a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-console.html#xray-console-servicemap">X-Ray Service Map</a> - Visualize your architecture</li>
+</ul>
+<h3><a name="Community-Tools" class="anchor" href="#Community-Tools">Community Tools</a></h3>
+<p><strong>Lambda Development:</strong></p>
+<ul>
+<li><a href="https://www.serverless.com/">Serverless Framework</a> - Popular IaC framework for serverless</li>
+<li><a href="https://aws.amazon.com/serverless/sam/">SAM (Serverless Application Model)</a> - AWS-native serverless framework</li>
+<li><a href="https://localstack.cloud/">LocalStack</a> - Local AWS cloud emulator for testing</li>
+<li><a href="https://lumigo.io/">Lumigo</a> - Serverless observability platform (commercial)</li>
+</ul>
+<p><strong>Monitoring &amp; Alerting:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html">CloudWatch Logs Insights</a> - Query structured logs</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/monitoring-insights.html">CloudWatch Lambda Insights</a> - Enhanced Lambda monitoring</li>
+<li><a href="https://aws-otel.github.io/">AWS Distro for OpenTelemetry</a> - Open-source observability</li>
+</ul>
+<h3><a name="Recommended-Reading-Order" class="anchor" href="#Recommended-Reading-Order">Recommended Reading Order</a></h3>
+<p><strong>Beginner → Intermediate:</strong></p>
+<ol>
+<li>Start with <a href="https://docs.aws.amazon.com/lambda/latest/operatorguide/intro.html">AWS Lambda Operator Guide</a></li>
+<li>Read <a href="https://docs.aws.amazon.com/lambda/latest/operatorguide/execution-environments.html">AWS Lambda Cold Start Best Practices</a></li>
+<li>Implement <a href="https://docs.powertools.aws.dev/lambda/">Lambda Powertools</a> in your functions</li>
+<li>Learn <a href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">X-Ray Tracing</a></li>
+</ol>
+<p><strong>Intermediate → Advanced:</strong></p>
+<ol>
+<li>Deep dive into <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html">Lambda Concurrency</a></li>
+<li>Take <a href="https://productionreadyserverless.com/">Production-Ready Serverless Course</a></li>
+<li>Implement <a href="https://aws.amazon.com/blogs/compute/operating-lambda-performance-optimization-part-1/">Cost Optimization Strategies</a></li>
+<li>Master <a href="https://docs.aws.amazon.com/lambda/latest/operatorguide/observability.html">Serverless Observability</a></li>
+</ol>
+<h3><a name="Why-FsCDK-Uses-These-Defaults" class="anchor" href="#Why-FsCDK-Uses-These-Defaults">Why FsCDK Uses These Defaults</a></h3>
+<p>FsCDK's production defaults are based on lessons learned by AWS Heroes and the broader serverless community:</p>
+<ol>
+<li><strong>Reserved Concurrency (10)</strong> - Prevents runaway costs and protects downstream systems (<a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html">AWS docs</a>)</li>
+<li><strong>Auto-create DLQ</strong> - Never lose events, always have audit trail (<a href="https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html#invocation-dlq">AWS DLQ docs</a>)</li>
+<li><strong>X-Ray Tracing</strong> - Essential for debugging distributed systems (<a href="https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html">AWS X-Ray</a>)</li>
+<li><strong>Structured JSON Logging</strong> - Enables CloudWatch Logs Insights queries (<a href="https://docs.powertools.aws.dev/lambda/python/latest/">Lambda Powertools</a>)</li>
+<li><strong>Lambda Powertools</strong> - Battle-tested utilities from AWS (<a href="https://docs.powertools.aws.dev/lambda/">official docs</a>)</li>
+</ol>
+<h3><a name="FsCDK-Implementation-Details" class="anchor" href="#FsCDK-Implementation-Details">FsCDK Implementation Details</a></h3>
+<p>These defaults are implemented in <code>src/Function.fs</code> and <code>src/LambdaPowertools.fs</code>. See <a href="../AGENTS.md">AGENTS.md</a> for architectural details.</p>
+<hr />
+<h2><a name="Summary" class="anchor" href="#Summary">Summary</a></h2>
+<p>FsCDK's production defaults ensure your Lambda functions are:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Feature</p></th>
+<th><p>Benefit</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Reserved Concurrency</strong></p></td>
+<td><p>Prevents runaway costs</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>X-Ray Tracing</strong></p></td>
+<td><p>Full observability across services</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>JSON Logging</strong></p></td>
+<td><p>Structured logs for better debugging</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Auto-created DLQ</strong></p></td>
+<td><p>Never lose failed events</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Lambda Powertools</strong></p></td>
+<td><p>Production-grade logging, metrics, tracing</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Event Age Limits</strong></p></td>
+<td><p>Prevents stale event processing</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Retry Limits</strong></p></td>
+<td><p>Prevents infinite retry loops</p></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>These defaults can all be overridden</strong>, but they provide a safe starting point for production workloads.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pn">(</span><span class="pn">)</span>
+</code></pre>
+
+        <div class="fsdocs-tip" id="fs1">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs5">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs6">val app: App</div>
+<div class="fsdocs-tip" id="fs7">Multiple items<br />type App =
+  inherit Stage
+  new: ?props: IAppProps -&gt; unit
+  static member IsApp: obj: obj -&gt; bool<br /><br />--------------------<br />App(?props: IAppProps) : App</div>
+<div class="fsdocs-tip" id="fs8">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs13">property Runtime.PYTHON_3_11: Runtime with get</div>
+<div class="fsdocs-tip" id="fs14">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: environment ((string * string) list)
+
+Calls FunctionBuilder.Environment<br /><em>&lt;summary&gt;Sets environment variables for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;env&quot;&gt;List of key-value pairs for environment variables.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     environment [ &quot;KEY1&quot;, &quot;value1&quot;; &quot;KEY2&quot;, &quot;value2&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">property Runtime.NODEJS_20_X: Runtime with get</div>
+<div class="fsdocs-tip" id="fs17">custom operation: reservedConcurrentExecutions (int)
+
+Calls FunctionBuilder.ReservedConcurrentExecutions</div>
+<div class="fsdocs-tip" id="fs18">custom operation: tracing (Tracing)
+
+Calls FunctionBuilder.Tracing</div>
+<div class="fsdocs-tip" id="fs19">[&lt;Struct&gt;]
+type Tracing =
+  | ACTIVE = 0
+  | PASS_THROUGH = 1
+  | DISABLED = 2</div>
+<div class="fsdocs-tip" id="fs20">field Tracing.PASS_THROUGH: Tracing = 1</div>
+<div class="fsdocs-tip" id="fs21">custom operation: loggingFormat (LoggingFormat)
+
+Calls FunctionBuilder.LoggingFormat</div>
+<div class="fsdocs-tip" id="fs22">[&lt;Struct&gt;]
+type LoggingFormat =
+  | TEXT = 0
+  | JSON = 1</div>
+<div class="fsdocs-tip" id="fs23">field LoggingFormat.TEXT: LoggingFormat = 0</div>
+<div class="fsdocs-tip" id="fs24">custom operation: autoCreateDLQ (bool)
+
+Calls FunctionBuilder.AutoCreateDLQ<br /><em>&lt;summary&gt;
+ Controls automatic DLQ creation. Default: true (Yan Cui recommendation).
+ Set to false to disable auto-DLQ creation.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">custom operation: autoAddPowertools (bool)
+
+Calls FunctionBuilder.AutoAddPowertools<br /><em>&lt;summary&gt;
+ Controls automatic Lambda Powertools layer addition. Default: true (Yan Cui recommendation).
+ Set to false to disable Powertools auto-addition.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">custom operation: maxEventAge (Duration)
+
+Calls FunctionBuilder.MaxEventAge</div>
+<div class="fsdocs-tip" id="fs27">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs28">Duration.Hours(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs29">custom operation: retryAttempts (int)
+
+Calls FunctionBuilder.RetryAttempts</div>
+<div class="fsdocs-tip" id="fs30">namespace Amazon.CDK.AWS.SQS</div>
+<div class="fsdocs-tip" id="fs31">val customDlq: QueueSpec</div>
+<div class="fsdocs-tip" id="fs32">val queue: name: string -&gt; QueueBuilder<br /><em>&lt;summary&gt;Creates an SQS queue configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The queue name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     visibilityTimeout 30.0
+     fifo true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">custom operation: messageRetention (float)
+
+Calls QueueBuilder.MessageRetention<br /><em>&lt;summary&gt;Sets the message retention period for the queue.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The retention period in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     messageRetention 345600.0 // 4 days
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">custom operation: encryption (QueueEncryption)
+
+Calls QueueBuilder.Encryption<br /><em>&lt;summary&gt;Sets the encryption type for the queue.&lt;/summary&gt;<br />&lt;param name=&quot;encryption&quot;&gt;The encryption type (KMS, KMS_MANAGED, SQS_MANAGED, or UNENCRYPTED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     encryption QueueEncryption.KMS_MANAGED
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">[&lt;Struct&gt;]
+type QueueEncryption =
+  | UNENCRYPTED = 0
+  | KMS_MANAGED = 1
+  | KMS = 2
+  | SQS_MANAGED = 3</div>
+<div class="fsdocs-tip" id="fs36">field QueueEncryption.KMS: QueueEncryption = 2</div>
+<div class="fsdocs-tip" id="fs37">custom operation: deadLetterQueue (QueueSpec)
+
+Calls FunctionBuilder.DeadLetterQueue</div>
+<div class="fsdocs-tip" id="fs38">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs39">field Tracing.ACTIVE: Tracing = 0</div>
+<div class="fsdocs-tip" id="fs40">field Tracing.DISABLED: Tracing = 2</div>
+<div class="fsdocs-tip" id="fs41">field LoggingFormat.JSON: LoggingFormat = 1</div>
+<div class="fsdocs-tip" id="fs42">val configureAsyncInvoke: EventInvokeConfigOptionsBuilder</div>
+<div class="fsdocs-tip" id="fs43">custom operation: maxEventAge (Duration)
+
+Calls EventInvokeConfigOptionsBuilder.MaxEventAge</div>
+<div class="fsdocs-tip" id="fs44">Duration.Minutes(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs45">custom operation: retryAttempts (int)
+
+Calls EventInvokeConfigOptionsBuilder.RetryAttempts</div>
+<div class="fsdocs-tip" id="fs46">val productionApp: App</div>
+<div class="fsdocs-tip" id="fs47">val ordersTable: TableSpec</div>
+<div class="fsdocs-tip" id="fs48">val table: name: string -&gt; TableBuilder<br /><em>&lt;summary&gt;Creates a DynamoDB table configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The table name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs49">custom operation: partitionKey (string) (AWS.DynamoDB.AttributeType)
+
+Calls TableBuilder.PartitionKey<br /><em>&lt;summary&gt;Sets the partition key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the partition key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs50">namespace Amazon.CDK.AWS.DynamoDB</div>
+<div class="fsdocs-tip" id="fs51">[&lt;Struct&gt;]
+type AttributeType =
+  | BINARY = 0
+  | NUMBER = 1
+  | STRING = 2</div>
+<div class="fsdocs-tip" id="fs52">field AWS.DynamoDB.AttributeType.STRING: AWS.DynamoDB.AttributeType = 2</div>
+<div class="fsdocs-tip" id="fs53">custom operation: billingMode (AWS.DynamoDB.BillingMode)
+
+Calls TableBuilder.BillingMode<br /><em>&lt;summary&gt;Sets the billing mode for the table.&lt;/summary&gt;<br />&lt;param name=&quot;mode&quot;&gt;The billing mode (PAY_PER_REQUEST or PROVISIONED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs54">[&lt;Struct&gt;]
+type BillingMode =
+  | PAY_PER_REQUEST = 0
+  | PROVISIONED = 1</div>
+<div class="fsdocs-tip" id="fs55">field AWS.DynamoDB.BillingMode.PAY_PER_REQUEST: AWS.DynamoDB.BillingMode = 0</div>
+<div class="fsdocs-tip" id="fs56">custom operation: pointInTimeRecovery (bool)
+
+Calls TableBuilder.PointInTimeRecovery<br /><em>&lt;summary&gt;Enables or disables point-in-time recovery.&lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether point-in-time recovery is enabled.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     pointInTimeRecovery true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs57">custom operation: memory (int)
+
+Calls FunctionBuilder.Memory<br /><em>&lt;summary&gt;Sets the memory allocation for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;mb&quot;&gt;The memory size in megabytes.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     memory 512
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs58">custom operation: timeout (float)
+
+Calls FunctionBuilder.Timeout<br /><em>&lt;summary&gt;Sets the timeout for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs59">TableSpec.TableName: string</div>
+<div class="fsdocs-tip" id="fs60">val policyStatement: PolicyStatementBuilder</div>
+<div class="fsdocs-tip" id="fs61">custom operation: actions (string list)
+
+Calls PolicyStatementBuilder.Actions</div>
+<div class="fsdocs-tip" id="fs62">custom operation: resources (string list)
+
+Calls PolicyStatementBuilder.Resources</div>
+<div class="fsdocs-tip" id="fs63">TableSpec.Table: AWS.DynamoDB.ITable option</div>
+<div class="fsdocs-tip" id="fs64">property Option.Value: AWS.DynamoDB.ITable with get</div>
+<div class="fsdocs-tip" id="fs65">property AWS.DynamoDB.ITable.TableArn: string with get</div>
+<div class="fsdocs-tip" id="fs66">property Runtime.JAVA_17: Runtime with get</div>
+<div class="fsdocs-tip" id="fs67">Stage.Synth(?options: IStageSynthesisOptions) : CXAPI.CloudAssembly</div>
+<div class="fsdocs-tip" id="fs68">val ignore: value: &#39;T -&gt; unit</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-3">
+    <a href="#Lambda-Production-Architecture">
+      Lambda Production Architecture
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Why-these-defaults-matter">
+      Why these defaults matter
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Defaults-applied-to-every-function">
+      Defaults applied to every function
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-usage-defaults-already-applied">
+      Basic usage (defaults already applied)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Overriding-defaults">
+      Overriding defaults
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Dead-Letter-Queue-DLQ-Auto-Creation">
+      Dead Letter Queue (DLQ) Auto-Creation
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#How-it-works">
+      How it works
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Manual-DLQ-configuration">
+      Manual DLQ configuration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#AWS-Lambda-Powertools-integration">
+      AWS Lambda Powertools integration
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Key-capabilities">
+      Key capabilities
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Supported-runtimes">
+      Supported runtimes
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Python-Example">
+      Python Example
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Node-js-TypeScript-Example">
+      Node.js/TypeScript Example
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Disabling-Powertools">
+      Disabling Powertools
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Reserved-Concurrency">
+      Reserved Concurrency
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Why-reserved-concurrency">
+      Why reserved concurrency?
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#When-to-override">
+      When to override
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#X-Ray-Tracing">
+      X-Ray Tracing
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Default-ACTIVE">
+      Default: ACTIVE
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Tracing-modes">
+      Tracing modes
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#X-Ray-with-Powertools">
+      X-Ray with Powertools
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Structured-Logging-JSON">
+      Structured Logging (JSON)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Default-JSON-format">
+      Default: JSON format
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#CloudWatch-Logs-Insights-Example">
+      CloudWatch Logs Insights Example
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Async-Invocation-Configuration">
+      Async Invocation Configuration
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Default-event-handling">
+      Default event handling
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#When-to-override-1">
+      When to override
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Why-limit-event-age">
+      Why limit event age?
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Complete-Production-Example">
+      Complete Production Example
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-practices-from-AWS-Heroes">
+      Best practices (from AWS Heroes)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DO">
+      DO
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DON-T">
+      DON’T
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Related-Documentation">
+      Related Documentation
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Learning-Resources-from-AWS-Heroes">
+      📚 Learning Resources from AWS Heroes
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Yan-Cui-The-Burning-Monk-AWS-Serverless-Hero">
+      Yan Cui (The Burning Monk) - AWS Serverless Hero
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Lambda-Powertools">
+      AWS Lambda Powertools
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Official-Resources">
+      AWS Official Resources
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Community-Tools">
+      Community Tools
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Recommended-Reading-Order">
+      Recommended Reading Order
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Why-FsCDK-Uses-These-Defaults">
+      Why FsCDK Uses These Defaults
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#FsCDK-Implementation-Details">
+      FsCDK Implementation Details
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Summary">
+      Summary
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

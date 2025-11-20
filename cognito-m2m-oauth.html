@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Cognito OAuth 2.0 Machine-to-Machine (M2M)" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Cognito OAuth 2.0 Machine-to-Machine (M2M)">
+    
+    <title>Cognito OAuth 2.0 Machine-to-Machine (M2M) | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="OAuth-2-0-Machine-to-Machine-Authentication-with-Cognito" class="anchor" href="#OAuth-2-0-Machine-to-Machine-Authentication-with-Cognito">OAuth 2.0 Machine-to-Machine Authentication with Cognito</a></h1>
+<p>Implement secure service-to-service authentication using Cognito User Pools, OAuth 2.0 scopes, and Lambda authorizers.</p>
+<h2><a name="OAuth-2-0-M2M-Flow" class="anchor" href="#OAuth-2-0-M2M-Flow">OAuth 2.0 M2M Flow</a></h2>
+<p><img src="img/diagrams/cognito-oauth-m2m-flow.svg" alt="OAuth 2.0 Machine-to-Machine Authentication Flow" /></p>
+<h2><a name="Architecture-Overview" class="anchor" href="#Architecture-Overview">Architecture Overview</a></h2>
+<p><strong>Traditional User Auth:</strong> User → Cognito → JWT → API Gateway → Lambda
+<strong>M2M Auth:</strong> Service → OAuth Client Credentials → Access Token → API Gateway → Lambda</p>
+<h2><a name="OAuth-Resource-Server-with-Custom-Scopes" class="anchor" href="#OAuth-Resource-Server-with-Custom-Scopes">OAuth Resource Server with Custom Scopes</a></h2>
+<p>Define business-specific scopes for your API:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">Cognito</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="id">IAM</span>
+</code></pre>
+<h2><a name="Basic-M2M-Setup" class="anchor" href="#Basic-M2M-Setup">Basic M2M Setup</a></h2>
+<p>Create a Cognito User Pool with OAuth resource server for machine-to-machine authentication:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 16)" onmouseover="showTip(event, 'fs8', 16)" class="fn">stack</span> <span class="s">&quot;M2MAuth&quot;</span> <span class="pn">{</span>
+    <span class="c">// User Pool for both user and M2M authentication</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="fn">myUserPool</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 18)" onmouseover="showTip(event, 'fs10', 18)" class="fn">userPool</span> <span class="s">&quot;AppUserPool&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="k">signInWithEmail</span>
+            <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="k">selfSignUpEnabled</span> <span class="k">false</span> <span class="c">// M2M clients created administratively</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Define OAuth resource server with custom scopes</span>
+    <span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="fn">resourceServer</span> <span class="s">&quot;ApiResourceServer&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 22)" onmouseover="showTip(event, 'fs14', 22)" class="k">userPool</span> <span onmouseout="hideTip(event, 'fs9', 23)" onmouseover="showTip(event, 'fs9', 23)" class="fn">myUserPool</span>
+        <span onmouseout="hideTip(event, 'fs15', 24)" onmouseover="showTip(event, 'fs15', 24)" class="k">identifier</span> <span class="s">&quot;api&quot;</span>
+        <span onmouseout="hideTip(event, 'fs16', 25)" onmouseover="showTip(event, 'fs16', 25)" class="k">name</span> <span class="s">&quot;API Resource Server&quot;</span>
+        <span onmouseout="hideTip(event, 'fs17', 26)" onmouseover="showTip(event, 'fs17', 26)" class="k">scope</span> <span class="s">&quot;read&quot;</span> <span class="s">&quot;Read access to resources&quot;</span>
+        <span onmouseout="hideTip(event, 'fs17', 27)" onmouseover="showTip(event, 'fs17', 27)" class="k">scope</span> <span class="s">&quot;write&quot;</span> <span class="s">&quot;Write access to resources&quot;</span>
+        <span onmouseout="hideTip(event, 'fs17', 28)" onmouseover="showTip(event, 'fs17', 28)" class="k">scope</span> <span class="s">&quot;admin&quot;</span> <span class="s">&quot;Administrative operations&quot;</span>
+    <span class="pn">}</span>
+
+    <span class="c">// Create M2M client</span>
+    <span onmouseout="hideTip(event, 'fs18', 29)" onmouseover="showTip(event, 'fs18', 29)" class="fn">userPoolClient</span> <span class="s">&quot;ServiceClient&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs19', 30)" onmouseover="showTip(event, 'fs19', 30)" class="k">userPool</span> <span onmouseout="hideTip(event, 'fs9', 31)" onmouseover="showTip(event, 'fs9', 31)" class="fn">myUserPool</span>
+        <span onmouseout="hideTip(event, 'fs20', 32)" onmouseover="showTip(event, 'fs20', 32)" class="k">generateSecret</span> <span class="k">true</span> <span class="c">// Required for client credentials flow</span>
+
+        <span onmouseout="hideTip(event, 'fs21', 33)" onmouseover="showTip(event, 'fs21', 33)" class="k">authFlows</span> <span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs22', 34)" onmouseover="showTip(event, 'fs22', 34)" class="fn">AuthFlow</span><span class="pn">(</span>
+                <span class="fn">UserSrp</span> <span class="o">=</span> <span class="k">false</span><span class="pn">,</span>
+                <span class="fn">UserPassword</span> <span class="o">=</span> <span class="k">false</span><span class="pn">,</span>
+                <span class="fn">AdminUserPassword</span> <span class="o">=</span> <span class="k">false</span>
+            <span class="c">// Custom = true // For client_credentials grant</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+        <span class="c">// Short-lived tokens for services</span>
+        <span onmouseout="hideTip(event, 'fs23', 35)" onmouseover="showTip(event, 'fs23', 35)" class="k">tokenValidities</span> <span class="pn">(</span>
+            <span class="pn">(</span><span onmouseout="hideTip(event, 'fs24', 36)" onmouseover="showTip(event, 'fs24', 36)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 37)" onmouseover="showTip(event, 'fs25', 37)" class="id">Days</span> <span class="n">30.0</span><span class="pn">)</span><span class="pn">,</span> <span class="c">// refreshToken (not used in client_credentials)</span>
+            <span class="pn">(</span><span onmouseout="hideTip(event, 'fs24', 38)" onmouseover="showTip(event, 'fs24', 38)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 39)" onmouseover="showTip(event, 'fs26', 39)" class="id">Hours</span> <span class="n">1.0</span><span class="pn">)</span><span class="pn">,</span> <span class="c">// accessToken</span>
+            <span class="pn">(</span><span onmouseout="hideTip(event, 'fs24', 40)" onmouseover="showTip(event, 'fs24', 40)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 41)" onmouseover="showTip(event, 'fs26', 41)" class="id">Hours</span> <span class="n">1.0</span><span class="pn">)</span> <span class="c">// idToken</span>
+        <span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Resource-Server-with-Multiple-Scopes" class="anchor" href="#Resource-Server-with-Multiple-Scopes">Resource Server with Multiple Scopes</a></h2>
+<p>Add more scopes to support different permission levels:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 42)" onmouseover="showTip(event, 'fs8', 42)" class="fn">stack</span> <span class="s">&quot;CompleteM2MOAuth&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 43)" onmouseover="showTip(event, 'fs9', 43)" class="fn">myUserPool</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 44)" onmouseover="showTip(event, 'fs10', 44)" class="fn">userPool</span> <span class="s">&quot;AppUserPool&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 45)" onmouseover="showTip(event, 'fs11', 45)" class="k">signInWithEmail</span>
+            <span onmouseout="hideTip(event, 'fs12', 46)" onmouseover="showTip(event, 'fs12', 46)" class="k">selfSignUpEnabled</span> <span class="k">false</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Resource server with granular scopes</span>
+    <span onmouseout="hideTip(event, 'fs13', 47)" onmouseover="showTip(event, 'fs13', 47)" class="fn">resourceServer</span> <span class="s">&quot;ApiResourceServer&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 48)" onmouseover="showTip(event, 'fs14', 48)" class="k">userPool</span> <span onmouseout="hideTip(event, 'fs9', 49)" onmouseover="showTip(event, 'fs9', 49)" class="fn">myUserPool</span>
+        <span onmouseout="hideTip(event, 'fs15', 50)" onmouseover="showTip(event, 'fs15', 50)" class="k">identifier</span> <span class="s">&quot;api&quot;</span>
+        <span onmouseout="hideTip(event, 'fs17', 51)" onmouseover="showTip(event, 'fs17', 51)" class="k">scope</span> <span class="s">&quot;read&quot;</span> <span class="s">&quot;Read access to resources&quot;</span>
+        <span onmouseout="hideTip(event, 'fs17', 52)" onmouseover="showTip(event, 'fs17', 52)" class="k">scope</span> <span class="s">&quot;write&quot;</span> <span class="s">&quot;Write access to resources&quot;</span>
+        <span onmouseout="hideTip(event, 'fs17', 53)" onmouseover="showTip(event, 'fs17', 53)" class="k">scope</span> <span class="s">&quot;delete&quot;</span> <span class="s">&quot;Delete access to resources&quot;</span>
+        <span onmouseout="hideTip(event, 'fs17', 54)" onmouseover="showTip(event, 'fs17', 54)" class="k">scope</span> <span class="s">&quot;admin&quot;</span> <span class="s">&quot;Administrative operations&quot;</span>
+        <span onmouseout="hideTip(event, 'fs17', 55)" onmouseover="showTip(event, 'fs17', 55)" class="k">scope</span> <span class="s">&quot;execute&quot;</span> <span class="s">&quot;Execute business transactions&quot;</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Lambda-Authorizer-for-Dual-Authentication" class="anchor" href="#Lambda-Authorizer-for-Dual-Authentication">Lambda Authorizer for Dual Authentication</a></h2>
+<p>Support both user JWT tokens and M2M access tokens:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 56)" onmouseover="showTip(event, 'fs8', 56)" class="fn">stack</span> <span class="s">&quot;DualAuthAPI&quot;</span> <span class="pn">{</span>
+    <span class="c">// Lambda authorizer supporting both token types</span>
+    <span onmouseout="hideTip(event, 'fs27', 57)" onmouseover="showTip(event, 'fs27', 57)" class="fn">lambda</span> <span class="s">&quot;ApiAuthorizer&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs28', 58)" onmouseover="showTip(event, 'fs28', 58)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs29', 59)" onmouseover="showTip(event, 'fs29', 59)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 60)" onmouseover="showTip(event, 'fs30', 60)" class="id">PYTHON_3_11</span>
+        <span onmouseout="hideTip(event, 'fs31', 61)" onmouseover="showTip(event, 'fs31', 61)" class="k">handler</span> <span class="s">&quot;authorizer.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs32', 62)" onmouseover="showTip(event, 'fs32', 62)" class="k">code</span> <span class="s">&quot;./authorizer&quot;</span>
+        <span onmouseout="hideTip(event, 'fs33', 63)" onmouseover="showTip(event, 'fs33', 63)" class="k">timeout</span> <span class="n">30.0</span>
+
+        <span onmouseout="hideTip(event, 'fs34', 64)" onmouseover="showTip(event, 'fs34', 64)" class="k">environment</span> <span class="pn">[</span> <span class="s">&quot;USER_POOL_ID&quot;</span><span class="pn">,</span> <span class="s">&quot;us-east-1_XXXXX&quot;</span><span class="pn">;</span> <span class="s">&quot;REGION&quot;</span><span class="pn">,</span> <span class="s">&quot;us-east-1&quot;</span> <span class="pn">]</span>
+
+        <span class="c">// IAM permissions for Cognito</span>
+        <span onmouseout="hideTip(event, 'fs35', 65)" onmouseover="showTip(event, 'fs35', 65)" class="id">policyStatement</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs36', 66)" onmouseover="showTip(event, 'fs36', 66)" class="k">effect</span> <span onmouseout="hideTip(event, 'fs37', 67)" onmouseover="showTip(event, 'fs37', 67)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 68)" onmouseover="showTip(event, 'fs38', 68)" class="id">ALLOW</span>
+            <span onmouseout="hideTip(event, 'fs39', 69)" onmouseover="showTip(event, 'fs39', 69)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;cognito-idp:DescribeUserPool&quot;</span> <span class="pn">]</span>
+            <span onmouseout="hideTip(event, 'fs40', 70)" onmouseover="showTip(event, 'fs40', 70)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:cognito-idp:us-east-1:123456789012:userpool/*&quot;</span> <span class="pn">]</span>
+        <span class="pn">}</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Authorizer-Implementation-Pattern" class="anchor" href="#Authorizer-Implementation-Pattern">Authorizer Implementation Pattern</a></h2>
+<p>Lambda authorizer implementation to handle both user JWT and M2M access tokens.</p>
+<p><strong>Note:</strong> Python example shown below as Lambda authorizers commonly use Python/Node.js for JWT validation. The FsCDK builder above shows how to deploy this Lambda function.</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="python">import jwt
+import requests
+from typing import Dict, Any
+
+def lambda_handler(event: Dict[str, Any], context) -&gt; Dict[str, Any]:
+    token = extract_token(event)
+    
+    # Decode without verification to check token type
+    unverified = jwt.decode(token, options={"verify_signature": False})
+    
+    if unverified.get('token_use') == 'access':
+        # M2M access token flow
+        claims = validate_access_token(token)
+        context = extract_m2m_context(claims)
+    elif unverified.get('token_use') == 'id':
+        # User JWT token flow
+        claims = validate_id_token(token)
+        context = extract_user_context(claims)
+    else:
+        raise Exception('Unknown token type')
+    
+    return generate_policy(context)
+
+def extract_m2m_context(claims):
+    """Extract tenant and permissions from M2M token"""
+    client_id = claims['client_id']
+    scopes = claims.get('scope', '').split()
+    
+    # Map scopes to application roles
+    roles = []
+    if 'api/admin' in scopes:
+        roles.append('admin')
+    if 'api/write' in scopes:
+        roles.append('write')
+    if 'api/read' in scopes:
+        roles.append('read')
+    
+    return {
+        'clientId': client_id,
+        'roles': ','.join(roles),
+        'authType': 'm2m'
+    }
+</code></pre></td></tr></table>
+<h2><a name="Obtaining-M2M-Access-Tokens" class="anchor" href="#Obtaining-M2M-Access-Tokens">Obtaining M2M Access Tokens</a></h2>
+<p>Services request tokens using client credentials:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Token endpoint
+curl -X POST https://mydomain.auth.us-east-1.amazoncognito.com/oauth2/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=client_credentials" \
+  -d "client_id=YOUR_CLIENT_ID" \
+  -d "client_secret=YOUR_CLIENT_SECRET" \
+  -d "scope=api/read api/write"
+
+# Response
+{
+  "access_token": "eyJraWQiOiJ...",
+  "expires_in": 3600,
+  "token_type": "Bearer"
+}
+</code></pre></td></tr></table>
+<h2><a name="Using-M2M-Tokens" class="anchor" href="#Using-M2M-Tokens">Using M2M Tokens</a></h2>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Call API with M2M token
+curl https://api.example.com/resources \
+  -H "Authorization: Bearer eyJraWQiOiJ..."
+</code></pre></td></tr></table>
+<h2><a name="Scope-to-Role-Mapping-Strategy" class="anchor" href="#Scope-to-Role-Mapping-Strategy">Scope-to-Role Mapping Strategy</a></h2>
+<p>Map OAuth scopes to application-specific business roles:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>OAuth Scope</p></th>
+<th><p>Application Role</p></th>
+<th><p>Permissions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>api/read</code></p></td>
+<td><p><code>viewer</code></p></td>
+<td><p>GET operations only</p></td>
+</tr>
+<tr class="even">
+<td><p><code>api/write</code></p></td>
+<td><p><code>editor</code></p></td>
+<td><p>GET, POST, PUT operations</p></td>
+</tr>
+<tr class="odd">
+<td><p><code>api/admin</code></p></td>
+<td><p><code>administrator</code></p></td>
+<td><p>All operations including DELETE</p></td>
+</tr>
+<tr class="even">
+<td><p><code>api/execute</code></p></td>
+<td><p><code>executor</code></p></td>
+<td><p>Execute business transactions</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2><a name="Token-Validation-Best-Practices" class="anchor" href="#Token-Validation-Best-Practices">Token Validation Best Practices</a></h2>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="python">def validate_access_token(token):
+    """Validate M2M access token with Cognito"""
+    # Download Cognito JWKS
+    jwks_url = f'https://cognito-idp.{REGION}.amazonaws.com/{USER_POOL_ID}/.well-known/jwks.json'
+    jwks = requests.get(jwks_url).json()
+    
+    # Validate signature, issuer, expiration
+    claims = jwt.decode(
+        token,
+        jwks,
+        algorithms=['RS256'],
+        issuer=f'https://cognito-idp.{REGION}.amazonaws.com/{USER_POOL_ID}'
+    )
+    
+    # Verify token_use
+    if claims.get('token_use') != 'access':
+        raise Exception('Invalid token type')
+    
+    # Verify not expired
+    if claims['exp'] &lt; time.time():
+        raise Exception('Token expired')
+    
+    return claims
+</code></pre></td></tr></table>
+<h2><a name="Security-Considerations" class="anchor" href="#Security-Considerations">Security Considerations</a></h2>
+<h3><a name="M2M-Client-Management" class="anchor" href="#M2M-Client-Management">M2M Client Management</a></h3>
+<ul>
+<li>Store client secrets in AWS Secrets Manager (never in code)</li>
+<li>Rotate client secrets regularly (90-day rotation)</li>
+<li>Use separate clients per service/environment</li>
+<li>Implement client credential monitoring and alerts</li>
+</ul>
+<h3><a name="Token-Security" class="anchor" href="#Token-Security">Token Security</a></h3>
+<ul>
+<li><strong>Short-lived tokens</strong> - 1 hour max for access tokens</li>
+<li><strong>Scope principle of least privilege</strong> - Only grant needed scopes</li>
+<li><strong>Token monitoring</strong> - Log all token requests and usage</li>
+<li><strong>Revocation strategy</strong> - Ability to revoke compromised clients</li>
+</ul>
+<h3><a name="API-Gateway-Integration" class="anchor" href="#API-Gateway-Integration">API Gateway Integration</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// API Gateway method with authorizer</span>
+<span class="c">// (Configuration varies by gateway type - REST vs HTTP)</span>
+</code></pre>
+<h2><a name="Cost-Considerations" class="anchor" href="#Cost-Considerations">Cost Considerations</a></h2>
+<p>Cognito M2M pricing:</p>
+<ul>
+<li><strong>User Pool</strong> - Free tier: 50,000 MAU</li>
+<li><strong>M2M clients</strong> - $0.05 per MAU (Monthly Active User)</li>
+<li><strong>Token operations</strong> - Included in pricing</li>
+<li><strong>Typical cost</strong> - ~$6/month per service client</li>
+</ul>
+<h2><a name="Monitoring-M2M-Authentication" class="anchor" href="#Monitoring-M2M-Authentication">Monitoring M2M Authentication</a></h2>
+<p>CloudWatch metrics to track:</p>
+<ul>
+<li>Token request rate per client</li>
+<li>Failed authentication attempts</li>
+<li>Token validation errors</li>
+<li>Scope usage patterns</li>
+</ul>
+<h2><a name="Complete-M2M-Example" class="anchor" href="#Complete-M2M-Example">Complete M2M Example</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// 1. Create User Pool with resource server (see above)</span>
+<span class="c">// 2. Create M2M client with client_credentials flow</span>
+<span class="c">// 3. Deploy Lambda authorizer</span>
+<span class="c">// 4. Configure API Gateway to use authorizer</span>
+<span class="c">// 5. Services request tokens and call API</span>
+</code></pre>
+<h2><a name="Migration-from-API-Keys" class="anchor" href="#Migration-from-API-Keys">Migration from API Keys</a></h2>
+<p>If migrating from API key authentication:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>API Keys</p></th>
+<th><p>OAuth M2M</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Manual rotation</p></td>
+<td><p>Automatic expiration</p></td>
+</tr>
+<tr class="even">
+<td><p>Broad access</p></td>
+<td><p>Granular scopes</p></td>
+</tr>
+<tr class="odd">
+<td><p>Simple but risky</p></td>
+<td><p>Secure but complex</p></td>
+</tr>
+<tr class="even">
+<td><p>No usage attribution</p></td>
+<td><p>Client-level tracking</p></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Migration strategy:</strong>
+1. Implement M2M alongside API keys
+2. Migrate services one-by-one
+3. Monitor for 30 days
+4. Deprecate API keys</p>
+<h2><a name="Resources" class="anchor" href="#Resources">Resources</a></h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-integration.html">Cognito OAuth 2.0</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc6749#section-4.4">OAuth 2.0 Client Credentials</a></li>
+<li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html">API Gateway Lambda Authorizers</a></li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc8725">JWT Best Practices</a></li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.Cognito</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs7">namespace Amazon.CDK.AWS.IAM</div>
+<div class="fsdocs-tip" id="fs8">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val myUserPool: UserPoolSpec</div>
+<div class="fsdocs-tip" id="fs10">val userPool: name: string -&gt; UserPoolBuilder<br /><em>&lt;summary&gt;Creates a Cognito User Pool with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The user pool name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ userPool &quot;MyUserPool&quot; {
+     signInWithEmail
+     selfSignUpEnabled true
+     mfa Mfa.OPTIONAL
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: signInWithEmail
+
+Calls UserPoolBuilder.SignInWithEmail<br /><em>&lt;summary&gt;Enables email only as sign-in alias.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">custom operation: selfSignUpEnabled (bool)
+
+Calls UserPoolBuilder.SelfSignUpEnabled<br /><em>&lt;summary&gt;Enables or disables self sign-up.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val resourceServer: name: string -&gt; UserPoolResourceServerBuilder<br /><em>&lt;summary&gt;Creates a Cognito User Pool Resource Server for OAuth 2.0 scopes.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The resource server name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ resourceServer &quot;ApiResourceServer&quot; {
+     userPool myUserPool
+     identifier &quot;api&quot;
+     scope &quot;read&quot; &quot;Read access to resources&quot;
+     scope &quot;write&quot; &quot;Write access to resources&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: userPool (UserPoolSpec)
+
+Calls UserPoolResourceServerBuilder.UserPool</div>
+<div class="fsdocs-tip" id="fs15">custom operation: identifier (string)
+
+Calls UserPoolResourceServerBuilder.Identifier</div>
+<div class="fsdocs-tip" id="fs16">custom operation: name (string)
+
+Calls UserPoolResourceServerBuilder.Name</div>
+<div class="fsdocs-tip" id="fs17">custom operation: scope (string) (string)
+
+Calls UserPoolResourceServerBuilder.Scope</div>
+<div class="fsdocs-tip" id="fs18">val userPoolClient: name: string -&gt; UserPoolClientBuilder<br /><em>&lt;summary&gt;Creates a Cognito User Pool Client.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The client name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ userPoolClient &quot;MyAppClient&quot; {
+     userPool myUserPool
+     generateSecret false
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">custom operation: userPool (UserPoolSpec)
+
+Calls UserPoolClientBuilder.UserPool<br /><em>&lt;summary&gt;Sets the user pool.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">custom operation: generateSecret (bool)
+
+Calls UserPoolClientBuilder.GenerateSecret<br /><em>&lt;summary&gt;Enables or disables secret generation.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">custom operation: authFlows (IAuthFlow)
+
+Calls UserPoolClientBuilder.AuthFlows<br /><em>&lt;summary&gt;Sets authentication flows.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">Multiple items<br />type AuthFlow =
+  interface IAuthFlow
+  new: unit -&gt; unit
+  member AdminUserPassword: Nullable&lt;bool&gt;
+  member Custom: Nullable&lt;bool&gt;
+  member User: Nullable&lt;bool&gt;
+  member UserPassword: Nullable&lt;bool&gt;
+  member UserSrp: Nullable&lt;bool&gt;<br /><br />--------------------<br />AuthFlow() : AuthFlow</div>
+<div class="fsdocs-tip" id="fs23">custom operation: tokenValidities (Duration * Duration * Duration)
+
+Calls UserPoolClientBuilder.TokenValidities<br /><em>&lt;summary&gt;Sets token validities.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs25">Duration.Days(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs26">Duration.Hours(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs27">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs29">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs30">property Runtime.PYTHON_3_11: Runtime with get</div>
+<div class="fsdocs-tip" id="fs31">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs32">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">custom operation: timeout (float)
+
+Calls FunctionBuilder.Timeout<br /><em>&lt;summary&gt;Sets the timeout for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">custom operation: environment ((string * string) list)
+
+Calls FunctionBuilder.Environment<br /><em>&lt;summary&gt;Sets environment variables for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;env&quot;&gt;List of key-value pairs for environment variables.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     environment [ &quot;KEY1&quot;, &quot;value1&quot;; &quot;KEY2&quot;, &quot;value2&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">val policyStatement: PolicyStatementBuilder</div>
+<div class="fsdocs-tip" id="fs36">custom operation: effect (Effect)
+
+Calls PolicyStatementBuilder.Effect</div>
+<div class="fsdocs-tip" id="fs37">[&lt;Struct&gt;]
+type Effect =
+  | ALLOW = 0
+  | DENY = 1</div>
+<div class="fsdocs-tip" id="fs38">field Effect.ALLOW: Effect = 0</div>
+<div class="fsdocs-tip" id="fs39">custom operation: actions (string list)
+
+Calls PolicyStatementBuilder.Actions</div>
+<div class="fsdocs-tip" id="fs40">custom operation: resources (string list)
+
+Calls PolicyStatementBuilder.Resources</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#OAuth-2-0-Machine-to-Machine-Authentication-with-Cognito">
+      OAuth 2.0 Machine-to-Machine Authentication with Cognito
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#OAuth-2-0-M2M-Flow">
+      OAuth 2.0 M2M Flow
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Architecture-Overview">
+      Architecture Overview
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#OAuth-Resource-Server-with-Custom-Scopes">
+      OAuth Resource Server with Custom Scopes
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-M2M-Setup">
+      Basic M2M Setup
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Resource-Server-with-Multiple-Scopes">
+      Resource Server with Multiple Scopes
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Lambda-Authorizer-for-Dual-Authentication">
+      Lambda Authorizer for Dual Authentication
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Authorizer-Implementation-Pattern">
+      Authorizer Implementation Pattern
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Obtaining-M2M-Access-Tokens">
+      Obtaining M2M Access Tokens
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Using-M2M-Tokens">
+      Using M2M Tokens
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Scope-to-Role-Mapping-Strategy">
+      Scope-to-Role Mapping Strategy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Token-Validation-Best-Practices">
+      Token Validation Best Practices
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Security-Considerations">
+      Security Considerations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#M2M-Client-Management">
+      M2M Client Management
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Token-Security">
+      Token Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#API-Gateway-Integration">
+      API Gateway Integration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Considerations">
+      Cost Considerations
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Monitoring-M2M-Authentication">
+      Monitoring M2M Authentication
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Complete-M2M-Example">
+      Complete M2M Example
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Migration-from-API-Keys">
+      Migration from API Keys
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Resources">
+      Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

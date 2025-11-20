@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="CloudWatch Monitoring and Dashboards" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="CloudWatch Monitoring and Dashboards">
+    
+    <title>CloudWatch Monitoring and Dashboards | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="CloudWatch-Monitoring-and-Dashboards" class="anchor" href="#CloudWatch-Monitoring-and-Dashboards"><img src="img/icons/Arch_Amazon-CloudWatch_48.png" alt="CloudWatch" /> CloudWatch Monitoring and Dashboards</a></h1>
+<p>CloudWatch provides comprehensive monitoring for your AWS resources with dashboards, log groups,
+metric filters, and subscription filters. Monitor metrics, logs, and alarms in a customizable (and visual) interface.</p>
+<h2><a name="Quick-Start" class="anchor" href="#Quick-Start">Quick Start</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">CloudWatch</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="id">DynamoDB</span>
+</code></pre>
+<h2><a name="Basic-Dashboard" class="anchor" href="#Basic-Dashboard">Basic Dashboard</a></h2>
+<p>Create a simple dashboard to monitor Lambda functions.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 16)" onmouseover="showTip(event, 'fs8', 16)" class="fn">stack</span> <span class="s">&quot;BasicDashboard&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="fn">myFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 18)" onmouseover="showTip(event, 'fs10', 18)" class="fn">lambda</span> <span class="s">&quot;MyFunction&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 19)" onmouseover="showTip(event, 'fs11', 19)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 20)" onmouseover="showTip(event, 'fs12', 20)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 21)" onmouseover="showTip(event, 'fs13', 21)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 22)" onmouseover="showTip(event, 'fs14', 22)" class="k">handler</span> <span class="s">&quot;App::Handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 23)" onmouseover="showTip(event, 'fs15', 23)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs16', 24)" onmouseover="showTip(event, 'fs16', 24)" class="fn">invocationsMetric</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 25)" onmouseover="showTip(event, 'fs9', 25)" class="fn">myFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 26)" onmouseover="showTip(event, 'fs17', 26)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 27)" onmouseover="showTip(event, 'fs18', 27)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="id">MetricInvocations</span><span class="pn">(</span><span class="pn">)</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 29)" onmouseover="showTip(event, 'fs20', 29)" class="fn">errorsMetric</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 30)" onmouseover="showTip(event, 'fs9', 30)" class="fn">myFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 31)" onmouseover="showTip(event, 'fs17', 31)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 32)" onmouseover="showTip(event, 'fs18', 32)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 33)" onmouseover="showTip(event, 'fs21', 33)" class="id">MetricErrors</span><span class="pn">(</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs22', 34)" onmouseover="showTip(event, 'fs22', 34)" class="fn">dashboard</span> <span class="s">&quot;LambdaDashboard&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs23', 35)" onmouseover="showTip(event, 'fs23', 35)" class="k">dashboardName</span> <span class="s">&quot;lambda-monitoring&quot;</span>
+
+        <span onmouseout="hideTip(event, 'fs24', 36)" onmouseover="showTip(event, 'fs24', 36)" class="k">widgetRow</span>
+            <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs25', 37)" onmouseover="showTip(event, 'fs25', 37)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 38)" onmouseover="showTip(event, 'fs26', 38)" class="id">metricWidget</span> <span class="s">&quot;Invocations&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs16', 39)" onmouseover="showTip(event, 'fs16', 39)" class="fn">invocationsMetric</span> <span class="pn">]</span>
+              <span onmouseout="hideTip(event, 'fs25', 40)" onmouseover="showTip(event, 'fs25', 40)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 41)" onmouseover="showTip(event, 'fs26', 41)" class="id">metricWidget</span> <span class="s">&quot;Errors&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs20', 42)" onmouseover="showTip(event, 'fs20', 42)" class="fn">errorsMetric</span> <span class="pn">]</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Multi-Resource-Dashboard" class="anchor" href="#Multi-Resource-Dashboard">Multi-Resource Dashboard</a></h2>
+<p>Monitor multiple services in one dashboard.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 43)" onmouseover="showTip(event, 'fs8', 43)" class="fn">stack</span> <span class="s">&quot;MultiResourceDashboard&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 44)" onmouseover="showTip(event, 'fs27', 44)" class="fn">apiFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 45)" onmouseover="showTip(event, 'fs10', 45)" class="fn">lambda</span> <span class="s">&quot;API&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 46)" onmouseover="showTip(event, 'fs11', 46)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 47)" onmouseover="showTip(event, 'fs12', 47)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 48)" onmouseover="showTip(event, 'fs13', 48)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 49)" onmouseover="showTip(event, 'fs14', 49)" class="k">handler</span> <span class="s">&quot;App::API&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 50)" onmouseover="showTip(event, 'fs15', 50)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 51)" onmouseover="showTip(event, 'fs28', 51)" class="fn">dataTable</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs29', 52)" onmouseover="showTip(event, 'fs29', 52)" class="fn">table</span> <span class="s">&quot;Data&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs30', 53)" onmouseover="showTip(event, 'fs30', 53)" class="k">partitionKey</span> <span class="s">&quot;id&quot;</span> <span onmouseout="hideTip(event, 'fs31', 54)" onmouseover="showTip(event, 'fs31', 54)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 55)" onmouseover="showTip(event, 'fs32', 55)" class="id">STRING</span>
+            <span onmouseout="hideTip(event, 'fs33', 56)" onmouseover="showTip(event, 'fs33', 56)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs34', 57)" onmouseover="showTip(event, 'fs34', 57)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 58)" onmouseover="showTip(event, 'fs35', 58)" class="id">PAY_PER_REQUEST</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 59)" onmouseover="showTip(event, 'fs36', 59)" class="fn">apiMetric</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 60)" onmouseover="showTip(event, 'fs27', 60)" class="fn">apiFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 61)" onmouseover="showTip(event, 'fs17', 61)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 62)" onmouseover="showTip(event, 'fs18', 62)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 63)" onmouseover="showTip(event, 'fs19', 63)" class="id">MetricInvocations</span><span class="pn">(</span><span class="pn">)</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs37', 64)" onmouseover="showTip(event, 'fs37', 64)" class="fn">apiDuration</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 65)" onmouseover="showTip(event, 'fs27', 65)" class="fn">apiFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 66)" onmouseover="showTip(event, 'fs17', 66)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 67)" onmouseover="showTip(event, 'fs18', 67)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 68)" onmouseover="showTip(event, 'fs38', 68)" class="id">MetricDuration</span><span class="pn">(</span><span class="pn">)</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs39', 69)" onmouseover="showTip(event, 'fs39', 69)" class="fn">tableReads</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs28', 70)" onmouseover="showTip(event, 'fs28', 70)" class="fn">dataTable</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 71)" onmouseover="showTip(event, 'fs40', 71)" class="prop">Table</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 72)" onmouseover="showTip(event, 'fs41', 72)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 73)" onmouseover="showTip(event, 'fs42', 73)" class="id">MetricConsumedReadCapacityUnits</span><span class="pn">(</span><span class="pn">)</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 74)" onmouseover="showTip(event, 'fs43', 74)" class="fn">tableWrites</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs28', 75)" onmouseover="showTip(event, 'fs28', 75)" class="fn">dataTable</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 76)" onmouseover="showTip(event, 'fs40', 76)" class="prop">Table</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 77)" onmouseover="showTip(event, 'fs41', 77)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 78)" onmouseover="showTip(event, 'fs44', 78)" class="id">MetricConsumedWriteCapacityUnits</span><span class="pn">(</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs22', 79)" onmouseover="showTip(event, 'fs22', 79)" class="fn">dashboard</span> <span class="s">&quot;ApplicationDashboard&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs23', 80)" onmouseover="showTip(event, 'fs23', 80)" class="k">dashboardName</span> <span class="s">&quot;application-monitoring&quot;</span>
+        <span onmouseout="hideTip(event, 'fs45', 81)" onmouseover="showTip(event, 'fs45', 81)" class="k">defaultInterval</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs46', 82)" onmouseover="showTip(event, 'fs46', 82)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 83)" onmouseover="showTip(event, 'fs47', 83)" class="id">Minutes</span><span class="pn">(</span><span class="n">5.0</span><span class="pn">)</span><span class="pn">)</span>
+
+        <span class="c">// First row: Lambda metrics</span>
+        <span onmouseout="hideTip(event, 'fs24', 84)" onmouseover="showTip(event, 'fs24', 84)" class="k">widgetRow</span>
+            <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs25', 85)" onmouseover="showTip(event, 'fs25', 85)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 86)" onmouseover="showTip(event, 'fs26', 86)" class="id">metricWidget</span> <span class="s">&quot;API Invocations&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs36', 87)" onmouseover="showTip(event, 'fs36', 87)" class="fn">apiMetric</span> <span class="pn">]</span>
+              <span onmouseout="hideTip(event, 'fs25', 88)" onmouseover="showTip(event, 'fs25', 88)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 89)" onmouseover="showTip(event, 'fs26', 89)" class="id">metricWidget</span> <span class="s">&quot;API Duration&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs37', 90)" onmouseover="showTip(event, 'fs37', 90)" class="fn">apiDuration</span> <span class="pn">]</span> <span class="pn">]</span>
+
+        <span class="c">// Second row: DynamoDB metrics</span>
+        <span onmouseout="hideTip(event, 'fs24', 91)" onmouseover="showTip(event, 'fs24', 91)" class="k">widgetRow</span>
+            <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs25', 92)" onmouseover="showTip(event, 'fs25', 92)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 93)" onmouseover="showTip(event, 'fs26', 93)" class="id">metricWidget</span> <span class="s">&quot;Table Reads&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs39', 94)" onmouseover="showTip(event, 'fs39', 94)" class="fn">tableReads</span> <span class="pn">]</span>
+              <span onmouseout="hideTip(event, 'fs25', 95)" onmouseover="showTip(event, 'fs25', 95)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 96)" onmouseover="showTip(event, 'fs26', 96)" class="id">metricWidget</span> <span class="s">&quot;Table Writes&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs43', 97)" onmouseover="showTip(event, 'fs43', 97)" class="fn">tableWrites</span> <span class="pn">]</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Dashboard-with-Alarms" class="anchor" href="#Dashboard-with-Alarms">Dashboard with Alarms</a></h2>
+<p>Include CloudWatch alarms for critical metrics.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 98)" onmouseover="showTip(event, 'fs8', 98)" class="fn">stack</span> <span class="s">&quot;DashboardWithAlarms&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs48', 99)" onmouseover="showTip(event, 'fs48', 99)" class="fn">webFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 100)" onmouseover="showTip(event, 'fs10', 100)" class="fn">lambda</span> <span class="s">&quot;WebApp&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 101)" onmouseover="showTip(event, 'fs11', 101)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 102)" onmouseover="showTip(event, 'fs12', 102)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 103)" onmouseover="showTip(event, 'fs13', 103)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 104)" onmouseover="showTip(event, 'fs14', 104)" class="k">handler</span> <span class="s">&quot;App::Handle&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 105)" onmouseover="showTip(event, 'fs15', 105)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 106)" onmouseover="showTip(event, 'fs49', 106)" class="fn">errorMetric</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs48', 107)" onmouseover="showTip(event, 'fs48', 107)" class="fn">webFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 108)" onmouseover="showTip(event, 'fs17', 108)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 109)" onmouseover="showTip(event, 'fs18', 109)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 110)" onmouseover="showTip(event, 'fs21', 110)" class="id">MetricErrors</span><span class="pn">(</span><span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs50', 111)" onmouseover="showTip(event, 'fs50', 111)" class="fn">errorAlarm</span> <span class="o">=</span>
+        <span class="c">// CloudWatch Alarm for Lambda errors</span>
+        <span onmouseout="hideTip(event, 'fs51', 112)" onmouseover="showTip(event, 'fs51', 112)" class="fn">cloudwatchAlarm</span> <span class="s">&quot;lambda-error-alarm&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs52', 113)" onmouseover="showTip(event, 'fs52', 113)" class="k">description</span> <span class="s">&quot;Alert when error rate is high&quot;</span>
+            <span onmouseout="hideTip(event, 'fs53', 114)" onmouseover="showTip(event, 'fs53', 114)" class="k">metric</span> <span onmouseout="hideTip(event, 'fs49', 115)" onmouseover="showTip(event, 'fs49', 115)" class="fn">errorMetric</span>
+            <span onmouseout="hideTip(event, 'fs54', 116)" onmouseover="showTip(event, 'fs54', 116)" class="k">dimensions</span> <span class="pn">[</span> <span class="s">&quot;FunctionName&quot;</span><span class="pn">,</span> <span class="s">&quot;my-function&quot;</span> <span class="pn">]</span>
+            <span onmouseout="hideTip(event, 'fs55', 117)" onmouseover="showTip(event, 'fs55', 117)" class="k">statistic</span> <span class="s">&quot;Sum&quot;</span>
+            <span onmouseout="hideTip(event, 'fs56', 118)" onmouseover="showTip(event, 'fs56', 118)" class="k">threshold</span> <span class="n">10.0</span>
+            <span onmouseout="hideTip(event, 'fs57', 119)" onmouseover="showTip(event, 'fs57', 119)" class="k">evaluationPeriods</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs58', 120)" onmouseover="showTip(event, 'fs58', 120)" class="k">period</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs46', 121)" onmouseover="showTip(event, 'fs46', 121)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 122)" onmouseover="showTip(event, 'fs47', 122)" class="id">Minutes</span> <span class="n">5.0</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs22', 123)" onmouseover="showTip(event, 'fs22', 123)" class="fn">dashboard</span> <span class="s">&quot;AlertingDashboard&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs23', 124)" onmouseover="showTip(event, 'fs23', 124)" class="k">dashboardName</span> <span class="s">&quot;web-app-alerts&quot;</span>
+
+        <span onmouseout="hideTip(event, 'fs24', 125)" onmouseover="showTip(event, 'fs24', 125)" class="k">widgetRow</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs25', 126)" onmouseover="showTip(event, 'fs25', 126)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 127)" onmouseover="showTip(event, 'fs26', 127)" class="id">metricWidget</span> <span class="s">&quot;Errors&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs49', 128)" onmouseover="showTip(event, 'fs49', 128)" class="fn">errorMetric</span> <span class="pn">]</span> <span class="pn">]</span>
+
+        <span onmouseout="hideTip(event, 'fs59', 129)" onmouseover="showTip(event, 'fs59', 129)" class="k">widget</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs25', 130)" onmouseover="showTip(event, 'fs25', 130)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 131)" onmouseover="showTip(event, 'fs60', 131)" class="id">alarmWidgetSpec</span> <span onmouseout="hideTip(event, 'fs50', 132)" onmouseover="showTip(event, 'fs50', 132)" class="fn">errorAlarm</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Dashboard-with-Text-Widgets" class="anchor" href="#Dashboard-with-Text-Widgets">Dashboard with Text Widgets</a></h2>
+<p>Add explanatory text and documentation.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 133)" onmouseover="showTip(event, 'fs8', 133)" class="fn">stack</span> <span class="s">&quot;DocumentedDashboard&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs22', 134)" onmouseover="showTip(event, 'fs22', 134)" class="fn">dashboard</span> <span class="s">&quot;ProductionDashboard&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs23', 135)" onmouseover="showTip(event, 'fs23', 135)" class="k">dashboardName</span> <span class="s">&quot;production-overview&quot;</span>
+
+        <span onmouseout="hideTip(event, 'fs59', 136)" onmouseover="showTip(event, 'fs59', 136)" class="k">widget</span> <span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs25', 137)" onmouseover="showTip(event, 'fs25', 137)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 138)" onmouseover="showTip(event, 'fs61', 138)" class="id">textWidget</span>
+                <span class="s">&quot;# Production System Overview\n\nThis dashboard monitors critical production metrics.\n\n**Contact:** ops-team@example.com&quot;</span>
+        <span class="pn">)</span>
+
+    <span class="c">// Add metric widgets here</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Custom-Time-Range" class="anchor" href="#Custom-Time-Range">Custom Time Range</a></h2>
+<p>Set specific time ranges for the dashboard.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 139)" onmouseover="showTip(event, 'fs8', 139)" class="fn">stack</span> <span class="s">&quot;CustomTimeRange&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs22', 140)" onmouseover="showTip(event, 'fs22', 140)" class="fn">dashboard</span> <span class="s">&quot;HistoricalDashboard&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs23', 141)" onmouseover="showTip(event, 'fs23', 141)" class="k">dashboardName</span> <span class="s">&quot;last-7-days&quot;</span>
+        <span onmouseout="hideTip(event, 'fs45', 142)" onmouseover="showTip(event, 'fs45', 142)" class="k">defaultInterval</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs46', 143)" onmouseover="showTip(event, 'fs46', 143)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 144)" onmouseover="showTip(event, 'fs62', 144)" class="id">Days</span><span class="pn">(</span><span class="n">7.0</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs63', 145)" onmouseover="showTip(event, 'fs63', 145)" class="k">startTime</span> <span class="s">&quot;-P7D&quot;</span> <span class="c">// ISO 8601 duration: 7 days ago</span>
+        <span onmouseout="hideTip(event, 'fs64', 146)" onmouseover="showTip(event, 'fs64', 146)" class="k">endTime</span> <span class="s">&quot;PT0H&quot;</span> <span class="c">// Now</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="CloudWatch-Log-Groups" class="anchor" href="#CloudWatch-Log-Groups">CloudWatch Log Groups</a></h2>
+<p>Create and configure log groups for your applications.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 147)" onmouseover="showTip(event, 'fs8', 147)" class="fn">stack</span> <span class="s">&quot;LogGroupsStack&quot;</span> <span class="pn">{</span>
+    <span class="c">// Lambda function log group with custom retention</span>
+    <span onmouseout="hideTip(event, 'fs65', 148)" onmouseover="showTip(event, 'fs65', 148)" class="fn">logGroup</span> <span class="s">&quot;/aws/lambda/my-function&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs66', 149)" onmouseover="showTip(event, 'fs66', 149)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs2', 150)" onmouseover="showTip(event, 'fs2', 150)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 151)" onmouseover="showTip(event, 'fs3', 151)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 152)" onmouseover="showTip(event, 'fs4', 152)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 153)" onmouseover="showTip(event, 'fs67', 153)" class="id">Logs</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 154)" onmouseover="showTip(event, 'fs68', 154)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 155)" onmouseover="showTip(event, 'fs69', 155)" class="id">ONE_MONTH</span>
+        <span onmouseout="hideTip(event, 'fs70', 156)" onmouseover="showTip(event, 'fs70', 156)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs71', 157)" onmouseover="showTip(event, 'fs71', 157)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs72', 158)" onmouseover="showTip(event, 'fs72', 158)" class="id">DESTROY</span>
+    <span class="pn">}</span>
+
+    <span class="c">// ECS service log group</span>
+    <span onmouseout="hideTip(event, 'fs65', 159)" onmouseover="showTip(event, 'fs65', 159)" class="fn">logGroup</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs73', 160)" onmouseover="showTip(event, 'fs73', 160)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs74', 161)" onmouseover="showTip(event, 'fs74', 161)" class="id">ecsLogGroup</span> <span class="s">&quot;my-service&quot;</span> <span class="s">&quot;production&quot;</span><span class="pn">)</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs66', 162)" onmouseover="showTip(event, 'fs66', 162)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs73', 163)" onmouseover="showTip(event, 'fs73', 163)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 164)" onmouseover="showTip(event, 'fs75', 164)" class="m">RetentionPeriods</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs76', 165)" onmouseover="showTip(event, 'fs76', 165)" class="id">production</span>
+    <span class="pn">}</span>
+
+    <span class="c">// API Gateway log group</span>
+    <span onmouseout="hideTip(event, 'fs65', 166)" onmouseover="showTip(event, 'fs65', 166)" class="fn">logGroup</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs73', 167)" onmouseover="showTip(event, 'fs73', 167)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs77', 168)" onmouseover="showTip(event, 'fs77', 168)" class="id">apiGatewayLogGroup</span> <span class="s">&quot;my-api&quot;</span> <span class="s">&quot;prod&quot;</span><span class="pn">)</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs66', 169)" onmouseover="showTip(event, 'fs66', 169)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs73', 170)" onmouseover="showTip(event, 'fs73', 170)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 171)" onmouseover="showTip(event, 'fs75', 171)" class="m">RetentionPeriods</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs78', 172)" onmouseover="showTip(event, 'fs78', 172)" class="id">audit</span>
+        <span onmouseout="hideTip(event, 'fs79', 173)" onmouseover="showTip(event, 'fs79', 173)" class="k">constructId</span> <span class="s">&quot;ApiGatewayLogs&quot;</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Metric-Filters" class="anchor" href="#Metric-Filters">Metric Filters</a></h2>
+<p>Extract custom metrics from log data for monitoring and alerting.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 174)" onmouseover="showTip(event, 'fs8', 174)" class="fn">stack</span> <span class="s">&quot;MetricFiltersStack&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs80', 175)" onmouseover="showTip(event, 'fs80', 175)" class="fn">appLogGroup</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs65', 176)" onmouseover="showTip(event, 'fs65', 176)" class="fn">logGroup</span> <span class="s">&quot;/aws/application/logs&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs66', 177)" onmouseover="showTip(event, 'fs66', 177)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs2', 178)" onmouseover="showTip(event, 'fs2', 178)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 179)" onmouseover="showTip(event, 'fs3', 179)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 180)" onmouseover="showTip(event, 'fs4', 180)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 181)" onmouseover="showTip(event, 'fs67', 181)" class="id">Logs</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 182)" onmouseover="showTip(event, 'fs68', 182)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs81', 183)" onmouseover="showTip(event, 'fs81', 183)" class="id">TWO_WEEKS</span> <span class="pn">}</span>
+
+    <span class="c">// Count error occurrences</span>
+    <span onmouseout="hideTip(event, 'fs82', 184)" onmouseover="showTip(event, 'fs82', 184)" class="fn">metricFilter</span> <span class="s">&quot;ErrorCount&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs83', 185)" onmouseover="showTip(event, 'fs83', 185)" class="k">logGroup</span> <span onmouseout="hideTip(event, 'fs80', 186)" onmouseover="showTip(event, 'fs80', 186)" class="fn">appLogGroup</span>
+        <span onmouseout="hideTip(event, 'fs84', 187)" onmouseover="showTip(event, 'fs84', 187)" class="k">filterPattern</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs85', 188)" onmouseover="showTip(event, 'fs85', 188)" class="m">FilterPatterns</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs86', 189)" onmouseover="showTip(event, 'fs86', 189)" class="id">errorLogs</span> <span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs87', 190)" onmouseover="showTip(event, 'fs87', 190)" class="k">metricName</span> <span class="s">&quot;ErrorCount&quot;</span>
+        <span onmouseout="hideTip(event, 'fs88', 191)" onmouseover="showTip(event, 'fs88', 191)" class="k">metricNamespace</span> <span class="s">&quot;MyApp&quot;</span>
+        <span onmouseout="hideTip(event, 'fs89', 192)" onmouseover="showTip(event, 'fs89', 192)" class="k">metricValue</span> <span class="s">&quot;1&quot;</span>
+    <span class="pn">}</span>
+
+    <span class="c">// Count HTTP 5xx errors</span>
+    <span onmouseout="hideTip(event, 'fs82', 193)" onmouseover="showTip(event, 'fs82', 193)" class="fn">metricFilter</span> <span class="s">&quot;ServerErrors&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs83', 194)" onmouseover="showTip(event, 'fs83', 194)" class="k">logGroup</span> <span onmouseout="hideTip(event, 'fs80', 195)" onmouseover="showTip(event, 'fs80', 195)" class="fn">appLogGroup</span>
+        <span onmouseout="hideTip(event, 'fs84', 196)" onmouseover="showTip(event, 'fs84', 196)" class="k">filterPattern</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs85', 197)" onmouseover="showTip(event, 'fs85', 197)" class="m">FilterPatterns</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs90', 198)" onmouseover="showTip(event, 'fs90', 198)" class="id">http5xxErrors</span> <span class="pn">(</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs87', 199)" onmouseover="showTip(event, 'fs87', 199)" class="k">metricName</span> <span class="s">&quot;ServerErrorCount&quot;</span>
+        <span onmouseout="hideTip(event, 'fs88', 200)" onmouseover="showTip(event, 'fs88', 200)" class="k">metricNamespace</span> <span class="s">&quot;MyApp&quot;</span>
+    <span class="pn">}</span>
+
+    <span class="c">// Extract custom metric value from logs</span>
+    <span onmouseout="hideTip(event, 'fs82', 201)" onmouseover="showTip(event, 'fs82', 201)" class="fn">metricFilter</span> <span class="s">&quot;ResponseTime&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs83', 202)" onmouseover="showTip(event, 'fs83', 202)" class="k">logGroup</span> <span onmouseout="hideTip(event, 'fs80', 203)" onmouseover="showTip(event, 'fs80', 203)" class="fn">appLogGroup</span>
+        <span onmouseout="hideTip(event, 'fs84', 204)" onmouseover="showTip(event, 'fs84', 204)" class="k">filterPattern</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs85', 205)" onmouseover="showTip(event, 'fs85', 205)" class="m">FilterPatterns</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs91', 206)" onmouseover="showTip(event, 'fs91', 206)" class="id">matchText</span> <span class="s">&quot;response_time&quot;</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs87', 207)" onmouseover="showTip(event, 'fs87', 207)" class="k">metricName</span> <span class="s">&quot;ResponseTime&quot;</span>
+        <span onmouseout="hideTip(event, 'fs88', 208)" onmouseover="showTip(event, 'fs88', 208)" class="k">metricNamespace</span> <span class="s">&quot;MyApp&quot;</span>
+        <span onmouseout="hideTip(event, 'fs89', 209)" onmouseover="showTip(event, 'fs89', 209)" class="k">metricValue</span> <span class="s">&quot;$responseTime&quot;</span>
+        <span onmouseout="hideTip(event, 'fs92', 210)" onmouseover="showTip(event, 'fs92', 210)" class="k">unit</span> <span onmouseout="hideTip(event, 'fs93', 211)" onmouseover="showTip(event, 'fs93', 211)" class="en">Unit</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs94', 212)" onmouseover="showTip(event, 'fs94', 212)" class="id">MILLISECONDS</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Log-Insights-Widget" class="anchor" href="#Log-Insights-Widget">Log Insights Widget</a></h2>
+<p>Query and visualize CloudWatch Logs.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 213)" onmouseover="showTip(event, 'fs8', 213)" class="fn">stack</span> <span class="s">&quot;LogsDashboard&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs95', 214)" onmouseover="showTip(event, 'fs95', 214)" class="fn">logWidget</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs25', 215)" onmouseover="showTip(event, 'fs25', 215)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 216)" onmouseover="showTip(event, 'fs96', 216)" class="id">logQueryWidget</span>
+            <span class="s">&quot;Error Logs&quot;</span>
+            <span class="pn">[</span> <span class="s">&quot;/aws/lambda/my-function&quot;</span> <span class="pn">]</span>
+            <span class="s">&quot;fields @timestamp, @message | filter @message like /ERROR/ | sort @timestamp desc | limit 20&quot;</span>
+            <span class="pn">(</span><span onmouseout="hideTip(event, 'fs97', 217)" onmouseover="showTip(event, 'fs97', 217)" class="uc">Some</span> <span class="n">12</span><span class="pn">)</span>
+            <span class="pn">(</span><span onmouseout="hideTip(event, 'fs97', 218)" onmouseover="showTip(event, 'fs97', 218)" class="uc">Some</span> <span class="n">6</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs22', 219)" onmouseover="showTip(event, 'fs22', 219)" class="fn">dashboard</span> <span class="s">&quot;LogsDashboard&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs23', 220)" onmouseover="showTip(event, 'fs23', 220)" class="k">dashboardName</span> <span class="s">&quot;application-logs&quot;</span>
+        <span onmouseout="hideTip(event, 'fs59', 221)" onmouseover="showTip(event, 'fs59', 221)" class="k">widget</span> <span onmouseout="hideTip(event, 'fs95', 222)" onmouseover="showTip(event, 'fs95', 222)" class="fn">logWidget</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Single-Value-Widgets" class="anchor" href="#Single-Value-Widgets">Single Value Widgets</a></h2>
+<p>Display current metric values prominently.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 223)" onmouseover="showTip(event, 'fs8', 223)" class="fn">stack</span> <span class="s">&quot;SingleValueDashboard&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs98', 224)" onmouseover="showTip(event, 'fs98', 224)" class="fn">activeUsers</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs99', 225)" onmouseover="showTip(event, 'fs99', 225)" class="fn">Metric</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs100', 226)" onmouseover="showTip(event, 'fs100', 226)" class="fn">MetricProps</span><span class="pn">(</span><span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="pn">,</span> <span class="fn">MetricName</span> <span class="o">=</span> <span class="s">&quot;ActiveUsers&quot;</span><span class="pn">)</span><span class="pn">)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs101', 227)" onmouseover="showTip(event, 'fs101', 227)" class="fn">currentRequests</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs99', 228)" onmouseover="showTip(event, 'fs99', 228)" class="fn">Metric</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs100', 229)" onmouseover="showTip(event, 'fs100', 229)" class="fn">MetricProps</span><span class="pn">(</span><span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;MyApp&quot;</span><span class="pn">,</span> <span class="fn">MetricName</span> <span class="o">=</span> <span class="s">&quot;CurrentRequests&quot;</span><span class="pn">)</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs22', 230)" onmouseover="showTip(event, 'fs22', 230)" class="fn">dashboard</span> <span class="s">&quot;CurrentStatsDashboard&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs23', 231)" onmouseover="showTip(event, 'fs23', 231)" class="k">dashboardName</span> <span class="s">&quot;current-stats&quot;</span>
+
+        <span onmouseout="hideTip(event, 'fs24', 232)" onmouseover="showTip(event, 'fs24', 232)" class="k">widgetRow</span>
+            <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs25', 233)" onmouseover="showTip(event, 'fs25', 233)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs102', 234)" onmouseover="showTip(event, 'fs102', 234)" class="id">singleValueWidget</span> <span class="s">&quot;Active Users&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs98', 235)" onmouseover="showTip(event, 'fs98', 235)" class="fn">activeUsers</span> <span class="pn">]</span>
+              <span onmouseout="hideTip(event, 'fs25', 236)" onmouseover="showTip(event, 'fs25', 236)" class="m">DashboardWidgets</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs102', 237)" onmouseover="showTip(event, 'fs102', 237)" class="id">singleValueWidget</span> <span class="s">&quot;Current Requests&quot;</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs101', 238)" onmouseover="showTip(event, 'fs101', 238)" class="fn">currentRequests</span> <span class="pn">]</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="CloudWatch-Helpers" class="anchor" href="#CloudWatch-Helpers">CloudWatch Helpers</a></h2>
+<p>FsCDK provides helper functions for common CloudWatch patterns.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Common retention periods</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs103', 239)" onmouseover="showTip(event, 'fs103', 239)" class="id">devRetention</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs73', 240)" onmouseover="showTip(event, 'fs73', 240)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 241)" onmouseover="showTip(event, 'fs75', 241)" class="m">RetentionPeriods</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs104', 242)" onmouseover="showTip(event, 'fs104', 242)" class="id">dev</span> <span class="c">// 3 days</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs105', 243)" onmouseover="showTip(event, 'fs105', 243)" class="id">prodRetention</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs73', 244)" onmouseover="showTip(event, 'fs73', 244)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 245)" onmouseover="showTip(event, 'fs75', 245)" class="m">RetentionPeriods</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs76', 246)" onmouseover="showTip(event, 'fs76', 246)" class="id">production</span> <span class="c">// 30 days</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs106', 247)" onmouseover="showTip(event, 'fs106', 247)" class="id">auditRetention</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs73', 248)" onmouseover="showTip(event, 'fs73', 248)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 249)" onmouseover="showTip(event, 'fs75', 249)" class="m">RetentionPeriods</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs78', 250)" onmouseover="showTip(event, 'fs78', 250)" class="id">audit</span> <span class="c">// 5 years</span>
+
+<span class="c">// Standard log group naming</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs107', 251)" onmouseover="showTip(event, 'fs107', 251)" class="id">lambdaLogGroup</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs73', 252)" onmouseover="showTip(event, 'fs73', 252)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs108', 253)" onmouseover="showTip(event, 'fs108', 253)" class="id">lambdaLogGroup</span> <span class="s">&quot;my-function&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs109', 254)" onmouseover="showTip(event, 'fs109', 254)" class="id">ecsLogGroup</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs73', 255)" onmouseover="showTip(event, 'fs73', 255)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs74', 256)" onmouseover="showTip(event, 'fs74', 256)" class="id">ecsLogGroup</span> <span class="s">&quot;my-service&quot;</span> <span class="s">&quot;production&quot;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs110', 257)" onmouseover="showTip(event, 'fs110', 257)" class="id">apiGatewayLogGroup</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs73', 258)" onmouseover="showTip(event, 'fs73', 258)" class="m">CloudWatchLogsHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs77', 259)" onmouseover="showTip(event, 'fs77', 259)" class="id">apiGatewayLogGroup</span> <span class="s">&quot;my-api&quot;</span> <span class="s">&quot;prod&quot;</span>
+
+<span class="c">// Common filter patterns</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs111', 260)" onmouseover="showTip(event, 'fs111', 260)" class="id">allEvents</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs85', 261)" onmouseover="showTip(event, 'fs85', 261)" class="m">FilterPatterns</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs112', 262)" onmouseover="showTip(event, 'fs112', 262)" class="id">allEvents</span> <span class="pn">(</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs113', 263)" onmouseover="showTip(event, 'fs113', 263)" class="id">errorLogs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs85', 264)" onmouseover="showTip(event, 'fs85', 264)" class="m">FilterPatterns</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs86', 265)" onmouseover="showTip(event, 'fs86', 265)" class="id">errorLogs</span> <span class="pn">(</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs114', 266)" onmouseover="showTip(event, 'fs114', 266)" class="id">warningLogs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs85', 267)" onmouseover="showTip(event, 'fs85', 267)" class="m">FilterPatterns</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs115', 268)" onmouseover="showTip(event, 'fs115', 268)" class="id">warningLogs</span> <span class="pn">(</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs116', 269)" onmouseover="showTip(event, 'fs116', 269)" class="id">http5xxErrors</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs85', 270)" onmouseover="showTip(event, 'fs85', 270)" class="m">FilterPatterns</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs90', 271)" onmouseover="showTip(event, 'fs90', 271)" class="id">http5xxErrors</span> <span class="pn">(</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs117', 272)" onmouseover="showTip(event, 'fs117', 272)" class="id">http4xxErrors</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs85', 273)" onmouseover="showTip(event, 'fs85', 273)" class="m">FilterPatterns</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs118', 274)" onmouseover="showTip(event, 'fs118', 274)" class="id">http4xxErrors</span> <span class="pn">(</span><span class="pn">)</span>
+</code></pre>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<h3><a name="Design" class="anchor" href="#Design">Design</a></h3>
+<ul>
+<li>Organize related metrics together</li>
+<li>Use consistent time ranges across widgets</li>
+<li>Add text widgets for context and documentation</li>
+<li>Use colors to highlight critical metrics</li>
+</ul>
+<h3><a name="Operational-Excellence" class="anchor" href="#Operational-Excellence">Operational Excellence</a></h3>
+<ul>
+<li>Create separate dashboards for different teams</li>
+<li>Include both system and business metrics</li>
+<li>Set appropriate Y-axis ranges for readability</li>
+<li>Use anomaly detection for baseline comparison</li>
+<li>Use metric filters to extract custom metrics from logs</li>
+<li>Set appropriate log retention periods (dev: 3 days, prod: 30 days, audit: 5 years)</li>
+</ul>
+<h3><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h3>
+<ul>
+<li>Use 5-minute intervals for most metrics (default)</li>
+<li>Limit the number of custom metrics</li>
+<li>Delete unused dashboards</li>
+<li>Use metric math to reduce API calls</li>
+<li>Set shorter retention for development logs (3-7 days)</li>
+<li>Use filter patterns to reduce unnecessary log processing</li>
+</ul>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>Control dashboard access via IAM</li>
+<li>Don't expose sensitive data in dashboards</li>
+<li>Use CloudFormation for dashboard as code</li>
+<li>Version control dashboard configurations</li>
+<li>Enable encryption for sensitive log data</li>
+<li>Use DESTROY removal policy for dev/test log groups</li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.CloudWatch</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs7">namespace Amazon.CDK.AWS.DynamoDB</div>
+<div class="fsdocs-tip" id="fs8">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val myFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs10">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs13">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs14">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">val invocationsMetric: Metric</div>
+<div class="fsdocs-tip" id="fs17">FunctionSpec.Function: IFunction option</div>
+<div class="fsdocs-tip" id="fs18">property Option.Value: IFunction with get</div>
+<div class="fsdocs-tip" id="fs19">IFunction.MetricInvocations(?props: IMetricOptions) : Metric</div>
+<div class="fsdocs-tip" id="fs20">val errorsMetric: Metric</div>
+<div class="fsdocs-tip" id="fs21">IFunction.MetricErrors(?props: IMetricOptions) : Metric</div>
+<div class="fsdocs-tip" id="fs22">val dashboard: name: string -&gt; DashboardBuilder<br /><em>&lt;summary&gt;Creates a CloudWatch Dashboard with AWS monitoring best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The dashboard name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ dashboard &quot;MyAppDashboard&quot; {
+     dashboardName &quot;my-app-production&quot;
+     defaultInterval (Duration.Minutes(5.0))
+     widgetRow [
+         DashboardWidgets.metricWidget &quot;API Requests&quot; [requestMetric]
+         DashboardWidgets.metricWidget &quot;Error Rate&quot; [errorMetric]
+     ]
+     widgetRow [
+         DashboardWidgets.singleValueWidget &quot;Current Users&quot; [userMetric]
+     ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">custom operation: dashboardName (string)
+
+Calls DashboardBuilder.DashboardName<br /><em>&lt;summary&gt;Sets the dashboard name as it appears in CloudWatch.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">custom operation: widgetRow (IWidget list)
+
+Calls DashboardBuilder.WidgetRow<br /><em>&lt;summary&gt;Adds a row of widgets to the dashboard.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">module DashboardWidgets
+
+from FsCDK</div>
+<div class="fsdocs-tip" id="fs26">val metricWidget: title: string -&gt; metrics: IMetric list -&gt; GraphWidget<br /><em>&lt;summary&gt;
+ Creates a metric widget (line graph)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">val apiFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs28">val dataTable: TableSpec</div>
+<div class="fsdocs-tip" id="fs29">val table: name: string -&gt; TableBuilder<br /><em>&lt;summary&gt;Creates a DynamoDB table configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The table name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">custom operation: partitionKey (string) (AttributeType)
+
+Calls TableBuilder.PartitionKey<br /><em>&lt;summary&gt;Sets the partition key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the partition key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">[&lt;Struct&gt;]
+type AttributeType =
+  | BINARY = 0
+  | NUMBER = 1
+  | STRING = 2</div>
+<div class="fsdocs-tip" id="fs32">field AttributeType.STRING: AttributeType = 2</div>
+<div class="fsdocs-tip" id="fs33">custom operation: billingMode (BillingMode)
+
+Calls TableBuilder.BillingMode<br /><em>&lt;summary&gt;Sets the billing mode for the table.&lt;/summary&gt;<br />&lt;param name=&quot;mode&quot;&gt;The billing mode (PAY_PER_REQUEST or PROVISIONED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">[&lt;Struct&gt;]
+type BillingMode =
+  | PAY_PER_REQUEST = 0
+  | PROVISIONED = 1</div>
+<div class="fsdocs-tip" id="fs35">field BillingMode.PAY_PER_REQUEST: BillingMode = 0</div>
+<div class="fsdocs-tip" id="fs36">val apiMetric: Metric</div>
+<div class="fsdocs-tip" id="fs37">val apiDuration: Metric</div>
+<div class="fsdocs-tip" id="fs38">IFunction.MetricDuration(?props: IMetricOptions) : Metric</div>
+<div class="fsdocs-tip" id="fs39">val tableReads: Metric</div>
+<div class="fsdocs-tip" id="fs40">TableSpec.Table: ITable option</div>
+<div class="fsdocs-tip" id="fs41">property Option.Value: ITable with get</div>
+<div class="fsdocs-tip" id="fs42">ITable.MetricConsumedReadCapacityUnits(?props: IMetricOptions) : Metric</div>
+<div class="fsdocs-tip" id="fs43">val tableWrites: Metric</div>
+<div class="fsdocs-tip" id="fs44">ITable.MetricConsumedWriteCapacityUnits(?props: IMetricOptions) : Metric</div>
+<div class="fsdocs-tip" id="fs45">custom operation: defaultInterval (Duration)
+
+Calls DashboardBuilder.DefaultInterval<br /><em>&lt;summary&gt;Sets the default time range interval for metrics.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs47">Duration.Minutes(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs48">val webFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs49">val errorMetric: Metric</div>
+<div class="fsdocs-tip" id="fs50">val errorAlarm: CloudWatchAlarmSpec</div>
+<div class="fsdocs-tip" id="fs51">val cloudwatchAlarm: name: string -&gt; CloudWatchAlarmBuilder</div>
+<div class="fsdocs-tip" id="fs52">custom operation: description (string)
+
+Calls CloudWatchAlarmBuilder.Description<br /><em>&lt;summary&gt;Sets the alarm description.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs53">custom operation: metric (IMetric)
+
+Calls CloudWatchAlarmBuilder.Metric<br /><em>&lt;summary&gt;Sets the IMetric. If you use this, don&#39;t define metricName or metricNamespace.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs54">custom operation: dimensions ((string * string) list)
+
+Calls CloudWatchAlarmBuilder.Dimensions<br /><em>&lt;summary&gt;Sets the metric dimensions for filtering (e.g., FunctionName, DBInstanceIdentifier).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs55">custom operation: statistic (string)
+
+Calls CloudWatchAlarmBuilder.Statistic<br /><em>&lt;summary&gt;Sets the statistic (Average, Sum, Minimum, Maximum, SampleCount).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs56">custom operation: threshold (float)
+
+Calls CloudWatchAlarmBuilder.Threshold<br /><em>&lt;summary&gt;Sets the alarm threshold value.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs57">custom operation: evaluationPeriods (int)
+
+Calls CloudWatchAlarmBuilder.EvaluationPeriods<br /><em>&lt;summary&gt;Sets the number of periods to evaluate.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs58">custom operation: period (Duration)
+
+Calls CloudWatchAlarmBuilder.Period<br /><em>&lt;summary&gt;Sets the evaluation period.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs59">custom operation: widget (IWidget)
+
+Calls DashboardBuilder.Widget<br /><em>&lt;summary&gt;Adds a single widget to the dashboard.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs60">val alarmWidgetSpec: alarmSpec: CloudWatchAlarmSpec -&gt; AlarmWidget<br /><em>&lt;summary&gt;
+ Creates an alarm widget
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs61">val textWidget: markdown: string -&gt; TextWidget<br /><em>&lt;summary&gt;
+ Creates a text widget with markdown content
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs62">Duration.Days(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs63">custom operation: startTime (string)
+
+Calls DashboardBuilder.StartTime<br /><em>&lt;summary&gt;Sets the start time for the dashboard.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs64">custom operation: endTime (string)
+
+Calls DashboardBuilder.EndTime<br /><em>&lt;summary&gt;Sets the end time for the dashboard.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs65">val logGroup: name: string -&gt; CloudWatchLogGroupBuilder<br /><em>&lt;summary&gt;
+ Creates a new CloudWatch Log Group builder with sensible defaults.
+ Example: logGroup &quot;/aws/ecs/my-service&quot; { retention RetentionDays.ONE_MONTH }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs66">custom operation: retention (AWS.Logs.RetentionDays)
+
+Calls CloudWatchLogGroupBuilder.Retention</div>
+<div class="fsdocs-tip" id="fs67">namespace Amazon.CDK.AWS.Logs</div>
+<div class="fsdocs-tip" id="fs68">[&lt;Struct&gt;]
+type RetentionDays =
+  | ONE_DAY = 0
+  | THREE_DAYS = 1
+  | FIVE_DAYS = 2
+  | ONE_WEEK = 3
+  | TWO_WEEKS = 4
+  | ONE_MONTH = 5
+  | TWO_MONTHS = 6
+  | THREE_MONTHS = 7
+  | FOUR_MONTHS = 8
+  | FIVE_MONTHS = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs69">field AWS.Logs.RetentionDays.ONE_MONTH: AWS.Logs.RetentionDays = 5</div>
+<div class="fsdocs-tip" id="fs70">custom operation: removalPolicy (RemovalPolicy)
+
+Calls CloudWatchLogGroupBuilder.RemovalPolicy</div>
+<div class="fsdocs-tip" id="fs71">[&lt;Struct&gt;]
+type RemovalPolicy =
+  | DESTROY = 0
+  | RETAIN = 1
+  | SNAPSHOT = 2
+  | RETAIN_ON_UPDATE_OR_DELETE = 3</div>
+<div class="fsdocs-tip" id="fs72">field RemovalPolicy.DESTROY: RemovalPolicy = 0</div>
+<div class="fsdocs-tip" id="fs73">module CloudWatchLogsHelpers
+
+from FsCDK<br /><em>&lt;summary&gt;
+ Helper functions for CloudWatch Logs
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs74">val ecsLogGroup: serviceName: string -&gt; environment: string -&gt; string<br /><em>&lt;summary&gt;
+ Creates a log group name for ECS services
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs75">module RetentionPeriods
+
+from FsCDK.CloudWatchLogsHelpers<br /><em>&lt;summary&gt;
+ Common retention periods for different use cases
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs76">val production: AWS.Logs.RetentionDays<br /><em>&lt;summary&gt;
+ Production: 30 days
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs77">val apiGatewayLogGroup: apiName: string -&gt; stage: string -&gt; string<br /><em>&lt;summary&gt;
+ Creates a log group name for API Gateway
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs78">val audit: AWS.Logs.RetentionDays<br /><em>&lt;summary&gt;
+ Audit logs: 5 years
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs79">custom operation: constructId (string)
+
+Calls CloudWatchLogGroupBuilder.ConstructId</div>
+<div class="fsdocs-tip" id="fs80">val appLogGroup: CloudWatchLogGroupResource</div>
+<div class="fsdocs-tip" id="fs81">field AWS.Logs.RetentionDays.TWO_WEEKS: AWS.Logs.RetentionDays = 4</div>
+<div class="fsdocs-tip" id="fs82">val metricFilter: name: string -&gt; CloudWatchMetricFilterBuilder<br /><em>&lt;summary&gt;
+ Creates a CloudWatch Metric Filter to extract metrics from logs.
+ Example:
+ metricFilter &quot;ErrorCount&quot; {
+     logGroup myLogGroup
+     filterPattern (FilterPatterns.errorLogs())
+     metricName &quot;ErrorCount&quot;
+     metricNamespace &quot;MyApp&quot;
+ }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs83">custom operation: logGroup (CloudWatchLogGroupResource)
+
+Calls CloudWatchMetricFilterBuilder.LogGroup</div>
+<div class="fsdocs-tip" id="fs84">custom operation: filterPattern (AWS.Logs.IFilterPattern)
+
+Calls CloudWatchMetricFilterBuilder.FilterPattern</div>
+<div class="fsdocs-tip" id="fs85">module FilterPatterns
+
+from FsCDK<br /><em>&lt;summary&gt;
+ Helper module for common filter patterns
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs86">val errorLogs: unit -&gt; AWS.Logs.IFilterPattern<br /><em>&lt;summary&gt;
+ Match log events by severity level
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs87">custom operation: metricName (string)
+
+Calls CloudWatchMetricFilterBuilder.MetricName</div>
+<div class="fsdocs-tip" id="fs88">custom operation: metricNamespace (string)
+
+Calls CloudWatchMetricFilterBuilder.MetricNamespace</div>
+<div class="fsdocs-tip" id="fs89">custom operation: metricValue (string)
+
+Calls CloudWatchMetricFilterBuilder.MetricValue</div>
+<div class="fsdocs-tip" id="fs90">val http5xxErrors: unit -&gt; AWS.Logs.IFilterPattern<br /><em>&lt;summary&gt;
+ Match HTTP 5xx errors
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs91">val matchText: text: string -&gt; AWS.Logs.IFilterPattern<br /><em>&lt;summary&gt;
+ Match log events containing specific text
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs92">Multiple items<br />custom operation: unit (Unit)
+
+Calls CloudWatchMetricFilterBuilder.Unit<br /><br />--------------------<br />type unit = Unit</div>
+<div class="fsdocs-tip" id="fs93">[&lt;Struct&gt;]
+type Unit =
+  | SECONDS = 0
+  | MICROSECONDS = 1
+  | MILLISECONDS = 2
+  | BYTES = 3
+  | KILOBYTES = 4
+  | MEGABYTES = 5
+  | GIGABYTES = 6
+  | TERABYTES = 7
+  | BITS = 8
+  | KILOBITS = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs94">field Unit.MILLISECONDS: Unit = 2</div>
+<div class="fsdocs-tip" id="fs95">val logWidget: LogQueryWidget</div>
+<div class="fsdocs-tip" id="fs96">val logQueryWidget: title: string -&gt; logGroupNames: string list -&gt; queryString: string -&gt; width: int option -&gt; height: int option -&gt; LogQueryWidget<br /><em>&lt;summary&gt;
+ Creates a log query widget
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs97">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs98">val activeUsers: Metric</div>
+<div class="fsdocs-tip" id="fs99">Multiple items<br />type Metric =
+  inherit DeputyBase
+  interface IMetric
+  new: props: IMetricProps -&gt; unit
+  member AttachTo: scope: IConstruct -&gt; Metric
+  member CreateAlarm: scope: Construct * id: string * props: ICreateAlarmOptions -&gt; Alarm
+  member ToMetricConfig: unit -&gt; IMetricConfig
+  member ToString: unit -&gt; string
+  member With: props: IMetricOptions -&gt; Metric
+  static member AnomalyDetectionFor: props: IAnomalyDetectionMetricOptions -&gt; MathExpression
+  static member GrantPutMetricData: grantee: IGrantable -&gt; Grant
+  ...<br /><br />--------------------<br />Metric(props: IMetricProps) : Metric</div>
+<div class="fsdocs-tip" id="fs100">Multiple items<br />type MetricProps =
+  interface IMetricProps
+  interface ICommonMetricOptions
+  new: unit -&gt; unit
+  member Account: string
+  member Color: string
+  member DimensionsMap: IDictionary&lt;string,string&gt;
+  member Id: string
+  member Label: string
+  member MetricName: string
+  member Namespace: string
+  ...<br /><br />--------------------<br />MetricProps() : MetricProps</div>
+<div class="fsdocs-tip" id="fs101">val currentRequests: Metric</div>
+<div class="fsdocs-tip" id="fs102">val singleValueWidget: title: string -&gt; metrics: IMetric list -&gt; SingleValueWidget<br /><em>&lt;summary&gt;
+ Creates a single value widget (shows latest metric value)
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs103">val devRetention: AWS.Logs.RetentionDays</div>
+<div class="fsdocs-tip" id="fs104">val dev: AWS.Logs.RetentionDays<br /><em>&lt;summary&gt;
+ Development/testing: 3 days
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs105">val prodRetention: AWS.Logs.RetentionDays</div>
+<div class="fsdocs-tip" id="fs106">val auditRetention: AWS.Logs.RetentionDays</div>
+<div class="fsdocs-tip" id="fs107">val lambdaLogGroup: string</div>
+<div class="fsdocs-tip" id="fs108">val lambdaLogGroup: functionName: string -&gt; string<br /><em>&lt;summary&gt;
+ Creates a log group name for Lambda functions
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs109">val ecsLogGroup: string</div>
+<div class="fsdocs-tip" id="fs110">val apiGatewayLogGroup: string</div>
+<div class="fsdocs-tip" id="fs111">val allEvents: AWS.Logs.IFilterPattern</div>
+<div class="fsdocs-tip" id="fs112">val allEvents: unit -&gt; AWS.Logs.IFilterPattern<br /><em>&lt;summary&gt;
+ Match all log events
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs113">val errorLogs: AWS.Logs.IFilterPattern</div>
+<div class="fsdocs-tip" id="fs114">val warningLogs: AWS.Logs.IFilterPattern</div>
+<div class="fsdocs-tip" id="fs115">val warningLogs: unit -&gt; AWS.Logs.IFilterPattern</div>
+<div class="fsdocs-tip" id="fs116">val http5xxErrors: AWS.Logs.IFilterPattern</div>
+<div class="fsdocs-tip" id="fs117">val http4xxErrors: AWS.Logs.IFilterPattern</div>
+<div class="fsdocs-tip" id="fs118">val http4xxErrors: unit -&gt; AWS.Logs.IFilterPattern<br /><em>&lt;summary&gt;
+ Match HTTP 4xx errors
+&lt;/summary&gt;</em></div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Quick-Start">
+      Quick Start
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-Dashboard">
+      Basic Dashboard
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Multi-Resource-Dashboard">
+      Multi-Resource Dashboard
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Dashboard-with-Alarms">
+      Dashboard with Alarms
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Dashboard-with-Text-Widgets">
+      Dashboard with Text Widgets
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Custom-Time-Range">
+      Custom Time Range
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#CloudWatch-Log-Groups">
+      CloudWatch Log Groups
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Metric-Filters">
+      Metric Filters
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Log-Insights-Widget">
+      Log Insights Widget
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Single-Value-Widgets">
+      Single Value Widgets
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#CloudWatch-Helpers">
+      CloudWatch Helpers
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Design">
+      Design
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Operational-Excellence">
+      Operational Excellence
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

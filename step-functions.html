@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Step Functions (State Machines)" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/step-functions.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Step Functions (State Machines)">
+    
+    <title>Step Functions (State Machines) | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="AWS-Step-Functions" class="anchor" href="#AWS-Step-Functions"><img src="img/icons/Arch_AWS-Step-Functions_48.png" alt="AWS Step Functions" /> AWS Step Functions</a></h1>
+<p>AWS Step Functions is a serverless orchestration service that lets you combine AWS Lambda functions
+and other AWS services into business-critical workflows.</p>
+<h2><a name="Order-Processing-Workflow-Example" class="anchor" href="#Order-Processing-Workflow-Example">Order Processing Workflow Example</a></h2>
+<p><img src="img/diagrams/step-functions-order-workflow.svg" alt="Step Functions Order Processing Workflow" /></p>
+<h2><a name="Quick-Start" class="anchor" href="#Quick-Start">Quick Start</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">StepFunctions</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="id">StepFunctions</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 12)" onmouseover="showTip(event, 'fs6', 12)" class="id">Tasks</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 13)" onmouseover="showTip(event, 'fs2', 13)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 14)" onmouseover="showTip(event, 'fs3', 14)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 15)" onmouseover="showTip(event, 'fs4', 15)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 16)" onmouseover="showTip(event, 'fs7', 16)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 17)" onmouseover="showTip(event, 'fs2', 17)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 18)" onmouseover="showTip(event, 'fs3', 18)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 19)" onmouseover="showTip(event, 'fs4', 19)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 20)" onmouseover="showTip(event, 'fs8', 20)" class="id">Logs</span>
+</code></pre>
+<h2><a name="Basic-State-Machine" class="anchor" href="#Basic-State-Machine">Basic State Machine</a></h2>
+<p>Create a simple state machine that orchestrates Lambda functions.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 21)" onmouseover="showTip(event, 'fs9', 21)" class="fn">stack</span> <span class="s">&quot;BasicStateMachine&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create Lambda functions</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs10', 22)" onmouseover="showTip(event, 'fs10', 22)" class="fn">processFunc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs11', 23)" onmouseover="showTip(event, 'fs11', 23)" class="fn">lambda</span> <span class="s">&quot;ProcessData&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs12', 24)" onmouseover="showTip(event, 'fs12', 24)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs13', 25)" onmouseover="showTip(event, 'fs13', 25)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 26)" onmouseover="showTip(event, 'fs14', 26)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs15', 27)" onmouseover="showTip(event, 'fs15', 27)" class="k">handler</span> <span class="s">&quot;App::Process&quot;</span>
+            <span onmouseout="hideTip(event, 'fs16', 28)" onmouseover="showTip(event, 'fs16', 28)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+            <span class="pn">(</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs17', 29)" onmouseover="showTip(event, 'fs17', 29)" class="fn">validateFunc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs11', 30)" onmouseover="showTip(event, 'fs11', 30)" class="fn">lambda</span> <span class="s">&quot;ValidateData&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs12', 31)" onmouseover="showTip(event, 'fs12', 31)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs13', 32)" onmouseover="showTip(event, 'fs13', 32)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs14', 33)" onmouseover="showTip(event, 'fs14', 33)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs15', 34)" onmouseover="showTip(event, 'fs15', 34)" class="k">handler</span> <span class="s">&quot;App::Validate&quot;</span>
+            <span onmouseout="hideTip(event, 'fs16', 35)" onmouseover="showTip(event, 'fs16', 35)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create log group for state machine</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 36)" onmouseover="showTip(event, 'fs18', 36)" class="fn">logGroup</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs19', 37)" onmouseover="showTip(event, 'fs19', 37)" class="fn">logGroup</span> <span class="s">&quot;/aws/vendedlogs/states/MyStateMachine&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs20', 38)" onmouseover="showTip(event, 'fs20', 38)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs21', 39)" onmouseover="showTip(event, 'fs21', 39)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 40)" onmouseover="showTip(event, 'fs22', 40)" class="id">ONE_MONTH</span> <span class="pn">}</span>
+
+    <span class="c">// Create state machine</span>
+    <span class="c">// Note: State definitions must be created using CDK Tasks</span>
+    <span class="c">// Example:</span>
+    <span class="c">//   let validateTask = LambdaInvoke(scope, &quot;ValidateTask&quot;, ...)</span>
+    <span class="c">//   let processTask = LambdaInvoke(scope, &quot;ProcessTask&quot;, ...)</span>
+    <span class="c">//   let definition = Chain.Start(validateTask).Next(processTask)</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 41)" onmouseover="showTip(event, 'fs23', 41)" class="fn">stateMachine</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs24', 42)" onmouseover="showTip(event, 'fs24', 42)" class="fn">stepFunction</span> <span class="s">&quot;DataPipeline&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs25', 43)" onmouseover="showTip(event, 'fs25', 43)" class="k">comment</span> <span class="s">&quot;Validates and processes data&quot;</span>
+            <span class="c">// definition definition</span>
+            <span onmouseout="hideTip(event, 'fs26', 44)" onmouseover="showTip(event, 'fs26', 44)" class="k">logDestination</span> <span onmouseout="hideTip(event, 'fs18', 45)" onmouseover="showTip(event, 'fs18', 45)" class="fn">logGroup</span>
+            <span onmouseout="hideTip(event, 'fs27', 46)" onmouseover="showTip(event, 'fs27', 46)" class="k">timeout</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs28', 47)" onmouseover="showTip(event, 'fs28', 47)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 48)" onmouseover="showTip(event, 'fs29', 48)" class="id">Hours</span><span class="pn">(</span><span class="n">2.0</span><span class="pn">)</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Standard-vs-Express-State-Machines" class="anchor" href="#Standard-vs-Express-State-Machines">Standard vs Express State Machines</a></h2>
+<p>Step Functions offers two types of state machines:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 49)" onmouseover="showTip(event, 'fs9', 49)" class="fn">stack</span> <span class="s">&quot;StateMachineTypes&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 50)" onmouseover="showTip(event, 'fs18', 50)" class="fn">logGroup</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs19', 51)" onmouseover="showTip(event, 'fs19', 51)" class="fn">logGroup</span> <span class="s">&quot;Logs&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs20', 52)" onmouseover="showTip(event, 'fs20', 52)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs21', 53)" onmouseover="showTip(event, 'fs21', 53)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 54)" onmouseover="showTip(event, 'fs30', 54)" class="id">ONE_WEEK</span>
+            <span class="pn">(</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Standard: Long-running, exactly-once execution</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 55)" onmouseover="showTip(event, 'fs31', 55)" class="fn">standardSM</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs24', 56)" onmouseover="showTip(event, 'fs24', 56)" class="fn">stepFunction</span> <span class="s">&quot;StandardWorkflow&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs32', 57)" onmouseover="showTip(event, 'fs32', 57)" class="k">stateMachineType</span> <span onmouseout="hideTip(event, 'fs33', 58)" onmouseover="showTip(event, 'fs33', 58)" class="en">StateMachineType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs34', 59)" onmouseover="showTip(event, 'fs34', 59)" class="id">STANDARD</span>
+            <span onmouseout="hideTip(event, 'fs25', 60)" onmouseover="showTip(event, 'fs25', 60)" class="k">comment</span> <span class="s">&quot;Long-running workflow with exactly-once semantics&quot;</span>
+            <span onmouseout="hideTip(event, 'fs26', 61)" onmouseover="showTip(event, 'fs26', 61)" class="k">logDestination</span> <span onmouseout="hideTip(event, 'fs18', 62)" onmouseover="showTip(event, 'fs18', 62)" class="fn">logGroup</span>
+            <span onmouseout="hideTip(event, 'fs27', 63)" onmouseover="showTip(event, 'fs27', 63)" class="k">timeout</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs28', 64)" onmouseover="showTip(event, 'fs28', 64)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 65)" onmouseover="showTip(event, 'fs35', 65)" class="id">Days</span><span class="pn">(</span><span class="n">1.0</span><span class="pn">)</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Express: Short-lived, at-least-once execution, cheaper</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 66)" onmouseover="showTip(event, 'fs36', 66)" class="fn">expressSM</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs24', 67)" onmouseover="showTip(event, 'fs24', 67)" class="fn">stepFunction</span> <span class="s">&quot;ExpressWorkflow&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs32', 68)" onmouseover="showTip(event, 'fs32', 68)" class="k">stateMachineType</span> <span onmouseout="hideTip(event, 'fs33', 69)" onmouseover="showTip(event, 'fs33', 69)" class="en">StateMachineType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 70)" onmouseover="showTip(event, 'fs37', 70)" class="id">EXPRESS</span>
+            <span onmouseout="hideTip(event, 'fs25', 71)" onmouseover="showTip(event, 'fs25', 71)" class="k">comment</span> <span class="s">&quot;High-volume, short-duration workflow&quot;</span>
+            <span onmouseout="hideTip(event, 'fs26', 72)" onmouseover="showTip(event, 'fs26', 72)" class="k">logDestination</span> <span onmouseout="hideTip(event, 'fs18', 73)" onmouseover="showTip(event, 'fs18', 73)" class="fn">logGroup</span>
+            <span onmouseout="hideTip(event, 'fs27', 74)" onmouseover="showTip(event, 'fs27', 74)" class="k">timeout</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs28', 75)" onmouseover="showTip(event, 'fs28', 75)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 76)" onmouseover="showTip(event, 'fs38', 76)" class="id">Minutes</span><span class="pn">(</span><span class="n">5.0</span><span class="pn">)</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Error-Handling-and-Retry-Logic" class="anchor" href="#Error-Handling-and-Retry-Logic">Error Handling and Retry Logic</a></h2>
+<p>Implement robust error handling with retries and fallbacks.</p>
+<p>Note: Error handling and retry logic must be configured on individual tasks using CDK directly.</p>
+<h2><a name="Parallel-Execution" class="anchor" href="#Parallel-Execution">Parallel Execution</a></h2>
+<p>Execute multiple tasks concurrently.</p>
+<p>Note: Parallel states must be created using CDK Parallel construct.</p>
+<h2><a name="Choice-States" class="anchor" href="#Choice-States">Choice States</a></h2>
+<p>Implement conditional branching in workflows.</p>
+<p>Note: Choice states must be created using CDK Choice construct.</p>
+<h2><a name="Map-States" class="anchor" href="#Map-States">Map States</a></h2>
+<p>Process arrays of items in parallel.</p>
+<p>Note: Map states must be created using CDK Map construct.</p>
+<h2><a name="Wait-States" class="anchor" href="#Wait-States">Wait States</a></h2>
+<p>Add delays between workflow steps.</p>
+<p>Note: Wait states must be created using CDK Wait construct.</p>
+<h2><a name="Integration-with-AWS-Services" class="anchor" href="#Integration-with-AWS-Services">Integration with AWS Services</a></h2>
+<p>Step Functions integrates with many AWS services beyond Lambda:</p>
+<h3><a name="DynamoDB-Integration" class="anchor" href="#DynamoDB-Integration">DynamoDB Integration</a></h3>
+<p>Read/write to DynamoDB tables directly from state machines.</p>
+<h3><a name="SQS-Integration" class="anchor" href="#SQS-Integration">SQS Integration</a></h3>
+<p>Send messages to SQS queues.</p>
+<h3><a name="SNS-Integration" class="anchor" href="#SNS-Integration">SNS Integration</a></h3>
+<p>Publish messages to SNS topics.</p>
+<h3><a name="ECS-Fargate-Integration" class="anchor" href="#ECS-Fargate-Integration">ECS/Fargate Integration</a></h3>
+<p>Run containerized tasks.</p>
+<h2><a name="Human-Approval-Workflow" class="anchor" href="#Human-Approval-Workflow">Human Approval Workflow</a></h2>
+<p>Implement workflows that require human approval.</p>
+<h2><a name="Saga-Pattern-for-Distributed-Transactions" class="anchor" href="#Saga-Pattern-for-Distributed-Transactions">Saga Pattern for Distributed Transactions</a></h2>
+<p>Implement compensating transactions for microservices.</p>
+<h2><a name="Monitoring-and-Observability" class="anchor" href="#Monitoring-and-Observability">Monitoring and Observability</a></h2>
+<p>Step Functions provides comprehensive monitoring capabilities.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs9', 77)" onmouseover="showTip(event, 'fs9', 77)" class="fn">stack</span> <span class="s">&quot;MonitoredStateMachine&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 78)" onmouseover="showTip(event, 'fs18', 78)" class="fn">logGroup</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs19', 79)" onmouseover="showTip(event, 'fs19', 79)" class="fn">logGroup</span> <span class="s">&quot;DetailedLogs&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs20', 80)" onmouseover="showTip(event, 'fs20', 80)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs21', 81)" onmouseover="showTip(event, 'fs21', 81)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 82)" onmouseover="showTip(event, 'fs39', 82)" class="id">THREE_MONTHS</span>
+            <span class="pn">(</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs40', 83)" onmouseover="showTip(event, 'fs40', 83)" class="fn">sm</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs24', 84)" onmouseover="showTip(event, 'fs24', 84)" class="fn">stepFunction</span> <span class="s">&quot;MonitoredWorkflow&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs25', 85)" onmouseover="showTip(event, 'fs25', 85)" class="k">comment</span> <span class="s">&quot;Workflow with full logging and tracing&quot;</span>
+            <span class="c">// Full logging (ALL events)</span>
+            <span onmouseout="hideTip(event, 'fs41', 86)" onmouseover="showTip(event, 'fs41', 86)" class="k">loggingLevel</span> <span onmouseout="hideTip(event, 'fs42', 87)" onmouseover="showTip(event, 'fs42', 87)" class="en">LogLevel</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 88)" onmouseover="showTip(event, 'fs43', 88)" class="id">ALL</span>
+            <span onmouseout="hideTip(event, 'fs26', 89)" onmouseover="showTip(event, 'fs26', 89)" class="k">logDestination</span> <span onmouseout="hideTip(event, 'fs18', 90)" onmouseover="showTip(event, 'fs18', 90)" class="fn">logGroup</span>
+            <span class="c">// X-Ray tracing enabled by default</span>
+            <span onmouseout="hideTip(event, 'fs44', 91)" onmouseover="showTip(event, 'fs44', 91)" class="k">tracingEnabled</span> <span class="k">true</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<h3><a name="Performance" class="anchor" href="#Performance">Performance</a></h3>
+<ul>
+<li>Use Express workflows for high-volume, short-duration tasks</li>
+<li>Use Standard workflows for long-running processes</li>
+<li>Execute independent tasks in parallel using Parallel states</li>
+<li>Use Map state for processing arrays</li>
+<li>Consider Lambda performance optimizations (memory, cold starts)</li>
+<li>Minimize data passing between states (use S3 for large payloads)</li>
+</ul>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>Use IAM roles with least-privilege permissions</li>
+<li>Enable X-Ray tracing for distributed system visibility</li>
+<li>Encrypt state machine data at rest</li>
+<li>Use VPC endpoints for private AWS service access</li>
+<li>Audit state machine executions in CloudTrail</li>
+<li>Implement input validation in Lambda functions</li>
+</ul>
+<h3><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h3>
+<ul>
+<li>
+Use Express workflows for cost-sensitive, high-volume workloads
+<ul>
+<li>100x cheaper than Standard for high-volume scenarios</li>
+<li>Charged per execution and duration (not per state transition)</li>
+</ul>
+</li>
+<li>
+Use Standard workflows only when you need:
+<ul>
+<li>Exactly-once execution semantics</li>
+<li>Long-running workflows (&gt; 5 minutes)</li>
+<li>Visual workflow history</li>
+</ul>
+</li>
+<li>Optimize Lambda function execution time and memory</li>
+<li>Use Step Functions instead of polling loops</li>
+<li>Set appropriate timeouts to prevent runaway executions</li>
+</ul>
+<h3><a name="Reliability" class="anchor" href="#Reliability">Reliability</a></h3>
+<ul>
+<li>Implement retry logic with exponential backoff</li>
+<li>Use error handling (Catch) for graceful degradation</li>
+<li>Set realistic timeouts for all tasks</li>
+<li>Use DLQ for failed executions</li>
+<li>Test failure scenarios thoroughly</li>
+<li>Implement circuit breaker patterns for external dependencies</li>
+<li>Use CloudWatch alarms for execution failures</li>
+</ul>
+<h3><a name="Operational-Excellence" class="anchor" href="#Operational-Excellence">Operational Excellence</a></h3>
+<ul>
+<li>Use descriptive state machine and task names</li>
+<li>Add comments to explain workflow logic</li>
+<li>Enable full logging (LogLevel.ALL) for debugging</li>
+<li>Tag state machines with project, environment, team</li>
+<li>Version your state machine definitions</li>
+<li>Monitor execution metrics (duration, success rate)</li>
+<li>Set up alerts for failed executions</li>
+<li>Document workflow diagrams and business logic</li>
+</ul>
+<h2><a name="State-Machine-Types-Comparison" class="anchor" href="#State-Machine-Types-Comparison">State Machine Types Comparison</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th><p>Feature</p></th>
+<th><p>Standard</p></th>
+<th><p>Express</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Max Duration</strong></p></td>
+<td><p>1 year</p></td>
+<td><p>5 minutes</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Execution Rate</strong></p></td>
+<td><p>2,000/second</p></td>
+<td><p>100,000/second</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Pricing</strong></p></td>
+<td><p>Per state transition</p></td>
+<td><p>Per execution + duration</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Execution Semantics</strong></p></td>
+<td><p>Exactly-once</p></td>
+<td><p>At-least-once</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Execution History</strong></p></td>
+<td><p>Full history (90 days)</p></td>
+<td><p>CloudWatch Logs only</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Best For</strong></p></td>
+<td><p>Long-running, critical</p></td>
+<td><p>High-volume, short tasks</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2><a name="Default-Settings" class="anchor" href="#Default-Settings">Default Settings</a></h2>
+<p>The Step Functions builder applies these production-safe defaults:</p>
+<ul>
+<li><strong>State Machine Type</strong>: STANDARD (reliable, exactly-once)</li>
+<li><strong>Logging Level</strong>: ALL (full execution logging)</li>
+<li><strong>Tracing</strong>: Enabled (X-Ray integration)</li>
+<li><strong>Timeout</strong>: 1 hour (configurable)</li>
+</ul>
+<p>Note: Logging requires a CloudWatch Log Group destination.</p>
+<h2><a name="Logging-Levels" class="anchor" href="#Logging-Levels">Logging Levels</a></h2>
+<ul>
+<li><strong>OFF</strong>: No logging (not recommended)</li>
+<li><strong>ERROR</strong>: Log errors only</li>
+<li><strong>ALL</strong>: Log all events (recommended for debugging)</li>
+</ul>
+<h2><a name="Helper-Functions" class="anchor" href="#Helper-Functions">Helper Functions</a></h2>
+<p>FsCDK provides helper functions for common Step Functions patterns:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs45', 92)" onmouseover="showTip(event, 'fs45', 92)" class="m">StepFunctionHelpers</span>
+
+<span class="c">// State machine types</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs46', 93)" onmouseover="showTip(event, 'fs46', 93)" class="id">standardType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs47', 94)" onmouseover="showTip(event, 'fs47', 94)" class="m">StateMachineTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 95)" onmouseover="showTip(event, 'fs48', 95)" class="id">standard</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 96)" onmouseover="showTip(event, 'fs49', 96)" class="id">expressType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs47', 97)" onmouseover="showTip(event, 'fs47', 97)" class="m">StateMachineTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs50', 98)" onmouseover="showTip(event, 'fs50', 98)" class="id">express</span>
+
+<span class="c">// Common timeouts</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs51', 99)" onmouseover="showTip(event, 'fs51', 99)" class="id">fiveMin</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 100)" onmouseover="showTip(event, 'fs52', 100)" class="m">Timeouts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 101)" onmouseover="showTip(event, 'fs53', 101)" class="id">fiveMinutes</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs54', 102)" onmouseover="showTip(event, 'fs54', 102)" class="id">thirtyMin</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 103)" onmouseover="showTip(event, 'fs52', 103)" class="m">Timeouts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 104)" onmouseover="showTip(event, 'fs55', 104)" class="id">thirtyMinutes</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs56', 105)" onmouseover="showTip(event, 'fs56', 105)" class="id">oneHour</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 106)" onmouseover="showTip(event, 'fs52', 106)" class="m">Timeouts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 107)" onmouseover="showTip(event, 'fs56', 107)" class="id">oneHour</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs57', 108)" onmouseover="showTip(event, 'fs57', 108)" class="id">oneDay</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 109)" onmouseover="showTip(event, 'fs52', 109)" class="m">Timeouts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 110)" onmouseover="showTip(event, 'fs57', 110)" class="id">oneDay</span>
+
+<span class="c">// Logging levels</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs58', 111)" onmouseover="showTip(event, 'fs58', 111)" class="id">allLogs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs59', 112)" onmouseover="showTip(event, 'fs59', 112)" class="m">LoggingLevels</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 113)" onmouseover="showTip(event, 'fs60', 113)" class="id">all</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs61', 114)" onmouseover="showTip(event, 'fs61', 114)" class="id">errorLogs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs59', 115)" onmouseover="showTip(event, 'fs59', 115)" class="m">LoggingLevels</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 116)" onmouseover="showTip(event, 'fs62', 116)" class="id">error</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs63', 117)" onmouseover="showTip(event, 'fs63', 117)" class="id">noLogs</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs59', 118)" onmouseover="showTip(event, 'fs59', 118)" class="m">LoggingLevels</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 119)" onmouseover="showTip(event, 'fs64', 119)" class="id">off</span>
+</code></pre>
+<h2><a name="Escape-Hatch" class="anchor" href="#Escape-Hatch">Escape Hatch</a></h2>
+<p>For advanced scenarios, access the underlying CDK StateMachine:</p>
+<p><code>fsharp
+let smResource = stepFunction "MyWorkflow" {
+comment "My workflow"
+logDestination myLogGroup</code>
+}</p>
+<p>// Access the CDK StateMachine for advanced configuration
+let cdkSM = smResource.StateMachine.Value</p>
+<p>// Grant execution permissions
+cdkSM.GrantStartExecution myRole
+cdkSM.GrantStartSyncExecution myRole</p>
+<p>// Get state machine ARN
+let arn = cdkSM.StateMachineArn
+`</p>
+<h2><a name="Use-Cases" class="anchor" href="#Use-Cases">Use Cases</a></h2>
+<h3><a name="Order-Processing" class="anchor" href="#Order-Processing">Order Processing</a></h3>
+<ul>
+<li>Validate order</li>
+<li>Check inventory</li>
+<li>Process payment</li>
+<li>Ship order</li>
+<li>Send confirmation</li>
+<li>Handle failures with compensating transactions</li>
+</ul>
+<h3><a name="ETL-Pipelines" class="anchor" href="#ETL-Pipelines">ETL Pipelines</a></h3>
+<ul>
+<li>Extract data from sources</li>
+<li>Transform data in parallel</li>
+<li>Load to data warehouse</li>
+<li>Validate results</li>
+<li>Generate reports</li>
+</ul>
+<h3><a name="Machine-Learning-Workflows" class="anchor" href="#Machine-Learning-Workflows">Machine Learning Workflows</a></h3>
+<ul>
+<li>Prepare training data</li>
+<li>Train model</li>
+<li>Evaluate model</li>
+<li>Deploy if accuracy threshold met</li>
+<li>Monitor model performance</li>
+</ul>
+<h3><a name="Human-Approval-Workflows" class="anchor" href="#Human-Approval-Workflows">Human Approval Workflows</a></h3>
+<ul>
+<li>Submit request</li>
+<li>Wait for approval (callback pattern)</li>
+<li>Process approved requests</li>
+<li>Notify outcome</li>
+</ul>
+<h3><a name="Microservice-Orchestration" class="anchor" href="#Microservice-Orchestration">Microservice Orchestration</a></h3>
+<ul>
+<li>Coordinate multiple microservices</li>
+<li>Handle partial failures</li>
+<li>Implement saga pattern</li>
+<li>Ensure data consistency</li>
+</ul>
+<h2><a name="Learning-Resources-for-AWS-Step-Functions" class="anchor" href="#Learning-Resources-for-AWS-Step-Functions">📚 Learning Resources for AWS Step Functions</a></h2>
+<h3><a name="AWS-Official-Documentation" class="anchor" href="#AWS-Official-Documentation">AWS Official Documentation</a></h3>
+<p><strong>Getting Started:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html">AWS Step Functions Developer Guide</a> - Complete documentation
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/tutorials.html">Step Functions Tutorials</a> - Hands-on learning
+- <a href="https://states-language.net/spec.html">Amazon States Language (ASL)</a> - JSON-based workflow language
+- <a href="https://aws.amazon.com/blogs/aws/new-aws-step-functions-workflow-studio-a-low-code-visual-tool-for-building-state-machines/">Step Functions Workflow Studio</a> - Visual workflow builder</p>
+<p><strong>Core Concepts:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-states.html">State Types</a> - Task, Choice, Parallel, Map, Wait, etc.
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-service-integrations.html">Service Integrations</a> - 220+ AWS service integrations
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html">Error Handling</a> - Retry and Catch patterns
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-standard-vs-express.html">Standard vs Express Workflows</a> - When to use each</p>
+<p><strong>Best Practices:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/best-practices.html">Step Functions Best Practices</a> - Official recommendations
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/design-patterns.html">Design Patterns</a> - Common workflow patterns
+- <a href="https://aws.amazon.com/step-functions/pricing/">Cost Optimization</a> - Pricing guide and cost strategies</p>
+<h3><a name="Serverless-Orchestration-Patterns" class="anchor" href="#Serverless-Orchestration-Patterns">Serverless Orchestration Patterns</a></h3>
+<p><strong>Yan Cui (The Burning Monk) - Orchestration Expert:</strong>
+- <a href="https://theburningmonk.com/">The Burning Monk Blog</a> - Yan Cui's Step Functions and orchestration insights, including comprehensive serverless best practices and error handling
+- <a href="https://theburningmonk.com/2017/07/applying-the-saga-pattern-with-aws-lambda-and-step-functions/">Saga Pattern with Step Functions</a> - Distributed transactions
+- <a href="https://theburningmonk.com/2020/08/choreography-vs-orchestration-in-the-land-of-serverless/">Step Functions vs EventBridge</a> - Choreography vs Orchestration</p>
+<p><strong>AWS Compute Blog - Essential Reading:</strong>
+- <a href="https://aws.amazon.com/blogs/compute/building-event-driven-architectures-with-step-functions/">Event-Driven Orchestration</a> - Modern patterns
+- <a href="https://aws.amazon.com/blogs/compute/using-the-aws-step-functions-callback-pattern/">Callback Pattern</a> - Human approval workflows
+- <a href="https://aws.amazon.com/blogs/compute/handling-batch-operations-with-aws-step-functions/">Map State Deep Dive</a> - Process arrays efficiently
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token">Wait for Callback with Task Token</a> - Integrate with external systems</p>
+<h3><a name="Advanced-Patterns-amp-Architectures" class="anchor" href="#Advanced-Patterns-amp-Architectures">Advanced Patterns &amp; Architectures</a></h3>
+<p><strong>Saga Pattern (Distributed Transactions):</strong>
+- <a href="https://aws.amazon.com/blogs/compute/implementing-the-saga-pattern-with-aws-step-functions-and-amazon-dynamodb/">Saga Pattern Implementation</a> - Official AWS guide
+- <a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/implement-the-serverless-saga-pattern-by-using-aws-step-functions.html">Compensating Transactions</a> - Rollback failed operations
+- <a href="https://aws.amazon.com/blogs/compute/using-aws-step-functions-and-amazon-eventbridge-to-orchestrate-event-driven-applications/">Event Sourcing with Step Functions</a> - Building audit trails</p>
+<p><strong>Parallel &amp; Map State Patterns:</strong>
+- <a href="https://aws.amazon.com/blogs/aws/step-functions-distributed-map-a-serverless-solution-for-large-scale-parallel-data-processing/">Distributed Map State</a> - Process millions of items
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/sample-project-dynamodb-streams.html">Dynamic Parallelism</a> - Fan-out patterns
+- <a href="https://aws.amazon.com/blogs/compute/handling-batch-operations-with-aws-step-functions/">Batch Processing</a> - Large-scale data processing</p>
+<p><strong>Choice &amp; Branching:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-choice-state.html">Choice State Examples</a> - Conditional logic
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/input-output-example.html">InputPath, OutputPath, ResultPath</a> - Data flow management
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-paths.html">JSONPath in Step Functions</a> - Extract and transform data</p>
+<p><strong>Wait &amp; Timer Patterns:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/amazon-states-language-wait-state.html">Wait State</a> - Fixed or dynamic waits
+- <a href="https://aws.amazon.com/blogs/compute/scheduling-aws-lambda-functions-with-step-functions/">Schedule-Based Workflows</a> - Cron-like execution
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/sample-project-job-poller.html">Polling Patterns</a> - Wait for external job completion</p>
+<h3><a name="Step-Functions-Service-Integrations" class="anchor" href="#Step-Functions-Service-Integrations">Step Functions Service Integrations</a></h3>
+<p><strong>Direct SDK Integrations (220+ Services):</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-lambda.html">Lambda Integration</a> - Invoke functions sync or async
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-ddb.html">DynamoDB Integration</a> - Read/write tables directly
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-ecs.html">ECS/Fargate Integration</a> - Run containerized tasks
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-sns.html">SNS/SQS Integration</a> - Message pub/sub
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-glue.html">Glue Integration</a> - ETL workflows
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-athena.html">Athena Integration</a> - Query S3 data
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-sagemaker.html">SageMaker Integration</a> - ML training/inference</p>
+<p><strong>Optimized Integrations:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-lambda.html">Lambda Optimized</a> - Automatic payload handling
+- <a href="https://aws.amazon.com/blogs/compute/introducing-aws-step-functions-synchronous-express-workflows/">Service Integrations Deep Dive</a> - Sync vs async patterns</p>
+<h3><a name="Error-Handling-amp-Resilience" class="anchor" href="#Error-Handling-amp-Resilience">Error Handling &amp; Resilience</a></h3>
+<p><strong>Retry Strategies:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-retrying-after-an-error">Retry Configuration</a> - ErrorEquals, IntervalSeconds, MaxAttempts, BackoffRate
+- <a href="https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/">Exponential Backoff</a> - Prevent thundering herd
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/best-practices.html#bp-error-handling">Error Handling Best Practices</a> - Official AWS guidance on retries and error handling</p>
+<p><strong>Catch &amp; Fallback:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-catching-errors">Catch Errors</a> - Handle specific errors
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html#error-handling-fallback-chains">Fallback Chains</a> - Multiple catch handlers
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html">States.ALL</a> - Catch-all error handler</p>
+<p><strong>Circuit Breaker Pattern:</strong>
+- <a href="https://aws.amazon.com/blogs/compute/building-a-circuit-breaker-for-aws-step-functions/">Circuit Breaker with Step Functions</a> - Prevent cascading failures
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/sample-project-health-check.html">Health Checks</a> - Monitor external dependencies</p>
+<h3><a name="Standard-vs-Express-Workflows" class="anchor" href="#Standard-vs-Express-Workflows">Standard vs Express Workflows</a></h3>
+<p><strong>When to Use Standard:</strong>
+- Long-running workflows (up to 1 year)
+- Exactly-once execution semantics required
+- Need full execution history and visual debugging
+- Audit trail is critical
+- Slower execution rate (&lt; 2,000/second)</p>
+<p><strong>When to Use Express:</strong>
+- High-volume, short-duration workflows (&lt; 5 minutes)
+- Can tolerate at-least-once execution
+- Cost is primary concern (100x cheaper for high volume)
+- Need high throughput (100,000/second)
+- Streaming data processing</p>
+<p><strong>Cost Comparison Example:</strong></p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">Standard</span><span class="pn">:</span> <span class="o">$</span><span class="n">0.025</span> <span class="id">per</span> <span class="n">1</span><span class="pn">,</span><span class="n">000</span> <span class="id">state</span> <span class="id">transitions</span>
+<span class="id">Express</span><span class="pn">:</span> <span class="o">$</span><span class="n">1.00</span> <span class="id">per</span> <span class="n">1</span> <span class="id">million</span> <span class="id">executions</span> <span class="o">+</span> <span class="o">$</span><span class="n">0.0000167</span> <span class="id">per</span> <span class="id">GB</span><span class="o">-</span><span class="id">second</span>
+
+<span class="id">For</span> <span class="n">100</span> <span class="id">million</span> <span class="id">executions</span><span class="o">/</span><span class="id">month</span> <span class="k">with</span> <span class="n">3</span> <span class="id">states</span> <span class="id">each</span><span class="pn">:</span>
+<span class="id">Standard</span><span class="pn">:</span> <span class="pn">(</span><span class="n">100M</span> <span class="pn">*</span> <span class="n">3</span> <span class="pn">*</span> <span class="o">$</span><span class="n">0.025</span><span class="pn">)</span> <span class="o">/</span> <span class="n">1000</span> <span class="o">=</span> <span class="o">$</span><span class="n">7</span><span class="pn">,</span><span class="n">500</span><span class="o">/</span><span class="id">month</span>
+<span class="id">Express</span><span class="pn">:</span> <span class="pn">(</span><span class="n">100M</span> <span class="pn">*</span> <span class="o">$</span><span class="n">1.00</span><span class="pn">)</span> <span class="o">/</span> <span class="n">1M</span> <span class="o">+</span> <span class="id">compute</span> <span class="o">=</span> <span class="o">~$</span><span class="n">100</span><span class="o">/</span><span class="id">month</span>
+</code></pre>
+<h3><a name="Monitoring-amp-Observability" class="anchor" href="#Monitoring-amp-Observability">Monitoring &amp; Observability</a></h3>
+<p><strong>CloudWatch Integration:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/procedure-cw-metrics.html">Step Functions Metrics</a> - Execution metrics
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/cw-logs.html">CloudWatch Logs</a> - Detailed execution logs
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/procedure-cw-alarms.html">CloudWatch Alarms</a> - Alert on failures</p>
+<p><strong>X-Ray Tracing:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-xray-tracing.html">Enable X-Ray</a> - End-to-end tracing
+- <a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-console.html#xray-console-servicemap">Service Map</a> - Visualize workflow dependencies
+- <a href="https://docs.aws.amazon.com/xray/latest/devguide/xray-console-analytics.html">Trace Analysis</a> - Find bottlenecks</p>
+<p><strong>EventBridge Integration:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/cw-events.html">Execution Events</a> - React to workflow events
+- <a href="https://aws.amazon.com/blogs/compute/using-amazon-eventbridge-to-capture-aws-step-functions-failures/">Failed Execution Alerts</a> - Automated notifications</p>
+<h3><a name="Real-World-Use-Cases" class="anchor" href="#Real-World-Use-Cases">Real-World Use Cases</a></h3>
+<p><strong>Order Processing:</strong>
+1. Validate order (Lambda)
+2. Check inventory (DynamoDB)
+3. Charge payment (External API with callback)
+4. Update inventory (DynamoDB)
+5. Ship order (SQS)
+6. Send confirmation (SNS)
+7. <strong>On Error:</strong> Refund payment, restore inventory</p>
+<p><strong>ETL Pipeline:</strong>
+1. Trigger Glue job (extract)
+2. Wait for completion
+3. Parallel transform jobs (Map state)
+4. Load to Redshift
+5. Run validation queries (Athena)
+6. Generate reports (Lambda)</p>
+<p><strong>ML Training Workflow:</strong>
+1. Prepare data (Glue)
+2. Train model (SageMaker)
+3. Evaluate model (Lambda)
+4. If accuracy &gt; 95%: Deploy (SageMaker endpoint)
+5. Else: Tune hyperparameters, retry
+6. Send notification (SNS)</p>
+<p><strong>Human Approval Workflow:</strong>
+1. Submit expense report (Lambda)
+2. Wait for manager approval (callback with task token)
+3. If approved: Process payment (Lambda)
+4. If rejected: Notify employee (SNS)
+5. Archive (S3)</p>
+<h3><a name="Video-Tutorials" class="anchor" href="#Video-Tutorials">Video Tutorials</a></h3>
+<p><strong>Beginner:</strong>
+- <a href="https://www.youtube.com/watch?v=Dh7h3lkpeP4">Step Functions Tutorial</a> - AWS official introduction
+- <a href="https://www.youtube.com/watch?v=f0maCDqW41k">Building Workflows with Workflow Studio</a> - Visual builder demo
+- <a href="https://www.youtube.com/watch?v=8C96jgAj4Es">Step Functions for Beginners</a> - Complete walkthrough</p>
+<p><strong>Advanced:</strong>
+- <a href="https://www.youtube.com/results?search_query=aws+reinvent+step+functions">AWS re:Invent - Step Functions Deep Dive</a> - Annual advanced sessions
+- <a href="https://www.youtube.com/watch?v=6-jfKDJLbVo">Distributed Map State</a> - Large-scale processing
+- <a href="https://www.youtube.com/watch?v=o6-7BAUWaqg">Step Functions Best Practices</a> - AWS Serverless Land</p>
+<h3><a name="Community-Tools-amp-Libraries" class="anchor" href="#Community-Tools-amp-Libraries">Community Tools &amp; Libraries</a></h3>
+<p><strong>Infrastructure as Code:</strong>
+- <a href="https://github.com/cdk-patterns/serverless">CDK Patterns for Step Functions</a> - Reusable patterns
+- <a href="https://www.serverless.com/framework/docs/providers/aws/guide/workflow">Serverless Framework Plugin</a> - Define workflows in YAML
+- <a href="https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html">SAM Support</a> - Step Functions in SAM</p>
+<p><strong>Testing &amp; Development:</strong>
+- <a href="https://docs.aws.amazon.com/step-functions/latest/dg/sfn-local.html">Step Functions Local</a> - Test workflows locally
+- <a href="https://localstack.cloud/">LocalStack</a> - Emulate Step Functions
+- <a href="https://github.com/ChristopheBougere/asl-validator">ASL Validator</a> - Validate state machine definitions</p>
+<p><strong>Visualization:</strong>
+- <a href="https://github.com/aws/aws-toolkit-vscode">Step Functions Graph</a> - VS Code extension
+- <a href="https://github.com/kddejong/cfn-diagram">Render ASL as SVG</a> - Generate diagrams from code</p>
+<h3><a name="Workshops-amp-Hands-On-Labs" class="anchor" href="#Workshops-amp-Hands-On-Labs">Workshops &amp; Hands-On Labs</a></h3>
+<p><strong>Official AWS Workshops:</strong>
+- <a href="https://catalog.workshops.aws/stepfunctions/en-US">Step Functions Workshop</a> - Comprehensive hands-on tutorial
+- <a href="https://serverlessland.com/patterns?services=step-functions">Serverless Patterns</a> - Step Functions patterns collection
+- <a href="https://catalog.workshops.aws/stepfunctions/en-US/module-5">Build a Saga Pattern</a> - Distributed transaction workshop</p>
+<p><strong>Community Resources:</strong>
+- <a href="https://serverlessland.com/">Serverless Land</a> - Step Functions examples and patterns
+- <a href="https://github.com/aws-samples?q=step-functions">AWS Samples GitHub</a> - Official code samples</p>
+<h3><a name="Recommended-Learning-Path" class="anchor" href="#Recommended-Learning-Path">Recommended Learning Path</a></h3>
+<p><strong>Week 1 - Fundamentals:</strong>
+1. Read <a href="https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html">Step Functions Developer Guide</a> - First 5 chapters
+2. Watch <a href="https://www.youtube.com/watch?v=Dh7h3lkpeP4">Step Functions Tutorial Video</a>
+3. Build your first workflow with FsCDK (examples above)
+4. Explore <a href="https://aws.amazon.com/blogs/aws/new-aws-step-functions-workflow-studio-a-low-code-visual-tool-for-building-state-machines/">Workflow Studio</a></p>
+<p><strong>Week 2 - Patterns &amp; Best Practices:</strong>
+1. Study <a href="https://docs.aws.amazon.com/step-functions/latest/dg/design-patterns.html">Step Functions Design Patterns</a>
+2. Read <a href="https://docs.aws.amazon.com/step-functions/latest/dg/best-practices.html">Step Functions Best Practices</a>
+3. Implement error handling with Retry and Catch
+4. Learn <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-service-integrations.html">Service Integrations</a></p>
+<p><strong>Week 3 - Advanced:</strong>
+1. Implement <a href="https://aws.amazon.com/blogs/compute/implementing-the-saga-pattern-with-aws-step-functions-and-amazon-dynamodb/">Saga Pattern</a>
+2. Use <a href="https://aws.amazon.com/blogs/compute/handling-batch-operations-with-aws-step-functions/">Map State for parallel processing</a>
+3. Add <a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-xray-tracing.html">X-Ray tracing</a>
+4. Take <a href="https://catalog.workshops.aws/stepfunctions/en-US">Step Functions Workshop</a></p>
+<p><strong>Ongoing - Mastery:</strong>
+- Build complex orchestration patterns
+- Optimize costs (Standard vs Express)
+- Implement circuit breakers and resilience patterns
+- Follow <a href="https://aws.amazon.com/blogs/compute/">AWS Compute Blog</a> for new features</p>
+<h3><a name="AWS-Experts-to-Follow" class="anchor" href="#AWS-Experts-to-Follow">AWS Experts to Follow</a></h3>
+<p><img src="img/awsheros.png" alt="AWS Heroes" />
+<em>AWS Heroes and community experts who share serverless workflow patterns</em></p>
+<p><strong>AWS Heroes &amp; Advocates:</strong>
+- <strong>Yan Cui</strong> - Serverless orchestration expert
+- <a href="https://twitter.com/theburningmonk">Twitter/X: @theburningmonk</a>
+- <strong>Ben Kehoe</strong> - Serverless workflow patterns
+- <a href="https://twitter.com/ben11kehoe">Twitter/X: @ben11kehoe</a>
+- <a href="https://mastodon.social/@ben11kehoe">Mastodon: @ben11kehoe@mastodon.social</a>
+- <strong>Jeremy Daly</strong> - Serverless advocate
+- <a href="https://twitter.com/jeremy_daly">Twitter/X: @jeremy_daly</a>
+- <strong>Danilo Poccia</strong> - AWS Principal Developer Advocate
+- <a href="https://twitter.com/danilop">Twitter/X: @danilop</a>
+- <a href="https://mastodon.social/@danilop">Mastodon: @danilop@mastodon.social</a></p>
+<p><strong>AWS Step Functions Team:</strong>
+- Follow <a href="https://aws.amazon.com/blogs/compute/category/compute/aws-step-functions/">AWS Compute Blog</a> for official updates</p>
+<h3><a name="Common-Pitfalls-amp-Solutions" class="anchor" href="#Common-Pitfalls-amp-Solutions">Common Pitfalls &amp; Solutions</a></h3>
+<p><strong>❌ DON'T:</strong>
+1. <strong>Use Step Functions for high-frequency loops</strong> → Use Lambda or Fargate
+2. <strong>Pass large payloads between states</strong> → Use S3 for data, pass S3 keys
+3. <strong>Ignore error handling</strong> → Always add Retry and Catch
+4. <strong>Use Standard for high-volume, short tasks</strong> → Use Express workflows
+5. <strong>Forget timeouts</strong> → Set realistic TimeoutSeconds for each state</p>
+<p><strong>✅ DO:</strong>
+1. <strong>Design for idempotency</strong> → Same input = same output
+2. <strong>Use parallel states</strong> → Execute independent tasks concurrently
+3. <strong>Implement compensating transactions</strong> → Saga pattern for rollbacks
+4. <strong>Monitor execution metrics</strong> → Set up CloudWatch alarms
+5. <strong>Use service integrations</strong> → Avoid Lambda for simple AWS API calls</p>
+<h3><a name="FsCDK-Step-Functions-Features" class="anchor" href="#FsCDK-Step-Functions-Features">FsCDK Step Functions Features</a></h3>
+<ul>
+<li>Type-safe state machine definitions</li>
+<li>Production-safe defaults (STANDARD type, ALL logging, X-Ray enabled)</li>
+<li>Helper functions for common patterns</li>
+<li>Seamless integration with Lambda, DynamoDB, and other services</li>
+</ul>
+<p>For implementation details, see <a href="../src/StepFunctions.fs">src/StepFunctions.fs</a> in the FsCDK repository.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.StepFunctions</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.StepFunctions.Tasks</div>
+<div class="fsdocs-tip" id="fs7">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs8">namespace Amazon.CDK.AWS.Logs</div>
+<div class="fsdocs-tip" id="fs9">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">val processFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs11">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs14">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs15">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">val validateFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs18">val logGroup: CloudWatchLogGroupResource</div>
+<div class="fsdocs-tip" id="fs19">val logGroup: name: string -&gt; CloudWatchLogGroupBuilder<br /><em>&lt;summary&gt;
+ Creates a new CloudWatch Log Group builder with sensible defaults.
+ Example: logGroup &quot;/aws/ecs/my-service&quot; { retention RetentionDays.ONE_MONTH }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">custom operation: retention (RetentionDays)
+
+Calls CloudWatchLogGroupBuilder.Retention</div>
+<div class="fsdocs-tip" id="fs21">[&lt;Struct&gt;]
+type RetentionDays =
+  | ONE_DAY = 0
+  | THREE_DAYS = 1
+  | FIVE_DAYS = 2
+  | ONE_WEEK = 3
+  | TWO_WEEKS = 4
+  | ONE_MONTH = 5
+  | TWO_MONTHS = 6
+  | THREE_MONTHS = 7
+  | FOUR_MONTHS = 8
+  | FIVE_MONTHS = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs22">field RetentionDays.ONE_MONTH: RetentionDays = 5</div>
+<div class="fsdocs-tip" id="fs23">val stateMachine: StepFunctionResource</div>
+<div class="fsdocs-tip" id="fs24">val stepFunction: name: string -&gt; StepFunctionBuilder<br /><em>&lt;summary&gt;
+ Creates a new Step Functions state machine builder.
+ Example: stepFunction &quot;OrderWorkflow&quot; { definition (taskState &quot;ProcessOrder&quot; processLambda) }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">custom operation: comment (string)
+
+Calls StepFunctionBuilder.Comment</div>
+<div class="fsdocs-tip" id="fs26">custom operation: logDestination (CloudWatchLogGroupResource)
+
+Calls StepFunctionBuilder.LogDestination</div>
+<div class="fsdocs-tip" id="fs27">custom operation: timeout (Duration)
+
+Calls StepFunctionBuilder.Timeout</div>
+<div class="fsdocs-tip" id="fs28">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs29">Duration.Hours(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs30">field RetentionDays.ONE_WEEK: RetentionDays = 3</div>
+<div class="fsdocs-tip" id="fs31">val standardSM: StepFunctionResource</div>
+<div class="fsdocs-tip" id="fs32">custom operation: stateMachineType (StateMachineType)
+
+Calls StepFunctionBuilder.StateMachineType</div>
+<div class="fsdocs-tip" id="fs33">[&lt;Struct&gt;]
+type StateMachineType =
+  | EXPRESS = 0
+  | STANDARD = 1</div>
+<div class="fsdocs-tip" id="fs34">field StateMachineType.STANDARD: StateMachineType = 1</div>
+<div class="fsdocs-tip" id="fs35">Duration.Days(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs36">val expressSM: StepFunctionResource</div>
+<div class="fsdocs-tip" id="fs37">field StateMachineType.EXPRESS: StateMachineType = 0</div>
+<div class="fsdocs-tip" id="fs38">Duration.Minutes(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs39">field RetentionDays.THREE_MONTHS: RetentionDays = 7</div>
+<div class="fsdocs-tip" id="fs40">val sm: StepFunctionResource</div>
+<div class="fsdocs-tip" id="fs41">custom operation: loggingLevel (LogLevel)
+
+Calls StepFunctionBuilder.LoggingLevel</div>
+<div class="fsdocs-tip" id="fs42">[&lt;Struct&gt;]
+type LogLevel =
+  | OFF = 0
+  | ALL = 1
+  | ERROR = 2
+  | FATAL = 3</div>
+<div class="fsdocs-tip" id="fs43">field LogLevel.ALL: LogLevel = 1</div>
+<div class="fsdocs-tip" id="fs44">custom operation: tracingEnabled (bool)
+
+Calls StepFunctionBuilder.TracingEnabled</div>
+<div class="fsdocs-tip" id="fs45">module StepFunctionHelpers
+
+from FsCDK<br /><em>&lt;summary&gt;
+ Helper functions for Step Functions operations
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">val standardType: StateMachineType</div>
+<div class="fsdocs-tip" id="fs47">module StateMachineTypes
+
+from FsCDK.StepFunctionHelpers<br /><em>&lt;summary&gt;
+ Common state machine types
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs48">val standard: StateMachineType</div>
+<div class="fsdocs-tip" id="fs49">val expressType: StateMachineType</div>
+<div class="fsdocs-tip" id="fs50">val express: StateMachineType</div>
+<div class="fsdocs-tip" id="fs51">val fiveMin: Duration</div>
+<div class="fsdocs-tip" id="fs52">module Timeouts
+
+from FsCDK.StepFunctionHelpers<br /><em>&lt;summary&gt;
+ Common timeout durations
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs53">val fiveMinutes: Duration</div>
+<div class="fsdocs-tip" id="fs54">val thirtyMin: Duration</div>
+<div class="fsdocs-tip" id="fs55">val thirtyMinutes: Duration</div>
+<div class="fsdocs-tip" id="fs56">val oneHour: Duration</div>
+<div class="fsdocs-tip" id="fs57">val oneDay: Duration</div>
+<div class="fsdocs-tip" id="fs58">val allLogs: LogLevel</div>
+<div class="fsdocs-tip" id="fs59">module LoggingLevels
+
+from FsCDK.StepFunctionHelpers<br /><em>&lt;summary&gt;
+ Common logging levels
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs60">val all: LogLevel</div>
+<div class="fsdocs-tip" id="fs61">val errorLogs: LogLevel</div>
+<div class="fsdocs-tip" id="fs62">val error: LogLevel</div>
+<div class="fsdocs-tip" id="fs63">val noLogs: LogLevel</div>
+<div class="fsdocs-tip" id="fs64">val off: LogLevel</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Order-Processing-Workflow-Example">
+      Order Processing Workflow Example
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Quick-Start">
+      Quick Start
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-State-Machine">
+      Basic State Machine
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Standard-vs-Express-State-Machines">
+      Standard vs Express State Machines
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Error-Handling-and-Retry-Logic">
+      Error Handling and Retry Logic
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Parallel-Execution">
+      Parallel Execution
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Choice-States">
+      Choice States
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Map-States">
+      Map States
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Wait-States">
+      Wait States
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Integration-with-AWS-Services">
+      Integration with AWS Services
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DynamoDB-Integration">
+      DynamoDB Integration
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#SQS-Integration">
+      SQS Integration
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#SNS-Integration">
+      SNS Integration
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#ECS-Fargate-Integration">
+      ECS/Fargate Integration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Human-Approval-Workflow">
+      Human Approval Workflow
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Saga-Pattern-for-Distributed-Transactions">
+      Saga Pattern for Distributed Transactions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Monitoring-and-Observability">
+      Monitoring and Observability
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Performance">
+      Performance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Reliability">
+      Reliability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Operational-Excellence">
+      Operational Excellence
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#State-Machine-Types-Comparison">
+      State Machine Types Comparison
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Default-Settings">
+      Default Settings
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Logging-Levels">
+      Logging Levels
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Helper-Functions">
+      Helper Functions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Escape-Hatch">
+      Escape Hatch
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Use-Cases">
+      Use Cases
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Order-Processing">
+      Order Processing
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#ETL-Pipelines">
+      ETL Pipelines
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Machine-Learning-Workflows">
+      Machine Learning Workflows
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Human-Approval-Workflows">
+      Human Approval Workflows
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Microservice-Orchestration">
+      Microservice Orchestration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Learning-Resources-for-AWS-Step-Functions">
+      📚 Learning Resources for AWS Step Functions
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Official-Documentation">
+      AWS Official Documentation
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Serverless-Orchestration-Patterns">
+      Serverless Orchestration Patterns
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Advanced-Patterns-amp-Architectures">
+      Advanced Patterns &amp; Architectures
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Step-Functions-Service-Integrations">
+      Step Functions Service Integrations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Error-Handling-amp-Resilience">
+      Error Handling &amp; Resilience
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Standard-vs-Express-Workflows">
+      Standard vs Express Workflows
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Monitoring-amp-Observability">
+      Monitoring &amp; Observability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Real-World-Use-Cases">
+      Real-World Use Cases
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Video-Tutorials">
+      Video Tutorials
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Community-Tools-amp-Libraries">
+      Community Tools &amp; Libraries
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Workshops-amp-Hands-On-Labs">
+      Workshops &amp; Hands-On Labs
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Recommended-Learning-Path">
+      Recommended Learning Path
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Experts-to-Follow">
+      AWS Experts to Follow
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Common-Pitfalls-amp-Solutions">
+      Common Pitfalls &amp; Solutions
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#FsCDK-Step-Functions-Features">
+      FsCDK Step Functions Features
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

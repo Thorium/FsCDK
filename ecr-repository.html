@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="ECR Repository (Container Registry)" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="ECR Repository (Container Registry)">
+    
+    <title>ECR Repository (Container Registry) | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Amazon-ECR-Elastic-Container-Registry" class="anchor" href="#Amazon-ECR-Elastic-Container-Registry"><img src="img/icons/Arch_Amazon-Elastic-Container-Registry_48.png" alt="ECR" /> Amazon ECR (Elastic Container Registry)</a></h1>
+<p>Amazon Elastic Container Registry (ECR) is a fully managed Docker container registry that makes it easy
+to store, manage, and deploy Docker container images. ECR eliminates the need to operate your own container repositories.</p>
+<h2><a name="Quick-Start" class="anchor" href="#Quick-Start">Quick Start</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">ECR</span>
+</code></pre>
+<h2><a name="Basic-Repository" class="anchor" href="#Basic-Repository">Basic Repository</a></h2>
+<p>Create a repository with secure defaults.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="fn">stack</span> <span class="s">&quot;BasicECR&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="fn">repo</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="fn">ecrRepository</span> <span class="s">&quot;my-app&quot;</span> <span class="pn">{</span> <span class="pn">(</span><span class="pn">)</span> <span class="pn">}</span>
+    <span class="c">// Uses secure defaults:</span>
+    <span class="c">// - Image scan on push: enabled</span>
+    <span class="c">// - Tag mutability: MUTABLE</span>
+    <span class="c">// - Encryption: AES256 (AWS managed)</span>
+    <span class="c">// - Removal policy: RETAIN</span>
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Repository-with-Lifecycle-Rules" class="anchor" href="#Repository-with-Lifecycle-Rules">Repository with Lifecycle Rules</a></h2>
+<p>Automatically clean up old images to reduce storage costs.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="fn">stack</span> <span class="s">&quot;ECRWithLifecycle&quot;</span> <span class="pn">{</span>
+    <span class="c">// Development repository</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 12)" onmouseover="showTip(event, 'fs9', 12)" class="fn">devRepo</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="fn">ecrRepository</span> <span class="s">&quot;my-app-dev&quot;</span> <span class="pn">{</span>
+            <span class="c">// Delete untagged images after 7 days</span>
+            <span onmouseout="hideTip(event, 'fs10', 14)" onmouseover="showTip(event, 'fs10', 14)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 15)" onmouseover="showTip(event, 'fs11', 15)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 16)" onmouseover="showTip(event, 'fs12', 16)" class="id">deleteUntaggedAfterDays</span> <span class="n">7</span><span class="pn">)</span>
+
+            <span class="c">// Keep only last 10 images</span>
+            <span onmouseout="hideTip(event, 'fs10', 17)" onmouseover="showTip(event, 'fs10', 17)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 18)" onmouseover="showTip(event, 'fs11', 18)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="id">keepLastNImages</span> <span class="n">10</span><span class="pn">)</span>
+            <span class="pn">(</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Production repository</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="fn">prodRepo</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs8', 21)" onmouseover="showTip(event, 'fs8', 21)" class="fn">ecrRepository</span> <span class="s">&quot;my-app-prod&quot;</span> <span class="pn">{</span>
+            <span class="c">// Delete untagged images after 14 days</span>
+            <span onmouseout="hideTip(event, 'fs10', 22)" onmouseover="showTip(event, 'fs10', 22)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 23)" onmouseover="showTip(event, 'fs11', 23)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 24)" onmouseover="showTip(event, 'fs12', 24)" class="id">deleteUntaggedAfterDays</span> <span class="n">14</span><span class="pn">)</span>
+
+            <span class="c">// Keep only last 30 images</span>
+            <span onmouseout="hideTip(event, 'fs10', 25)" onmouseover="showTip(event, 'fs10', 25)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 26)" onmouseover="showTip(event, 'fs11', 26)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 27)" onmouseover="showTip(event, 'fs13', 27)" class="id">keepLastNImages</span> <span class="n">30</span><span class="pn">)</span>
+
+            <span class="c">// Immutable tags for production</span>
+            <span onmouseout="hideTip(event, 'fs15', 28)" onmouseover="showTip(event, 'fs15', 28)" class="k">imageTagMutability</span> <span onmouseout="hideTip(event, 'fs16', 29)" onmouseover="showTip(event, 'fs16', 29)" class="en">TagMutability</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 30)" onmouseover="showTip(event, 'fs17', 30)" class="id">IMMUTABLE</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Repository-with-Standard-Lifecycle-Policies" class="anchor" href="#Repository-with-Standard-Lifecycle-Policies">Repository with Standard Lifecycle Policies</a></h2>
+<p>Use predefined lifecycle policies for common scenarios.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 31)" onmouseover="showTip(event, 'fs6', 31)" class="fn">stack</span> <span class="s">&quot;ECRStandardPolicies&quot;</span> <span class="pn">{</span>
+    <span class="c">// Development repository with standard rules</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 32)" onmouseover="showTip(event, 'fs9', 32)" class="fn">devRepo</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs8', 33)" onmouseover="showTip(event, 'fs8', 33)" class="fn">ecrRepository</span> <span class="s">&quot;app-dev&quot;</span> <span class="pn">{</span> <span class="pn">(</span><span class="pn">)</span> <span class="pn">}</span>
+    <span class="c">// Add standard dev lifecycle rules using CDK directly:</span>
+    <span class="c">// - Delete untagged images after 7 days</span>
+    <span class="c">// - Keep last 10 images</span>
+
+    <span class="c">// Production repository with standard rules</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 34)" onmouseover="showTip(event, 'fs14', 34)" class="fn">prodRepo</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs8', 35)" onmouseover="showTip(event, 'fs8', 35)" class="fn">ecrRepository</span> <span class="s">&quot;app-prod&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs15', 36)" onmouseover="showTip(event, 'fs15', 36)" class="k">imageTagMutability</span> <span onmouseout="hideTip(event, 'fs16', 37)" onmouseover="showTip(event, 'fs16', 37)" class="en">TagMutability</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 38)" onmouseover="showTip(event, 'fs17', 38)" class="id">IMMUTABLE</span> <span class="pn">}</span>
+    <span class="c">// Add standard prod lifecycle rules using CDK directly:</span>
+    <span class="c">// - Delete untagged images after 14 days</span>
+    <span class="c">// - Keep last 30 images`</span>
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Repository-with-Custom-Lifecycle-Rules" class="anchor" href="#Repository-with-Custom-Lifecycle-Rules">Repository with Custom Lifecycle Rules</a></h2>
+<p>Define custom lifecycle rules for specific tag patterns.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 39)" onmouseover="showTip(event, 'fs6', 39)" class="fn">stack</span> <span class="s">&quot;ECRCustomLifecycle&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 40)" onmouseover="showTip(event, 'fs7', 40)" class="fn">repo</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs8', 41)" onmouseover="showTip(event, 'fs8', 41)" class="fn">ecrRepository</span> <span class="s">&quot;my-service&quot;</span> <span class="pn">{</span>
+            <span class="c">// Delete staging images after 30 days</span>
+            <span onmouseout="hideTip(event, 'fs10', 42)" onmouseover="showTip(event, 'fs10', 42)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 43)" onmouseover="showTip(event, 'fs11', 43)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 44)" onmouseover="showTip(event, 'fs18', 44)" class="id">deleteTaggedAfterDays</span> <span class="s">&quot;staging-&quot;</span> <span class="n">30</span><span class="pn">)</span>
+
+            <span class="c">// Delete feature branch images after 7 days</span>
+            <span onmouseout="hideTip(event, 'fs10', 45)" onmouseover="showTip(event, 'fs10', 45)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 46)" onmouseover="showTip(event, 'fs11', 46)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 47)" onmouseover="showTip(event, 'fs18', 47)" class="id">deleteTaggedAfterDays</span> <span class="s">&quot;feature-&quot;</span> <span class="n">7</span><span class="pn">)</span>
+
+            <span class="c">// Delete PR images after 3 days</span>
+            <span onmouseout="hideTip(event, 'fs10', 48)" onmouseover="showTip(event, 'fs10', 48)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 49)" onmouseover="showTip(event, 'fs11', 49)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 50)" onmouseover="showTip(event, 'fs18', 50)" class="id">deleteTaggedAfterDays</span> <span class="s">&quot;pr-&quot;</span> <span class="n">3</span><span class="pn">)</span>
+
+            <span class="c">// Keep untagged images for only 1 day</span>
+            <span onmouseout="hideTip(event, 'fs10', 51)" onmouseover="showTip(event, 'fs10', 51)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 52)" onmouseover="showTip(event, 'fs11', 52)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 53)" onmouseover="showTip(event, 'fs12', 53)" class="id">deleteUntaggedAfterDays</span> <span class="n">1</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Immutable-Tags" class="anchor" href="#Immutable-Tags">Immutable Tags</a></h2>
+<p>Prevent tag overwrites in production repositories for better traceability.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 54)" onmouseover="showTip(event, 'fs6', 54)" class="fn">stack</span> <span class="s">&quot;ImmutableTags&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 55)" onmouseover="showTip(event, 'fs14', 55)" class="fn">prodRepo</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs8', 56)" onmouseover="showTip(event, 'fs8', 56)" class="fn">ecrRepository</span> <span class="s">&quot;prod-app&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs15', 57)" onmouseover="showTip(event, 'fs15', 57)" class="k">imageTagMutability</span> <span onmouseout="hideTip(event, 'fs16', 58)" onmouseover="showTip(event, 'fs16', 58)" class="en">TagMutability</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 59)" onmouseover="showTip(event, 'fs17', 59)" class="id">IMMUTABLE</span>
+            <span onmouseout="hideTip(event, 'fs19', 60)" onmouseover="showTip(event, 'fs19', 60)" class="k">imageScanOnPush</span> <span class="k">true</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Repository-for-Development" class="anchor" href="#Repository-for-Development">Repository for Development</a></h2>
+<p>Optimized settings for development workflows.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 61)" onmouseover="showTip(event, 'fs6', 61)" class="fn">stack</span> <span class="s">&quot;DevRepository&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 62)" onmouseover="showTip(event, 'fs9', 62)" class="fn">devRepo</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs8', 63)" onmouseover="showTip(event, 'fs8', 63)" class="fn">ecrRepository</span> <span class="s">&quot;dev-app&quot;</span> <span class="pn">{</span>
+            <span class="c">// Mutable tags for easy iteration</span>
+            <span onmouseout="hideTip(event, 'fs15', 64)" onmouseover="showTip(event, 'fs15', 64)" class="k">imageTagMutability</span> <span onmouseout="hideTip(event, 'fs16', 65)" onmouseover="showTip(event, 'fs16', 65)" class="en">TagMutability</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 66)" onmouseover="showTip(event, 'fs20', 66)" class="id">MUTABLE</span>
+
+            <span class="c">// Clean up frequently</span>
+            <span onmouseout="hideTip(event, 'fs10', 67)" onmouseover="showTip(event, 'fs10', 67)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 68)" onmouseover="showTip(event, 'fs11', 68)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 69)" onmouseover="showTip(event, 'fs12', 69)" class="id">deleteUntaggedAfterDays</span> <span class="n">3</span><span class="pn">)</span>
+            <span onmouseout="hideTip(event, 'fs10', 70)" onmouseover="showTip(event, 'fs10', 70)" class="k">lifecycleRule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 71)" onmouseover="showTip(event, 'fs11', 71)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 72)" onmouseover="showTip(event, 'fs13', 72)" class="id">keepLastNImages</span> <span class="n">5</span><span class="pn">)</span>
+
+            <span class="c">// Destroy on stack deletion (dev only!)</span>
+            <span onmouseout="hideTip(event, 'fs21', 73)" onmouseover="showTip(event, 'fs21', 73)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs22', 74)" onmouseover="showTip(event, 'fs22', 74)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 75)" onmouseover="showTip(event, 'fs23', 75)" class="id">DESTROY</span>
+            <span onmouseout="hideTip(event, 'fs24', 76)" onmouseover="showTip(event, 'fs24', 76)" class="k">emptyOnDelete</span> <span class="k">true</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Image-Scanning" class="anchor" href="#Image-Scanning">Image Scanning</a></h2>
+<p>Enable vulnerability scanning for container images.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs6', 77)" onmouseover="showTip(event, 'fs6', 77)" class="fn">stack</span> <span class="s">&quot;SecureRepository&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs7', 78)" onmouseover="showTip(event, 'fs7', 78)" class="fn">repo</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs8', 79)" onmouseover="showTip(event, 'fs8', 79)" class="fn">ecrRepository</span> <span class="s">&quot;secure-app&quot;</span> <span class="pn">{</span>
+            <span class="c">// Scan all pushed images automatically</span>
+            <span onmouseout="hideTip(event, 'fs19', 80)" onmouseover="showTip(event, 'fs19', 80)" class="k">imageScanOnPush</span> <span class="k">true</span>
+
+            <span class="c">// Immutable tags for audit trail</span>
+            <span onmouseout="hideTip(event, 'fs15', 81)" onmouseover="showTip(event, 'fs15', 81)" class="k">imageTagMutability</span> <span onmouseout="hideTip(event, 'fs16', 82)" onmouseover="showTip(event, 'fs16', 82)" class="en">TagMutability</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 83)" onmouseover="showTip(event, 'fs17', 83)" class="id">IMMUTABLE</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Cross-Account-Access" class="anchor" href="#Cross-Account-Access">Cross-Account Access</a></h2>
+<p>Share repositories across AWS accounts.</p>
+<p>Note: Cross-account permissions must be configured using repository policies with the CDK API directly.</p>
+<h2><a name="Repository-Policy" class="anchor" href="#Repository-Policy">Repository Policy</a></h2>
+<p>Add resource-based policies for fine-grained access control.</p>
+<p>Note: Repository policies must be configured using the CDK Repository directly.</p>
+<h2><a name="Lifecycle-Rule-Helpers" class="anchor" href="#Lifecycle-Rule-Helpers">Lifecycle Rule Helpers</a></h2>
+<p>FsCDK provides helper functions for common lifecycle patterns:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Delete untagged images after N days</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs25', 84)" onmouseover="showTip(event, 'fs25', 84)" class="id">cleanupUntagged</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 85)" onmouseover="showTip(event, 'fs11', 85)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 86)" onmouseover="showTip(event, 'fs12', 86)" class="id">deleteUntaggedAfterDays</span> <span class="n">7</span>
+
+<span class="c">// Keep only the last N images</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 87)" onmouseover="showTip(event, 'fs26', 87)" class="id">keepRecent</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 88)" onmouseover="showTip(event, 'fs11', 88)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 89)" onmouseover="showTip(event, 'fs13', 89)" class="id">keepLastNImages</span> <span class="n">10</span>
+
+<span class="c">// Delete images with tag prefix after N days</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs27', 90)" onmouseover="showTip(event, 'fs27', 90)" class="id">cleanupFeatureBranches</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 91)" onmouseover="showTip(event, 'fs11', 91)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 92)" onmouseover="showTip(event, 'fs18', 92)" class="id">deleteTaggedAfterDays</span> <span class="s">&quot;feature-&quot;</span> <span class="n">7</span>
+
+<span class="c">// Standard development lifecycle</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs28', 93)" onmouseover="showTip(event, 'fs28', 93)" class="id">devRules</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 94)" onmouseover="showTip(event, 'fs11', 94)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 95)" onmouseover="showTip(event, 'fs29', 95)" class="id">standardDevLifecycleRules</span> <span class="pn">(</span><span class="pn">)</span> <span class="c">// 7 days, 10 images</span>
+
+<span class="c">// Standard production lifecycle</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs30', 96)" onmouseover="showTip(event, 'fs30', 96)" class="id">prodRules</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs11', 97)" onmouseover="showTip(event, 'fs11', 97)" class="m">ECRHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 98)" onmouseover="showTip(event, 'fs31', 98)" class="id">standardProdLifecycleRules</span> <span class="pn">(</span><span class="pn">)</span> <span class="c">// 14 days, 30 images</span>
+</code></pre>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>Enable image scanning on push to detect vulnerabilities</li>
+<li>Use immutable tags in production (prevents tag overwrites)</li>
+<li>Scan images before deployment to production</li>
+<li>Use AWS managed encryption (AES256) for at-rest encryption</li>
+<li>Rotate images regularly (rebuild from base images)</li>
+<li>Use multi-stage Docker builds to minimize attack surface</li>
+<li>Implement least-privilege IAM policies for ECR access</li>
+<li>Enable AWS PrivateLink for private registry access</li>
+</ul>
+<h3><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h3>
+<ul>
+<li>Use lifecycle rules to delete untagged images (orphaned layers)</li>
+<li>Keep only necessary image versions (e.g., last 30)</li>
+<li>Delete feature branch images after merge</li>
+<li>Use standard lifecycle policies for consistent cleanup</li>
+<li>Monitor storage metrics in CloudWatch</li>
+<li>Clean up test/dev repositories more aggressively</li>
+<li>Consider cross-region replication only when necessary</li>
+</ul>
+<h3><a name="Reliability" class="anchor" href="#Reliability">Reliability</a></h3>
+<ul>
+<li>Use RETAIN removal policy for production repositories</li>
+<li>Replicate critical images across regions</li>
+<li>Set up CloudWatch alarms for repository metrics</li>
+<li>Monitor image push/pull metrics</li>
+<li>Test disaster recovery procedures</li>
+<li>Maintain golden images for quick recovery</li>
+</ul>
+<h3><a name="Performance" class="anchor" href="#Performance">Performance</a></h3>
+<ul>
+<li>Use ECR in the same region as your compute (ECS/EKS/Lambda)</li>
+<li>Enable image layer caching in CI/CD pipelines</li>
+<li>Use multi-stage builds to optimize image size</li>
+<li>Compress image layers</li>
+<li>Pull images from ECR VPC endpoints for faster pulls</li>
+</ul>
+<h3><a name="Operational-Excellence" class="anchor" href="#Operational-Excellence">Operational Excellence</a></h3>
+<ul>
+<li>Use descriptive repository names (e.g., org/team/service)</li>
+<li>Tag repositories with project, environment, team</li>
+<li>Document Dockerfiles and image build process</li>
+<li>Version images using semantic versioning</li>
+<li>Automate image builds with CI/CD</li>
+<li>Monitor security scan findings</li>
+<li>Set up notifications for critical vulnerabilities</li>
+<li>Maintain an image inventory and lifecycle policy</li>
+</ul>
+<h2><a name="Default-Settings" class="anchor" href="#Default-Settings">Default Settings</a></h2>
+<p>The ECR repository builder applies these secure defaults:</p>
+<ul>
+<li><strong>Image Scan on Push</strong>: Enabled (detects vulnerabilities)</li>
+<li><strong>Tag Mutability</strong>: MUTABLE (allows tag reuse for dev)</li>
+<li><strong>Encryption</strong>: AES256 (AWS managed encryption)</li>
+<li><strong>Removal Policy</strong>: RETAIN (prevents accidental deletion)</li>
+<li><strong>Empty on Delete</strong>: Disabled (requires manual cleanup)</li>
+</ul>
+<h2><a name="Tag-Mutability" class="anchor" href="#Tag-Mutability">Tag Mutability</a></h2>
+<h3><a name="MUTABLE-Default" class="anchor" href="#MUTABLE-Default">MUTABLE (Default)</a></h3>
+<ul>
+<li>Allows pushing images with existing tags</li>
+<li>Useful for development (e.g., <code>latest</code>, <code>dev</code>)</li>
+<li>Flexible but less traceable</li>
+</ul>
+<h3><a name="IMMUTABLE" class="anchor" href="#IMMUTABLE">IMMUTABLE</a></h3>
+<ul>
+<li>Prevents overwriting existing tags</li>
+<li>Required for production compliance</li>
+<li>Better audit trail and traceability</li>
+<li>Recommended for production repositories</li>
+</ul>
+<h2><a name="Image-Scanning-1" class="anchor" href="#Image-Scanning-1">Image Scanning</a></h2>
+<p>ECR integrates with Amazon Inspector for vulnerability scanning:</p>
+<ul>
+<li><strong>Basic Scanning</strong>: Scans for CVEs in OS packages (free)</li>
+<li><strong>Enhanced Scanning</strong>: Deeper scanning including language packages (paid)</li>
+<li><strong>Scan on Push</strong>: Automatic scanning when images are pushed</li>
+<li><strong>On-Demand Scanning</strong>: Manual scans via API/Console</li>
+</ul>
+<p>Scan findings are available in:
+- ECR Console
+- Amazon Inspector
+- EventBridge events
+- Security Hub (if enabled)</p>
+<h2><a name="Lifecycle-Policies" class="anchor" href="#Lifecycle-Policies">Lifecycle Policies</a></h2>
+<p>Lifecycle policies automatically delete images based on:</p>
+<ul>
+<li><strong>Image Age</strong>: Delete images older than N days</li>
+<li><strong>Image Count</strong>: Keep only the last N images</li>
+<li><strong>Tag Status</strong>: Target TAGGED, UNTAGGED, or ANY</li>
+<li><strong>Tag Prefix</strong>: Filter by tag prefix (e.g., "feature-")</li>
+</ul>
+<p>Policies are evaluated in priority order. Use multiple rules to implement complex strategies.</p>
+<h2><a name="Escape-Hatch" class="anchor" href="#Escape-Hatch">Escape Hatch</a></h2>
+<p>For advanced scenarios, access the underlying CDK Repository:</p>
+<p>`fsharp
+let repoResource = ecrRepository "my-app" { imageScanOnPush true }</p>
+<p>// Access the CDK Repository for advanced configuration
+let cdkRepo = repoResource.Repository</p>
+<p>// Add repository policy
+let policyDocument = ... // Create IAM policy document
+cdkRepo.AddToResourcePolicy(PolicyStatement(...))</p>
+<p>// Grant pull access to a role
+cdkRepo.GrantPull(myRole)</p>
+<p>// Grant push access to a role
+cdkRepo.GrantPush(myRole)</p>
+<p>// Grant pull/push access
+cdkRepo.GrantPullPush(myRole)
+`</p>
+<h2><a name="Integration-with-ECS-EKS" class="anchor" href="#Integration-with-ECS-EKS">Integration with ECS/EKS</a></h2>
+<p>ECR works seamlessly with Amazon ECS and EKS:</p>
+<p>`fsharp
+stack "ContainerStack" {
+// Create repository
+let repo =
+ecrRepository "my-service" {
+imageScanOnPush true
+imageTagMutability TagMutability.IMMUTABLE
+()
+}</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Use with ECS task definition</span>
+<span class="c">// let taskDef = FargateTaskDefinition(...)</span>
+<span class="c">// taskDef.AddContainer(&quot;app&quot;,</span>
+<span class="c">//     ContainerDefinitionOptions(</span>
+<span class="c">//         Image = ContainerImage.FromEcrRepository(repo.Repository, &quot;v1.0.0&quot;)</span>
+<span class="c">//     ))`</span>
+</code></pre>
+<p>}
+`</p>
+<h2><a name="CI-CD-Integration" class="anchor" href="#CI-CD-Integration">CI/CD Integration</a></h2>
+<p>Typical CI/CD workflow with ECR:</p>
+<ol>
+<li>Build Docker image</li>
+<li>Tag image (e.g., commit SHA, version)</li>
+<li>Authenticate to ECR (<code>aws ecr get-login-password</code>)</li>
+<li>Push image to repository</li>
+<li>ECR automatically scans image</li>
+<li>Deploy to ECS/EKS/Lambda if scan passes</li>
+</ol>
+<h2><a name="Resources" class="anchor" href="#Resources">Resources</a></h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/what-is-ecr.html">Amazon ECR Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/lifecycle-policies.html">ECR Lifecycle Policies</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html">ECR Image Scanning</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/security-best-practices.html">ECR Security Best Practices</a></li>
+<li><a href="https://docs.docker.com/develop/dev-best-practices/">Docker Best Practices</a></li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.ECR</div>
+<div class="fsdocs-tip" id="fs6">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs7">val repo: ECRRepositoryResource</div>
+<div class="fsdocs-tip" id="fs8">val ecrRepository: name: string -&gt; ECRRepositoryBuilder<br /><em>&lt;summary&gt;
+ Creates a new ECR repository builder with secure defaults.
+ Example: ecrRepository &quot;my-app&quot; { imageScanOnPush true; lifecycleRule (deleteUntaggedAfterDays 7) }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val devRepo: ECRRepositoryResource</div>
+<div class="fsdocs-tip" id="fs10">custom operation: lifecycleRule (LifecycleRule)
+
+Calls ECRRepositoryBuilder.LifecycleRule</div>
+<div class="fsdocs-tip" id="fs11">module ECRHelpers
+
+from FsCDK<br /><em>&lt;summary&gt;
+ Helper functions for creating ECR lifecycle rules
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">val deleteUntaggedAfterDays: days: int -&gt; LifecycleRule<br /><em>&lt;summary&gt;
+ Creates a lifecycle rule to delete untagged images after specified days
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val keepLastNImages: count: int -&gt; LifecycleRule<br /><em>&lt;summary&gt;
+ Creates a lifecycle rule to keep only the last N images
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">val prodRepo: ECRRepositoryResource</div>
+<div class="fsdocs-tip" id="fs15">custom operation: imageTagMutability (TagMutability)
+
+Calls ECRRepositoryBuilder.ImageTagMutability</div>
+<div class="fsdocs-tip" id="fs16">[&lt;Struct&gt;]
+type TagMutability =
+  | MUTABLE = 0
+  | IMMUTABLE = 1</div>
+<div class="fsdocs-tip" id="fs17">field TagMutability.IMMUTABLE: TagMutability = 1</div>
+<div class="fsdocs-tip" id="fs18">val deleteTaggedAfterDays: tagPrefix: string -&gt; days: int -&gt; LifecycleRule<br /><em>&lt;summary&gt;
+ Creates a lifecycle rule to delete images with specific tag prefix after days
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">custom operation: imageScanOnPush (bool)
+
+Calls ECRRepositoryBuilder.ImageScanOnPush</div>
+<div class="fsdocs-tip" id="fs20">field TagMutability.MUTABLE: TagMutability = 0</div>
+<div class="fsdocs-tip" id="fs21">custom operation: removalPolicy (RemovalPolicy)
+
+Calls ECRRepositoryBuilder.RemovalPolicy</div>
+<div class="fsdocs-tip" id="fs22">[&lt;Struct&gt;]
+type RemovalPolicy =
+  | DESTROY = 0
+  | RETAIN = 1
+  | SNAPSHOT = 2
+  | RETAIN_ON_UPDATE_OR_DELETE = 3</div>
+<div class="fsdocs-tip" id="fs23">field RemovalPolicy.DESTROY: RemovalPolicy = 0</div>
+<div class="fsdocs-tip" id="fs24">custom operation: emptyOnDelete (bool)
+
+Calls ECRRepositoryBuilder.EmptyOnDelete</div>
+<div class="fsdocs-tip" id="fs25">val cleanupUntagged: LifecycleRule</div>
+<div class="fsdocs-tip" id="fs26">val keepRecent: LifecycleRule</div>
+<div class="fsdocs-tip" id="fs27">val cleanupFeatureBranches: LifecycleRule</div>
+<div class="fsdocs-tip" id="fs28">val devRules: LifecycleRule list</div>
+<div class="fsdocs-tip" id="fs29">val standardDevLifecycleRules: unit -&gt; LifecycleRule list<br /><em>&lt;summary&gt;
+ Creates a standard lifecycle policy for development repositories
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">val prodRules: LifecycleRule list</div>
+<div class="fsdocs-tip" id="fs31">val standardProdLifecycleRules: unit -&gt; LifecycleRule list<br /><em>&lt;summary&gt;
+ Creates a standard lifecycle policy for production repositories
+&lt;/summary&gt;</em></div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Quick-Start">
+      Quick Start
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-Repository">
+      Basic Repository
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Repository-with-Lifecycle-Rules">
+      Repository with Lifecycle Rules
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Repository-with-Standard-Lifecycle-Policies">
+      Repository with Standard Lifecycle Policies
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Repository-with-Custom-Lifecycle-Rules">
+      Repository with Custom Lifecycle Rules
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Immutable-Tags">
+      Immutable Tags
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Repository-for-Development">
+      Repository for Development
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Image-Scanning">
+      Image Scanning
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cross-Account-Access">
+      Cross-Account Access
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Repository-Policy">
+      Repository Policy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Lifecycle-Rule-Helpers">
+      Lifecycle Rule Helpers
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Reliability">
+      Reliability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Performance">
+      Performance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Operational-Excellence">
+      Operational Excellence
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Default-Settings">
+      Default Settings
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Tag-Mutability">
+      Tag Mutability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#MUTABLE-Default">
+      MUTABLE (Default)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#IMMUTABLE">
+      IMMUTABLE
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Image-Scanning-1">
+      Image Scanning
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Lifecycle-Policies">
+      Lifecycle Policies
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Escape-Hatch">
+      Escape Hatch
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Integration-with-ECS-EKS">
+      Integration with ECS/EKS
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#CI-CD-Integration">
+      CI/CD Integration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Resources">
+      Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

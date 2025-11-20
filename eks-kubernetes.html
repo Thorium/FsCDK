@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="EKS (Elastic Kubernetes Service) Example" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="EKS (Elastic Kubernetes Service) Example">
+    
+    <title>EKS (Elastic Kubernetes Service) Example | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Amazon-EKS-Elastic-Kubernetes-Service-Example" class="anchor" href="#Amazon-EKS-Elastic-Kubernetes-Service-Example"><img src="img/icons/Arch_Amazon-Elastic-Kubernetes-Service_48.png" alt="EKS" /> Amazon EKS (Elastic Kubernetes Service) Example</a></h1>
+<p>This example demonstrates how to create Amazon EKS (Elastic Kubernetes Service) clusters using FsCDK for container orchestration with Kubernetes.</p>
+<h2><a name="What-is-EKS" class="anchor" href="#What-is-EKS">What is EKS?</a></h2>
+<p>Amazon Elastic Kubernetes Service (EKS) is a managed Kubernetes service that makes it easy to run Kubernetes on AWS without needing to install and operate your own Kubernetes control plane.</p>
+<p><strong>Key Benefits:</strong>
+- Fully managed Kubernetes control plane
+- Automatic upgrades and patching
+- Integration with AWS services (IAM, VPC, CloudWatch)
+- High availability across multiple AZs
+- Support for both EC2 and Fargate compute</p>
+<h2><a name="Prerequisites" class="anchor" href="#Prerequisites">Prerequisites</a></h2>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/8.0">.NET 8 SDK</a></li>
+<li><a href="https://docs.aws.amazon.com/cdk/latest/guide/cli.html">AWS CDK CLI</a> (<code>npm install -g aws-cdk</code>)</li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/">kubectl</a> for cluster management</li>
+<li>AWS credentials configured (for deployment)</li>
+</ul>
+<h2><a name="Basic-EKS-Cluster" class="anchor" href="#Basic-EKS-Cluster">Basic EKS Cluster</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/System.Text.Json.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">EC2</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 7)" onmouseover="showTip(event, 'fs1', 7)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 10)" onmouseover="showTip(event, 'fs5', 10)" class="id">EKS</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 11)" onmouseover="showTip(event, 'fs1', 11)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 14)" onmouseover="showTip(event, 'fs6', 14)" class="id">IAM</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="id">FsCDK</span>
+</code></pre>
+<h2><a name="Advanced-Cluster-Configurations" class="anchor" href="#Advanced-Cluster-Configurations">Advanced Cluster Configurations</a></h2>
+<h3><a name="Fargate-Profile-for-Serverless-Pods" class="anchor" href="#Fargate-Profile-for-Serverless-Pods">Fargate Profile for Serverless Pods</a></h3>
+<p>Run pods without managing EC2 instances using AWS Fargate.</p>
+<p><strong>Benefits:</strong>
+- No node management overhead
+- Pay only for pod resources
+- Automatic scaling
+- Improved security isolation</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 71)" onmouseover="showTip(event, 'fs14', 71)" class="fn">stack</span> <span class="s">&quot;FargateEKSStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 72)" onmouseover="showTip(event, 'fs20', 72)" class="k">description</span> <span class="s">&quot;EKS cluster with Fargate profiles&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs52', 73)" onmouseover="showTip(event, 'fs52', 73)" class="fn">fargateVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 74)" onmouseover="showTip(event, 'fs23', 74)" class="fn">vpc</span> <span class="s">&quot;FargateVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 75)" onmouseover="showTip(event, 'fs24', 75)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs26', 76)" onmouseover="showTip(event, 'fs26', 76)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs53', 77)" onmouseover="showTip(event, 'fs53', 77)" class="fn">fargateCluster</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs28', 78)" onmouseover="showTip(event, 'fs28', 78)" class="fn">eksCluster</span> <span class="s">&quot;FargateCluster&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs29', 79)" onmouseover="showTip(event, 'fs29', 79)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs52', 80)" onmouseover="showTip(event, 'fs52', 80)" class="fn">fargateVpc</span>
+            <span onmouseout="hideTip(event, 'fs30', 81)" onmouseover="showTip(event, 'fs30', 81)" class="k">version</span> <span onmouseout="hideTip(event, 'fs31', 82)" onmouseover="showTip(event, 'fs31', 82)" class="rt">KubernetesVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 83)" onmouseover="showTip(event, 'fs32', 83)" class="id">V1_28</span>
+            <span onmouseout="hideTip(event, 'fs33', 84)" onmouseover="showTip(event, 'fs33', 84)" class="k">defaultCapacity</span> <span class="n">0</span>
+
+            <span onmouseout="hideTip(event, 'fs54', 85)" onmouseover="showTip(event, 'fs54', 85)" class="k">addFargateProfile</span> <span class="pn">(</span>
+                <span class="s">&quot;FargateProfile&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs55', 86)" onmouseover="showTip(event, 'fs55', 86)" class="fn">FargateProfileOptions</span><span class="pn">(</span>
+                    <span class="fn">Selectors</span> <span class="o">=</span>
+                        <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs56', 87)" onmouseover="showTip(event, 'fs56', 87)" class="fn">Selector</span><span class="pn">(</span><span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;default&quot;</span><span class="pn">)</span>
+                           <span onmouseout="hideTip(event, 'fs56', 88)" onmouseover="showTip(event, 'fs56', 88)" class="fn">Selector</span><span class="pn">(</span><span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;kube-system&quot;</span><span class="pn">)</span>
+                           <span onmouseout="hideTip(event, 'fs56', 89)" onmouseover="showTip(event, 'fs56', 89)" class="fn">Selector</span><span class="pn">(</span><span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;production&quot;</span><span class="pn">,</span> <span class="fn">Labels</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 90)" onmouseover="showTip(event, 'fs57', 90)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;compute-type&quot;</span><span class="pn">,</span> <span class="s">&quot;serverless&quot;</span> <span class="pn">]</span><span class="pn">)</span> <span class="pn">|]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Multi-Architecture-Node-Groups" class="anchor" href="#Multi-Architecture-Node-Groups">Multi-Architecture Node Groups</a></h3>
+<p>Support both x86 and ARM workloads for cost optimization.</p>
+<p><strong>ARM (Graviton) Benefits:</strong>
+- 20% better price/performance
+- Lower energy consumption
+- Same performance as x86 for most workloads</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 91)" onmouseover="showTip(event, 'fs14', 91)" class="fn">stack</span> <span class="s">&quot;MultiArchEKSStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 92)" onmouseover="showTip(event, 'fs20', 92)" class="k">description</span> <span class="s">&quot;EKS cluster with x86 and ARM node groups&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs58', 93)" onmouseover="showTip(event, 'fs58', 93)" class="fn">multiArchVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 94)" onmouseover="showTip(event, 'fs23', 94)" class="fn">vpc</span> <span class="s">&quot;MultiArchVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 95)" onmouseover="showTip(event, 'fs24', 95)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs26', 96)" onmouseover="showTip(event, 'fs26', 96)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 97)" onmouseover="showTip(event, 'fs59', 97)" class="fn">multiArchCluster</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs28', 98)" onmouseover="showTip(event, 'fs28', 98)" class="fn">eksCluster</span> <span class="s">&quot;MultiArchCluster&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs29', 99)" onmouseover="showTip(event, 'fs29', 99)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs58', 100)" onmouseover="showTip(event, 'fs58', 100)" class="fn">multiArchVpc</span>
+            <span onmouseout="hideTip(event, 'fs30', 101)" onmouseover="showTip(event, 'fs30', 101)" class="k">version</span> <span onmouseout="hideTip(event, 'fs31', 102)" onmouseover="showTip(event, 'fs31', 102)" class="rt">KubernetesVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 103)" onmouseover="showTip(event, 'fs32', 103)" class="id">V1_28</span>
+            <span onmouseout="hideTip(event, 'fs33', 104)" onmouseover="showTip(event, 'fs33', 104)" class="k">defaultCapacity</span> <span class="n">0</span>
+
+            <span onmouseout="hideTip(event, 'fs44', 105)" onmouseover="showTip(event, 'fs44', 105)" class="k">addNodegroupCapacity</span> <span class="pn">(</span>
+                <span class="s">&quot;ARMNodeGroup&quot;</span><span class="pn">,</span> <span class="c">// ARM-based nodes (Graviton)</span>
+                <span onmouseout="hideTip(event, 'fs45', 106)" onmouseover="showTip(event, 'fs45', 106)" class="fn">NodegroupOptions</span><span class="pn">(</span>
+                    <span class="fn">InstanceTypes</span> <span class="o">=</span> <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs46', 107)" onmouseover="showTip(event, 'fs46', 107)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t4g.medium&quot;</span><span class="pn">)</span> <span class="pn">|]</span><span class="pn">,</span>
+                    <span class="fn">MinSize</span> <span class="o">=</span> <span class="n">1.</span><span class="pn">,</span>
+                    <span class="fn">MaxSize</span> <span class="o">=</span> <span class="n">5.</span><span class="pn">,</span>
+                    <span class="fn">DesiredSize</span> <span class="o">=</span> <span class="n">2.</span><span class="pn">,</span>
+                    <span class="fn">AmiType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs60', 108)" onmouseover="showTip(event, 'fs60', 108)" class="en">NodegroupAmiType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 109)" onmouseover="showTip(event, 'fs61', 109)" class="id">AL2_ARM_64</span><span class="pn">,</span>
+                    <span class="fn">Labels</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 110)" onmouseover="showTip(event, 'fs57', 110)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;arch&quot;</span><span class="pn">,</span> <span class="s">&quot;arm64&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span onmouseout="hideTip(event, 'fs44', 111)" onmouseover="showTip(event, 'fs44', 111)" class="k">addNodegroupCapacity</span> <span class="pn">(</span>
+                <span class="s">&quot;X86NodeGroup&quot;</span><span class="pn">,</span> <span class="c">// x86 nodes</span>
+                <span onmouseout="hideTip(event, 'fs45', 112)" onmouseover="showTip(event, 'fs45', 112)" class="fn">NodegroupOptions</span><span class="pn">(</span>
+                    <span class="fn">InstanceTypes</span> <span class="o">=</span> <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs46', 113)" onmouseover="showTip(event, 'fs46', 113)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3.medium&quot;</span><span class="pn">)</span> <span class="pn">|]</span><span class="pn">,</span>
+                    <span class="fn">MinSize</span> <span class="o">=</span> <span class="n">1.</span><span class="pn">,</span>
+                    <span class="fn">MaxSize</span> <span class="o">=</span> <span class="n">5.</span><span class="pn">,</span>
+                    <span class="fn">DesiredSize</span> <span class="o">=</span> <span class="n">2.</span><span class="pn">,</span>
+                    <span class="fn">AmiType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs60', 114)" onmouseover="showTip(event, 'fs60', 114)" class="en">NodegroupAmiType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 115)" onmouseover="showTip(event, 'fs62', 115)" class="id">AL2_X86_64</span><span class="pn">,</span>
+                    <span class="fn">Labels</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 116)" onmouseover="showTip(event, 'fs57', 116)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;arch&quot;</span><span class="pn">,</span> <span class="s">&quot;amd64&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Spot-Instances-for-Cost-Optimization" class="anchor" href="#Spot-Instances-for-Cost-Optimization">Spot Instances for Cost Optimization</a></h3>
+<p>Use Spot Instances for fault-tolerant workloads to save up to 90%.</p>
+<p><strong>Best for:</strong>
+- Batch processing
+- CI/CD pipelines
+- Stateless applications
+- Non-critical workloads</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 117)" onmouseover="showTip(event, 'fs14', 117)" class="fn">stack</span> <span class="s">&quot;SpotEKSStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 118)" onmouseover="showTip(event, 'fs20', 118)" class="k">description</span> <span class="s">&quot;EKS cluster with Spot instance node group&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs63', 119)" onmouseover="showTip(event, 'fs63', 119)" class="fn">spotVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 120)" onmouseover="showTip(event, 'fs23', 120)" class="fn">vpc</span> <span class="s">&quot;SpotVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 121)" onmouseover="showTip(event, 'fs24', 121)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs26', 122)" onmouseover="showTip(event, 'fs26', 122)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs64', 123)" onmouseover="showTip(event, 'fs64', 123)" class="fn">spotCluster</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs28', 124)" onmouseover="showTip(event, 'fs28', 124)" class="fn">eksCluster</span> <span class="s">&quot;SpotCluster&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs29', 125)" onmouseover="showTip(event, 'fs29', 125)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs63', 126)" onmouseover="showTip(event, 'fs63', 126)" class="fn">spotVpc</span>
+            <span onmouseout="hideTip(event, 'fs30', 127)" onmouseover="showTip(event, 'fs30', 127)" class="k">version</span> <span onmouseout="hideTip(event, 'fs31', 128)" onmouseover="showTip(event, 'fs31', 128)" class="rt">KubernetesVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 129)" onmouseover="showTip(event, 'fs32', 129)" class="id">V1_28</span>
+            <span onmouseout="hideTip(event, 'fs33', 130)" onmouseover="showTip(event, 'fs33', 130)" class="k">defaultCapacity</span> <span class="n">0</span>
+
+            <span class="c">// On-demand nodes for critical workloads</span>
+            <span onmouseout="hideTip(event, 'fs44', 131)" onmouseover="showTip(event, 'fs44', 131)" class="k">addNodegroupCapacity</span> <span class="pn">(</span>
+                <span class="s">&quot;OnDemandNodes&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs45', 132)" onmouseover="showTip(event, 'fs45', 132)" class="fn">NodegroupOptions</span><span class="pn">(</span>
+                    <span class="fn">InstanceTypes</span> <span class="o">=</span> <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs46', 133)" onmouseover="showTip(event, 'fs46', 133)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3.medium&quot;</span><span class="pn">)</span> <span class="pn">|]</span><span class="pn">,</span>
+                    <span class="fn">MinSize</span> <span class="o">=</span> <span class="n">1.</span><span class="pn">,</span>
+                    <span class="fn">MaxSize</span> <span class="o">=</span> <span class="n">3.</span><span class="pn">,</span>
+                    <span class="fn">DesiredSize</span> <span class="o">=</span> <span class="n">2.</span><span class="pn">,</span>
+                    <span class="fn">Labels</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 134)" onmouseover="showTip(event, 'fs57', 134)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;capacity-type&quot;</span><span class="pn">,</span> <span class="s">&quot;on-demand&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span class="c">// Spot instance node group</span>
+            <span onmouseout="hideTip(event, 'fs44', 135)" onmouseover="showTip(event, 'fs44', 135)" class="k">addNodegroupCapacity</span> <span class="pn">(</span>
+                <span class="s">&quot;SpotNodes&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs45', 136)" onmouseover="showTip(event, 'fs45', 136)" class="fn">NodegroupOptions</span><span class="pn">(</span>
+                    <span class="fn">InstanceTypes</span> <span class="o">=</span>
+                        <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs46', 137)" onmouseover="showTip(event, 'fs46', 137)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3.medium&quot;</span><span class="pn">)</span>
+                           <span onmouseout="hideTip(event, 'fs46', 138)" onmouseover="showTip(event, 'fs46', 138)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3a.medium&quot;</span><span class="pn">)</span>
+                           <span onmouseout="hideTip(event, 'fs46', 139)" onmouseover="showTip(event, 'fs46', 139)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t2.medium&quot;</span><span class="pn">)</span> <span class="pn">|]</span><span class="pn">,</span>
+                    <span onmouseout="hideTip(event, 'fs65', 140)" onmouseover="showTip(event, 'fs65', 140)" class="fn">CapacityType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs65', 141)" onmouseover="showTip(event, 'fs65', 141)" class="en">CapacityType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 142)" onmouseover="showTip(event, 'fs66', 142)" class="id">SPOT</span><span class="pn">,</span>
+                    <span class="fn">MinSize</span> <span class="o">=</span> <span class="n">0.</span><span class="pn">,</span>
+                    <span class="fn">MaxSize</span> <span class="o">=</span> <span class="n">10.</span><span class="pn">,</span>
+                    <span class="fn">DesiredSize</span> <span class="o">=</span> <span class="n">2.</span><span class="pn">,</span>
+                    <span class="fn">Labels</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 143)" onmouseover="showTip(event, 'fs57', 143)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;capacity-type&quot;</span><span class="pn">,</span> <span class="s">&quot;spot&quot;</span> <span class="pn">]</span>
+
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Security-Best-Practices" class="anchor" href="#Security-Best-Practices">Security Best Practices</a></h2>
+<h3><a name="IRSA-IAM-Roles-for-Service-Accounts" class="anchor" href="#IRSA-IAM-Roles-for-Service-Accounts">IRSA (IAM Roles for Service Accounts)</a></h3>
+<p>Grant Kubernetes pods fine-grained IAM permissions without sharing credentials.</p>
+<p><strong>Benefits:</strong>
+- Least-privilege access per pod
+- No shared credentials
+- Audit trail via CloudTrail
+- Automatic credential rotation</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 144)" onmouseover="showTip(event, 'fs14', 144)" class="fn">stack</span> <span class="s">&quot;IRSAEKSStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 145)" onmouseover="showTip(event, 'fs20', 145)" class="k">description</span> <span class="s">&quot;EKS cluster with IRSA for pod permissions&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs67', 146)" onmouseover="showTip(event, 'fs67', 146)" class="fn">irsaVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 147)" onmouseover="showTip(event, 'fs23', 147)" class="fn">vpc</span> <span class="s">&quot;IRSAVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 148)" onmouseover="showTip(event, 'fs24', 148)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs26', 149)" onmouseover="showTip(event, 'fs26', 149)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs68', 150)" onmouseover="showTip(event, 'fs68', 150)" class="fn">appServiceAccount</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs28', 151)" onmouseover="showTip(event, 'fs28', 151)" class="fn">eksCluster</span> <span class="s">&quot;SpotCluster&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs29', 152)" onmouseover="showTip(event, 'fs29', 152)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs67', 153)" onmouseover="showTip(event, 'fs67', 153)" class="fn">irsaVpc</span>
+            <span onmouseout="hideTip(event, 'fs30', 154)" onmouseover="showTip(event, 'fs30', 154)" class="k">version</span> <span onmouseout="hideTip(event, 'fs31', 155)" onmouseover="showTip(event, 'fs31', 155)" class="rt">KubernetesVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 156)" onmouseover="showTip(event, 'fs32', 156)" class="id">V1_28</span>
+            <span onmouseout="hideTip(event, 'fs33', 157)" onmouseover="showTip(event, 'fs33', 157)" class="k">defaultCapacity</span> <span class="n">0</span>
+
+            <span onmouseout="hideTip(event, 'fs69', 158)" onmouseover="showTip(event, 'fs69', 158)" class="k">addServiceAccount</span> <span class="pn">(</span><span class="s">&quot;AppServiceAccount&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs70', 159)" onmouseover="showTip(event, 'fs70', 159)" class="fn">ServiceAccountOptions</span><span class="pn">(</span><span class="fn">Name</span> <span class="o">=</span> <span class="s">&quot;my-app-sa&quot;</span><span class="pn">,</span> <span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;default&quot;</span><span class="pn">)</span><span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create S3 bucket</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs71', 160)" onmouseover="showTip(event, 'fs71', 160)" class="fn">appBucket</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs72', 161)" onmouseover="showTip(event, 'fs72', 161)" class="fn">s3Bucket</span> <span class="s">&quot;app-bucket&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs73', 162)" onmouseover="showTip(event, 'fs73', 162)" class="k">versioned</span> <span class="k">true</span>
+            <span onmouseout="hideTip(event, 'fs74', 163)" onmouseover="showTip(event, 'fs74', 163)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs1', 164)" onmouseover="showTip(event, 'fs1', 164)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 165)" onmouseover="showTip(event, 'fs2', 165)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 166)" onmouseover="showTip(event, 'fs3', 166)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 167)" onmouseover="showTip(event, 'fs75', 167)" class="id">S3</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs76', 168)" onmouseover="showTip(event, 'fs76', 168)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs77', 169)" onmouseover="showTip(event, 'fs77', 169)" class="id">S3_MANAGED</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Grant S3 access to the service account</span>
+    <span class="c">//appBucket.Bucket.Value.GrantReadWrite(appServiceAccount) |&gt; ignore</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Secrets-Encryption-with-KMS" class="anchor" href="#Secrets-Encryption-with-KMS">Secrets Encryption with KMS</a></h3>
+<p>Enable envelope encryption for Kubernetes secrets at rest.</p>
+<p><strong>Security:</strong>
+- Protects sensitive data in etcd
+- Automatic key rotation
+- Audit logs via CloudTrail</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 170)" onmouseover="showTip(event, 'fs14', 170)" class="fn">stack</span> <span class="s">&quot;SecureEKSStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 171)" onmouseover="showTip(event, 'fs20', 171)" class="k">description</span> <span class="s">&quot;EKS cluster with KMS secrets encryption&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs78', 172)" onmouseover="showTip(event, 'fs78', 172)" class="fn">secureVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 173)" onmouseover="showTip(event, 'fs23', 173)" class="fn">vpc</span> <span class="s">&quot;SecureVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 174)" onmouseover="showTip(event, 'fs24', 174)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs26', 175)" onmouseover="showTip(event, 'fs26', 175)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create KMS key for secrets encryption</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs79', 176)" onmouseover="showTip(event, 'fs79', 176)" class="fn">secretsKey</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs80', 177)" onmouseover="showTip(event, 'fs80', 177)" class="fn">kmsKey</span> <span class="s">&quot;EKSSecretsKey&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs81', 178)" onmouseover="showTip(event, 'fs81', 178)" class="k">description</span> <span class="s">&quot;KMS key for EKS secrets encryption&quot;</span>
+            <span onmouseout="hideTip(event, 'fs82', 179)" onmouseover="showTip(event, 'fs82', 179)" class="k">enableKeyRotation</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs83', 180)" onmouseover="showTip(event, 'fs83', 180)" class="fn">secureCluster</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs28', 181)" onmouseover="showTip(event, 'fs28', 181)" class="fn">eksCluster</span> <span class="s">&quot;SecureCluster&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs29', 182)" onmouseover="showTip(event, 'fs29', 182)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs78', 183)" onmouseover="showTip(event, 'fs78', 183)" class="fn">secureVpc</span>
+            <span onmouseout="hideTip(event, 'fs30', 184)" onmouseover="showTip(event, 'fs30', 184)" class="k">version</span> <span onmouseout="hideTip(event, 'fs31', 185)" onmouseover="showTip(event, 'fs31', 185)" class="rt">KubernetesVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 186)" onmouseover="showTip(event, 'fs32', 186)" class="id">V1_28</span>
+            <span onmouseout="hideTip(event, 'fs84', 187)" onmouseover="showTip(event, 'fs84', 187)" class="k">encryptionKey</span> <span onmouseout="hideTip(event, 'fs79', 188)" onmouseover="showTip(event, 'fs79', 188)" class="fn">secretsKey</span>
+            <span onmouseout="hideTip(event, 'fs34', 189)" onmouseover="showTip(event, 'fs34', 189)" class="k">endpointAccess</span> <span onmouseout="hideTip(event, 'fs35', 190)" onmouseover="showTip(event, 'fs35', 190)" class="rt">EndpointAccess</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs85', 191)" onmouseover="showTip(event, 'fs85', 191)" class="id">PRIVATE</span>
+
+            <span onmouseout="hideTip(event, 'fs37', 192)" onmouseover="showTip(event, 'fs37', 192)" class="k">setClusterLogging</span>
+                <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs38', 193)" onmouseover="showTip(event, 'fs38', 193)" class="en">ClusterLoggingTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 194)" onmouseover="showTip(event, 'fs39', 194)" class="id">API</span>
+                  <span onmouseout="hideTip(event, 'fs38', 195)" onmouseover="showTip(event, 'fs38', 195)" class="en">ClusterLoggingTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 196)" onmouseover="showTip(event, 'fs40', 196)" class="id">AUDIT</span>
+                  <span onmouseout="hideTip(event, 'fs38', 197)" onmouseover="showTip(event, 'fs38', 197)" class="en">ClusterLoggingTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 198)" onmouseover="showTip(event, 'fs41', 198)" class="id">AUTHENTICATOR</span> <span class="pn">]</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Kubernetes-Deployments" class="anchor" href="#Kubernetes-Deployments">Kubernetes Deployments</a></h2>
+<h3><a name="Deploy-Application-Manifests" class="anchor" href="#Deploy-Application-Manifests">Deploy Application Manifests</a></h3>
+<p>Apply Kubernetes resources directly from CDK.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">    // Deploy nginx application</span>
+<span class="c">    appCluster.AddManifest(</span>
+<span class="c">        &quot;NginxDeployment&quot;,</span>
+<span class="c">        dict</span>
+<span class="c">            [ &quot;apiVersion&quot;, box &quot;apps/v1&quot;</span>
+<span class="c">              &quot;kind&quot;, box &quot;Deployment&quot;</span>
+<span class="c">              &quot;metadata&quot;, box (dict [ &quot;name&quot;, box &quot;nginx&quot;; &quot;namespace&quot;, box &quot;default&quot; ])</span>
+<span class="c">              &quot;spec&quot;,</span>
+<span class="c">              box (</span>
+<span class="c">                  dict</span>
+<span class="c">                      [ &quot;replicas&quot;, box 3</span>
+<span class="c">                        &quot;selector&quot;, box (dict [ &quot;matchLabels&quot;, box (dict [ &quot;app&quot;, box &quot;nginx&quot; ]) ])</span>
+<span class="c">                        &quot;template&quot;,</span>
+<span class="c">                        box (</span>
+<span class="c">                            dict</span>
+<span class="c">                                [ &quot;metadata&quot;, box (dict [ &quot;labels&quot;, box (dict [ &quot;app&quot;, box &quot;nginx&quot; ]) ])</span>
+<span class="c">                                  &quot;spec&quot;,</span>
+<span class="c">                                  box (</span>
+<span class="c">                                      dict</span>
+<span class="c">                                          [ &quot;containers&quot;,</span>
+<span class="c">                                            box</span>
+<span class="c">                                                [| dict</span>
+<span class="c">                                                       [ &quot;name&quot;, box &quot;nginx&quot;</span>
+<span class="c">                                                         &quot;image&quot;, box &quot;nginx:1.25&quot;</span>
+<span class="c">                                                         &quot;ports&quot;, box [| dict [ &quot;containerPort&quot;, box 80 ] |]</span>
+<span class="c">                                                         &quot;resources&quot;,</span>
+<span class="c">                                                         box (</span>
+<span class="c">                                                             dict</span>
+<span class="c">                                                                 [ &quot;requests&quot;,</span>
+<span class="c">                                                                   box (</span>
+<span class="c">                                                                       dict [ &quot;memory&quot;, box &quot;128Mi&quot;; &quot;cpu&quot;, box &quot;100m&quot; ]</span>
+<span class="c">                                                                   )</span>
+<span class="c">                                                                   &quot;limits&quot;,</span>
+<span class="c">                                                                   box (</span>
+<span class="c">                                                                       dict [ &quot;memory&quot;, box &quot;256Mi&quot;; &quot;cpu&quot;, box &quot;200m&quot; ]</span>
+<span class="c">                                                                   ) ]</span>
+<span class="c">                                                         ) ] |] ]</span>
+<span class="c">                                  ) ]</span>
+<span class="c">                        ) ]</span>
+<span class="c">              ) ]</span>
+<span class="c">    )</span>
+<span class="c">    |&gt; ignore</span>
+
+<span class="c">    // Deploy service</span>
+<span class="c">    appCluster.AddManifest(</span>
+<span class="c">        &quot;NginxService&quot;,</span>
+<span class="c">        dict</span>
+<span class="c">            [ &quot;apiVersion&quot;, box &quot;v1&quot;</span>
+<span class="c">              &quot;kind&quot;, box &quot;Service&quot;</span>
+<span class="c">              &quot;metadata&quot;, box (dict [ &quot;name&quot;, box &quot;nginx-service&quot;; &quot;namespace&quot;, box &quot;default&quot; ])</span>
+<span class="c">              &quot;spec&quot;,</span>
+<span class="c">              box (</span>
+<span class="c">                  dict</span>
+<span class="c">                      [ &quot;type&quot;, box &quot;LoadBalancer&quot;</span>
+<span class="c">                        &quot;selector&quot;, box (dict [ &quot;app&quot;, box &quot;nginx&quot; ])</span>
+<span class="c">                        &quot;ports&quot;, box [| dict [ &quot;port&quot;, box 80; &quot;targetPort&quot;, box 80; &quot;protocol&quot;, box &quot;TCP&quot; ] |] ]</span>
+<span class="c">              ) ]</span>
+<span class="c">    )</span>
+<span class="c">    |&gt; ignore</span>
+
+<span class="c">    ()</span>
+<span class="c">}</span>
+<span class="c">*)</span>
+</code></pre>
+<h3><a name="Install-Helm-Charts" class="anchor" href="#Install-Helm-Charts">Install Helm Charts</a></h3>
+<p>Install applications using Helm package manager.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 199)" onmouseover="showTip(event, 'fs14', 199)" class="fn">stack</span> <span class="s">&quot;HelmChartsStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 200)" onmouseover="showTip(event, 'fs20', 200)" class="k">description</span> <span class="s">&quot;EKS cluster with Helm chart installations&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs86', 201)" onmouseover="showTip(event, 'fs86', 201)" class="fn">helmVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 202)" onmouseover="showTip(event, 'fs23', 202)" class="fn">vpc</span> <span class="s">&quot;HelmVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 203)" onmouseover="showTip(event, 'fs24', 203)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs26', 204)" onmouseover="showTip(event, 'fs26', 204)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs87', 205)" onmouseover="showTip(event, 'fs87', 205)" class="fn">helmCluster</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs28', 206)" onmouseover="showTip(event, 'fs28', 206)" class="fn">eksCluster</span> <span class="s">&quot;HelmCluster&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs29', 207)" onmouseover="showTip(event, 'fs29', 207)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs86', 208)" onmouseover="showTip(event, 'fs86', 208)" class="fn">helmVpc</span>
+            <span onmouseout="hideTip(event, 'fs30', 209)" onmouseover="showTip(event, 'fs30', 209)" class="k">version</span> <span onmouseout="hideTip(event, 'fs31', 210)" onmouseover="showTip(event, 'fs31', 210)" class="rt">KubernetesVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 211)" onmouseover="showTip(event, 'fs32', 211)" class="id">V1_28</span>
+
+            <span onmouseout="hideTip(event, 'fs88', 212)" onmouseover="showTip(event, 'fs88', 212)" class="k">addHelmChart</span> <span class="pn">(</span>
+                <span class="c">// Install AWS Load Balancer Controller</span>
+                <span class="s">&quot;AWSLoadBalancerController&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs89', 213)" onmouseover="showTip(event, 'fs89', 213)" class="fn">HelmChartOptions</span><span class="pn">(</span>
+                    <span class="fn">Chart</span> <span class="o">=</span> <span class="s">&quot;aws-load-balancer-controller&quot;</span><span class="pn">,</span>
+                    <span class="fn">Repository</span> <span class="o">=</span> <span class="s">&quot;https://aws.github.io/eks-charts&quot;</span><span class="pn">,</span>
+                    <span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;kube-system&quot;</span><span class="pn">,</span>
+                    <span class="fn">Values</span> <span class="o">=</span>
+                        <span onmouseout="hideTip(event, 'fs57', 214)" onmouseover="showTip(event, 'fs57', 214)" class="fn">dict</span>
+                            <span class="pn">[</span> <span class="s">&quot;clusterName&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 215)" onmouseover="showTip(event, 'fs90', 215)" class="fn">box</span> <span class="s">&quot;HelmCluster&quot;</span>
+                              <span class="s">&quot;serviceAccount.create&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 216)" onmouseover="showTip(event, 'fs90', 216)" class="fn">box</span> <span class="k">false</span>
+                              <span class="s">&quot;serviceAccount.name&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 217)" onmouseover="showTip(event, 'fs90', 217)" class="fn">box</span> <span class="s">&quot;aws-load-balancer-controller&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span onmouseout="hideTip(event, 'fs88', 218)" onmouseover="showTip(event, 'fs88', 218)" class="k">addHelmChart</span> <span class="pn">(</span>
+                <span class="c">// Install metrics-server for HPA</span>
+                <span class="s">&quot;MetricsServer&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs89', 219)" onmouseover="showTip(event, 'fs89', 219)" class="fn">HelmChartOptions</span><span class="pn">(</span>
+                    <span class="fn">Chart</span> <span class="o">=</span> <span class="s">&quot;metrics-server&quot;</span><span class="pn">,</span>
+                    <span class="fn">Repository</span> <span class="o">=</span> <span class="s">&quot;https://kubernetes-sigs.github.io/metrics-server/&quot;</span><span class="pn">,</span>
+                    <span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;kube-system&quot;</span><span class="pn">,</span>
+                    <span class="fn">Values</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 220)" onmouseover="showTip(event, 'fs57', 220)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;replicas&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 221)" onmouseover="showTip(event, 'fs90', 221)" class="fn">box</span> <span class="n">2</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span onmouseout="hideTip(event, 'fs88', 222)" onmouseover="showTip(event, 'fs88', 222)" class="k">addHelmChart</span> <span class="pn">(</span>
+                <span class="c">// Install Prometheus for monitoring</span>
+                <span class="s">&quot;Prometheus&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs89', 223)" onmouseover="showTip(event, 'fs89', 223)" class="fn">HelmChartOptions</span><span class="pn">(</span>
+                    <span class="fn">Chart</span> <span class="o">=</span> <span class="s">&quot;kube-prometheus-stack&quot;</span><span class="pn">,</span>
+                    <span class="fn">Repository</span> <span class="o">=</span> <span class="s">&quot;https://prometheus-community.github.io/helm-charts&quot;</span><span class="pn">,</span>
+                    <span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;monitoring&quot;</span><span class="pn">,</span>
+                    <span class="fn">CreateNamespace</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+                    <span class="fn">Values</span> <span class="o">=</span>
+                        <span onmouseout="hideTip(event, 'fs57', 224)" onmouseover="showTip(event, 'fs57', 224)" class="fn">dict</span>
+                            <span class="pn">[</span> <span class="s">&quot;prometheus.prometheusSpec.retention&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 225)" onmouseover="showTip(event, 'fs90', 225)" class="fn">box</span> <span class="s">&quot;30d&quot;</span>
+                              <span class="s">&quot;grafana.enabled&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 226)" onmouseover="showTip(event, 'fs90', 226)" class="fn">box</span> <span class="k">true</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Auto-Scaling" class="anchor" href="#Auto-Scaling">Auto Scaling</a></h2>
+<h3><a name="Cluster-Autoscaler" class="anchor" href="#Cluster-Autoscaler">Cluster Autoscaler</a></h3>
+<p>Automatically adjust node group size based on pod resource requests.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 227)" onmouseover="showTip(event, 'fs14', 227)" class="fn">stack</span> <span class="s">&quot;AutoScalingEKSStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 228)" onmouseover="showTip(event, 'fs20', 228)" class="k">description</span> <span class="s">&quot;EKS cluster with autoscaling&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs91', 229)" onmouseover="showTip(event, 'fs91', 229)" class="fn">autoScaleVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 230)" onmouseover="showTip(event, 'fs23', 230)" class="fn">vpc</span> <span class="s">&quot;AutoScaleVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 231)" onmouseover="showTip(event, 'fs24', 231)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs26', 232)" onmouseover="showTip(event, 'fs26', 232)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs92', 233)" onmouseover="showTip(event, 'fs92', 233)" class="fn">autoScaleCluster</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs28', 234)" onmouseover="showTip(event, 'fs28', 234)" class="fn">eksCluster</span> <span class="s">&quot;AppCluster&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs29', 235)" onmouseover="showTip(event, 'fs29', 235)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs91', 236)" onmouseover="showTip(event, 'fs91', 236)" class="fn">autoScaleVpc</span>
+            <span onmouseout="hideTip(event, 'fs30', 237)" onmouseover="showTip(event, 'fs30', 237)" class="k">version</span> <span onmouseout="hideTip(event, 'fs31', 238)" onmouseover="showTip(event, 'fs31', 238)" class="rt">KubernetesVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 239)" onmouseover="showTip(event, 'fs32', 239)" class="id">V1_28</span>
+
+            <span class="c">// Auto-scaling node group</span>
+            <span onmouseout="hideTip(event, 'fs44', 240)" onmouseover="showTip(event, 'fs44', 240)" class="k">addNodegroupCapacity</span> <span class="pn">(</span>
+                <span class="s">&quot;AutoScalingNodes&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs45', 241)" onmouseover="showTip(event, 'fs45', 241)" class="fn">NodegroupOptions</span><span class="pn">(</span>
+                    <span class="fn">InstanceTypes</span> <span class="o">=</span> <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs46', 242)" onmouseover="showTip(event, 'fs46', 242)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3.medium&quot;</span><span class="pn">)</span> <span class="pn">|]</span><span class="pn">,</span>
+                    <span class="fn">MinSize</span> <span class="o">=</span> <span class="n">2.</span><span class="pn">,</span>
+                    <span class="fn">MaxSize</span> <span class="o">=</span> <span class="n">10.</span><span class="pn">,</span>
+                    <span class="fn">DesiredSize</span> <span class="o">=</span> <span class="n">3.</span><span class="pn">,</span>
+                    <span class="fn">Labels</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 243)" onmouseover="showTip(event, 'fs57', 243)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;node-group&quot;</span><span class="pn">,</span> <span class="s">&quot;autoscaling&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span class="c">// Install Cluster Autoscaler via Helm</span>
+            <span onmouseout="hideTip(event, 'fs88', 244)" onmouseover="showTip(event, 'fs88', 244)" class="k">addHelmChart</span> <span class="pn">(</span>
+                <span class="s">&quot;ClusterAutoscaler&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs89', 245)" onmouseover="showTip(event, 'fs89', 245)" class="fn">HelmChartOptions</span><span class="pn">(</span>
+                    <span class="fn">Chart</span> <span class="o">=</span> <span class="s">&quot;cluster-autoscaler&quot;</span><span class="pn">,</span>
+                    <span class="fn">Repository</span> <span class="o">=</span> <span class="s">&quot;https://kubernetes.github.io/autoscaler&quot;</span><span class="pn">,</span>
+                    <span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;kube-system&quot;</span><span class="pn">,</span>
+                    <span class="fn">Values</span> <span class="o">=</span>
+                        <span onmouseout="hideTip(event, 'fs57', 246)" onmouseover="showTip(event, 'fs57', 246)" class="fn">dict</span>
+                            <span class="pn">[</span> <span class="s">&quot;autoDiscovery.clusterName&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 247)" onmouseover="showTip(event, 'fs90', 247)" class="fn">box</span> <span class="s">&quot;AutoScalingCluster&quot;</span>
+                              <span class="s">&quot;awsRegion&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 248)" onmouseover="showTip(event, 'fs90', 248)" class="fn">box</span> <span onmouseout="hideTip(event, 'fs12', 249)" onmouseover="showTip(event, 'fs12', 249)" class="id">config</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 250)" onmouseover="showTip(event, 'fs19', 250)" class="id">Region</span>
+                              <span class="s">&quot;rbac.create&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 251)" onmouseover="showTip(event, 'fs90', 251)" class="fn">box</span> <span class="k">true</span>
+                              <span class="s">&quot;rbac.serviceAccount.name&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 252)" onmouseover="showTip(event, 'fs90', 252)" class="fn">box</span> <span class="s">&quot;cluster-autoscaler&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Complete-Production-Example" class="anchor" href="#Complete-Production-Example">Complete Production Example</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 253)" onmouseover="showTip(event, 'fs14', 253)" class="fn">stack</span> <span class="s">&quot;ProductionEKSStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs15', 254)" onmouseover="showTip(event, 'fs15', 254)" class="id">environment</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs16', 255)" onmouseover="showTip(event, 'fs16', 255)" class="k">account</span> <span onmouseout="hideTip(event, 'fs12', 256)" onmouseover="showTip(event, 'fs12', 256)" class="id">config</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 257)" onmouseover="showTip(event, 'fs17', 257)" class="id">Account</span>
+        <span onmouseout="hideTip(event, 'fs18', 258)" onmouseover="showTip(event, 'fs18', 258)" class="k">region</span> <span onmouseout="hideTip(event, 'fs12', 259)" onmouseover="showTip(event, 'fs12', 259)" class="id">config</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 260)" onmouseover="showTip(event, 'fs19', 260)" class="id">Region</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs20', 261)" onmouseover="showTip(event, 'fs20', 261)" class="k">description</span> <span class="s">&quot;Production-ready EKS cluster with security and monitoring&quot;</span>
+    <span onmouseout="hideTip(event, 'fs21', 262)" onmouseover="showTip(event, 'fs21', 262)" class="k">tags</span> <span class="pn">[</span> <span class="s">&quot;Environment&quot;</span><span class="pn">,</span> <span class="s">&quot;Production&quot;</span><span class="pn">;</span> <span class="s">&quot;Project&quot;</span><span class="pn">,</span> <span class="s">&quot;K8sCluster&quot;</span><span class="pn">;</span> <span class="s">&quot;ManagedBy&quot;</span><span class="pn">,</span> <span class="s">&quot;FsCDK&quot;</span> <span class="pn">]</span>
+
+    <span class="c">// Production VPC with high availability</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs93', 263)" onmouseover="showTip(event, 'fs93', 263)" class="fn">prodVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 264)" onmouseover="showTip(event, 'fs23', 264)" class="fn">vpc</span> <span class="s">&quot;ProductionVPC&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 265)" onmouseover="showTip(event, 'fs24', 265)" class="k">maxAzs</span> <span class="n">3</span>
+            <span onmouseout="hideTip(event, 'fs25', 266)" onmouseover="showTip(event, 'fs25', 266)" class="k">natGateways</span> <span class="n">3</span> <span class="c">// One NAT gateway per AZ for HA</span>
+            <span onmouseout="hideTip(event, 'fs26', 267)" onmouseover="showTip(event, 'fs26', 267)" class="k">cidr</span> <span class="s">&quot;10.0.0.0/16&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// KMS key for secrets encryption</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs94', 268)" onmouseover="showTip(event, 'fs94', 268)" class="fn">eksKey</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs80', 269)" onmouseover="showTip(event, 'fs80', 269)" class="fn">kmsKey</span> <span class="s">&quot;ProdEKSKey&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs81', 270)" onmouseover="showTip(event, 'fs81', 270)" class="k">description</span> <span class="s">&quot;Production EKS secrets encryption key&quot;</span>
+            <span onmouseout="hideTip(event, 'fs95', 271)" onmouseover="showTip(event, 'fs95', 271)" class="k">alias</span> <span class="s">&quot;alias/prod-eks-secrets&quot;</span>
+            <span onmouseout="hideTip(event, 'fs82', 272)" onmouseover="showTip(event, 'fs82', 272)" class="k">enableKeyRotation</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Production EKS cluster</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs96', 273)" onmouseover="showTip(event, 'fs96', 273)" class="fn">prodCluster</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs28', 274)" onmouseover="showTip(event, 'fs28', 274)" class="fn">eksCluster</span> <span class="s">&quot;ProductionCluster&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs29', 275)" onmouseover="showTip(event, 'fs29', 275)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs93', 276)" onmouseover="showTip(event, 'fs93', 276)" class="fn">prodVpc</span>
+            <span onmouseout="hideTip(event, 'fs30', 277)" onmouseover="showTip(event, 'fs30', 277)" class="k">version</span> <span onmouseout="hideTip(event, 'fs31', 278)" onmouseover="showTip(event, 'fs31', 278)" class="rt">KubernetesVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 279)" onmouseover="showTip(event, 'fs32', 279)" class="id">V1_28</span>
+            <span onmouseout="hideTip(event, 'fs33', 280)" onmouseover="showTip(event, 'fs33', 280)" class="k">defaultCapacity</span> <span class="n">0</span>
+            <span onmouseout="hideTip(event, 'fs34', 281)" onmouseover="showTip(event, 'fs34', 281)" class="k">endpointAccess</span> <span onmouseout="hideTip(event, 'fs35', 282)" onmouseover="showTip(event, 'fs35', 282)" class="rt">EndpointAccess</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs85', 283)" onmouseover="showTip(event, 'fs85', 283)" class="id">PRIVATE</span> <span class="c">// Private API for security</span>
+            <span onmouseout="hideTip(event, 'fs84', 284)" onmouseover="showTip(event, 'fs84', 284)" class="k">encryptionKey</span> <span onmouseout="hideTip(event, 'fs94', 285)" onmouseover="showTip(event, 'fs94', 285)" class="fn">eksKey</span>
+
+            <span onmouseout="hideTip(event, 'fs37', 286)" onmouseover="showTip(event, 'fs37', 286)" class="k">setClusterLogging</span>
+                <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs38', 287)" onmouseover="showTip(event, 'fs38', 287)" class="en">ClusterLoggingTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs39', 288)" onmouseover="showTip(event, 'fs39', 288)" class="id">API</span>
+                  <span onmouseout="hideTip(event, 'fs38', 289)" onmouseover="showTip(event, 'fs38', 289)" class="en">ClusterLoggingTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 290)" onmouseover="showTip(event, 'fs40', 290)" class="id">AUDIT</span>
+                  <span onmouseout="hideTip(event, 'fs38', 291)" onmouseover="showTip(event, 'fs38', 291)" class="en">ClusterLoggingTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 292)" onmouseover="showTip(event, 'fs41', 292)" class="id">AUTHENTICATOR</span>
+                  <span onmouseout="hideTip(event, 'fs38', 293)" onmouseover="showTip(event, 'fs38', 293)" class="en">ClusterLoggingTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 294)" onmouseover="showTip(event, 'fs42', 294)" class="id">CONTROLLER_MANAGER</span>
+                  <span onmouseout="hideTip(event, 'fs38', 295)" onmouseover="showTip(event, 'fs38', 295)" class="en">ClusterLoggingTypes</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 296)" onmouseover="showTip(event, 'fs43', 296)" class="id">SCHEDULER</span> <span class="pn">]</span>
+
+            <span class="c">// On-demand node group for critical workloads</span>
+            <span onmouseout="hideTip(event, 'fs44', 297)" onmouseover="showTip(event, 'fs44', 297)" class="k">addNodegroupCapacity</span> <span class="pn">(</span>
+                <span class="s">&quot;CriticalNodes&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs45', 298)" onmouseover="showTip(event, 'fs45', 298)" class="fn">NodegroupOptions</span><span class="pn">(</span>
+                    <span class="fn">InstanceTypes</span> <span class="o">=</span> <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs46', 299)" onmouseover="showTip(event, 'fs46', 299)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3.large&quot;</span><span class="pn">)</span> <span class="pn">|]</span><span class="pn">,</span>
+                    <span class="fn">MinSize</span> <span class="o">=</span> <span class="n">3.</span><span class="pn">,</span>
+                    <span class="fn">MaxSize</span> <span class="o">=</span> <span class="n">10.</span><span class="pn">,</span>
+                    <span class="fn">DesiredSize</span> <span class="o">=</span> <span class="n">5.</span><span class="pn">,</span>
+                    <span class="fn">Labels</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 300)" onmouseover="showTip(event, 'fs57', 300)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;workload-type&quot;</span><span class="pn">,</span> <span class="s">&quot;critical&quot;</span><span class="pn">;</span> <span class="s">&quot;capacity-type&quot;</span><span class="pn">,</span> <span class="s">&quot;on-demand&quot;</span> <span class="pn">]</span><span class="pn">,</span>
+                    <span onmouseout="hideTip(event, 'fs97', 301)" onmouseover="showTip(event, 'fs97', 301)" class="fn">Tags</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 302)" onmouseover="showTip(event, 'fs57', 302)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;Name&quot;</span><span class="pn">,</span> <span class="s">&quot;eks-critical-node&quot;</span><span class="pn">;</span> <span class="s">&quot;Environment&quot;</span><span class="pn">,</span> <span class="s">&quot;production&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span class="c">// Spot instance node group for batch workloads</span>
+            <span onmouseout="hideTip(event, 'fs44', 303)" onmouseover="showTip(event, 'fs44', 303)" class="k">addNodegroupCapacity</span> <span class="pn">(</span>
+                <span class="s">&quot;BatchNodes&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs45', 304)" onmouseover="showTip(event, 'fs45', 304)" class="fn">NodegroupOptions</span><span class="pn">(</span>
+                    <span class="fn">InstanceTypes</span> <span class="o">=</span>
+                        <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs46', 305)" onmouseover="showTip(event, 'fs46', 305)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3.large&quot;</span><span class="pn">)</span>
+                           <span onmouseout="hideTip(event, 'fs46', 306)" onmouseover="showTip(event, 'fs46', 306)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3a.large&quot;</span><span class="pn">)</span>
+                           <span onmouseout="hideTip(event, 'fs46', 307)" onmouseover="showTip(event, 'fs46', 307)" class="fn">InstanceType</span><span class="pn">(</span><span class="s">&quot;t3.xlarge&quot;</span><span class="pn">)</span> <span class="pn">|]</span><span class="pn">,</span>
+                    <span onmouseout="hideTip(event, 'fs65', 308)" onmouseover="showTip(event, 'fs65', 308)" class="fn">CapacityType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs65', 309)" onmouseover="showTip(event, 'fs65', 309)" class="en">CapacityType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 310)" onmouseover="showTip(event, 'fs66', 310)" class="id">SPOT</span><span class="pn">,</span>
+                    <span class="fn">MinSize</span> <span class="o">=</span> <span class="n">0.</span><span class="pn">,</span>
+                    <span class="fn">MaxSize</span> <span class="o">=</span> <span class="n">20.</span><span class="pn">,</span>
+                    <span class="fn">DesiredSize</span> <span class="o">=</span> <span class="n">3.</span><span class="pn">,</span>
+                    <span class="fn">Labels</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs57', 311)" onmouseover="showTip(event, 'fs57', 311)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;workload-type&quot;</span><span class="pn">,</span> <span class="s">&quot;batch&quot;</span><span class="pn">;</span> <span class="s">&quot;capacity-type&quot;</span><span class="pn">,</span> <span class="s">&quot;spot&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span class="c">// Install essential add-ons</span>
+            <span onmouseout="hideTip(event, 'fs88', 312)" onmouseover="showTip(event, 'fs88', 312)" class="k">addHelmChart</span> <span class="pn">(</span>
+                <span class="s">&quot;MetricsServer&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs89', 313)" onmouseover="showTip(event, 'fs89', 313)" class="fn">HelmChartOptions</span><span class="pn">(</span>
+                    <span class="fn">Chart</span> <span class="o">=</span> <span class="s">&quot;metrics-server&quot;</span><span class="pn">,</span>
+                    <span class="fn">Repository</span> <span class="o">=</span> <span class="s">&quot;https://kubernetes-sigs.github.io/metrics-server/&quot;</span><span class="pn">,</span>
+                    <span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;kube-system&quot;</span><span class="pn">,</span>
+                    <span class="fn">Values</span> <span class="o">=</span>
+                        <span onmouseout="hideTip(event, 'fs57', 314)" onmouseover="showTip(event, 'fs57', 314)" class="fn">dict</span>
+                            <span class="pn">[</span> <span class="s">&quot;replicas&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 315)" onmouseover="showTip(event, 'fs90', 315)" class="fn">box</span> <span class="n">3</span>
+                              <span class="s">&quot;resources.requests.cpu&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 316)" onmouseover="showTip(event, 'fs90', 316)" class="fn">box</span> <span class="s">&quot;100m&quot;</span>
+                              <span class="s">&quot;resources.requests.memory&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 317)" onmouseover="showTip(event, 'fs90', 317)" class="fn">box</span> <span class="s">&quot;200Mi&quot;</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span onmouseout="hideTip(event, 'fs88', 318)" onmouseover="showTip(event, 'fs88', 318)" class="k">addHelmChart</span> <span class="pn">(</span>
+                <span class="s">&quot;ClusterAutoscaler&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs89', 319)" onmouseover="showTip(event, 'fs89', 319)" class="fn">HelmChartOptions</span><span class="pn">(</span>
+                    <span class="fn">Chart</span> <span class="o">=</span> <span class="s">&quot;cluster-autoscaler&quot;</span><span class="pn">,</span>
+                    <span class="fn">Repository</span> <span class="o">=</span> <span class="s">&quot;https://kubernetes.github.io/autoscaler&quot;</span><span class="pn">,</span>
+                    <span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;kube-system&quot;</span><span class="pn">,</span>
+                    <span class="fn">Values</span> <span class="o">=</span>
+                        <span onmouseout="hideTip(event, 'fs57', 320)" onmouseover="showTip(event, 'fs57', 320)" class="fn">dict</span>
+                            <span class="pn">[</span> <span class="s">&quot;autoDiscovery.clusterName&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 321)" onmouseover="showTip(event, 'fs90', 321)" class="fn">box</span> <span class="s">&quot;ProductionCluster&quot;</span>
+                              <span class="s">&quot;awsRegion&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 322)" onmouseover="showTip(event, 'fs90', 322)" class="fn">box</span> <span onmouseout="hideTip(event, 'fs12', 323)" onmouseover="showTip(event, 'fs12', 323)" class="id">config</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 324)" onmouseover="showTip(event, 'fs19', 324)" class="id">Region</span>
+                              <span class="s">&quot;extraArgs.scale-down-delay-after-add&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 325)" onmouseover="showTip(event, 'fs90', 325)" class="fn">box</span> <span class="s">&quot;10m&quot;</span>
+                              <span class="s">&quot;extraArgs.skip-nodes-with-local-storage&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 326)" onmouseover="showTip(event, 'fs90', 326)" class="fn">box</span> <span class="k">false</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+            <span class="c">// Monitoring stack</span>
+            <span onmouseout="hideTip(event, 'fs88', 327)" onmouseover="showTip(event, 'fs88', 327)" class="k">addHelmChart</span> <span class="pn">(</span>
+                <span class="s">&quot;PrometheusStack&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs89', 328)" onmouseover="showTip(event, 'fs89', 328)" class="fn">HelmChartOptions</span><span class="pn">(</span>
+                    <span class="fn">Chart</span> <span class="o">=</span> <span class="s">&quot;kube-prometheus-stack&quot;</span><span class="pn">,</span>
+                    <span class="fn">Repository</span> <span class="o">=</span> <span class="s">&quot;https://prometheus-community.github.io/helm-charts&quot;</span><span class="pn">,</span>
+                    <span class="fn">Namespace</span> <span class="o">=</span> <span class="s">&quot;monitoring&quot;</span><span class="pn">,</span>
+                    <span class="fn">CreateNamespace</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+                    <span class="fn">Values</span> <span class="o">=</span>
+                        <span onmouseout="hideTip(event, 'fs57', 329)" onmouseover="showTip(event, 'fs57', 329)" class="fn">dict</span>
+                            <span class="pn">[</span> <span class="s">&quot;prometheus.prometheusSpec.retention&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 330)" onmouseover="showTip(event, 'fs90', 330)" class="fn">box</span> <span class="s">&quot;30d&quot;</span>
+                              <span class="s">&quot;prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.resources.requests.storage&quot;</span><span class="pn">,</span>
+                              <span onmouseout="hideTip(event, 'fs90', 331)" onmouseover="showTip(event, 'fs90', 331)" class="fn">box</span> <span class="s">&quot;50Gi&quot;</span>
+                              <span class="s">&quot;grafana.enabled&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 332)" onmouseover="showTip(event, 'fs90', 332)" class="fn">box</span> <span class="k">true</span>
+                              <span class="s">&quot;grafana.adminPassword&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 333)" onmouseover="showTip(event, 'fs90', 333)" class="fn">box</span> <span class="s">&quot;ChangeMeInProduction!&quot;</span>
+                              <span class="s">&quot;alertmanager.enabled&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs90', 334)" onmouseover="showTip(event, 'fs90', 334)" class="fn">box</span> <span class="k">true</span> <span class="pn">]</span>
+                <span class="pn">)</span>
+            <span class="pn">)</span>
+
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Access-Control" class="anchor" href="#Access-Control">Access Control</a></h2>
+<h3><a name="Configure-kubectl-Access" class="anchor" href="#Configure-kubectl-Access">Configure kubectl Access</a></h3>
+<p>After deployment, configure kubectl to access your cluster:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Update kubeconfig
+aws eks update-kubeconfig --name ProductionCluster --region us-east-1
+
+# Verify access
+kubectl get nodes
+kubectl get pods --all-namespaces
+
+# View cluster info
+kubectl cluster-info
+</code></pre></td></tr></table>
+<h3><a name="Grant-IAM-Users-Roles-Access" class="anchor" href="#Grant-IAM-Users-Roles-Access">Grant IAM Users/Roles Access</a></h3>
+<p>Grant additional AWS users or roles access to the cluster:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">//let developerRole =</span>
+<span class="c">//    Role.FromRoleArn(this, &quot;DeveloperRole&quot;, &quot;arn:aws:iam::123456789012:role/DeveloperRole&quot;)</span>
+
+<span class="c">// prodCluster.AwsAuth.AddRoleMapping(developerRole, AwsAuthMapping(</span>
+<span class="c">//     Groups = [| &quot;developers&quot; |],</span>
+<span class="c">//     Username = &quot;developer&quot;</span>
+<span class="c">// )) |&gt; ignore</span>
+</code></pre>
+<h2><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h2>
+<h3><a name="EKS-vs-ECS-Comparison" class="anchor" href="#EKS-vs-ECS-Comparison">EKS vs ECS Comparison</a></h3>
+<table>
+<thead>
+<tr class="header">
+<th><p>Feature</p></th>
+<th><p>ECS</p></th>
+<th><p>EKS</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Control Plane Cost</strong></p></td>
+<td><p>Free</p></td>
+<td><p><span class="math">\(0.10/hour (\)</span>73/month)</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Compute Cost</strong></p></td>
+<td><p>EC2/Fargate pricing</p></td>
+<td><p>EC2/Fargate pricing</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Learning Curve</strong></p></td>
+<td><p>Lower</p></td>
+<td><p>Higher</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Portability</strong></p></td>
+<td><p>AWS-only</p></td>
+<td><p>Multi-cloud</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Ecosystem</strong></p></td>
+<td><p>AWS-focused</p></td>
+<td><p>Kubernetes ecosystem</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Best For</strong></p></td>
+<td><p>Simple containers</p></td>
+<td><p>Complex orchestration</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3><a name="Cost-Savings-Strategies" class="anchor" href="#Cost-Savings-Strategies">Cost Savings Strategies</a></h3>
+<ol>
+<li><strong>Use Fargate for variable workloads</strong>: Pay only for pod resources</li>
+<li><strong>Spot Instances for batch jobs</strong>: Save up to 90%</li>
+<li><strong>Graviton (ARM) instances</strong>: 20% better price/performance</li>
+<li><strong>Cluster Autoscaler</strong>: Scale down during low usage</li>
+<li><strong>Reserved Instances</strong>: Up to 72% savings for baseline capacity</li>
+</ol>
+<h3><a name="Example-Monthly-Costs" class="anchor" href="#Example-Monthly-Costs">Example Monthly Costs</a></h3>
+<p><strong>Small Cluster:</strong>
+- Control plane: <span class="math">\(73
+- 3 t3.medium nodes (on-demand): ~\)</span>90
+- Total: ~$163/month</p>
+<p><strong>Production Cluster:</strong>
+- Control plane: <span class="math">\(73
+- 5 t3.large nodes (on-demand): ~\)</span>305
+- 10 t3.large spot nodes (average): ~<span class="math">\(60
+- Total: ~\)</span>438/month</p>
+<h2><a name="Deployment" class="anchor" href="#Deployment">Deployment</a></h2>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Synthesize CloudFormation template
+cdk synth ProductionEKSStack
+
+# Deploy to AWS (takes 15-20 minutes)
+cdk deploy ProductionEKSStack
+
+# Configure kubectl
+aws eks update-kubeconfig --name ProductionCluster --region &lt;region&gt;
+
+# Verify cluster
+kubectl get nodes
+
+# Destroy resources when done
+cdk destroy ProductionEKSStack
+</code></pre></td></tr></table>
+<h2><a name="Troubleshooting" class="anchor" href="#Troubleshooting">Troubleshooting</a></h2>
+<h3><a name="Common-Issues" class="anchor" href="#Common-Issues">Common Issues</a></h3>
+<p><strong>Issue: Pods stuck in Pending state</strong></p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Check pod events
+kubectl describe pod &lt;pod-name&gt;
+
+# Common causes:
+# - Insufficient node capacity (add more nodes)
+# - Resource requests too high (adjust limits)
+# - Node selector mismatch (check labels)
+</code></pre></td></tr></table>
+<p><strong>Issue: Cannot connect to cluster</strong></p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Verify AWS credentials
+aws sts get-caller-identity
+
+# Update kubeconfig
+aws eks update-kubeconfig --name &lt;cluster-name&gt;
+
+# Check endpoint access
+# Ensure EndpointAccess allows your connection source
+</code></pre></td></tr></table>
+<h2><a name="Next-Steps" class="anchor" href="#Next-Steps">Next Steps</a></h2>
+<ul>
+<li>Review <a href="ec2-ecs.html">ECS Examples</a> for container comparison</li>
+<li>Explore <a href="iam-best-practices.html">IAM Best Practices</a> for RBAC</li>
+<li>Read <a href="lambda-quickstart.html">Lambda Integration</a> for serverless hybrid architectures</li>
+<li>Learn about <a href="https://kubernetes.io/docs/concepts/configuration/overview/">Kubernetes best practices</a></li>
+</ul>
+<h2><a name="Resources" class="anchor" href="#Resources">Resources</a></h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/eks/">AWS EKS Documentation</a></li>
+<li><a href="https://aws.github.io/aws-eks-best-practices/">EKS Best Practices Guide</a></li>
+<li><a href="https://kubernetes.io/docs/">Kubernetes Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_eks-readme.html">AWS CDK EKS Module</a></li>
+<li><a href="https://eksctl.io/">eksctl</a> - CLI for EKS management</li>
+<li><a href="https://artifacthub.io/">Helm Charts</a> - Kubernetes package manager</li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS.EC2</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.EKS</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.IAM</div>
+<div class="fsdocs-tip" id="fs7">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs8">val get: unit -&gt; {| Account: string; Region: string |}</div>
+<div class="fsdocs-tip" id="fs9">namespace System</div>
+<div class="fsdocs-tip" id="fs10">type Environment =
+  static member Exit: exitCode: int -&gt; unit
+  static member ExpandEnvironmentVariables: name: string -&gt; string
+  static member FailFast: message: string -&gt; unit + 1 overload
+  static member GetCommandLineArgs: unit -&gt; string array
+  static member GetEnvironmentVariable: variable: string -&gt; string + 1 overload
+  static member GetEnvironmentVariables: unit -&gt; IDictionary + 1 overload
+  static member GetFolderPath: folder: SpecialFolder -&gt; string + 1 overload
+  static member GetLogicalDrives: unit -&gt; string array
+  static member SetEnvironmentVariable: variable: string * value: string -&gt; unit + 1 overload
+  static member CommandLine: string
+  ...<br /><em>&lt;summary&gt;Provides information about, and means to manipulate, the current environment and platform. This class cannot be inherited.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">System.Environment.GetEnvironmentVariable(variable: string) : string<br />System.Environment.GetEnvironmentVariable(variable: string, target: System.EnvironmentVariableTarget) : string</div>
+<div class="fsdocs-tip" id="fs12">val config: {| Account: string; Region: string |}</div>
+<div class="fsdocs-tip" id="fs13">module Config
+
+from Eks-kubernetes</div>
+<div class="fsdocs-tip" id="fs14">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">val environment: EnvironmentBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Environment configuration.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: account (string)
+
+Calls EnvironmentBuilder.Account<br /><em>&lt;summary&gt;Sets the AWS account ID for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;accountId&quot;&gt;The AWS account ID.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">anonymous record field Account: string</div>
+<div class="fsdocs-tip" id="fs18">custom operation: region (string)
+
+Calls EnvironmentBuilder.Region<br /><em>&lt;summary&gt;Sets the AWS region for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;regionName&quot;&gt;The AWS region name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">anonymous record field Region: string</div>
+<div class="fsdocs-tip" id="fs20">custom operation: description (string)
+
+Calls StackBuilder.Description<br /><em>&lt;summary&gt;Sets the stack description.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;desc&quot;&gt;A description of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     description &quot;My application stack&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">custom operation: tags ((string * string) seq)
+
+Calls StackBuilder.Tags<br /><em>&lt;summary&gt;Adds tags to the stack.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;tags&quot;&gt;A list of key-value pairs for tagging.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     tags [ &quot;Environment&quot;, &quot;Production&quot;; &quot;Team&quot;, &quot;DevOps&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">val clusterVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs23">val vpc: name: string -&gt; VpcBuilder<br /><em>&lt;summary&gt;Creates a VPC configuration with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The VPC name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ vpc &quot;MyVpc&quot; {
+     maxAzs 2
+     natGateways 1
+     cidr &quot;10.0.0.0/16&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">custom operation: maxAzs (int)
+
+Calls VpcBuilder.MaxAzs<br /><em>&lt;summary&gt;Sets the maximum number of Availability Zones to use.&lt;/summary&gt;<br />&lt;param name=&quot;maxAzs&quot;&gt;The maximum number of AZs (default: 2 for HA).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">custom operation: natGateways (int)
+
+Calls VpcBuilder.NatGateways<br /><em>&lt;summary&gt;Sets the number of NAT Gateways.&lt;/summary&gt;<br />&lt;param name=&quot;natGateways&quot;&gt;The number of NAT gateways (default: 1 for cost optimization).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">custom operation: cidr (string)
+
+Calls VpcBuilder.Cidr<br /><em>&lt;summary&gt;Sets the CIDR block for the VPC.&lt;/summary&gt;<br />&lt;param name=&quot;cidr&quot;&gt;The CIDR block (e.g., &quot;10.0.0.0/16&quot;).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">val cluster: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs28">val eksCluster: name: string -&gt; EKSClusterBuilder<br /><em>&lt;summary&gt;Creates an EKS cluster with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The cluster name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ eksCluster &quot;MyCluster&quot; {
+     vpc myVpc
+     version KubernetesVersion.V1_28
+     defaultCapacity 3
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs29">custom operation: vpc (VpcSpec)
+
+Calls EKSClusterBuilder.Vpc<br /><em>&lt;summary&gt;Sets the VPC from a VpcSpec.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">custom operation: version (KubernetesVersion)
+
+Calls EKSClusterBuilder.Version<br /><em>&lt;summary&gt;Sets the Kubernetes version.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">type KubernetesVersion =
+  inherit DeputyBase
+  static member Of: version: string -&gt; KubernetesVersion
+  member Version: string
+  static member V1_14: KubernetesVersion
+  static member V1_15: KubernetesVersion
+  static member V1_16: KubernetesVersion
+  static member V1_17: KubernetesVersion
+  static member V1_18: KubernetesVersion
+  static member V1_19: KubernetesVersion
+  static member V1_20: KubernetesVersion
+  ...</div>
+<div class="fsdocs-tip" id="fs32">property KubernetesVersion.V1_28: KubernetesVersion with get</div>
+<div class="fsdocs-tip" id="fs33">custom operation: defaultCapacity (int)
+
+Calls EKSClusterBuilder.DefaultCapacity<br /><em>&lt;summary&gt;Sets the default node capacity.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">custom operation: endpointAccess (EndpointAccess)
+
+Calls EKSClusterBuilder.EndpointAccess<br /><em>&lt;summary&gt;Sets the endpoint access mode.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">type EndpointAccess =
+  inherit DeputyBase
+  member OnlyFrom: [&lt;ParamArray&gt;] cidr: string array -&gt; EndpointAccess
+  static member PRIVATE: EndpointAccess
+  static member PUBLIC: EndpointAccess
+  static member PUBLIC_AND_PRIVATE: EndpointAccess</div>
+<div class="fsdocs-tip" id="fs36">property EndpointAccess.PUBLIC_AND_PRIVATE: EndpointAccess with get</div>
+<div class="fsdocs-tip" id="fs37">custom operation: setClusterLogging (ClusterLoggingTypes list)
+
+Calls EKSClusterBuilder.SetClusterLogging<br /><em>&lt;summary&gt;Set cluster logging. Default: API/AUDIT/AUTHENTICATOR/CONTROLLER_MANAGER/SCHEDULER&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">[&lt;Struct&gt;]
+type ClusterLoggingTypes =
+  | API = 0
+  | AUDIT = 1
+  | AUTHENTICATOR = 2
+  | CONTROLLER_MANAGER = 3
+  | SCHEDULER = 4</div>
+<div class="fsdocs-tip" id="fs39">field ClusterLoggingTypes.API: ClusterLoggingTypes = 0</div>
+<div class="fsdocs-tip" id="fs40">field ClusterLoggingTypes.AUDIT: ClusterLoggingTypes = 1</div>
+<div class="fsdocs-tip" id="fs41">field ClusterLoggingTypes.AUTHENTICATOR: ClusterLoggingTypes = 2</div>
+<div class="fsdocs-tip" id="fs42">field ClusterLoggingTypes.CONTROLLER_MANAGER: ClusterLoggingTypes = 3</div>
+<div class="fsdocs-tip" id="fs43">field ClusterLoggingTypes.SCHEDULER: ClusterLoggingTypes = 4</div>
+<div class="fsdocs-tip" id="fs44">custom operation: addNodegroupCapacity (string * NodegroupOptions)
+
+Calls EKSClusterBuilder.AddNodegroupCapacity</div>
+<div class="fsdocs-tip" id="fs45">Multiple items<br />type NodegroupOptions =
+  interface INodegroupOptions
+  new: unit -&gt; unit
+  member AmiType: Nullable&lt;NodegroupAmiType&gt;
+  member CapacityType: Nullable&lt;CapacityType&gt;
+  member DesiredSize: Nullable&lt;float&gt;
+  member DiskSize: Nullable&lt;float&gt;
+  member EnableNodeAutoRepair: Nullable&lt;bool&gt;
+  member ForceUpdate: Nullable&lt;bool&gt;
+  member InstanceTypes: InstanceType array
+  member Labels: IDictionary&lt;string,string&gt;
+  ...<br /><br />--------------------<br />NodegroupOptions() : NodegroupOptions</div>
+<div class="fsdocs-tip" id="fs46">Multiple items<br />type InstanceType =
+  inherit DeputyBase
+  new: instanceTypeIdentifier: string -&gt; unit
+  member IsBurstable: unit -&gt; bool
+  member SameInstanceClassAs: other: InstanceType -&gt; bool
+  member ToString: unit -&gt; string
+  static member Of: instanceClass: InstanceClass * instanceSize: InstanceSize -&gt; InstanceType
+  member Architecture: InstanceArchitecture<br /><br />--------------------<br />InstanceType(instanceTypeIdentifier: string) : InstanceType</div>
+<div class="fsdocs-tip" id="fs47">InstanceType.Of(instanceClass: InstanceClass, instanceSize: InstanceSize) : InstanceType</div>
+<div class="fsdocs-tip" id="fs48">[&lt;Struct&gt;]
+type InstanceClass =
+  | STANDARD3 = 0
+  | M3 = 1
+  | STANDARD4 = 2
+  | M4 = 3
+  | STANDARD5 = 4
+  | M5 = 5
+  | STANDARD5_NVME_DRIVE = 6
+  | M5D = 7
+  | STANDARD5_AMD = 8
+  | M5A = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs49">field InstanceClass.BURSTABLE3: InstanceClass = 172</div>
+<div class="fsdocs-tip" id="fs50">[&lt;Struct&gt;]
+type InstanceSize =
+  | NANO = 0
+  | MICRO = 1
+  | SMALL = 2
+  | MEDIUM = 3
+  | LARGE = 4
+  | XLARGE = 5
+  | XLARGE2 = 6
+  | XLARGE3 = 7
+  | XLARGE4 = 8
+  | XLARGE6 = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs51">field InstanceSize.MEDIUM: InstanceSize = 3</div>
+<div class="fsdocs-tip" id="fs52">val fargateVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs53">val fargateCluster: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs54">custom operation: addFargateProfile (string * FargateProfileOptions)
+
+Calls EKSClusterBuilder.AddFargateProfile</div>
+<div class="fsdocs-tip" id="fs55">Multiple items<br />type FargateProfileOptions =
+  interface IFargateProfileOptions
+  new: unit -&gt; unit
+  member FargateProfileName: string
+  member PodExecutionRole: IRole
+  member Selectors: ISelector array
+  member SubnetSelection: ISubnetSelection
+  member Vpc: IVpc<br /><br />--------------------<br />FargateProfileOptions() : FargateProfileOptions</div>
+<div class="fsdocs-tip" id="fs56">Multiple items<br />type Selector =
+  interface ISelector
+  new: unit -&gt; unit
+  member Labels: IDictionary&lt;string,string&gt;
+  member Namespace: string<br /><br />--------------------<br />Selector() : Selector</div>
+<div class="fsdocs-tip" id="fs57">val dict: keyValuePairs: (&#39;Key * &#39;Value) seq -&gt; System.Collections.Generic.IDictionary&lt;&#39;Key,&#39;Value&gt; (requires equality)</div>
+<div class="fsdocs-tip" id="fs58">val multiArchVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs59">val multiArchCluster: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs60">[&lt;Struct&gt;]
+type NodegroupAmiType =
+  | AL2_X86_64 = 0
+  | AL2_X86_64_GPU = 1
+  | AL2_ARM_64 = 2
+  | BOTTLEROCKET_ARM_64 = 3
+  | BOTTLEROCKET_X86_64 = 4
+  | BOTTLEROCKET_ARM_64_NVIDIA = 5
+  | BOTTLEROCKET_X86_64_NVIDIA = 6
+  | BOTTLEROCKET_ARM_64_FIPS = 7
+  | BOTTLEROCKET_X86_64_FIPS = 8
+  | WINDOWS_CORE_2019_X86_64 = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs61">field NodegroupAmiType.AL2_ARM_64: NodegroupAmiType = 2</div>
+<div class="fsdocs-tip" id="fs62">field NodegroupAmiType.AL2_X86_64: NodegroupAmiType = 0</div>
+<div class="fsdocs-tip" id="fs63">val spotVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs64">val spotCluster: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs65">[&lt;Struct&gt;]
+type CapacityType =
+  | SPOT = 0
+  | ON_DEMAND = 1
+  | CAPACITY_BLOCK = 2</div>
+<div class="fsdocs-tip" id="fs66">field CapacityType.SPOT: CapacityType = 0</div>
+<div class="fsdocs-tip" id="fs67">val irsaVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs68">val appServiceAccount: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs69">custom operation: addServiceAccount (string * ServiceAccountOptions)
+
+Calls EKSClusterBuilder.AddServiceAccount</div>
+<div class="fsdocs-tip" id="fs70">Multiple items<br />type ServiceAccountOptions =
+  interface IServiceAccountOptions
+  new: unit -&gt; unit
+  member Annotations: IDictionary&lt;string,string&gt;
+  member IdentityType: Nullable&lt;IdentityType&gt;
+  member Labels: IDictionary&lt;string,string&gt;
+  member Name: string
+  member Namespace: string<br /><br />--------------------<br />ServiceAccountOptions() : ServiceAccountOptions</div>
+<div class="fsdocs-tip" id="fs71">val appBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs72">val s3Bucket: name: string -&gt; BucketBuilder<br /><em>&lt;summary&gt;
+ Creates a new S3 bucket builder with secure defaults.
+ Example: s3Bucket &quot;my-bucket&quot; { versioned true }
+ Alias for bucket builder.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs73">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs74">custom operation: encryption (AWS.S3.BucketEncryption)
+
+Calls BucketBuilder.Encryption</div>
+<div class="fsdocs-tip" id="fs75">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs76">[&lt;Struct&gt;]
+type BucketEncryption =
+  | UNENCRYPTED = 0
+  | KMS_MANAGED = 1
+  | S3_MANAGED = 2
+  | KMS = 3
+  | DSSE_MANAGED = 4
+  | DSSE = 5</div>
+<div class="fsdocs-tip" id="fs77">field AWS.S3.BucketEncryption.S3_MANAGED: AWS.S3.BucketEncryption = 2</div>
+<div class="fsdocs-tip" id="fs78">val secureVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs79">val secretsKey: KMSKeySpec</div>
+<div class="fsdocs-tip" id="fs80">val kmsKey: name: string -&gt; KMSKeyBuilder<br /><em>&lt;summary&gt;
+ Creates a new KMS key builder with secure defaults.
+ Example: kmsKey &quot;my-encryption-key&quot; { description &quot;Encrypts sensitive data&quot; }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs81">custom operation: description (string)
+
+Calls KMSKeyBuilder.Description<br /><em>&lt;summary&gt;Sets the description for the KMS key.&lt;/summary&gt;<br />&lt;param name=&quot;description&quot;&gt;Human-readable description.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ kmsKey &quot;my-key&quot; {
+     description &quot;Encryption key for S3 bucket data&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs82">custom operation: enableKeyRotation
+
+Calls KMSKeyBuilder.EnableKeyRotation<br /><em>&lt;summary&gt;Enables automatic key rotation (recommended for security).&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ kmsKey &quot;my-key&quot; {
+     enableKeyRotation
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs83">val secureCluster: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs84">custom operation: encryptionKey (KMSKeySpec)
+
+Calls EKSClusterBuilder.SecretsEncryptionKey<br /><em>&lt;summary&gt;Enables the ALB controller.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs85">property EndpointAccess.PRIVATE: EndpointAccess with get</div>
+<div class="fsdocs-tip" id="fs86">val helmVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs87">val helmCluster: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs88">custom operation: addHelmChart (string * HelmChartOptions)
+
+Calls EKSClusterBuilder.AddHelmChart</div>
+<div class="fsdocs-tip" id="fs89">Multiple items<br />type HelmChartOptions =
+  interface IHelmChartOptions
+  new: unit -&gt; unit
+  member Atomic: Nullable&lt;bool&gt;
+  member Chart: string
+  member ChartAsset: Asset
+  member CreateNamespace: Nullable&lt;bool&gt;
+  member Namespace: string
+  member Release: string
+  member Repository: string
+  member SkipCrds: Nullable&lt;bool&gt;
+  ...<br /><br />--------------------<br />HelmChartOptions() : HelmChartOptions</div>
+<div class="fsdocs-tip" id="fs90">val box: value: &#39;T -&gt; obj</div>
+<div class="fsdocs-tip" id="fs91">val autoScaleVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs92">val autoScaleCluster: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs93">val prodVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs94">val eksKey: KMSKeySpec</div>
+<div class="fsdocs-tip" id="fs95">custom operation: alias (string)
+
+Calls KMSKeyBuilder.Alias<br /><em>&lt;summary&gt;Sets an alias for the KMS key (e.g., &quot;alias/my-app-key&quot;).&lt;/summary&gt;<br />&lt;param name=&quot;alias&quot;&gt;The key alias.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ kmsKey &quot;my-key&quot; {
+     alias &quot;alias/my-app-key&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs96">val prodCluster: EKSClusterSpec</div>
+<div class="fsdocs-tip" id="fs97">type Tags =
+  inherit DeputyBase
+  member Add: key: string * value: string * ?props: ITagProps -&gt; unit
+  member Remove: key: string * ?props: ITagProps -&gt; unit
+  static member Of: scope: IConstruct -&gt; Tags</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#What-is-EKS">
+      What is EKS?
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Prerequisites">
+      Prerequisites
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-EKS-Cluster">
+      Basic EKS Cluster
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Advanced-Cluster-Configurations">
+      Advanced Cluster Configurations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Fargate-Profile-for-Serverless-Pods">
+      Fargate Profile for Serverless Pods
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Multi-Architecture-Node-Groups">
+      Multi-Architecture Node Groups
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Spot-Instances-for-Cost-Optimization">
+      Spot Instances for Cost Optimization
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Security-Best-Practices">
+      Security Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#IRSA-IAM-Roles-for-Service-Accounts">
+      IRSA (IAM Roles for Service Accounts)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Secrets-Encryption-with-KMS">
+      Secrets Encryption with KMS
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Kubernetes-Deployments">
+      Kubernetes Deployments
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Deploy-Application-Manifests">
+      Deploy Application Manifests
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Install-Helm-Charts">
+      Install Helm Charts
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Auto-Scaling">
+      Auto Scaling
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cluster-Autoscaler">
+      Cluster Autoscaler
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Complete-Production-Example">
+      Complete Production Example
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Access-Control">
+      Access Control
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Configure-kubectl-Access">
+      Configure kubectl Access
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Grant-IAM-Users-Roles-Access">
+      Grant IAM Users/Roles Access
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#EKS-vs-ECS-Comparison">
+      EKS vs ECS Comparison
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cost-Savings-Strategies">
+      Cost Savings Strategies
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Example-Monthly-Costs">
+      Example Monthly Costs
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Deployment">
+      Deployment
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Troubleshooting">
+      Troubleshooting
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Common-Issues">
+      Common Issues
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Next-Steps">
+      Next Steps
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Resources">
+      Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

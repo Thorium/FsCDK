@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="EventBridge" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="EventBridge">
+    
+    <title>EventBridge | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Amazon-EventBridge" class="anchor" href="#Amazon-EventBridge"><img src="img/icons/Arch_Amazon-EventBridge_48.png" alt="Amazon EventBridge" /> Amazon EventBridge</a></h1>
+<p>EventBridge is a serverless event bus service that makes it easy to connect applications using events.
+Build event-driven architectures with decoupled microservices.</p>
+<h2><a name="EventBridge-Event-Driven-Architecture" class="anchor" href="#EventBridge-Event-Driven-Architecture">EventBridge Event-Driven Architecture</a></h2>
+<p><img src="img/diagrams/eventbridge-architecture.svg" alt="EventBridge Event-Driven Architecture" /></p>
+<h2><a name="Quick-Start" class="anchor" href="#Quick-Start">Quick Start</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">Events</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 11)" onmouseover="showTip(event, 'fs5', 11)" class="id">Events</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 12)" onmouseover="showTip(event, 'fs6', 12)" class="id">Targets</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 13)" onmouseover="showTip(event, 'fs2', 13)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 14)" onmouseover="showTip(event, 'fs3', 14)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 15)" onmouseover="showTip(event, 'fs4', 15)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 16)" onmouseover="showTip(event, 'fs7', 16)" class="id">Lambda</span>
+</code></pre>
+<h2><a name="Scheduled-Events" class="anchor" href="#Scheduled-Events">Scheduled Events</a></h2>
+<p>Run Lambda functions on a schedule using EventBridge rules.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 17)" onmouseover="showTip(event, 'fs8', 17)" class="fn">stack</span> <span class="s">&quot;ScheduledEvents&quot;</span> <span class="pn">{</span>
+    <span class="c">// Lambda function</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs9', 18)" onmouseover="showTip(event, 'fs9', 18)" class="fn">processFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 19)" onmouseover="showTip(event, 'fs10', 19)" class="fn">lambda</span> <span class="s">&quot;ProcessDaily&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 20)" onmouseover="showTip(event, 'fs11', 20)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 21)" onmouseover="showTip(event, 'fs12', 21)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 22)" onmouseover="showTip(event, 'fs13', 22)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 23)" onmouseover="showTip(event, 'fs14', 23)" class="k">handler</span> <span class="s">&quot;App::Handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 24)" onmouseover="showTip(event, 'fs15', 24)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Run daily at midnight UTC</span>
+    <span onmouseout="hideTip(event, 'fs16', 25)" onmouseover="showTip(event, 'fs16', 25)" class="fn">eventBridgeRule</span> <span class="s">&quot;DailyProcessing&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs17', 26)" onmouseover="showTip(event, 'fs17', 26)" class="k">description</span> <span class="s">&quot;Process data daily at midnight&quot;</span>
+        <span onmouseout="hideTip(event, 'fs18', 27)" onmouseover="showTip(event, 'fs18', 27)" class="k">schedule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 28)" onmouseover="showTip(event, 'fs19', 28)" class="rt">Schedule</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 29)" onmouseover="showTip(event, 'fs20', 29)" class="id">Cron</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs21', 30)" onmouseover="showTip(event, 'fs21', 30)" class="fn">CronOptions</span><span class="pn">(</span><span class="fn">Hour</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span><span class="pn">,</span> <span class="fn">Minute</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs22', 31)" onmouseover="showTip(event, 'fs22', 31)" class="k">target</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 32)" onmouseover="showTip(event, 'fs23', 32)" class="fn">LambdaFunction</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 33)" onmouseover="showTip(event, 'fs9', 33)" class="fn">processFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 34)" onmouseover="showTip(event, 'fs24', 34)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 35)" onmouseover="showTip(event, 'fs25', 35)" class="id">Value</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Rate-Based-Scheduling" class="anchor" href="#Rate-Based-Scheduling">Rate-Based Scheduling</a></h2>
+<p>Execute tasks at regular intervals.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 36)" onmouseover="showTip(event, 'fs8', 36)" class="fn">stack</span> <span class="s">&quot;RateBasedEvents&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs26', 37)" onmouseover="showTip(event, 'fs26', 37)" class="fn">monitorFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 38)" onmouseover="showTip(event, 'fs10', 38)" class="fn">lambda</span> <span class="s">&quot;Monitor&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 39)" onmouseover="showTip(event, 'fs11', 39)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 40)" onmouseover="showTip(event, 'fs12', 40)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 41)" onmouseover="showTip(event, 'fs13', 41)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 42)" onmouseover="showTip(event, 'fs14', 42)" class="k">handler</span> <span class="s">&quot;App::Monitor&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 43)" onmouseover="showTip(event, 'fs15', 43)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Run every 5 minutes</span>
+    <span onmouseout="hideTip(event, 'fs16', 44)" onmouseover="showTip(event, 'fs16', 44)" class="fn">eventBridgeRule</span> <span class="s">&quot;HealthCheck&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs17', 45)" onmouseover="showTip(event, 'fs17', 45)" class="k">description</span> <span class="s">&quot;Health check every 5 minutes&quot;</span>
+        <span onmouseout="hideTip(event, 'fs18', 46)" onmouseover="showTip(event, 'fs18', 46)" class="k">schedule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 47)" onmouseover="showTip(event, 'fs19', 47)" class="rt">Schedule</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 48)" onmouseover="showTip(event, 'fs27', 48)" class="id">Rate</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs28', 49)" onmouseover="showTip(event, 'fs28', 49)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs29', 50)" onmouseover="showTip(event, 'fs29', 50)" class="id">Minutes</span><span class="pn">(</span><span class="n">5.0</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs22', 51)" onmouseover="showTip(event, 'fs22', 51)" class="k">target</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 52)" onmouseover="showTip(event, 'fs23', 52)" class="fn">LambdaFunction</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs26', 53)" onmouseover="showTip(event, 'fs26', 53)" class="fn">monitorFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 54)" onmouseover="showTip(event, 'fs24', 54)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 55)" onmouseover="showTip(event, 'fs25', 55)" class="id">Value</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs30', 56)" onmouseover="showTip(event, 'fs30', 56)" class="k">enabled</span> <span class="k">true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Event-Pattern-Matching" class="anchor" href="#Event-Pattern-Matching">Event Pattern Matching</a></h2>
+<p>React to specific AWS events using event patterns.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 57)" onmouseover="showTip(event, 'fs8', 57)" class="fn">stack</span> <span class="s">&quot;EventPatterns&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 58)" onmouseover="showTip(event, 'fs31', 58)" class="fn">alertFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 59)" onmouseover="showTip(event, 'fs10', 59)" class="fn">lambda</span> <span class="s">&quot;AlertHandler&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 60)" onmouseover="showTip(event, 'fs11', 60)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 61)" onmouseover="showTip(event, 'fs12', 61)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 62)" onmouseover="showTip(event, 'fs13', 62)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 63)" onmouseover="showTip(event, 'fs14', 63)" class="k">handler</span> <span class="s">&quot;App::HandleAlert&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 64)" onmouseover="showTip(event, 'fs15', 64)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// React to EC2 instance state changes</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 65)" onmouseover="showTip(event, 'fs32', 65)" class="fn">ec2StateChangePattern</span> <span class="o">=</span>
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 66)" onmouseover="showTip(event, 'fs33', 66)" class="fn">details</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs34', 67)" onmouseover="showTip(event, 'fs34', 67)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 68)" onmouseover="showTip(event, 'fs35', 68)" class="id">Collections</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 69)" onmouseover="showTip(event, 'fs36', 69)" class="id">Generic</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 70)" onmouseover="showTip(event, 'fs37', 70)" class="id">Dictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs38', 71)" onmouseover="showTip(event, 'fs38', 71)" class="rt">string</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs39', 72)" onmouseover="showTip(event, 'fs39', 72)" class="rt">obj</span><span class="pn">&gt;</span><span class="pn">(</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs33', 73)" onmouseover="showTip(event, 'fs33', 73)" class="fn">details</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 74)" onmouseover="showTip(event, 'fs40', 74)" class="id">Add</span><span class="pn">(</span><span class="s">&quot;state&quot;</span><span class="pn">,</span> <span class="pn">[|</span> <span class="s">&quot;terminated&quot;</span> <span class="pn">|]</span> <span class="o">:&gt;</span> <span onmouseout="hideTip(event, 'fs39', 75)" onmouseover="showTip(event, 'fs39', 75)" class="rt">obj</span><span class="pn">)</span>
+
+        <span onmouseout="hideTip(event, 'fs41', 76)" onmouseover="showTip(event, 'fs41', 76)" class="fn">EventPattern</span><span class="pn">(</span>
+            <span class="fn">Source</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;aws.ec2&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+            <span class="fn">DetailType</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;EC2 Instance State-change Notification&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+            <span class="fn">Detail</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 77)" onmouseover="showTip(event, 'fs33', 77)" class="fn">details</span>
+        <span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs16', 78)" onmouseover="showTip(event, 'fs16', 78)" class="fn">eventBridgeRule</span> <span class="s">&quot;EC2Termination&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs17', 79)" onmouseover="showTip(event, 'fs17', 79)" class="k">description</span> <span class="s">&quot;Alert on EC2 instance termination&quot;</span>
+        <span onmouseout="hideTip(event, 'fs42', 80)" onmouseover="showTip(event, 'fs42', 80)" class="k">eventPattern</span> <span onmouseout="hideTip(event, 'fs32', 81)" onmouseover="showTip(event, 'fs32', 81)" class="fn">ec2StateChangePattern</span>
+        <span onmouseout="hideTip(event, 'fs22', 82)" onmouseover="showTip(event, 'fs22', 82)" class="k">target</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 83)" onmouseover="showTip(event, 'fs23', 83)" class="fn">LambdaFunction</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs31', 84)" onmouseover="showTip(event, 'fs31', 84)" class="fn">alertFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 85)" onmouseover="showTip(event, 'fs24', 85)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 86)" onmouseover="showTip(event, 'fs25', 86)" class="id">Value</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Custom-Event-Bus" class="anchor" href="#Custom-Event-Bus">Custom Event Bus</a></h2>
+<p>Create a custom event bus for your application events.
+Note: Custom event buses are created using the CDK EventBus class directly,
+then referenced in rules.</p>
+<h2><a name="Multi-Target-Rules" class="anchor" href="#Multi-Target-Rules">Multi-Target Rules</a></h2>
+<p>Send events to multiple targets.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 87)" onmouseover="showTip(event, 'fs8', 87)" class="fn">stack</span> <span class="s">&quot;MultiTarget&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 88)" onmouseover="showTip(event, 'fs43', 88)" class="fn">logFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 89)" onmouseover="showTip(event, 'fs10', 89)" class="fn">lambda</span> <span class="s">&quot;Logger&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 90)" onmouseover="showTip(event, 'fs11', 90)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 91)" onmouseover="showTip(event, 'fs12', 91)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 92)" onmouseover="showTip(event, 'fs13', 92)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 93)" onmouseover="showTip(event, 'fs14', 93)" class="k">handler</span> <span class="s">&quot;App::Log&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 94)" onmouseover="showTip(event, 'fs15', 94)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 95)" onmouseover="showTip(event, 'fs44', 95)" class="fn">notifyFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 96)" onmouseover="showTip(event, 'fs10', 96)" class="fn">lambda</span> <span class="s">&quot;Notifier&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 97)" onmouseover="showTip(event, 'fs11', 97)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 98)" onmouseover="showTip(event, 'fs12', 98)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 99)" onmouseover="showTip(event, 'fs13', 99)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 100)" onmouseover="showTip(event, 'fs14', 100)" class="k">handler</span> <span class="s">&quot;App::Notify&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 101)" onmouseover="showTip(event, 'fs15', 101)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs16', 102)" onmouseover="showTip(event, 'fs16', 102)" class="fn">eventBridgeRule</span> <span class="s">&quot;CriticalEvents&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs17', 103)" onmouseover="showTip(event, 'fs17', 103)" class="k">description</span> <span class="s">&quot;Handle critical system events&quot;</span>
+        <span onmouseout="hideTip(event, 'fs18', 104)" onmouseover="showTip(event, 'fs18', 104)" class="k">schedule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 105)" onmouseover="showTip(event, 'fs19', 105)" class="rt">Schedule</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 106)" onmouseover="showTip(event, 'fs27', 106)" class="id">Rate</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs28', 107)" onmouseover="showTip(event, 'fs28', 107)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs45', 108)" onmouseover="showTip(event, 'fs45', 108)" class="id">Hours</span><span class="pn">(</span><span class="n">1.0</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs22', 109)" onmouseover="showTip(event, 'fs22', 109)" class="k">target</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 110)" onmouseover="showTip(event, 'fs23', 110)" class="fn">LambdaFunction</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs43', 111)" onmouseover="showTip(event, 'fs43', 111)" class="fn">logFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 112)" onmouseover="showTip(event, 'fs24', 112)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 113)" onmouseover="showTip(event, 'fs25', 113)" class="id">Value</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs22', 114)" onmouseover="showTip(event, 'fs22', 114)" class="k">target</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 115)" onmouseover="showTip(event, 'fs23', 115)" class="fn">LambdaFunction</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs44', 116)" onmouseover="showTip(event, 'fs44', 116)" class="fn">notifyFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 117)" onmouseover="showTip(event, 'fs24', 117)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 118)" onmouseover="showTip(event, 'fs25', 118)" class="id">Value</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Cron-Expressions" class="anchor" href="#Cron-Expressions">Cron Expressions</a></h2>
+<p>Use cron expressions for complex scheduling.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 119)" onmouseover="showTip(event, 'fs8', 119)" class="fn">stack</span> <span class="s">&quot;CronSchedule&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs46', 120)" onmouseover="showTip(event, 'fs46', 120)" class="fn">reportFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 121)" onmouseover="showTip(event, 'fs10', 121)" class="fn">lambda</span> <span class="s">&quot;WeeklyReport&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 122)" onmouseover="showTip(event, 'fs11', 122)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 123)" onmouseover="showTip(event, 'fs12', 123)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 124)" onmouseover="showTip(event, 'fs13', 124)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 125)" onmouseover="showTip(event, 'fs14', 125)" class="k">handler</span> <span class="s">&quot;App::GenerateReport&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 126)" onmouseover="showTip(event, 'fs15', 126)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Run every Monday at 9 AM UTC</span>
+    <span onmouseout="hideTip(event, 'fs16', 127)" onmouseover="showTip(event, 'fs16', 127)" class="fn">eventBridgeRule</span> <span class="s">&quot;WeeklyReport&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs17', 128)" onmouseover="showTip(event, 'fs17', 128)" class="k">description</span> <span class="s">&quot;Generate weekly report&quot;</span>
+        <span onmouseout="hideTip(event, 'fs18', 129)" onmouseover="showTip(event, 'fs18', 129)" class="k">schedule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 130)" onmouseover="showTip(event, 'fs19', 130)" class="rt">Schedule</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 131)" onmouseover="showTip(event, 'fs20', 131)" class="id">Cron</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs21', 132)" onmouseover="showTip(event, 'fs21', 132)" class="fn">CronOptions</span><span class="pn">(</span><span class="fn">Minute</span> <span class="o">=</span> <span class="s">&quot;0&quot;</span><span class="pn">,</span> <span class="fn">Hour</span> <span class="o">=</span> <span class="s">&quot;9&quot;</span><span class="pn">,</span> <span class="fn">WeekDay</span> <span class="o">=</span> <span class="s">&quot;MON&quot;</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs22', 133)" onmouseover="showTip(event, 'fs22', 133)" class="k">target</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 134)" onmouseover="showTip(event, 'fs23', 134)" class="fn">LambdaFunction</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs46', 135)" onmouseover="showTip(event, 'fs46', 135)" class="fn">reportFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 136)" onmouseover="showTip(event, 'fs24', 136)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 137)" onmouseover="showTip(event, 'fs25', 137)" class="id">Value</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Disabled-Rules" class="anchor" href="#Disabled-Rules">Disabled Rules</a></h2>
+<p>Create rules that are initially disabled.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 138)" onmouseover="showTip(event, 'fs8', 138)" class="fn">stack</span> <span class="s">&quot;DisabledRule&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 139)" onmouseover="showTip(event, 'fs47', 139)" class="fn">maintenanceFunction</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs10', 140)" onmouseover="showTip(event, 'fs10', 140)" class="fn">lambda</span> <span class="s">&quot;Maintenance&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs11', 141)" onmouseover="showTip(event, 'fs11', 141)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs12', 142)" onmouseover="showTip(event, 'fs12', 142)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 143)" onmouseover="showTip(event, 'fs13', 143)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs14', 144)" onmouseover="showTip(event, 'fs14', 144)" class="k">handler</span> <span class="s">&quot;App::RunMaintenance&quot;</span>
+            <span onmouseout="hideTip(event, 'fs15', 145)" onmouseover="showTip(event, 'fs15', 145)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs16', 146)" onmouseover="showTip(event, 'fs16', 146)" class="fn">eventBridgeRule</span> <span class="s">&quot;MaintenanceTask&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs17', 147)" onmouseover="showTip(event, 'fs17', 147)" class="k">description</span> <span class="s">&quot;Maintenance task (manually enabled)&quot;</span>
+        <span onmouseout="hideTip(event, 'fs18', 148)" onmouseover="showTip(event, 'fs18', 148)" class="k">schedule</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs19', 149)" onmouseover="showTip(event, 'fs19', 149)" class="rt">Schedule</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 150)" onmouseover="showTip(event, 'fs27', 150)" class="id">Rate</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs28', 151)" onmouseover="showTip(event, 'fs28', 151)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 152)" onmouseover="showTip(event, 'fs48', 152)" class="id">Days</span><span class="pn">(</span><span class="n">1.0</span><span class="pn">)</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs30', 153)" onmouseover="showTip(event, 'fs30', 153)" class="k">enabled</span> <span class="k">false</span> <span class="c">// Start disabled</span>
+        <span onmouseout="hideTip(event, 'fs22', 154)" onmouseover="showTip(event, 'fs22', 154)" class="k">target</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 155)" onmouseover="showTip(event, 'fs23', 155)" class="fn">LambdaFunction</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs47', 156)" onmouseover="showTip(event, 'fs47', 156)" class="fn">maintenanceFunction</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 157)" onmouseover="showTip(event, 'fs24', 157)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 158)" onmouseover="showTip(event, 'fs25', 158)" class="id">Value</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<h3><a name="Performance" class="anchor" href="#Performance">Performance</a></h3>
+<ul>
+<li>✅ Use event patterns to filter events efficiently</li>
+<li>✅ Batch events when possible</li>
+<li>✅ Monitor rule metrics (Invocations, FailedInvocations)</li>
+</ul>
+<h3><a name="Reliability" class="anchor" href="#Reliability">Reliability</a></h3>
+<ul>
+<li>✅ Configure dead-letter queues for failed events</li>
+<li>✅ Use retries with exponential backoff</li>
+<li>✅ Set appropriate target timeout values</li>
+</ul>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>✅ Use IAM policies to control who can put events</li>
+<li>✅ Encrypt custom event buses at rest</li>
+<li>✅ Use resource-based policies for cross-account access</li>
+</ul>
+<h3><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h3>
+<ul>
+<li>✅ Use event filtering to reduce unnecessary invocations</li>
+<li>✅ Consolidate rules where possible</li>
+<li>✅ Monitor CloudWatch metrics for usage patterns</li>
+</ul>
+<h3><a name="Operational-Excellence" class="anchor" href="#Operational-Excellence">Operational Excellence</a></h3>
+<ul>
+<li>✅ Use descriptive rule names and descriptions</li>
+<li>✅ Tag rules with project and environment</li>
+<li>✅ Document event schemas</li>
+<li>✅ Version your event patterns</li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.Events</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Events.Targets</div>
+<div class="fsdocs-tip" id="fs7">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs8">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val processFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs10">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs13">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs14">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">val eventBridgeRule: name: string -&gt; EventBridgeRuleBuilder<br /><em>&lt;summary&gt;Creates an EventBridge rule with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The rule name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ eventBridgeRule &quot;MyRule&quot; {
+     description &quot;Process daily events&quot;
+     schedule (Schedule.Rate(Duration.Hours(24.0)))
+     target (LambdaFunction(myFunction))
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">custom operation: description (string)
+
+Calls EventBridgeRuleBuilder.Description<br /><em>&lt;summary&gt;Sets the rule description.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">custom operation: schedule (Schedule)
+
+Calls EventBridgeRuleBuilder.Schedule<br /><em>&lt;summary&gt;Sets the schedule for the rule.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">type Schedule =
+  inherit DeputyBase
+  static member Cron: options: ICronOptions -&gt; Schedule
+  static member Expression: expression: string -&gt; Schedule
+  static member Rate: duration: Duration -&gt; Schedule
+  member ExpressionString: string</div>
+<div class="fsdocs-tip" id="fs20">Schedule.Cron(options: ICronOptions) : Schedule</div>
+<div class="fsdocs-tip" id="fs21">Multiple items<br />type CronOptions =
+  interface ICronOptions
+  new: unit -&gt; unit
+  member Day: string
+  member Hour: string
+  member Minute: string
+  member Month: string
+  member WeekDay: string
+  member Year: string<br /><br />--------------------<br />CronOptions() : CronOptions</div>
+<div class="fsdocs-tip" id="fs22">custom operation: target (IRuleTarget)
+
+Calls EventBridgeRuleBuilder.Target<br /><em>&lt;summary&gt;Adds a target to the rule.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">Multiple items<br />type LambdaFunction =
+  inherit DeputyBase
+  interface IRuleTarget
+  new: handler: IFunction * ?props: ILambdaFunctionProps -&gt; unit
+  member Bind: rule: IRule * ?id: string -&gt; IRuleTargetConfig<br /><br />--------------------<br />LambdaFunction(handler: IFunction, ?props: ILambdaFunctionProps) : LambdaFunction</div>
+<div class="fsdocs-tip" id="fs24">FunctionSpec.Function: IFunction option</div>
+<div class="fsdocs-tip" id="fs25">property Option.Value: IFunction with get</div>
+<div class="fsdocs-tip" id="fs26">val monitorFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs27">Schedule.Rate(duration: Duration) : Schedule</div>
+<div class="fsdocs-tip" id="fs28">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs29">Duration.Minutes(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs30">custom operation: enabled (bool)
+
+Calls EventBridgeRuleBuilder.Enabled<br /><em>&lt;summary&gt;Enables or disables the rule.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">val alertFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs32">val ec2StateChangePattern: EventPattern</div>
+<div class="fsdocs-tip" id="fs33">val details: System.Collections.Generic.Dictionary&lt;string,obj&gt;</div>
+<div class="fsdocs-tip" id="fs34">namespace System</div>
+<div class="fsdocs-tip" id="fs35">namespace System.Collections</div>
+<div class="fsdocs-tip" id="fs36">namespace System.Collections.Generic</div>
+<div class="fsdocs-tip" id="fs37">Multiple items<br />type Dictionary&lt;&#39;TKey,&#39;TValue&gt; =
+  interface ICollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable
+  interface IDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface IReadOnlyCollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IReadOnlyDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface ICollection
+  interface IDictionary
+  interface IDeserializationCallback
+  interface ISerializable
+  ...<br /><em>&lt;summary&gt;Represents a collection of keys and values.&lt;/summary&gt;<br />&lt;typeparam name=&quot;TKey&quot;&gt;The type of the keys in the dictionary.&lt;/typeparam&gt;<br />&lt;typeparam name=&quot;TValue&quot;&gt;The type of the values in the dictionary.&lt;/typeparam&gt;</em><br /><br />--------------------<br />System.Collections.Generic.Dictionary() : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(dictionary: System.Collections.Generic.IDictionary&lt;&#39;TKey,&#39;TValue&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(collection: System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(comparer: System.Collections.Generic.IEqualityComparer&lt;&#39;TKey&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(capacity: int) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(dictionary: System.Collections.Generic.IDictionary&lt;&#39;TKey,&#39;TValue&gt;, comparer: System.Collections.Generic.IEqualityComparer&lt;&#39;TKey&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(collection: System.Collections.Generic.IEnumerable&lt;System.Collections.Generic.KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;, comparer: System.Collections.Generic.IEqualityComparer&lt;&#39;TKey&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />System.Collections.Generic.Dictionary(capacity: int, comparer: System.Collections.Generic.IEqualityComparer&lt;&#39;TKey&gt;) : System.Collections.Generic.Dictionary&lt;&#39;TKey,&#39;TValue&gt;</div>
+<div class="fsdocs-tip" id="fs38">Multiple items<br />val string: value: &#39;T -&gt; string<br /><br />--------------------<br />type string = System.String</div>
+<div class="fsdocs-tip" id="fs39">type obj = System.Object</div>
+<div class="fsdocs-tip" id="fs40">System.Collections.Generic.Dictionary.Add(key: string, value: obj) : unit</div>
+<div class="fsdocs-tip" id="fs41">Multiple items<br />type EventPattern =
+  interface IEventPattern
+  new: unit -&gt; unit
+  member Account: string array
+  member Detail: IDictionary&lt;string,obj&gt;
+  member DetailType: string array
+  member Id: string array
+  member Region: string array
+  member Resources: string array
+  member Source: string array
+  member Time: string array
+  ...<br /><br />--------------------<br />EventPattern() : EventPattern</div>
+<div class="fsdocs-tip" id="fs42">custom operation: eventPattern (IEventPattern)
+
+Calls EventBridgeRuleBuilder.EventPattern<br /><em>&lt;summary&gt;Sets the event pattern for the rule.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs43">val logFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs44">val notifyFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs45">Duration.Hours(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs46">val reportFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs47">val maintenanceFunction: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs48">Duration.Days(amount: float) : Duration</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#EventBridge-Event-Driven-Architecture">
+      EventBridge Event-Driven Architecture
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Quick-Start">
+      Quick Start
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Scheduled-Events">
+      Scheduled Events
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Rate-Based-Scheduling">
+      Rate-Based Scheduling
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Event-Pattern-Matching">
+      Event Pattern Matching
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Custom-Event-Bus">
+      Custom Event Bus
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Multi-Target-Rules">
+      Multi-Target Rules
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cron-Expressions">
+      Cron Expressions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Disabled-Rules">
+      Disabled Rules
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Performance">
+      Performance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Reliability">
+      Reliability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Operational-Excellence">
+      Operational Excellence
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

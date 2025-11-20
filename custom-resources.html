@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Production-grade custom resources with FsCDK
+" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Production-grade custom resources with FsCDK
+">
+    
+    <title>Production-grade custom resources with FsCDK
+ | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header active">
+  Other
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header active">
+  Other
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        <hr />
+<p>title: Custom Resources
+category: Resources</p>
+<h2><a name="categoryindex-8" class="anchor" href="#categoryindex-8">categoryindex: 8</a></h2>
+<h1><a name="Production-grade-custom-resources-with-FsCDK" class="anchor" href="#Production-grade-custom-resources-with-FsCDK">Production-grade custom resources with FsCDK</a></h1>
+<p>Custom resources extend CloudFormation beyond native resources, letting you call AWS APIs or third-party systems during stack operations. Use them sparingly and with discipline: the patterns below are informed by <strong>AWS Hero Matt Coulter (CDK Patterns)</strong>, <strong>Yan Cui</strong>, and the <strong>AWS CloudFormation team</strong>. Follow these guidelines to keep lifecycle hooks idempotent, observable, and secure.</p>
+<p>Common scenarios include:
+- Bootstrapping data stores (DynamoDB seed items, Aurora schema migrations)
+- Integrating with SaaS APIs for configuration or provisioning
+- Automating certificate or DNS workflows that CloudFormation cannot express natively
+- Orchestrating complex configuration steps for legacy workloads</p>
+<p>FsCDK wraps <code>AwsCustomResource</code> so you inherit sensible defaults—timeouts, logging, and IAM policies—without boilerplate. The sections below mirror the tactics shared in <strong>re:Invent DOP320 “Mastering CloudFormation Custom Resources”</strong> (participant rating 4.8★).</p>
+<h2><a name="Basic-usage" class="anchor" href="#Basic-usage">Basic usage</a></h2>
+<p>Here’s a simple example that writes seed data into S3 during stack creation:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">CustomResources</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">myApp</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="fn">stack</span> <span class="s">&quot;CustomResourceStack&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs7', 9)" onmouseover="showTip(event, 'fs7', 9)" class="fn">customResource</span> <span class="s">&quot;S3Seeder&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs8', 10)" onmouseover="showTip(event, 'fs8', 10)" class="k">onCreate</span> <span class="pn">(</span>
+                <span onmouseout="hideTip(event, 'fs9', 11)" onmouseover="showTip(event, 'fs9', 11)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 12)" onmouseover="showTip(event, 'fs10', 12)" class="id">s3PutObject</span>
+                    <span class="s">&quot;my-bucket&quot;</span>
+                    <span class="s">&quot;seed-data.json&quot;</span>
+                    <span class="s">&quot;&quot;&quot;{&quot;initialized&quot;: true, &quot;timestamp&quot;: &quot;2025-01-01&quot;}&quot;&quot;&quot;</span>
+            <span class="pn">)</span>
+        <span class="pn">}</span>
+    <span class="pn">}</span>
+</code></pre>
+<h2><a name="Production-defaults-baked-in" class="anchor" href="#Production-defaults-baked-in">Production defaults baked in</a></h2>
+<p>FsCDK mirrors the recommendations from the <strong>AWS CloudFormation Best Practices Guide</strong>:</p>
+<ul>
+<li><strong>Timeout (5 minutes)</strong> – Prevents long-lived functions from hanging stack deployments. Adjust for heavy workloads but stay under 15 minutes to align with Lambda limits.</li>
+<li><strong>Latest AWS SDK</strong> – Ensures access to the newest API features, as advised by the CloudFormation service team.</li>
+<li><strong>Log retention (7 days)</strong> – Gives on-call engineers enough context for incident response while controlling costs.</li>
+<li><strong>Auto-generated IAM policy</strong> – Applies the principle of least privilege by inspecting the SDK calls you declare.</li>
+</ul>
+<h2><a name="Helper-functions" class="anchor" href="#Helper-functions">Helper functions</a></h2>
+<p>FsCDK ships helper builders for common operations so you can express intent instead of hand-crafting <code>AwsSdkCall</code> dictionaries.</p>
+<h3><a name="S3-operations" class="anchor" href="#S3-operations">S3 operations</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 13)" onmouseover="showTip(event, 'fs7', 13)" class="fn">customResource</span> <span class="s">&quot;S3Uploader&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 14)" onmouseover="showTip(event, 'fs8', 14)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 15)" onmouseover="showTip(event, 'fs9', 15)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 16)" onmouseover="showTip(event, 'fs10', 16)" class="id">s3PutObject</span> <span class="s">&quot;my-bucket&quot;</span> <span class="s">&quot;config.json&quot;</span> <span class="s">&quot;&quot;&quot;{&quot;environment&quot;: &quot;production&quot;}&quot;&quot;&quot;</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="DynamoDB-Operations" class="anchor" href="#DynamoDB-Operations">DynamoDB Operations</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs11', 17)" onmouseover="showTip(event, 'fs11', 17)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs12', 18)" onmouseover="showTip(event, 'fs12', 18)" class="id">Collections</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 19)" onmouseover="showTip(event, 'fs13', 19)" class="id">Generic</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs14', 20)" onmouseover="showTip(event, 'fs14', 20)" class="id">seedData</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs15', 21)" onmouseover="showTip(event, 'fs15', 21)" class="fn">Dictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="rt">string</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs17', 23)" onmouseover="showTip(event, 'fs17', 23)" class="rt">obj</span><span class="pn">&gt;</span><span class="pn">(</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs14', 24)" onmouseover="showTip(event, 'fs14', 24)" class="id">seedData</span><span class="pn">.</span><span class="pn">[</span><span class="s">&quot;id&quot;</span><span class="pn">]</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs18', 25)" onmouseover="showTip(event, 'fs18', 25)" class="fn">box</span> <span class="s">&quot;user-1&quot;</span>
+<span onmouseout="hideTip(event, 'fs14', 26)" onmouseover="showTip(event, 'fs14', 26)" class="id">seedData</span><span class="pn">.</span><span class="pn">[</span><span class="s">&quot;name&quot;</span><span class="pn">]</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs18', 27)" onmouseover="showTip(event, 'fs18', 27)" class="fn">box</span> <span class="s">&quot;Admin User&quot;</span>
+
+<span onmouseout="hideTip(event, 'fs7', 28)" onmouseover="showTip(event, 'fs7', 28)" class="fn">customResource</span> <span class="s">&quot;DynamoSeeder&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs8', 29)" onmouseover="showTip(event, 'fs8', 29)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 30)" onmouseover="showTip(event, 'fs9', 30)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 31)" onmouseover="showTip(event, 'fs19', 31)" class="id">dynamoDBPutItem</span> <span class="s">&quot;UsersTable&quot;</span> <span onmouseout="hideTip(event, 'fs14', 32)" onmouseover="showTip(event, 'fs14', 32)" class="id">seedData</span><span class="pn">)</span> <span class="pn">}</span>
+</code></pre>
+<h3><a name="Secrets-Manager" class="anchor" href="#Secrets-Manager">Secrets Manager</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 33)" onmouseover="showTip(event, 'fs7', 33)" class="fn">customResource</span> <span class="s">&quot;SecretInitializer&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 34)" onmouseover="showTip(event, 'fs8', 34)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 35)" onmouseover="showTip(event, 'fs9', 35)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs20', 36)" onmouseover="showTip(event, 'fs20', 36)" class="id">secretsManagerPutSecretValue</span> <span class="s">&quot;my-secret-id&quot;</span> <span class="s">&quot;&quot;&quot;{&quot;apiKey&quot;: &quot;initial-value&quot;}&quot;&quot;&quot;</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="SSM-Parameter-Store" class="anchor" href="#SSM-Parameter-Store">SSM Parameter Store</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 37)" onmouseover="showTip(event, 'fs7', 37)" class="fn">customResource</span> <span class="s">&quot;ParameterInitializer&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 38)" onmouseover="showTip(event, 'fs8', 38)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 39)" onmouseover="showTip(event, 'fs9', 39)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 40)" onmouseover="showTip(event, 'fs21', 40)" class="id">ssmPutParameter</span> <span class="s">&quot;my-param&quot;</span> <span class="s">&quot;initial-value&quot;</span> <span class="s">&quot;String&quot;</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Lifecycle-hooks" class="anchor" href="#Lifecycle-hooks">Lifecycle hooks</a></h2>
+<p>Every custom resource must implement predictable lifecycle behaviour. Follow the idempotency pattern described in the <strong>AWS Builders Library</strong>: ensure <code>onCreate</code>, <code>onUpdate</code>, and <code>onDelete</code> can be retried safely, and always return consistent physical resource IDs.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 41)" onmouseover="showTip(event, 'fs7', 41)" class="fn">customResource</span> <span class="s">&quot;LifecycleResource&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 42)" onmouseover="showTip(event, 'fs8', 42)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 43)" onmouseover="showTip(event, 'fs9', 43)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 44)" onmouseover="showTip(event, 'fs10', 44)" class="id">s3PutObject</span> <span class="s">&quot;my-bucket&quot;</span> <span class="s">&quot;status.txt&quot;</span> <span class="s">&quot;created&quot;</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs22', 45)" onmouseover="showTip(event, 'fs22', 45)" class="k">onUpdate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 46)" onmouseover="showTip(event, 'fs9', 46)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 47)" onmouseover="showTip(event, 'fs10', 47)" class="id">s3PutObject</span> <span class="s">&quot;my-bucket&quot;</span> <span class="s">&quot;status.txt&quot;</span> <span class="s">&quot;updated&quot;</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs23', 48)" onmouseover="showTip(event, 'fs23', 48)" class="k">onDelete</span> <span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs24', 49)" onmouseover="showTip(event, 'fs24', 49)" class="fn">AwsSdkCall</span><span class="pn">(</span>
+            <span class="fn">Service</span> <span class="o">=</span> <span class="s">&quot;S3&quot;</span><span class="pn">,</span>
+            <span class="fn">Action</span> <span class="o">=</span> <span class="s">&quot;deleteObject&quot;</span><span class="pn">,</span>
+            <span class="fn">Parameters</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs25', 50)" onmouseover="showTip(event, 'fs25', 50)" class="fn">dict</span> <span class="pn">[</span> <span class="s">&quot;Bucket&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs18', 51)" onmouseover="showTip(event, 'fs18', 51)" class="fn">box</span> <span class="s">&quot;my-bucket&quot;</span><span class="pn">;</span> <span class="s">&quot;Key&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs18', 52)" onmouseover="showTip(event, 'fs18', 52)" class="fn">box</span> <span class="s">&quot;status.txt&quot;</span> <span class="pn">]</span><span class="pn">,</span>
+            <span onmouseout="hideTip(event, 'fs26', 53)" onmouseover="showTip(event, 'fs26', 53)" class="fn">PhysicalResourceId</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs26', 54)" onmouseover="showTip(event, 'fs26', 54)" class="rt">PhysicalResourceId</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 55)" onmouseover="showTip(event, 'fs27', 55)" class="id">Of</span><span class="pn">(</span><span class="s">&quot;my-bucket/status.txt&quot;</span><span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Custom-SDK-calls" class="anchor" href="#Custom-SDK-calls">Custom SDK calls</a></h2>
+<p>When helpers don’t exist, describe the exact AWS API invocation with <code>createSdkCall</code>. Combine this with the IAM autogeneration to keep permissions precise, as shown in <strong>Matt Coulter’s CDK Patterns: Custom Resource</strong> reference implementation.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 56)" onmouseover="showTip(event, 'fs7', 56)" class="fn">customResource</span> <span class="s">&quot;CustomOperation&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 57)" onmouseover="showTip(event, 'fs8', 57)" class="k">onCreate</span> <span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs9', 58)" onmouseover="showTip(event, 'fs9', 58)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 59)" onmouseover="showTip(event, 'fs28', 59)" class="id">createSdkCall</span>
+            <span class="s">&quot;EC2&quot;</span> <span class="c">// AWS Service</span>
+            <span class="s">&quot;describeRegions&quot;</span> <span class="c">// API Action</span>
+            <span class="pn">[</span> <span class="s">&quot;AllRegions&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs18', 60)" onmouseover="showTip(event, 'fs18', 60)" class="fn">box</span> <span class="k">true</span> <span class="pn">]</span> <span class="c">// Parameters</span>
+            <span class="s">&quot;ec2-regions-query&quot;</span> <span class="c">// Physical Resource ID</span>
+    <span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Advanced-configuration" class="anchor" href="#Advanced-configuration">Advanced configuration</a></h2>
+<h3><a name="Custom-timeout" class="anchor" href="#Custom-timeout">Custom timeout</a></h3>
+<p>Scale the timeout for heavy operations (database schema migrations, large data loads) while keeping retries safe. Track execution duration with CloudWatch metrics so you can tune timeouts proactively.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 61)" onmouseover="showTip(event, 'fs7', 61)" class="fn">customResource</span> <span class="s">&quot;LongRunningTask&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 62)" onmouseover="showTip(event, 'fs8', 62)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 63)" onmouseover="showTip(event, 'fs9', 63)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 64)" onmouseover="showTip(event, 'fs10', 64)" class="id">s3PutObject</span> <span class="s">&quot;bucket&quot;</span> <span class="s">&quot;key&quot;</span> <span class="s">&quot;value&quot;</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs29', 65)" onmouseover="showTip(event, 'fs29', 65)" class="k">timeout</span> <span onmouseout="hideTip(event, 'fs9', 66)" onmouseover="showTip(event, 'fs9', 66)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 67)" onmouseover="showTip(event, 'fs30', 67)" class="m">Timeouts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 68)" onmouseover="showTip(event, 'fs31', 68)" class="id">fifteenMinutes</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Custom-IAM-policy" class="anchor" href="#Custom-IAM-policy">Custom IAM policy</a></h3>
+<p>When auto-generated permissions are too broad, define statements explicitly. Mirror the least-privilege approach outlined in <strong>Ben Kehoe’s IAM for Humans</strong> by scoping actions and resources to the exact call being made.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 69)" onmouseover="showTip(event, 'fs2', 69)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 70)" onmouseover="showTip(event, 'fs3', 70)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 71)" onmouseover="showTip(event, 'fs32', 71)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs33', 72)" onmouseover="showTip(event, 'fs33', 72)" class="id">IAM</span>
+
+<span onmouseout="hideTip(event, 'fs7', 73)" onmouseover="showTip(event, 'fs7', 73)" class="fn">customResource</span> <span class="s">&quot;RestrictedResource&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 74)" onmouseover="showTip(event, 'fs8', 74)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 75)" onmouseover="showTip(event, 'fs9', 75)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 76)" onmouseover="showTip(event, 'fs10', 76)" class="id">s3PutObject</span> <span class="s">&quot;bucket&quot;</span> <span class="s">&quot;key&quot;</span> <span class="s">&quot;value&quot;</span><span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs34', 77)" onmouseover="showTip(event, 'fs34', 77)" class="k">policy</span> <span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs35', 78)" onmouseover="showTip(event, 'fs35', 78)" class="rt">AwsCustomResourcePolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs36', 79)" onmouseover="showTip(event, 'fs36', 79)" class="id">FromStatements</span><span class="pn">(</span>
+            <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs37', 80)" onmouseover="showTip(event, 'fs37', 80)" class="fn">PolicyStatement</span><span class="pn">(</span>
+                   <span onmouseout="hideTip(event, 'fs38', 81)" onmouseover="showTip(event, 'fs38', 81)" class="fn">PolicyStatementProps</span><span class="pn">(</span><span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:PutObject&quot;</span> <span class="pn">|]</span><span class="pn">,</span> <span class="fn">Resources</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;arn:aws:s3:::bucket/key&quot;</span> <span class="pn">|]</span><span class="pn">)</span>
+               <span class="pn">)</span> <span class="pn">|]</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Pin-the-AWS-SDK-version" class="anchor" href="#Pin-the-AWS-SDK-version">Pin the AWS SDK version</a></h3>
+<p>Regulated environments sometimes require a fixed SDK version. Set <code>installLatestAwsSdk false</code> and bundle your preferred version, documenting the security approval as advised by the <strong>AWS Security Hub Operational Excellence</strong> checklist.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 82)" onmouseover="showTip(event, 'fs7', 82)" class="fn">customResource</span> <span class="s">&quot;LegacySdkResource&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 83)" onmouseover="showTip(event, 'fs8', 83)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 84)" onmouseover="showTip(event, 'fs9', 84)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 85)" onmouseover="showTip(event, 'fs10', 85)" class="id">s3PutObject</span> <span class="s">&quot;bucket&quot;</span> <span class="s">&quot;key&quot;</span> <span class="s">&quot;value&quot;</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs39', 86)" onmouseover="showTip(event, 'fs39', 86)" class="k">installLatestAwsSdk</span> <span class="k">false</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Custom-Log-Retention" class="anchor" href="#Custom-Log-Retention">Custom Log Retention</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 87)" onmouseover="showTip(event, 'fs2', 87)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 88)" onmouseover="showTip(event, 'fs3', 88)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 89)" onmouseover="showTip(event, 'fs32', 89)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs40', 90)" onmouseover="showTip(event, 'fs40', 90)" class="id">Logs</span>
+
+<span onmouseout="hideTip(event, 'fs7', 91)" onmouseover="showTip(event, 'fs7', 91)" class="fn">customResource</span> <span class="s">&quot;LongTermLogging&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 92)" onmouseover="showTip(event, 'fs8', 92)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 93)" onmouseover="showTip(event, 'fs9', 93)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 94)" onmouseover="showTip(event, 'fs10', 94)" class="id">s3PutObject</span> <span class="s">&quot;bucket&quot;</span> <span class="s">&quot;key&quot;</span> <span class="s">&quot;value&quot;</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs41', 95)" onmouseover="showTip(event, 'fs41', 95)" class="k">logRetention</span> <span onmouseout="hideTip(event, 'fs42', 96)" onmouseover="showTip(event, 'fs42', 96)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 97)" onmouseover="showTip(event, 'fs43', 97)" class="id">ONE_MONTH</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Complete-Example-Database-Initialization" class="anchor" href="#Complete-Example-Database-Initialization">Complete Example: Database Initialization</a></h2>
+<p>This example shows a complete use case - initializing a DynamoDB table with seed data:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 98)" onmouseover="showTip(event, 'fs44', 98)" class="id">completeExample</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs6', 99)" onmouseover="showTip(event, 'fs6', 99)" class="fn">stack</span> <span class="s">&quot;DatabaseStack&quot;</span> <span class="pn">{</span>
+        <span class="c">// Create DynamoDB table</span>
+        <span onmouseout="hideTip(event, 'fs45', 100)" onmouseover="showTip(event, 'fs45', 100)" class="fn">table</span> <span class="s">&quot;UsersTable&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs46', 101)" onmouseover="showTip(event, 'fs46', 101)" class="k">partitionKey</span> <span class="s">&quot;id&quot;</span> <span onmouseout="hideTip(event, 'fs2', 102)" onmouseover="showTip(event, 'fs2', 102)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 103)" onmouseover="showTip(event, 'fs3', 103)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 104)" onmouseover="showTip(event, 'fs32', 104)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 105)" onmouseover="showTip(event, 'fs47', 105)" class="id">DynamoDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 106)" onmouseover="showTip(event, 'fs48', 106)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs49', 107)" onmouseover="showTip(event, 'fs49', 107)" class="id">STRING</span>
+            <span onmouseout="hideTip(event, 'fs50', 108)" onmouseover="showTip(event, 'fs50', 108)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs2', 109)" onmouseover="showTip(event, 'fs2', 109)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 110)" onmouseover="showTip(event, 'fs3', 110)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs32', 111)" onmouseover="showTip(event, 'fs32', 111)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 112)" onmouseover="showTip(event, 'fs47', 112)" class="id">DynamoDB</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 113)" onmouseover="showTip(event, 'fs51', 113)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 114)" onmouseover="showTip(event, 'fs52', 114)" class="id">PAY_PER_REQUEST</span>
+        <span class="pn">}</span>
+
+        <span class="c">// Seed initial admin user</span>
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs53', 115)" onmouseover="showTip(event, 'fs53', 115)" class="fn">adminUser</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs15', 116)" onmouseover="showTip(event, 'fs15', 116)" class="fn">Dictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs16', 117)" onmouseover="showTip(event, 'fs16', 117)" class="rt">string</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs17', 118)" onmouseover="showTip(event, 'fs17', 118)" class="rt">obj</span><span class="pn">&gt;</span><span class="pn">(</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs53', 119)" onmouseover="showTip(event, 'fs53', 119)" class="fn">adminUser</span><span class="pn">.</span><span class="pn">[</span><span class="s">&quot;id&quot;</span><span class="pn">]</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs18', 120)" onmouseover="showTip(event, 'fs18', 120)" class="fn">box</span> <span class="s">&quot;admin-001&quot;</span>
+        <span onmouseout="hideTip(event, 'fs53', 121)" onmouseover="showTip(event, 'fs53', 121)" class="fn">adminUser</span><span class="pn">.</span><span class="pn">[</span><span class="s">&quot;username&quot;</span><span class="pn">]</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs18', 122)" onmouseover="showTip(event, 'fs18', 122)" class="fn">box</span> <span class="s">&quot;admin&quot;</span>
+        <span onmouseout="hideTip(event, 'fs53', 123)" onmouseover="showTip(event, 'fs53', 123)" class="fn">adminUser</span><span class="pn">.</span><span class="pn">[</span><span class="s">&quot;role&quot;</span><span class="pn">]</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs18', 124)" onmouseover="showTip(event, 'fs18', 124)" class="fn">box</span> <span class="s">&quot;administrator&quot;</span>
+        <span onmouseout="hideTip(event, 'fs53', 125)" onmouseover="showTip(event, 'fs53', 125)" class="fn">adminUser</span><span class="pn">.</span><span class="pn">[</span><span class="s">&quot;createdAt&quot;</span><span class="pn">]</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs18', 126)" onmouseover="showTip(event, 'fs18', 126)" class="fn">box</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs11', 127)" onmouseover="showTip(event, 'fs11', 127)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 128)" onmouseover="showTip(event, 'fs54', 128)" class="vt">DateTime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 129)" onmouseover="showTip(event, 'fs55', 129)" class="id">UtcNow</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 130)" onmouseover="showTip(event, 'fs56', 130)" class="id">ToString</span> <span class="s">&quot;o&quot;</span><span class="pn">)</span>
+
+        <span onmouseout="hideTip(event, 'fs7', 131)" onmouseover="showTip(event, 'fs7', 131)" class="fn">customResource</span> <span class="s">&quot;SeedAdminUser&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs8', 132)" onmouseover="showTip(event, 'fs8', 132)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 133)" onmouseover="showTip(event, 'fs9', 133)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 134)" onmouseover="showTip(event, 'fs19', 134)" class="id">dynamoDBPutItem</span> <span class="s">&quot;Users&quot;</span> <span onmouseout="hideTip(event, 'fs53', 135)" onmouseover="showTip(event, 'fs53', 135)" class="fn">adminUser</span><span class="pn">)</span>
+            <span onmouseout="hideTip(event, 'fs29', 136)" onmouseover="showTip(event, 'fs29', 136)" class="k">timeout</span> <span onmouseout="hideTip(event, 'fs9', 137)" onmouseover="showTip(event, 'fs9', 137)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 138)" onmouseover="showTip(event, 'fs30', 138)" class="m">Timeouts</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 139)" onmouseover="showTip(event, 'fs57', 139)" class="id">fiveMinutes</span>
+        <span class="pn">}</span>
+    <span class="pn">}</span>
+</code></pre>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<ol>
+<li><strong>Idempotency</strong>: Ensure your onCreate operations are idempotent</li>
+<li><strong>Timeouts</strong>: Set appropriate timeouts for long-running operations</li>
+<li><strong>Error Handling</strong>: AWS SDK operations in Custom Resources will fail the CloudFormation deployment on error</li>
+<li><strong>Physical Resource IDs</strong>: Use unique, descriptive IDs for tracking</li>
+<li><strong>Cleanup</strong>: Always implement onDelete for resources that need cleanup</li>
+<li><strong>Testing</strong>: Test custom resources thoroughly before deployment</li>
+</ol>
+<h2><a name="Getting-Response-Data" class="anchor" href="#Getting-Response-Data">Getting Response Data</a></h2>
+<p>Custom Resources can return data that can be used by other resources:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs58', 140)" onmouseover="showTip(event, 'fs58', 140)" class="id">responseExample</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs6', 141)" onmouseover="showTip(event, 'fs6', 141)" class="fn">stack</span> <span class="s">&quot;ResponseStack&quot;</span> <span class="pn">{</span>
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 142)" onmouseover="showTip(event, 'fs59', 142)" class="fn">customRes</span> <span class="o">=</span>
+            <span onmouseout="hideTip(event, 'fs7', 143)" onmouseover="showTip(event, 'fs7', 143)" class="fn">customResource</span> <span class="s">&quot;DataProvider&quot;</span> <span class="pn">{</span>
+                <span onmouseout="hideTip(event, 'fs8', 144)" onmouseover="showTip(event, 'fs8', 144)" class="k">onCreate</span> <span class="pn">(</span>
+                    <span onmouseout="hideTip(event, 'fs9', 145)" onmouseover="showTip(event, 'fs9', 145)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 146)" onmouseover="showTip(event, 'fs28', 146)" class="id">createSdkCall</span>
+                        <span class="s">&quot;SSM&quot;</span>
+                        <span class="s">&quot;getParameter&quot;</span>
+                        <span class="pn">[</span> <span class="s">&quot;Name&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs18', 147)" onmouseover="showTip(event, 'fs18', 147)" class="fn">box</span> <span class="s">&quot;/my/parameter&quot;</span> <span class="pn">]</span>
+                        <span class="s">&quot;ssm-parameter-query&quot;</span>
+                <span class="pn">)</span>
+            <span class="pn">}</span>
+
+        <span class="c">// Access response data</span>
+        <span class="c">// let paramValue = customRes.GetResponseField(&quot;Parameter.Value&quot;)</span>
+
+        <span onmouseout="hideTip(event, 'fs59', 148)" onmouseover="showTip(event, 'fs59', 148)" class="fn">customRes</span>
+    <span class="pn">}</span>
+</code></pre>
+<h2><a name="AWS-CDK-Lib-Integration" class="anchor" href="#AWS-CDK-Lib-Integration">AWS CDK Lib Integration</a></h2>
+<p>FsCDK's Custom Resource support is built on top of the official AWS CDK Lib (<code>Amazon.CDK.Lib</code> v2.213.0),
+providing:</p>
+<ul>
+<li>Full access to all AWS service APIs</li>
+<li>Type-safe resource construction</li>
+<li>Automatic IAM policy generation</li>
+<li>CloudWatch Logs integration</li>
+<li>Lambda-backed implementation under the hood</li>
+</ul>
+<h2><a name="Escape-Hatch" class="anchor" href="#Escape-Hatch">Escape Hatch</a></h2>
+<p>For advanced scenarios not covered by the builder, access the underlying CDK construct:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs60', 149)" onmouseover="showTip(event, 'fs60', 149)" class="id">advancedExample</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs6', 150)" onmouseover="showTip(event, 'fs6', 150)" class="fn">stack</span> <span class="s">&quot;AdvancedStack&quot;</span> <span class="pn">{</span>
+        <span class="k">let</span> <span onmouseout="hideTip(event, 'fs59', 151)" onmouseover="showTip(event, 'fs59', 151)" class="fn">customRes</span> <span class="o">=</span>
+            <span onmouseout="hideTip(event, 'fs7', 152)" onmouseover="showTip(event, 'fs7', 152)" class="fn">customResource</span> <span class="s">&quot;Advanced&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs8', 153)" onmouseover="showTip(event, 'fs8', 153)" class="k">onCreate</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs9', 154)" onmouseover="showTip(event, 'fs9', 154)" class="m">CustomResourceHelpers</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 155)" onmouseover="showTip(event, 'fs10', 155)" class="id">s3PutObject</span> <span class="s">&quot;bucket&quot;</span> <span class="s">&quot;key&quot;</span> <span class="s">&quot;value&quot;</span><span class="pn">)</span> <span class="pn">}</span>
+
+        <span class="c">// Access underlying AwsCustomResource construct</span>
+        <span class="c">// match customRes.CustomResource with</span>
+        <span class="c">// | Some cr -&gt; cr.GrantPrincipal // etc.</span>
+        <span class="c">// | None -&gt; ()</span>
+
+        <span onmouseout="hideTip(event, 'fs59', 156)" onmouseover="showTip(event, 'fs59', 156)" class="fn">customRes</span>
+    <span class="pn">}</span>
+</code></pre>
+<h2><a name="References" class="anchor" href="#References">References</a></h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.custom_resources-readme.html">AWS CDK Custom Resources Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html">AWS CloudFormation Custom Resources</a></li>
+<li><a href="./iam-best-practices.html">FsCDK Best Practices</a></li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.CustomResources</div>
+<div class="fsdocs-tip" id="fs5">val myApp: unit</div>
+<div class="fsdocs-tip" id="fs6">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs7">val customResource: name: string -&gt; CustomResourceBuilder<br /><em>&lt;summary&gt;
+ Creates a new Custom Resource builder for deployment-time tasks.
+ Example: customResource &quot;db-seeder&quot; { onCreate (CustomResourceHelpers.dynamoDBPutItem &quot;MyTable&quot; seedData) }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">custom operation: onCreate (AwsSdkCall)
+
+Calls CustomResourceBuilder.OnCreate</div>
+<div class="fsdocs-tip" id="fs9">module CustomResourceHelpers
+
+from FsCDK<br /><em>&lt;summary&gt;
+ Helper functions for Custom Resource operations
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">val s3PutObject: bucket: string -&gt; key: string -&gt; body: string -&gt; AwsSdkCall<br /><em>&lt;summary&gt;
+ Creates an SDK call for S3 operations
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">namespace System</div>
+<div class="fsdocs-tip" id="fs12">namespace System.Collections</div>
+<div class="fsdocs-tip" id="fs13">namespace System.Collections.Generic</div>
+<div class="fsdocs-tip" id="fs14">val seedData: Dictionary&lt;string,obj&gt;</div>
+<div class="fsdocs-tip" id="fs15">Multiple items<br />type Dictionary&lt;&#39;TKey,&#39;TValue&gt; =
+  interface ICollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IEnumerable
+  interface IDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface IReadOnlyCollection&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;
+  interface IReadOnlyDictionary&lt;&#39;TKey,&#39;TValue&gt;
+  interface ICollection
+  interface IDictionary
+  interface IDeserializationCallback
+  interface ISerializable
+  ...<br /><em>&lt;summary&gt;Represents a collection of keys and values.&lt;/summary&gt;<br />&lt;typeparam name=&quot;TKey&quot;&gt;The type of the keys in the dictionary.&lt;/typeparam&gt;<br />&lt;typeparam name=&quot;TValue&quot;&gt;The type of the values in the dictionary.&lt;/typeparam&gt;</em><br /><br />--------------------<br />Dictionary() : Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />Dictionary(dictionary: IDictionary&lt;&#39;TKey,&#39;TValue&gt;) : Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />Dictionary(collection: IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;) : Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />Dictionary(comparer: IEqualityComparer&lt;&#39;TKey&gt;) : Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />Dictionary(capacity: int) : Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />Dictionary(dictionary: IDictionary&lt;&#39;TKey,&#39;TValue&gt;, comparer: IEqualityComparer&lt;&#39;TKey&gt;) : Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />Dictionary(collection: IEnumerable&lt;KeyValuePair&lt;&#39;TKey,&#39;TValue&gt;&gt;, comparer: IEqualityComparer&lt;&#39;TKey&gt;) : Dictionary&lt;&#39;TKey,&#39;TValue&gt;<br />Dictionary(capacity: int, comparer: IEqualityComparer&lt;&#39;TKey&gt;) : Dictionary&lt;&#39;TKey,&#39;TValue&gt;</div>
+<div class="fsdocs-tip" id="fs16">Multiple items<br />val string: value: &#39;T -&gt; string<br /><br />--------------------<br />type string = System.String</div>
+<div class="fsdocs-tip" id="fs17">type obj = System.Object</div>
+<div class="fsdocs-tip" id="fs18">val box: value: &#39;T -&gt; obj</div>
+<div class="fsdocs-tip" id="fs19">val dynamoDBPutItem: tableName: string -&gt; item: Dictionary&lt;string,obj&gt; -&gt; AwsSdkCall<br /><em>&lt;summary&gt;
+ Creates an SDK call for DynamoDB operations
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">val secretsManagerPutSecretValue: secretId: string -&gt; secretString: string -&gt; AwsSdkCall<br /><em>&lt;summary&gt;
+ Creates an SDK call for Secrets Manager
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">val ssmPutParameter: name: string -&gt; value: string -&gt; parameterType: string -&gt; AwsSdkCall<br /><em>&lt;summary&gt;
+ Creates an SDK call for SSM Parameter Store
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">custom operation: onUpdate (AwsSdkCall)
+
+Calls CustomResourceBuilder.OnUpdate</div>
+<div class="fsdocs-tip" id="fs23">custom operation: onDelete (AwsSdkCall)
+
+Calls CustomResourceBuilder.OnDelete</div>
+<div class="fsdocs-tip" id="fs24">Multiple items<br />type AwsSdkCall =
+  interface IAwsSdkCall
+  new: unit -&gt; unit
+  member Action: string
+  member ApiVersion: string
+  member AssumedRoleArn: string
+  member IgnoreErrorCodesMatching: string
+  member Logging: Logging
+  member OutputPaths: string array
+  member Parameters: obj
+  member PhysicalResourceId: PhysicalResourceId
+  ...<br /><em>&lt;summary&gt;An AWS SDK call.&lt;/summary&gt;<br />&lt;example&gt;&lt;code&gt;new AwsCustomResource(this, &quot;GetParameterCustomResource&quot;, new AwsCustomResourceProps {
+                OnUpdate = new AwsSdkCall {  // will also be called for a CREATE event
+                    Service = &quot;SSM&quot;,
+                    Action = &quot;getParameter&quot;,
+                    Parameters = new Dictionary&amp;lt;string, object&amp;gt; {
+                        { &quot;Name&quot;, &quot;my-parameter&quot; },
+                        { &quot;WithDecryption&quot;, true }
+                    },
+                    PhysicalResourceId = PhysicalResourceId.FromResponse(&quot;Parameter.ARN&quot;) },
+                Policy = AwsCustomResourcePolicy.FromSdkCalls(new SdkCallsPolicyOptions {
+                    Resources = AwsCustomResourcePolicy.ANY_RESOURCE
+                })
+            });&lt;/code&gt;&lt;/example&gt;</em><br /><br />--------------------<br />AwsSdkCall() : AwsSdkCall</div>
+<div class="fsdocs-tip" id="fs25">val dict: keyValuePairs: (&#39;Key * &#39;Value) seq -&gt; IDictionary&lt;&#39;Key,&#39;Value&gt; (requires equality)</div>
+<div class="fsdocs-tip" id="fs26">type PhysicalResourceId =
+  inherit DeputyBase
+  static member FromResponse: responsePath: string -&gt; PhysicalResourceId
+  static member Of: id: string -&gt; PhysicalResourceId
+  member Id: string
+  member ResponsePath: string<br /><em>&lt;summary&gt;Physical ID of the custom resource.&lt;/summary&gt;<br />&lt;remarks&gt;&lt;strong&gt;ExampleMetadata&lt;/strong&gt;: infused
+            &lt;/remarks&gt;<br />&lt;example&gt;&lt;code&gt;var crossAccountRoleArn = &quot;arn:aws:iam::OTHERACCOUNT:role/CrossAccountRoleName&quot;; // arn of role deployed in separate account
+            
+            var callRegion = &quot;us-west-1&quot;; // sdk call to be made in specified region (optional)
+            
+             // sdk call to be made in specified region (optional)
+            new AwsCustomResource(this, &quot;CrossAccount&quot;, new AwsCustomResourceProps {
+                OnCreate = new AwsSdkCall {
+                    AssumedRoleArn = crossAccountRoleArn,
+                    Region = callRegion,  // optional
+                    Service = &quot;sts&quot;,
+                    Action = &quot;GetCallerIdentity&quot;,
+                    PhysicalResourceId = PhysicalResourceId.Of(&quot;id&quot;)
+                },
+                Policy = AwsCustomResourcePolicy.FromStatements(new [] { PolicyStatement.FromJson(new Dictionary&amp;lt;string, string&amp;gt; {
+                    { &quot;Effect&quot;, &quot;Allow&quot; },
+                    { &quot;Action&quot;, &quot;sts:AssumeRole&quot; },
+                    { &quot;Resource&quot;, crossAccountRoleArn }
+                }) })
+            });&lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">PhysicalResourceId.Of(id: string) : PhysicalResourceId</div>
+<div class="fsdocs-tip" id="fs28">val createSdkCall: service: string -&gt; action: string -&gt; parameters: (string * obj) list -&gt; physicalResourceId: string -&gt; AwsSdkCall<br /><em>&lt;summary&gt;
+ Creates a generic AWS SDK call
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs29">custom operation: timeout (Duration)
+
+Calls CustomResourceBuilder.Timeout</div>
+<div class="fsdocs-tip" id="fs30">module Timeouts
+
+from FsCDK.CustomResourceHelpers<br /><em>&lt;summary&gt;
+ Common timeout durations
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">val fifteenMinutes: Duration</div>
+<div class="fsdocs-tip" id="fs32">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs33">namespace Amazon.CDK.AWS.IAM</div>
+<div class="fsdocs-tip" id="fs34">custom operation: policy (AwsCustomResourcePolicy)
+
+Calls CustomResourceBuilder.Policy</div>
+<div class="fsdocs-tip" id="fs35">type AwsCustomResourcePolicy =
+  inherit DeputyBase
+  static member FromSdkCalls: options: ISdkCallsPolicyOptions -&gt; AwsCustomResourcePolicy
+  static member FromStatements: statements: PolicyStatement array -&gt; AwsCustomResourcePolicy
+  member Resources: string array
+  member Statements: PolicyStatement array
+  static member ANY_RESOURCE: string array<br /><em>&lt;summary&gt;The IAM Policy that will be applied to the different calls.&lt;/summary&gt;<br />&lt;remarks&gt;&lt;strong&gt;ExampleMetadata&lt;/strong&gt;: infused
+            &lt;/remarks&gt;<br />&lt;example&gt;&lt;code&gt;var getParameter = new AwsCustomResource(this, &quot;GetParameter&quot;, new AwsCustomResourceProps {
+                OnUpdate = new AwsSdkCall {
+                    Service = &quot;SSM&quot;,
+                    Action = &quot;GetParameter&quot;,
+                    Parameters = new Dictionary&amp;lt;string, object&amp;gt; {
+                        { &quot;Name&quot;, &quot;my-parameter&quot; },
+                        { &quot;WithDecryption&quot;, true }
+                    },
+                    PhysicalResourceId = PhysicalResourceId.Of(Date.Now().ToString()),
+                    Logging = Logging.WithDataHidden()
+                },
+                Policy = AwsCustomResourcePolicy.FromSdkCalls(new SdkCallsPolicyOptions {
+                    Resources = AwsCustomResourcePolicy.ANY_RESOURCE
+                })
+            });&lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs36">AwsCustomResourcePolicy.FromStatements(statements: PolicyStatement array) : AwsCustomResourcePolicy</div>
+<div class="fsdocs-tip" id="fs37">Multiple items<br />type PolicyStatement =
+  inherit DeputyBase
+  new: ?props: IPolicyStatementProps -&gt; unit
+  member AddAccountCondition: accountId: string -&gt; unit
+  member AddAccountRootPrincipal: unit -&gt; unit
+  member AddActions: [&lt;ParamArray&gt;] actions: string array -&gt; unit
+  member AddAllResources: unit -&gt; unit
+  member AddAnyPrincipal: unit -&gt; unit
+  member AddArnPrincipal: arn: string -&gt; unit
+  member AddAwsAccountPrincipal: accountId: string -&gt; unit
+  member AddCanonicalUserPrincipal: canonicalUserId: string -&gt; unit
+  ...<br /><em>&lt;summary&gt;Represents a statement in an IAM policy document.&lt;/summary&gt;<br />&lt;remarks&gt;&lt;strong&gt;ExampleMetadata&lt;/strong&gt;: infused
+            &lt;/remarks&gt;<br />&lt;example&gt;&lt;code&gt;var accessLogsBucket = new Bucket(this, &quot;AccessLogsBucket&quot;, new BucketProps {
+                ObjectOwnership = ObjectOwnership.BUCKET_OWNER_ENFORCED
+            });
+            
+            accessLogsBucket.AddToResourcePolicy(
+            new PolicyStatement(new PolicyStatementProps {
+                Actions = new [] { &quot;s3:*&quot; },
+                Resources = new [] { accessLogsBucket.BucketArn, accessLogsBucket.ArnForObjects(&quot;*&quot;) },
+                Principals = new [] { new AnyPrincipal() }
+            }));
+            
+            var bucket = new Bucket(this, &quot;MyBucket&quot;, new BucketProps {
+                ServerAccessLogsBucket = accessLogsBucket,
+                ServerAccessLogsPrefix = &quot;logs&quot;
+            });&lt;/code&gt;&lt;/example&gt;</em><br /><br />--------------------<br />PolicyStatement(?props: IPolicyStatementProps) : PolicyStatement</div>
+<div class="fsdocs-tip" id="fs38">Multiple items<br />type PolicyStatementProps =
+  interface IPolicyStatementProps
+  new: unit -&gt; unit
+  member Actions: string array
+  member Conditions: IDictionary&lt;string,obj&gt;
+  member Effect: Nullable&lt;Effect&gt;
+  member NotActions: string array
+  member NotPrincipals: IPrincipal array
+  member NotResources: string array
+  member Principals: IPrincipal array
+  member Resources: string array
+  ...<br /><em>&lt;summary&gt;Interface for creating a policy statement.&lt;/summary&gt;<br />&lt;remarks&gt;&lt;strong&gt;ExampleMetadata&lt;/strong&gt;: infused
+            &lt;/remarks&gt;<br />&lt;example&gt;&lt;code&gt;var accessLogsBucket = new Bucket(this, &quot;AccessLogsBucket&quot;, new BucketProps {
+                ObjectOwnership = ObjectOwnership.BUCKET_OWNER_ENFORCED
+            });
+            
+            accessLogsBucket.AddToResourcePolicy(
+            new PolicyStatement(new PolicyStatementProps {
+                Actions = new [] { &quot;s3:*&quot; },
+                Resources = new [] { accessLogsBucket.BucketArn, accessLogsBucket.ArnForObjects(&quot;*&quot;) },
+                Principals = new [] { new AnyPrincipal() }
+            }));
+            
+            var bucket = new Bucket(this, &quot;MyBucket&quot;, new BucketProps {
+                ServerAccessLogsBucket = accessLogsBucket,
+                ServerAccessLogsPrefix = &quot;logs&quot;
+            });&lt;/code&gt;&lt;/example&gt;</em><br /><br />--------------------<br />PolicyStatementProps() : PolicyStatementProps</div>
+<div class="fsdocs-tip" id="fs39">custom operation: installLatestAwsSdk (bool)
+
+Calls CustomResourceBuilder.InstallLatestAwsSdk</div>
+<div class="fsdocs-tip" id="fs40">namespace Amazon.CDK.AWS.Logs</div>
+<div class="fsdocs-tip" id="fs41">custom operation: logRetention (RetentionDays)
+
+Calls CustomResourceBuilder.LogRetention</div>
+<div class="fsdocs-tip" id="fs42">[&lt;Struct&gt;]
+type RetentionDays =
+  | ONE_DAY = 0
+  | THREE_DAYS = 1
+  | FIVE_DAYS = 2
+  | ONE_WEEK = 3
+  | TWO_WEEKS = 4
+  | ONE_MONTH = 5
+  | TWO_MONTHS = 6
+  | THREE_MONTHS = 7
+  | FOUR_MONTHS = 8
+  | FIVE_MONTHS = 9
+  ...<br /><em>&lt;summary&gt;How long, in days, the log contents will be retained.&lt;/summary&gt;<br />&lt;remarks&gt;&lt;strong&gt;ExampleMetadata&lt;/strong&gt;: infused
+            &lt;/remarks&gt;<br />&lt;example&gt;&lt;code&gt;using Amazon.CDK.AWS.Logs;
+            
+            
+            var apiKeyProvider = new AppSyncAuthProvider {
+                AuthorizationType = AppSyncAuthorizationType.API_KEY
+            };
+            
+            var api = new EventApi(this, &quot;api&quot;, new EventApiProps {
+                ApiName = &quot;Api&quot;,
+                OwnerContact = &quot;OwnerContact&quot;,
+                AuthorizationConfig = new EventApiAuthConfig {
+                    AuthProviders = new [] { apiKeyProvider },
+                    ConnectionAuthModeTypes = new [] { AppSyncAuthorizationType.API_KEY },
+                    DefaultPublishAuthModeTypes = new [] { AppSyncAuthorizationType.API_KEY },
+                    DefaultSubscribeAuthModeTypes = new [] { AppSyncAuthorizationType.API_KEY }
+                },
+                LogConfig = new AppSyncLogConfig {
+                    FieldLogLevel = AppSyncFieldLogLevel.INFO,
+                    Retention = RetentionDays.ONE_WEEK
+                }
+            });
+            
+            api.AddChannelNamespace(&quot;default&quot;);&lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs43">field RetentionDays.ONE_MONTH: RetentionDays = 5</div>
+<div class="fsdocs-tip" id="fs44">val completeExample: unit</div>
+<div class="fsdocs-tip" id="fs45">val table: name: string -&gt; TableBuilder<br /><em>&lt;summary&gt;Creates a DynamoDB table configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The table name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">custom operation: partitionKey (string) (AWS.DynamoDB.AttributeType)
+
+Calls TableBuilder.PartitionKey<br /><em>&lt;summary&gt;Sets the partition key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the partition key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">namespace Amazon.CDK.AWS.DynamoDB</div>
+<div class="fsdocs-tip" id="fs48">[&lt;Struct&gt;]
+type AttributeType =
+  | BINARY = 0
+  | NUMBER = 1
+  | STRING = 2<br /><em>&lt;summary&gt;Data types for attributes within a table.&lt;/summary&gt;<br />&lt;remarks&gt;&lt;strong&gt;See&lt;/strong&gt;: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html#HowItWorks.DataTypes
+            
+             &lt;strong&gt;ExampleMetadata&lt;/strong&gt;: infused
+             &lt;/remarks&gt;<br />&lt;example&gt;&lt;code&gt;using Amazon.CDK;
+             
+             
+             var app = new App();
+             var stack = new Stack(app, &quot;Stack&quot;, new StackProps { Env = new Environment { Region = &quot;us-west-2&quot; } });
+             
+             var mrscTable = new TableV2(stack, &quot;MRSCTable&quot;, new TablePropsV2 {
+                 PartitionKey = new Attribute { Name = &quot;pk&quot;, Type = AttributeType.STRING },
+                 MultiRegionConsistency = MultiRegionConsistency.STRONG,
+                 Replicas = new [] { new ReplicaTableProps { Region = &quot;us-east-1&quot; } },
+                 WitnessRegion = &quot;us-east-2&quot;
+             });&lt;/code&gt;&lt;/example&gt;</em></div>
+<div class="fsdocs-tip" id="fs49">field AWS.DynamoDB.AttributeType.STRING: AWS.DynamoDB.AttributeType = 2</div>
+<div class="fsdocs-tip" id="fs50">custom operation: billingMode (AWS.DynamoDB.BillingMode)
+
+Calls TableBuilder.BillingMode<br /><em>&lt;summary&gt;Sets the billing mode for the table.&lt;/summary&gt;<br />&lt;param name=&quot;mode&quot;&gt;The billing mode (PAY_PER_REQUEST or PROVISIONED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs51">[&lt;Struct&gt;]
+type BillingMode =
+  | PAY_PER_REQUEST = 0
+  | PROVISIONED = 1<br /><em>&lt;summary&gt;DynamoDB&#39;s Read/Write capacity modes.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs52">field AWS.DynamoDB.BillingMode.PAY_PER_REQUEST: AWS.DynamoDB.BillingMode = 0</div>
+<div class="fsdocs-tip" id="fs53">val adminUser: Dictionary&lt;string,obj&gt;</div>
+<div class="fsdocs-tip" id="fs54">Multiple items<br />[&lt;Struct&gt;]
+type DateTime =
+  new: year: int * month: int * day: int -&gt; unit + 16 overloads
+  member Add: value: TimeSpan -&gt; DateTime
+  member AddDays: value: float -&gt; DateTime
+  member AddHours: value: float -&gt; DateTime
+  member AddMicroseconds: value: float -&gt; DateTime
+  member AddMilliseconds: value: float -&gt; DateTime
+  member AddMinutes: value: float -&gt; DateTime
+  member AddMonths: months: int -&gt; DateTime
+  member AddSeconds: value: float -&gt; DateTime
+  member AddTicks: value: int64 -&gt; DateTime
+  ...<br /><em>&lt;summary&gt;Represents an instant in time, typically expressed as a date and time of day.&lt;/summary&gt;</em><br /><br />--------------------<br />System.DateTime ()<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(ticks: int64) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(ticks: int64, kind: System.DateTimeKind) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(date: System.DateOnly, time: System.TimeOnly) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(date: System.DateOnly, time: System.TimeOnly, kind: System.DateTimeKind) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, calendar: System.Globalization.Calendar) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, kind: System.DateTimeKind) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em><br />System.DateTime(year: int, month: int, day: int, hour: int, minute: int, second: int, calendar: System.Globalization.Calendar) : System.DateTime<br />&#160;&#160;&#160;<em>(+0 other overloads)</em></div>
+<div class="fsdocs-tip" id="fs55">property System.DateTime.UtcNow: System.DateTime with get<br /><em>&lt;summary&gt;Gets a &lt;see cref=&quot;T:System.DateTime&quot; /&gt; object that is set to the current date and time on this computer, expressed as the Coordinated Universal Time (UTC).&lt;/summary&gt;<br />&lt;returns&gt;An object whose value is the current UTC date and time.&lt;/returns&gt;</em></div>
+<div class="fsdocs-tip" id="fs56">System.DateTime.ToString() : string<br />System.DateTime.ToString(format: string) : string<br />System.DateTime.ToString(provider: System.IFormatProvider) : string<br />System.DateTime.ToString(format: string, provider: System.IFormatProvider) : string</div>
+<div class="fsdocs-tip" id="fs57">val fiveMinutes: Duration</div>
+<div class="fsdocs-tip" id="fs58">val responseExample: unit</div>
+<div class="fsdocs-tip" id="fs59">val customRes: CustomResourceResource</div>
+<div class="fsdocs-tip" id="fs60">val advancedExample: unit</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#categoryindex-8">
+      categoryindex: 8
+    </a>
+  </li>
+  <li class="level-1">
+    <a href="#Production-grade-custom-resources-with-FsCDK">
+      Production-grade custom resources with FsCDK
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-usage">
+      Basic usage
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Production-defaults-baked-in">
+      Production defaults baked in
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Helper-functions">
+      Helper functions
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#S3-operations">
+      S3 operations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DynamoDB-Operations">
+      DynamoDB Operations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Secrets-Manager">
+      Secrets Manager
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#SSM-Parameter-Store">
+      SSM Parameter Store
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Lifecycle-hooks">
+      Lifecycle hooks
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Custom-SDK-calls">
+      Custom SDK calls
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Advanced-configuration">
+      Advanced configuration
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Custom-timeout">
+      Custom timeout
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Custom-IAM-policy">
+      Custom IAM policy
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Pin-the-AWS-SDK-version">
+      Pin the AWS SDK version
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Custom-Log-Retention">
+      Custom Log Retention
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Complete-Example-Database-Initialization">
+      Complete Example: Database Initialization
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Getting-Response-Data">
+      Getting Response Data
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#AWS-CDK-Lib-Integration">
+      AWS CDK Lib Integration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Escape-Hatch">
+      Escape Hatch
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#References">
+      References
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

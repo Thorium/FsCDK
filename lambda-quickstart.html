@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Lambda Quickstart Example" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Lambda Quickstart Example">
+    
+    <title>Lambda Quickstart Example | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Lambda-quickstart" class="anchor" href="#Lambda-quickstart"><img src="img/icons/Arch_AWS-Lambda_48.png" alt="AWS Lambda" /> Lambda quickstart</a></h1>
+<p>Spin up your first Lambda function with FsCDK using the same production-minded defaults promoted by AWS Heroes <strong>Yan Cui</strong> and <strong>Heitor Lessa</strong>. This quickstart walks through essential variations—memory, timeouts, environment variables, tracing—so you can go from “hello world” to secure, observable functions in minutes.</p>
+<h2><a name="What-you-ll-practice" class="anchor" href="#What-you-ll-practice">What you’ll practice</a></h2>
+<ul>
+<li>Creating Lambda functions with sensible defaults (512 MB memory, 30 s timeout)</li>
+<li>Encrypting environment variables with KMS automatically</li>
+<li>Controlling log retention using logGroup builder (defaults to 1 week) and ephemeral storage (512 MB)</li>
+<li>Operating with minimal IAM permissions</li>
+<li>Enabling X-Ray tracing and Powertools utilities for observability</li>
+<li>Applying consistent tagging across resources</li>
+</ul>
+<h2><a name="Prerequisites" class="anchor" href="#Prerequisites">Prerequisites</a></h2>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/8.0">.NET 8 SDK</a></li>
+<li><a href="https://docs.aws.amazon.com/cdk/latest/guide/cli.html">AWS CDK CLI</a> (<code>npm install -g aws-cdk</code>)</li>
+<li>AWS credentials configured for deployment (use an isolated sandbox account, as recommended in the <strong>AWS Lambda Operator Guide</strong> )</li>
+</ul>
+<h2><a name="Usage" class="anchor" href="#Usage">Usage</a></h2>
+<h3><a name="1-Synthesize-the-CloudFormation-template" class="anchor" href="#1-Synthesize-the-CloudFormation-template">1. Synthesize the CloudFormation template</a></h3>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash">cd examples/lambda-quickstart
+dotnet build
+cdk synth
+</code></pre></td></tr></table>
+<p>This generates a CloudFormation template in <code>cdk.out/</code> without requiring AWS credentials.</p>
+<h3><a name="2-Deploy-to-AWS-sandbox-account" class="anchor" href="#2-Deploy-to-AWS-sandbox-account">2. Deploy to AWS (sandbox account)</a></h3>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Bootstrap CDK (first time only)
+cdk bootstrap
+
+# Deploy the stack
+cdk deploy
+</code></pre></td></tr></table>
+<h3><a name="3-Clean-up" class="anchor" href="#3-Clean-up">3. Clean up</a></h3>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash">cdk destroy
+</code></pre></td></tr></table>
+<h2><a name="What-s-included" class="anchor" href="#What-s-included">What’s included</a></h2>
+<h3><a name="Default-settings" class="anchor" href="#Default-settings">Default settings</a></h3>
+<p>The FsCDK Lambda builder mirrors the defaults promoted in <strong>Production-Ready Serverless</strong>:</p>
+<ul>
+<li><strong>Memory</strong>: 512 MB (balanced cost/performance baseline)</li>
+<li><strong>Timeout</strong>: 30 seconds</li>
+<li><strong>Environment encryption</strong>: KMS (AWS managed key)</li>
+<li><strong>Log retention</strong>: 1 week via logGroup builder (Corey Quinn cost optimization)</li>
+<li><strong>Ephemeral storage</strong>: 512 MB (free tier, increase only when needed)</li>
+<li><strong>IAM role</strong>: Minimal permissions (CloudWatch Logs + KMS decrypt)</li>
+<li><strong>X-Ray</strong>: Opt-in (enable when you’re ready for tracing)</li>
+</ul>
+<h3><a name="Example-1-Basic-function" class="anchor" href="#Example-1-Basic-function">Example 1: Basic function</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/System.Text.Json.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">Logs</span>
+
+<span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">lambda</span> <span class="s">&quot;my-function&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="id">NODEJS_18_X</span>
+    <span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="k">code</span> <span class="s">&quot;./lambda-code&quot;</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Creates a function with all defaults.</p>
+<h3><a name="Example-2-Custom-memory-and-timeout" class="anchor" href="#Example-2-Custom-memory-and-timeout">Example 2: Custom memory and timeout</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 18)" onmouseover="showTip(event, 'fs7', 18)" class="fn">lambda</span> <span class="s">&quot;heavy-function&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 19)" onmouseover="showTip(event, 'fs8', 19)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs9', 20)" onmouseover="showTip(event, 'fs9', 20)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 21)" onmouseover="showTip(event, 'fs10', 21)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 22)" onmouseover="showTip(event, 'fs13', 22)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="k">code</span> <span class="s">&quot;./lambda-code&quot;</span>
+    <span onmouseout="hideTip(event, 'fs14', 24)" onmouseover="showTip(event, 'fs14', 24)" class="k">memory</span> <span class="n">1024</span>
+    <span onmouseout="hideTip(event, 'fs15', 25)" onmouseover="showTip(event, 'fs15', 25)" class="k">timeout</span> <span class="n">120.0</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Adjusts memory and timeout for compute-intensive workloads.</p>
+<h3><a name="Example-3-Environment-variables" class="anchor" href="#Example-3-Environment-variables">Example 3: Environment variables</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 26)" onmouseover="showTip(event, 'fs7', 26)" class="fn">lambda</span> <span class="s">&quot;api-function&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 27)" onmouseover="showTip(event, 'fs8', 27)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs9', 28)" onmouseover="showTip(event, 'fs9', 28)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 29)" onmouseover="showTip(event, 'fs10', 29)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 30)" onmouseover="showTip(event, 'fs16', 30)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs12', 31)" onmouseover="showTip(event, 'fs12', 31)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs17', 32)" onmouseover="showTip(event, 'fs17', 32)" class="k">environment</span>
+        <span class="pn">[</span> <span class="s">&quot;DATABASE_URL&quot;</span><span class="pn">,</span> <span class="s">&quot;postgres://localhost/mydb&quot;</span>
+          <span class="s">&quot;API_KEY&quot;</span><span class="pn">,</span> <span class="s">&quot;secret-key&quot;</span>
+          <span class="s">&quot;LOG_LEVEL&quot;</span><span class="pn">,</span> <span class="s">&quot;INFO&quot;</span> <span class="pn">]</span>
+<span class="pn">}</span>
+</code></pre>
+<p><strong>Security Note</strong>: Environment variables are encrypted at rest using KMS by default.</p>
+<h3><a name="Example-4-X-Ray-tracing" class="anchor" href="#Example-4-X-Ray-tracing">Example 4: X-Ray tracing</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 33)" onmouseover="showTip(event, 'fs7', 33)" class="fn">lambda</span> <span class="s">&quot;traced-function&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 34)" onmouseover="showTip(event, 'fs8', 34)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs9', 35)" onmouseover="showTip(event, 'fs9', 35)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 36)" onmouseover="showTip(event, 'fs10', 36)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 37)" onmouseover="showTip(event, 'fs18', 37)" class="id">NODEJS_20_X</span>
+    <span onmouseout="hideTip(event, 'fs12', 38)" onmouseover="showTip(event, 'fs12', 38)" class="k">code</span> <span class="s">&quot;./lambda-code&quot;</span>
+    <span onmouseout="hideTip(event, 'fs19', 39)" onmouseover="showTip(event, 'fs19', 39)" class="k">xrayEnabled</span>
+    <span onmouseout="hideTip(event, 'fs20', 40)" onmouseover="showTip(event, 'fs20', 40)" class="k">description</span> <span class="s">&quot;Function with X-Ray tracing for debugging&quot;</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Enables AWS X-Ray for distributed tracing.</p>
+<h3><a name="Example-5-Cost-optimization-with-custom-ephemeral-storage" class="anchor" href="#Example-5-Cost-optimization-with-custom-ephemeral-storage">Example 5: Cost optimization with custom ephemeral storage</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 41)" onmouseover="showTip(event, 'fs21', 41)" class="id">logGroupItm</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs22', 42)" onmouseover="showTip(event, 'fs22', 42)" class="fn">logGroup</span> <span class="s">&quot;optimized-function-logs&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs23', 43)" onmouseover="showTip(event, 'fs23', 43)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs24', 44)" onmouseover="showTip(event, 'fs24', 44)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 45)" onmouseover="showTip(event, 'fs25', 45)" class="id">THREE_DAYS</span> <span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs7', 46)" onmouseover="showTip(event, 'fs7', 46)" class="fn">lambda</span> <span class="s">&quot;optimized-function&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 47)" onmouseover="showTip(event, 'fs8', 47)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs9', 48)" onmouseover="showTip(event, 'fs9', 48)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 49)" onmouseover="showTip(event, 'fs10', 49)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 50)" onmouseover="showTip(event, 'fs13', 50)" class="id">PYTHON_3_11</span>
+    <span onmouseout="hideTip(event, 'fs12', 51)" onmouseover="showTip(event, 'fs12', 51)" class="k">code</span> <span class="s">&quot;./lambda-code&quot;</span>
+    <span onmouseout="hideTip(event, 'fs26', 52)" onmouseover="showTip(event, 'fs26', 52)" class="k">ephemeralStorageSize</span> <span class="n">1024</span> <span class="c">// Increase /tmp storage to 1 GB</span>
+
+    <span class="c">// For custom log retention, use logGroup builder:</span>
+    <span onmouseout="hideTip(event, 'fs27', 53)" onmouseover="showTip(event, 'fs27', 53)" class="k">logGroup</span> <span onmouseout="hideTip(event, 'fs21', 54)" onmouseover="showTip(event, 'fs21', 54)" class="id">logGroupItm</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Fine-tunes cost with custom ephemeral storage for workloads needing more than the default 512 MB /tmp space. Log retention is controlled via the logGroup builder.</p>
+<h2><a name="Complete-Example-Stack" class="anchor" href="#Complete-Example-Stack">Complete Example Stack</a></h2>
+<h2><a name="IAM-Permissions" class="anchor" href="#IAM-Permissions">IAM Permissions</a></h2>
+<h3><a name="Default-execution-role" class="anchor" href="#Default-execution-role">Default execution role</a></h3>
+<p>The builder automatically creates an IAM execution role with:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Managed policy for CloudWatch Logs</span>
+<span class="s">&quot;service-role/AWSLambdaBasicExecutionRole&quot;</span>
+
+<span class="c">// Inline policy for KMS (when environment encryption enabled)</span>
+<span class="pn">{</span>
+    <span class="s">&quot;Effect&quot;</span><span class="pn">:</span> <span class="s">&quot;Allow&quot;</span><span class="pn">,</span>
+    <span class="s">&quot;Action&quot;</span><span class="pn">:</span> <span class="s">&quot;kms:Decrypt&quot;</span><span class="pn">,</span>
+    <span class="s">&quot;Resource&quot;</span><span class="pn">:</span> <span class="s">&quot;arn:aws:kms:*:*:key/*&quot;</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Custom-role" class="anchor" href="#Custom-role">Custom role</a></h3>
+<p>For advanced scenarios, bring your own execution role—handy when integrating with existing IAM governance models.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs43', 125)" onmouseover="showTip(event, 'fs43', 125)" class="id">customRole</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs44', 126)" onmouseover="showTip(event, 'fs44', 126)" class="m">IAM</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs45', 127)" onmouseover="showTip(event, 'fs45', 127)" class="id">createLambdaExecutionRole</span> <span class="s">&quot;my-function&quot;</span> <span class="k">true</span>
+
+<span onmouseout="hideTip(event, 'fs7', 128)" onmouseover="showTip(event, 'fs7', 128)" class="fn">lambda</span> <span class="s">&quot;my-function&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 129)" onmouseover="showTip(event, 'fs8', 129)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs9', 130)" onmouseover="showTip(event, 'fs9', 130)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 131)" onmouseover="showTip(event, 'fs10', 131)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 132)" onmouseover="showTip(event, 'fs11', 132)" class="id">NODEJS_18_X</span>
+    <span onmouseout="hideTip(event, 'fs12', 133)" onmouseover="showTip(event, 'fs12', 133)" class="k">code</span> <span class="s">&quot;./code&quot;</span>
+    <span onmouseout="hideTip(event, 'fs46', 134)" onmouseover="showTip(event, 'fs46', 134)" class="k">role</span> <span onmouseout="hideTip(event, 'fs43', 135)" onmouseover="showTip(event, 'fs43', 135)" class="id">customRole</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Security-Considerations" class="anchor" href="#Security-Considerations">Security Considerations</a></h2>
+<h3><a name="Environment-variable-encryption" class="anchor" href="#Environment-variable-encryption">Environment variable encryption</a></h3>
+<p>All environment variables are encrypted at rest with KMS. This protects:</p>
+<ul>
+<li>API keys and secrets</li>
+<li>Database connection strings</li>
+<li>Configuration values</li>
+</ul>
+<p><strong>Best practice:</strong> Use AWS Secrets Manager or Parameter Store for highly sensitive secrets, matching the approach outlined in the <strong>AWS Security Blog</strong>.</p>
+<h3><a name="Least-privilege-IAM" class="anchor" href="#Least-privilege-IAM">Least-privilege IAM</a></h3>
+<p>The execution role includes only:</p>
+<ul>
+<li>CloudWatch Logs write permissions</li>
+<li>KMS decrypt (for environment variables)</li>
+</ul>
+<p>Add additional permissions explicitly:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span class="id">FsCDK</span><span class="pn">.</span><span class="id">Security</span>
+
+<span class="k">let</span> <span class="id">role</span> <span class="o">=</span> <span class="id">IAM</span><span class="pn">.</span><span class="id">createLambdaExecutionRole</span> <span class="s">&quot;my-function&quot;</span> <span class="k">true</span>
+<span class="c">// Add S3 read access</span>
+<span class="id">IAM</span><span class="pn">.</span><span class="id">allow</span> <span class="pn">[</span><span class="s">&quot;s3:GetObject&quot;</span><span class="pn">]</span> <span class="pn">[</span><span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span><span class="pn">]</span>
+<span class="o">|&gt;</span> <span class="id">role</span><span class="pn">.</span><span class="id">AddToPolicy</span>
+</code></pre>
+<h3><a name="Log-retention" class="anchor" href="#Log-retention">Log retention</a></h3>
+<p>Logs are retained for 1 week by default (via CloudWatch Log Groups) following Corey Quinn's cost optimization principle: "Never store logs forever." Balance retention with your needs:</p>
+<ul>
+<li><strong>Development</strong>: 3–7 days (lower cost)</li>
+<li><strong>Production</strong>: 1–4 weeks (operational visibility)</li>
+<li><strong>Compliance</strong>: 90 days or longer (regulatory requirements)</li>
+</ul>
+<p>To customize, use the <code>logGroup</code> builder:
+*</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 136)" onmouseover="showTip(event, 'fs47', 136)" class="id">logGrp</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs22', 137)" onmouseover="showTip(event, 'fs22', 137)" class="fn">logGroup</span> <span class="s">&quot;MyFunction-logs&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs23', 138)" onmouseover="showTip(event, 'fs23', 138)" class="k">retention</span> <span onmouseout="hideTip(event, 'fs24', 139)" onmouseover="showTip(event, 'fs24', 139)" class="en">RetentionDays</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 140)" onmouseover="showTip(event, 'fs48', 140)" class="id">ONE_MONTH</span> <span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs7', 141)" onmouseover="showTip(event, 'fs7', 141)" class="fn">lambda</span> <span class="s">&quot;MyFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 142)" onmouseover="showTip(event, 'fs8', 142)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs9', 143)" onmouseover="showTip(event, 'fs9', 143)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 144)" onmouseover="showTip(event, 'fs10', 144)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 145)" onmouseover="showTip(event, 'fs11', 145)" class="id">NODEJS_18_X</span>
+    <span onmouseout="hideTip(event, 'fs12', 146)" onmouseover="showTip(event, 'fs12', 146)" class="k">code</span> <span class="s">&quot;./code&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs27', 147)" onmouseover="showTip(event, 'fs27', 147)" class="k">logGroup</span> <span onmouseout="hideTip(event, 'fs47', 148)" onmouseover="showTip(event, 'fs47', 148)" class="id">logGrp</span>
+<span class="pn">}</span>
+
+<span class="c">(*</span>
+<span class="c">## Performance Optimization</span>
+
+<span class="c">### Memory configuration</span>
+
+<span class="c">Lambda CPU scales with memory:</span>
+
+<span class="c">- **128-512 MB**: Low-power functions</span>
+<span class="c">- **512-1536 MB**: Standard workloads (default: 512 MB)</span>
+<span class="c">- **1536-10240 MB**: CPU-intensive tasks</span>
+
+<span class="c">### Ephemeral storage (/tmp)</span>
+
+<span class="c">Lambda provides 512 MB of /tmp storage for free. Increase when processing large files or caching data between invocations (cold starts reuse /tmp):</span>
+
+<span class="c">- **Default**: 512 MB (free)</span>
+<span class="c">- **Maximum**: 10,240 MB (charges apply above 512 MB)</span>
+
+<span class="c">Use `ephemeralStorageSize 1024` to customize.</span>
+
+<span class="c">### Timeout</span>
+
+<span class="c">Align timeouts with the latency guidance from **Yan Cui’s Production-Ready Serverless** series:</span>
+
+<span class="c">- **API handlers**: 5–30 seconds (FsCDK default is 30&#160;s)</span>
+<span class="c">- **Batch processing**: 60–900 seconds</span>
+<span class="c">- **Upper bound**: 15&#160;minutes (Lambda hard limit)</span>
+
+<span class="c">Always keep downstream service timeouts shorter, so the handler fails fast rather than waiting on hung dependencies.</span>
+
+<span class="c">### Cold-start optimisation</span>
+
+<span class="c">Adopt the techniques from **Alex Casalboni’s Lambda Power Tuning** workshop:</span>
+<span class="c">- Enable provisioned concurrency for latency-critical APIs.</span>
+<span class="c">- Keep deployment packages slim (leverage Lambda layers or bundlers like esbuild).</span>
+<span class="c">- Lazy-load heavy dependencies inside the handler instead of at module import time.</span>
+
+<span class="c">## Escape hatch</span>
+
+<span class="c">Need to drop down to raw CDK? `FunctionSpec` exposes the underlying props, so you can opt into niche configurations while still benefiting from FsCDK defaults.</span>
+<span class="c">*)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 149)" onmouseover="showTip(event, 'fs49', 149)" class="id">funcSpec</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 150)" onmouseover="showTip(event, 'fs7', 150)" class="fn">lambda</span> <span class="s">&quot;my-function&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 151)" onmouseover="showTip(event, 'fs8', 151)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs9', 152)" onmouseover="showTip(event, 'fs9', 152)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 153)" onmouseover="showTip(event, 'fs10', 153)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 154)" onmouseover="showTip(event, 'fs11', 154)" class="id">NODEJS_18_X</span>
+        <span onmouseout="hideTip(event, 'fs12', 155)" onmouseover="showTip(event, 'fs12', 155)" class="k">code</span> <span class="s">&quot;./code&quot;</span>
+    <span class="pn">}</span>
+<span class="c">// Access props to see configuration</span>
+<span class="c">// The actual Function is created by the stack builder</span>
+</code></pre>
+<h2><a name="Next-steps" class="anchor" href="#Next-steps">Next steps</a></h2>
+<ul>
+<li>Pair this quickstart with the <a href="s3-quickstart.html">S3 Quickstart</a> to build an end-to-end ingestion flow.</li>
+<li>Dive into <a href="iam-best-practices.html">IAM Best Practices</a> to grant least-privilege permissions.</li>
+<li>Review <a href="lambda-production-defaults.html">Lambda Production Defaults</a> to understand the guard rails FsCDK applies automatically.</li>
+</ul>
+<h2><a name="Learning-resources" class="anchor" href="#Learning-resources">📚 Learning resources</a></h2>
+<p>All resources below are curated for quality (4.5★+ ratings or repeated recommendations by AWS Heroes).</p>
+<h3><a name="Foundation-Week-0" class="anchor" href="#Foundation-Week-0">Foundation (Week 0)</a></h3>
+<ul>
+<li><strong>AWS Lambda Developer Guide</strong> – Core concepts straight from the Lambda team.</li>
+<li><strong>Lambda Operator Guide</strong> – Operational runbooks for scaling and resilience.</li>
+<li><strong>Getting Started video (Danilo Poccia)</strong> – Step-by-step walkthrough for your first function.</li>
+</ul>
+<h3><a name="Hero-insights-amp-advanced-reading" class="anchor" href="#Hero-insights-amp-advanced-reading">Hero insights &amp; advanced reading</a></h3>
+<ul>
+<li><strong>Yan Cui – Production-Ready Serverless</strong> (course) and blog series on concurrency, cold starts, and cost control.</li>
+<li><strong>Heitor Lessa – Powertools Live Workshop</strong> – Hands-on observability patterns.</li>
+<li><strong>Alex Casalboni – Lambda Power Tuning</strong> – Automated memory/performance optimisation.</li>
+<li><strong>AWS Compute Blog – Event-driven design principles</strong> – Official best practices for building reactive systems.</li>
+</ul>
+<h3><a name="Performance-amp-cost" class="anchor" href="#Performance-amp-cost">Performance &amp; cost</a></h3>
+<ul>
+<li><strong>Lambda Power Tuning</strong> (open source) – Benchmark memory settings automatically.</li>
+<li><strong>Provisioned Concurrency</strong> deep dive – Keep latency predictable for mission-critical APIs.</li>
+<li><strong>SnapStart for Java</strong> – Near-zero cold starts for JVM workloads.</li>
+</ul>
+<h3><a name="Security-amp-IAM" class="anchor" href="#Security-amp-IAM">Security &amp; IAM</a></h3>
+<ul>
+<li><strong>Lambda execution roles</strong> – Official guide to least privilege.</li>
+<li><strong>Secrets Manager patterns</strong> – Store and refresh credentials securely.</li>
+<li><strong>VPC networking for Lambda</strong> – Understand ENIs, private subnets, and egress controls.</li>
+</ul>
+<h3><a name="Observability" class="anchor" href="#Observability">Observability</a></h3>
+<ul>
+<li><strong>Structured logging best practices</strong> (Yan Cui) – Why JSON logs matter.</li>
+<li><strong>CloudWatch Logs Insights</strong> – Query examples for rapid debugging.</li>
+<li><strong>Lambda Insights &amp; X-Ray</strong> – Monitor runtime performance and dependencies.</li>
+</ul>
+<h3><a name="Suggested-learning-path" class="anchor" href="#Suggested-learning-path">Suggested learning path</a></h3>
+<ol>
+<li>Build this quickstart and review the generated CloudFormation.</li>
+<li>Enable Powertools and explore the tracing/logging features in <a href="lambda-production-defaults.html">Lambda Production Defaults</a>.</li>
+<li>Model event-driven architectures with <a href="eventbridge.html">EventBridge</a> and <a href="sns-sqs-messaging.html">SNS SQS Messaging</a>.</li>
+<li>Subscribe to <strong>Off-by-none</strong> (Jeremy Daly) and watch the latest <strong>re:Invent serverless</strong> sessions to stay current.</li>
+</ol>
+<h3><a name="Community-hubs" class="anchor" href="#Community-hubs">Community hubs</a></h3>
+<ul>
+<li><strong>Serverless Stack Discord</strong> – Practitioner Q&amp;A and showcase.</li>
+<li><strong>AWS re:Post (Lambda tag)</strong> – Official support channel.</li>
+<li><strong>Serverless Chats podcast (Jeremy Daly)</strong> – Interviews with AWS Heroes and product teams.</li>
+</ul>
+<p>Continue practising by wiring these Lambdas into S3, DynamoDB, and EventBridge using the other FsCDK notebooks in this portal.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 156)" onmouseover="showTip(event, 'fs2', 156)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 157)" onmouseover="showTip(event, 'fs3', 157)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 158)" onmouseover="showTip(event, 'fs2', 158)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 159)" onmouseover="showTip(event, 'fs3', 159)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 160)" onmouseover="showTip(event, 'fs4', 160)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 161)" onmouseover="showTip(event, 'fs5', 161)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 162)" onmouseover="showTip(event, 'fs2', 162)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 163)" onmouseover="showTip(event, 'fs3', 163)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 164)" onmouseover="showTip(event, 'fs4', 164)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 165)" onmouseover="showTip(event, 'fs6', 165)" class="id">Logs</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 166)" onmouseover="showTip(event, 'fs1', 166)" class="id">FsCDK</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs50', 167)" onmouseover="showTip(event, 'fs50', 167)" class="id">app</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs51', 168)" onmouseover="showTip(event, 'fs51', 168)" class="fn">App</span><span class="pn">(</span><span class="pn">)</span>
+
+<span class="c">// Get environment configuration from environment variables</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs52', 169)" onmouseover="showTip(event, 'fs52', 169)" class="id">accountId</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs29', 170)" onmouseover="showTip(event, 'fs29', 170)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 171)" onmouseover="showTip(event, 'fs30', 171)" class="rt">Environment</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 172)" onmouseover="showTip(event, 'fs31', 172)" class="id">GetEnvironmentVariable</span><span class="pn">(</span><span class="s">&quot;CDK_DEFAULT_ACCOUNT&quot;</span><span class="pn">)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs53', 173)" onmouseover="showTip(event, 'fs53', 173)" class="id">region</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs29', 174)" onmouseover="showTip(event, 'fs29', 174)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 175)" onmouseover="showTip(event, 'fs30', 175)" class="rt">Environment</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 176)" onmouseover="showTip(event, 'fs31', 176)" class="id">GetEnvironmentVariable</span><span class="pn">(</span><span class="s">&quot;CDK_DEFAULT_REGION&quot;</span><span class="pn">)</span>
+
+<span class="c">// Create stack props with environment</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs54', 177)" onmouseover="showTip(event, 'fs54', 177)" class="id">envProps</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs55', 178)" onmouseover="showTip(event, 'fs55', 178)" class="fn">StackProps</span><span class="pn">(</span><span class="pn">)</span>
+
+<span class="k">if</span>
+    <span class="fn">not</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs29', 179)" onmouseover="showTip(event, 'fs29', 179)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 180)" onmouseover="showTip(event, 'fs56', 180)" class="rt">String</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 181)" onmouseover="showTip(event, 'fs57', 181)" class="id">IsNullOrEmpty</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs52', 182)" onmouseover="showTip(event, 'fs52', 182)" class="id">accountId</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="o">&amp;&amp;</span> <span class="fn">not</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs29', 183)" onmouseover="showTip(event, 'fs29', 183)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 184)" onmouseover="showTip(event, 'fs56', 184)" class="rt">String</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 185)" onmouseover="showTip(event, 'fs57', 185)" class="id">IsNullOrEmpty</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs53', 186)" onmouseover="showTip(event, 'fs53', 186)" class="id">region</span><span class="pn">)</span><span class="pn">)</span>
+<span class="k">then</span>
+    <span onmouseout="hideTip(event, 'fs54', 187)" onmouseover="showTip(event, 'fs54', 187)" class="id">envProps</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 188)" onmouseover="showTip(event, 'fs58', 188)" class="id">Env</span> <span class="k">&lt;-</span> <span onmouseout="hideTip(event, 'fs2', 189)" onmouseover="showTip(event, 'fs2', 189)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 190)" onmouseover="showTip(event, 'fs3', 190)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 191)" onmouseover="showTip(event, 'fs59', 191)" class="id">Environment</span><span class="pn">(</span><span class="fn">Account</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs52', 192)" onmouseover="showTip(event, 'fs52', 192)" class="id">accountId</span><span class="pn">,</span> <span class="fn">Region</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs53', 193)" onmouseover="showTip(event, 'fs53', 193)" class="id">region</span><span class="pn">)</span>
+
+<span onmouseout="hideTip(event, 'fs54', 194)" onmouseover="showTip(event, 'fs54', 194)" class="id">envProps</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs60', 195)" onmouseover="showTip(event, 'fs60', 195)" class="id">Description</span> <span class="k">&lt;-</span> <span class="s">&quot;FsCDK Lambda Quickstart Example - demonstrates Lambda functions with security defaults&quot;</span>
+
+<span class="c">// Create the stack</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs61', 196)" onmouseover="showTip(event, 'fs61', 196)" class="id">stack</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs62', 197)" onmouseover="showTip(event, 'fs62', 197)" class="fn">Stack</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs50', 198)" onmouseover="showTip(event, 'fs50', 198)" class="id">app</span><span class="pn">,</span> <span class="s">&quot;LambdaQuickstartStack&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs54', 199)" onmouseover="showTip(event, 'fs54', 199)" class="id">envProps</span><span class="pn">)</span>
+
+<span class="c">// Apply tags</span>
+<span onmouseout="hideTip(event, 'fs63', 200)" onmouseover="showTip(event, 'fs63', 200)" class="m">Tags</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 201)" onmouseover="showTip(event, 'fs64', 201)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs61', 202)" onmouseover="showTip(event, 'fs61', 202)" class="id">stack</span><span class="pn">)</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span class="s">&quot;Project&quot;</span><span class="pn">,</span> <span class="s">&quot;FsCDK-Examples&quot;</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs63', 203)" onmouseover="showTip(event, 'fs63', 203)" class="m">Tags</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 204)" onmouseover="showTip(event, 'fs64', 204)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs61', 205)" onmouseover="showTip(event, 'fs61', 205)" class="id">stack</span><span class="pn">)</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span class="s">&quot;Example&quot;</span><span class="pn">,</span> <span class="s">&quot;Lambda-Quickstart&quot;</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs63', 206)" onmouseover="showTip(event, 'fs63', 206)" class="m">Tags</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs64', 207)" onmouseover="showTip(event, 'fs64', 207)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs61', 208)" onmouseover="showTip(event, 'fs61', 208)" class="id">stack</span><span class="pn">)</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span class="s">&quot;ManagedBy&quot;</span><span class="pn">,</span> <span class="s">&quot;FsCDK&quot;</span><span class="pn">)</span>
+
+<span class="c">// Example 1: Basic function with all defaults</span>
+<span class="c">// Note: In a real scenario, provide actual code path</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs65', 209)" onmouseover="showTip(event, 'fs65', 209)" class="id">basicFunc</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 210)" onmouseover="showTip(event, 'fs7', 210)" class="fn">lambda</span> <span class="s">&quot;basic-function&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 211)" onmouseover="showTip(event, 'fs8', 211)" class="k">handler</span> <span class="s">&quot;index.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs9', 212)" onmouseover="showTip(event, 'fs9', 212)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 213)" onmouseover="showTip(event, 'fs10', 213)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 214)" onmouseover="showTip(event, 'fs11', 214)" class="id">NODEJS_18_X</span>
+        <span onmouseout="hideTip(event, 'fs12', 215)" onmouseover="showTip(event, 'fs12', 215)" class="k">code</span> <span class="s">&quot;./dummy-code&quot;</span>
+        <span onmouseout="hideTip(event, 'fs20', 216)" onmouseover="showTip(event, 'fs20', 216)" class="k">description</span> <span class="s">&quot;Basic Lambda function with secure defaults&quot;</span>
+    <span class="c">// Uses defaults:</span>
+    <span class="c">// - memorySize = 512 MB</span>
+    <span class="c">// - timeout = 30 seconds</span>
+    <span class="c">// - log retention = 1 week (via default logGroup)</span>
+    <span class="c">// - ephemeralStorageSize = 512 MB (free tier)</span>
+    <span class="c">// - environment encryption = KMS</span>
+    <span class="pn">}</span>
+
+<span class="c">// Example 2: Function with custom memory and timeout</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs66', 217)" onmouseover="showTip(event, 'fs66', 217)" class="id">computeFunc</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 218)" onmouseover="showTip(event, 'fs7', 218)" class="fn">lambda</span> <span class="s">&quot;compute-intensive-function&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 219)" onmouseover="showTip(event, 'fs8', 219)" class="k">handler</span> <span class="s">&quot;process.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs9', 220)" onmouseover="showTip(event, 'fs9', 220)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 221)" onmouseover="showTip(event, 'fs10', 221)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 222)" onmouseover="showTip(event, 'fs13', 222)" class="id">PYTHON_3_11</span>
+        <span onmouseout="hideTip(event, 'fs12', 223)" onmouseover="showTip(event, 'fs12', 223)" class="k">code</span> <span class="s">&quot;./dummy-code&quot;</span>
+        <span onmouseout="hideTip(event, 'fs14', 224)" onmouseover="showTip(event, 'fs14', 224)" class="k">memory</span> <span class="n">2048</span>
+        <span onmouseout="hideTip(event, 'fs15', 225)" onmouseover="showTip(event, 'fs15', 225)" class="k">timeout</span> <span class="n">300.0</span>
+        <span onmouseout="hideTip(event, 'fs20', 226)" onmouseover="showTip(event, 'fs20', 226)" class="k">description</span> <span class="s">&quot;Compute-intensive function with higher memory and timeout&quot;</span>
+    <span class="pn">}</span>
+
+<span class="c">// Example 3: Function with environment variables (encrypted by default)</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs67', 227)" onmouseover="showTip(event, 'fs67', 227)" class="id">apiFunc</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 228)" onmouseover="showTip(event, 'fs7', 228)" class="fn">lambda</span> <span class="s">&quot;api-handler-function&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 229)" onmouseover="showTip(event, 'fs8', 229)" class="k">handler</span> <span class="s">&quot;api.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs9', 230)" onmouseover="showTip(event, 'fs9', 230)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 231)" onmouseover="showTip(event, 'fs10', 231)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs18', 232)" onmouseover="showTip(event, 'fs18', 232)" class="id">NODEJS_20_X</span>
+        <span onmouseout="hideTip(event, 'fs12', 233)" onmouseover="showTip(event, 'fs12', 233)" class="k">code</span> <span class="s">&quot;./dummy-code&quot;</span>
+
+        <span onmouseout="hideTip(event, 'fs17', 234)" onmouseover="showTip(event, 'fs17', 234)" class="k">environment</span>
+            <span class="pn">[</span> <span class="s">&quot;LOG_LEVEL&quot;</span><span class="pn">,</span> <span class="s">&quot;INFO&quot;</span>
+              <span class="s">&quot;API_VERSION&quot;</span><span class="pn">,</span> <span class="s">&quot;v1&quot;</span>
+              <span class="s">&quot;REGION&quot;</span><span class="pn">,</span>
+              <span class="pn">(</span><span class="k">if</span> <span onmouseout="hideTip(event, 'fs29', 235)" onmouseover="showTip(event, 'fs29', 235)" class="id">System</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 236)" onmouseover="showTip(event, 'fs56', 236)" class="rt">String</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 237)" onmouseover="showTip(event, 'fs57', 237)" class="id">IsNullOrEmpty</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs53', 238)" onmouseover="showTip(event, 'fs53', 238)" class="id">region</span><span class="pn">)</span> <span class="k">then</span>
+                   <span class="s">&quot;us-east-1&quot;</span>
+               <span class="k">else</span>
+                   <span onmouseout="hideTip(event, 'fs53', 239)" onmouseover="showTip(event, 'fs53', 239)" class="id">region</span><span class="pn">)</span> <span class="pn">]</span>
+
+        <span onmouseout="hideTip(event, 'fs20', 240)" onmouseover="showTip(event, 'fs20', 240)" class="k">description</span> <span class="s">&quot;API handler with encrypted environment variables&quot;</span>
+    <span class="pn">}</span>
+
+<span class="c">// Example 4: Function with X-Ray tracing enabled</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs68', 241)" onmouseover="showTip(event, 'fs68', 241)" class="id">tracedFunc</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 242)" onmouseover="showTip(event, 'fs7', 242)" class="fn">lambda</span> <span class="s">&quot;traced-function&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 243)" onmouseover="showTip(event, 'fs8', 243)" class="k">handler</span> <span class="s">&quot;traced.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs9', 244)" onmouseover="showTip(event, 'fs9', 244)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 245)" onmouseover="showTip(event, 'fs10', 245)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 246)" onmouseover="showTip(event, 'fs13', 246)" class="id">PYTHON_3_11</span>
+        <span onmouseout="hideTip(event, 'fs12', 247)" onmouseover="showTip(event, 'fs12', 247)" class="k">code</span> <span class="s">&quot;./dummy-code&quot;</span>
+        <span onmouseout="hideTip(event, 'fs19', 248)" onmouseover="showTip(event, 'fs19', 248)" class="k">xrayEnabled</span>
+        <span onmouseout="hideTip(event, 'fs20', 249)" onmouseover="showTip(event, 'fs20', 249)" class="k">description</span> <span class="s">&quot;Function with X-Ray tracing for debugging&quot;</span>
+    <span class="pn">}</span>
+
+<span class="c">// Example 5: Function with reserved concurrency</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs69', 250)" onmouseover="showTip(event, 'fs69', 250)" class="id">rateLimitedFunc</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs7', 251)" onmouseover="showTip(event, 'fs7', 251)" class="fn">lambda</span> <span class="s">&quot;rate-limited-function&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs8', 252)" onmouseover="showTip(event, 'fs8', 252)" class="k">handler</span> <span class="s">&quot;ratelimited.handler&quot;</span>
+        <span onmouseout="hideTip(event, 'fs9', 253)" onmouseover="showTip(event, 'fs9', 253)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs10', 254)" onmouseover="showTip(event, 'fs10', 254)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs11', 255)" onmouseover="showTip(event, 'fs11', 255)" class="id">NODEJS_18_X</span>
+        <span onmouseout="hideTip(event, 'fs12', 256)" onmouseover="showTip(event, 'fs12', 256)" class="k">code</span> <span class="s">&quot;./dummy-code&quot;</span>
+        <span onmouseout="hideTip(event, 'fs42', 257)" onmouseover="showTip(event, 'fs42', 257)" class="k">reservedConcurrentExecutions</span> <span class="n">10</span>
+        <span onmouseout="hideTip(event, 'fs20', 258)" onmouseover="showTip(event, 'fs20', 258)" class="k">description</span> <span class="s">&quot;Function with reserved concurrent executions for rate limiting&quot;</span>
+    <span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs50', 259)" onmouseover="showTip(event, 'fs50', 259)" class="id">app</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs70', 260)" onmouseover="showTip(event, 'fs70', 260)" class="id">Synth</span><span class="pn">(</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs71', 261)" onmouseover="showTip(event, 'fs71', 261)" class="fn">ignore</span>
+</code></pre>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Logs</div>
+<div class="fsdocs-tip" id="fs7">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs11">property Runtime.NODEJS_18_X: Runtime with get</div>
+<div class="fsdocs-tip" id="fs12">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">property Runtime.PYTHON_3_11: Runtime with get</div>
+<div class="fsdocs-tip" id="fs14">custom operation: memory (int)
+
+Calls FunctionBuilder.Memory<br /><em>&lt;summary&gt;Sets the memory allocation for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;mb&quot;&gt;The memory size in megabytes.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     memory 512
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: timeout (float)
+
+Calls FunctionBuilder.Timeout<br /><em>&lt;summary&gt;Sets the timeout for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs17">custom operation: environment ((string * string) list)
+
+Calls FunctionBuilder.Environment<br /><em>&lt;summary&gt;Sets environment variables for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;env&quot;&gt;List of key-value pairs for environment variables.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     environment [ &quot;KEY1&quot;, &quot;value1&quot;; &quot;KEY2&quot;, &quot;value2&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">property Runtime.NODEJS_20_X: Runtime with get</div>
+<div class="fsdocs-tip" id="fs19">custom operation: xrayEnabled
+
+Calls FunctionBuilder.XRayEnabled</div>
+<div class="fsdocs-tip" id="fs20">custom operation: description (string)
+
+Calls FunctionBuilder.Description<br /><em>&lt;summary&gt;Sets the description for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;desc&quot;&gt;The function description.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     description &quot;Processes incoming orders&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">val logGroupItm: CloudWatchLogGroupResource</div>
+<div class="fsdocs-tip" id="fs22">val logGroup: name: string -&gt; CloudWatchLogGroupBuilder<br /><em>&lt;summary&gt;
+ Creates a new CloudWatch Log Group builder with sensible defaults.
+ Example: logGroup &quot;/aws/ecs/my-service&quot; { retention RetentionDays.ONE_MONTH }
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">custom operation: retention (RetentionDays)
+
+Calls CloudWatchLogGroupBuilder.Retention</div>
+<div class="fsdocs-tip" id="fs24">[&lt;Struct&gt;]
+type RetentionDays =
+  | ONE_DAY = 0
+  | THREE_DAYS = 1
+  | FIVE_DAYS = 2
+  | ONE_WEEK = 3
+  | TWO_WEEKS = 4
+  | ONE_MONTH = 5
+  | TWO_MONTHS = 6
+  | THREE_MONTHS = 7
+  | FOUR_MONTHS = 8
+  | FIVE_MONTHS = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs25">field RetentionDays.THREE_DAYS: RetentionDays = 1</div>
+<div class="fsdocs-tip" id="fs26">custom operation: ephemeralStorageSize (int)
+
+Calls FunctionBuilder.EphemeralStorageSize<br /><em>&lt;summary&gt;
+ Sets the ephemeral storage size for the Lambda function in MB.
+ Default: 512 MB (free tier). Valid range: 512-10240 MB.
+ Cost optimization: Only increase if needed for /tmp storage.
+ &lt;/summary&gt;<br />&lt;param name=&quot;sizeInMB&quot;&gt;Storage size in megabytes (512-10240).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     ephemeralStorageSize 1024
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">custom operation: logGroup (CloudWatchLogGroupResource)
+
+Calls FunctionBuilder.LogGroup</div>
+<div class="fsdocs-tip" id="fs28">val get: unit -&gt; {| Account: string; Region: string |}</div>
+<div class="fsdocs-tip" id="fs29">namespace System</div>
+<div class="fsdocs-tip" id="fs30">type Environment =
+  static member Exit: exitCode: int -&gt; unit
+  static member ExpandEnvironmentVariables: name: string -&gt; string
+  static member FailFast: message: string -&gt; unit + 1 overload
+  static member GetCommandLineArgs: unit -&gt; string array
+  static member GetEnvironmentVariable: variable: string -&gt; string + 1 overload
+  static member GetEnvironmentVariables: unit -&gt; IDictionary + 1 overload
+  static member GetFolderPath: folder: SpecialFolder -&gt; string + 1 overload
+  static member GetLogicalDrives: unit -&gt; string array
+  static member SetEnvironmentVariable: variable: string * value: string -&gt; unit + 1 overload
+  static member CommandLine: string
+  ...<br /><em>&lt;summary&gt;Provides information about, and means to manipulate, the current environment and platform. This class cannot be inherited.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">System.Environment.GetEnvironmentVariable(variable: string) : string<br />System.Environment.GetEnvironmentVariable(variable: string, target: System.EnvironmentVariableTarget) : string</div>
+<div class="fsdocs-tip" id="fs32">val config: {| Account: string; Region: string |}</div>
+<div class="fsdocs-tip" id="fs33">module Config
+
+from Lambda-quickstart</div>
+<div class="fsdocs-tip" id="fs34">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">val environment: EnvironmentBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Environment configuration.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs36">custom operation: account (string)
+
+Calls EnvironmentBuilder.Account<br /><em>&lt;summary&gt;Sets the AWS account ID for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;accountId&quot;&gt;The AWS account ID.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs37">anonymous record field Account: string</div>
+<div class="fsdocs-tip" id="fs38">custom operation: region (string)
+
+Calls EnvironmentBuilder.Region<br /><em>&lt;summary&gt;Sets the AWS region for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;regionName&quot;&gt;The AWS region name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">anonymous record field Region: string</div>
+<div class="fsdocs-tip" id="fs40">custom operation: description (string)
+
+Calls StackBuilder.Description<br /><em>&lt;summary&gt;Sets the stack description.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;desc&quot;&gt;A description of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     description &quot;My application stack&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs41">custom operation: tags ((string * string) seq)
+
+Calls StackBuilder.Tags<br /><em>&lt;summary&gt;Adds tags to the stack.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;tags&quot;&gt;A list of key-value pairs for tagging.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     tags [ &quot;Environment&quot;, &quot;Production&quot;; &quot;Team&quot;, &quot;DevOps&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">custom operation: reservedConcurrentExecutions (int)
+
+Calls FunctionBuilder.ReservedConcurrentExecutions</div>
+<div class="fsdocs-tip" id="fs43">val customRole: AWS.IAM.Role</div>
+<div class="fsdocs-tip" id="fs44">module IAM
+
+from FsCDK<br /><em>&lt;summary&gt;
+ IAM helpers for creating roles and policies following least-privilege principles.
+
+ **Rationale:**
+ - Least-privilege access reduces blast radius of compromised credentials
+ - AWS managed policies provide maintained, secure defaults
+ - Role-based access control simplifies permission management
+ - Service-specific roles limit cross-service access
+
+ **Best Practices:**
+ - Always start with minimum required permissions
+ - Use AWS managed policies when appropriate
+ - Create custom policies for specific application needs
+ - Avoid wildcards (*) in production
+ - Review and audit IAM policies regularly
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs45">val createLambdaExecutionRole: functionName: string -&gt; includeKmsDecrypt: bool -&gt; AWS.IAM.Role<br /><em>&lt;summary&gt;
+ Creates a Lambda execution role with minimal permissions:
+ - CloudWatch Logs write (basic execution)
+ - Optional: KMS decrypt for encrypted environment variables
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">custom operation: role (AWS.IAM.IRole)
+
+Calls FunctionBuilder.Role</div>
+<div class="fsdocs-tip" id="fs47">val logGrp: CloudWatchLogGroupResource</div>
+<div class="fsdocs-tip" id="fs48">field RetentionDays.ONE_MONTH: RetentionDays = 5</div>
+<div class="fsdocs-tip" id="fs49">val funcSpec: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs50">val app: App</div>
+<div class="fsdocs-tip" id="fs51">Multiple items<br />type App =
+  inherit Stage
+  new: ?props: IAppProps -&gt; unit
+  static member IsApp: obj: obj -&gt; bool<br /><br />--------------------<br />App(?props: IAppProps) : App</div>
+<div class="fsdocs-tip" id="fs52">val accountId: string</div>
+<div class="fsdocs-tip" id="fs53">val region: string</div>
+<div class="fsdocs-tip" id="fs54">val envProps: StackProps</div>
+<div class="fsdocs-tip" id="fs55">Multiple items<br />type StackProps =
+  interface IStackProps
+  new: unit -&gt; unit
+  member AnalyticsReporting: Nullable&lt;bool&gt;
+  member CrossRegionReferences: Nullable&lt;bool&gt;
+  member Description: string
+  member Env: IEnvironment
+  member NotificationArns: string array
+  member PermissionsBoundary: PermissionsBoundary
+  member PropertyInjectors: IPropertyInjector array
+  member StackName: string
+  ...<br /><br />--------------------<br />StackProps() : StackProps</div>
+<div class="fsdocs-tip" id="fs56">Multiple items<br />type String =
+  interface IEnumerable&lt;char&gt;
+  interface IEnumerable
+  interface ICloneable
+  interface IComparable
+  interface IComparable&lt;string&gt;
+  interface IConvertible
+  interface IEquatable&lt;string&gt;
+  interface IParsable&lt;string&gt;
+  interface ISpanParsable&lt;string&gt;
+  new: value: nativeptr&lt;char&gt; -&gt; unit + 8 overloads
+  ...<br /><em>&lt;summary&gt;Represents text as a sequence of UTF-16 code units.&lt;/summary&gt;</em><br /><br />--------------------<br />System.String(value: nativeptr&lt;char&gt;) : System.String<br />System.String(value: char array) : System.String<br />System.String(value: System.ReadOnlySpan&lt;char&gt;) : System.String<br />System.String(value: nativeptr&lt;sbyte&gt;) : System.String<br />System.String(c: char, count: int) : System.String<br />System.String(value: nativeptr&lt;char&gt;, startIndex: int, length: int) : System.String<br />System.String(value: char array, startIndex: int, length: int) : System.String<br />System.String(value: nativeptr&lt;sbyte&gt;, startIndex: int, length: int) : System.String<br />System.String(value: nativeptr&lt;sbyte&gt;, startIndex: int, length: int, enc: System.Text.Encoding) : System.String</div>
+<div class="fsdocs-tip" id="fs57">System.String.IsNullOrEmpty(value: string) : bool</div>
+<div class="fsdocs-tip" id="fs58">property StackProps.Env: IEnvironment with get, set</div>
+<div class="fsdocs-tip" id="fs59">Multiple items<br />type Environment =
+  interface IEnvironment
+  new: unit -&gt; unit
+  member Account: string
+  member Region: string<br /><br />--------------------<br />Environment() : Environment</div>
+<div class="fsdocs-tip" id="fs60">property StackProps.Description: string with get, set</div>
+<div class="fsdocs-tip" id="fs61">val stack: Stack</div>
+<div class="fsdocs-tip" id="fs62">Multiple items<br />type Stack =
+  inherit Construct
+  interface ITaggable
+  new: ?scope: Construct * ?id: string * ?props: IStackProps -&gt; unit
+  member AddDependency: target: Stack * ?reason: string -&gt; unit
+  member AddMetadata: key: string * value: obj -&gt; unit
+  member AddStackTag: tagName: string * tagValue: string -&gt; unit
+  member AddTransform: transform: string -&gt; unit
+  member ExportStringListValue: exportedValue: obj * ?options: IExportValueOptions -&gt; string array
+  member ExportValue: exportedValue: obj * ?options: IExportValueOptions -&gt; string
+  member FormatArn: components: IArnComponents -&gt; string
+  ...<br /><br />--------------------<br />Stack(?scope: Constructs.Construct, ?id: string, ?props: IStackProps) : Stack</div>
+<div class="fsdocs-tip" id="fs63">type Tags =
+  inherit DeputyBase
+  member Add: key: string * value: string * ?props: ITagProps -&gt; unit
+  member Remove: key: string * ?props: ITagProps -&gt; unit
+  static member Of: scope: IConstruct -&gt; Tags</div>
+<div class="fsdocs-tip" id="fs64">Tags.Of(scope: Constructs.IConstruct) : Tags</div>
+<div class="fsdocs-tip" id="fs65">val basicFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs66">val computeFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs67">val apiFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs68">val tracedFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs69">val rateLimitedFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs70">Stage.Synth(?options: IStageSynthesisOptions) : CXAPI.CloudAssembly</div>
+<div class="fsdocs-tip" id="fs71">val ignore: value: &#39;T -&gt; unit</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#What-you-ll-practice">
+      What you’ll practice
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Prerequisites">
+      Prerequisites
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Usage">
+      Usage
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#1-Synthesize-the-CloudFormation-template">
+      1. Synthesize the CloudFormation template
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#2-Deploy-to-AWS-sandbox-account">
+      2. Deploy to AWS (sandbox account)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#3-Clean-up">
+      3. Clean up
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#What-s-included">
+      What’s included
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Default-settings">
+      Default settings
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Example-1-Basic-function">
+      Example 1: Basic function
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Example-2-Custom-memory-and-timeout">
+      Example 2: Custom memory and timeout
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Example-3-Environment-variables">
+      Example 3: Environment variables
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Example-4-X-Ray-tracing">
+      Example 4: X-Ray tracing
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Example-5-Cost-optimization-with-custom-ephemeral-storage">
+      Example 5: Cost optimization with custom ephemeral storage
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Complete-Example-Stack">
+      Complete Example Stack
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#IAM-Permissions">
+      IAM Permissions
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Default-execution-role">
+      Default execution role
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Custom-role">
+      Custom role
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Security-Considerations">
+      Security Considerations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Environment-variable-encryption">
+      Environment variable encryption
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Least-privilege-IAM">
+      Least-privilege IAM
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Log-retention">
+      Log retention
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Next-steps">
+      Next steps
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Learning-resources">
+      📚 Learning resources
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Foundation-Week-0">
+      Foundation (Week 0)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Hero-insights-amp-advanced-reading">
+      Hero insights &amp; advanced reading
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Performance-amp-cost">
+      Performance &amp; cost
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security-amp-IAM">
+      Security &amp; IAM
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Observability">
+      Observability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Suggested-learning-path">
+      Suggested learning path
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Community-hubs">
+      Community hubs
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

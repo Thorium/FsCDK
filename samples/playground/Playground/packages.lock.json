@@ -1,28 +1,6 @@
 {
-  "version": 2,
+  "version": 1,
   "dependencies": {
-    "net8.0": {
-      "Amazon.Lambda.Core": {
-        "type": "Direct",
-        "requested": "[2.7.0, )",
-        "resolved": "2.7.0",
-        "contentHash": "MUl+uIpB00yE8TwmW4ICEE3hd7DEgIWu94a7sFtAHoKz+skS52splHDxN/syId2E5STSYHCertdJSv7Qg1JdSA=="
-      },
-      "Amazon.Lambda.Serialization.SystemTextJson": {
-        "type": "Direct",
-        "requested": "[2.4.4, )",
-        "resolved": "2.4.4",
-        "contentHash": "iv/cvqFuZ3v3+NFDyof0IJZvU+4kdpzOe3pWSBwp9HB885I+D32WQxuid9V4GnvRynER9XnWMPaDmImX8qH5cA==",
-        "dependencies": {
-          "Amazon.Lambda.Core": "2.3.0"
-        }
-      },
-      "FSharp.Core": {
-        "type": "Direct",
-        "requested": "[8.0.403, )",
-        "resolved": "8.0.403",
-        "contentHash": "ldNIn4IksrJL/X3rF4R/y9pa3RmwkcGYQ3xFMdbJj8dJ9Q49J735m6sMy3MbCK9gj3YoCsxlyFeExCiNDy3gHQ=="
-      }
-    }
+    "net8.0": {}
   }
 }

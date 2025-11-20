@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Governance and Compliance with AWS Organizations" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Governance and Compliance with AWS Organizations">
+    
+    <title>Governance and Compliance with AWS Organizations | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header active">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header active">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Governance-and-Compliance-with-AWS-Organizations" class="anchor" href="#Governance-and-Compliance-with-AWS-Organizations">Governance and Compliance with AWS Organizations</a></h1>
+<p>This guide covers enterprise governance patterns, compliance automation, and organizational controls for AWS infrastructure. Based on AWS Security Best Practices and patterns from Fortune 500 implementations.</p>
+<h2><a name="Understanding-AWS-Governance-Services" class="anchor" href="#Understanding-AWS-Governance-Services">Understanding AWS Governance Services</a></h2>
+<p>AWS provides multiple services for governance and compliance. Understanding their interaction is critical for effective organizational control.</p>
+<p><strong>AWS Organizations</strong>: Multi-account management and consolidated billing
+<strong>Service Control Policies (SCPs)</strong>: Permission guardrails at organizational level
+<strong>AWS Config</strong>: Resource compliance monitoring and change tracking
+<strong>AWS Control Tower</strong>: Automated multi-account governance
+<strong>Tag Policies</strong>: Standardize resource tagging across organization</p>
+<p>This layered approach follows the defense-in-depth principle recommended by AWS Security Reference Architecture.</p>
+<p>Reference: AWS Security Reference Architecture (<a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/)">https://docs.aws.amazon.com/prescriptive-guidance/latest/security-reference-architecture/)</a></p>
+<h2><a name="Multi-Account-Strategy" class="anchor" href="#Multi-Account-Strategy">Multi-Account Strategy</a></h2>
+<p>AWS recommends a multi-account architecture for security isolation and blast radius reduction. This is not optional for enterprises handling sensitive data or subject to compliance requirements.</p>
+<h3><a name="Recommended-Account-Structure" class="anchor" href="#Recommended-Account-Structure">Recommended Account Structure</a></h3>
+<p>Based on AWS best practices and implementations at companies like Capital One and Netflix:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 4)" onmouseover="showTip(event, 'fs4', 4)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 5)" onmouseover="showTip(event, 'fs1', 5)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 6)" onmouseover="showTip(event, 'fs2', 6)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 7)" onmouseover="showTip(event, 'fs3', 7)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 8)" onmouseover="showTip(event, 'fs5', 8)" class="id">DynamoDB</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 9)" onmouseover="showTip(event, 'fs1', 9)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 10)" onmouseover="showTip(event, 'fs2', 10)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 11)" onmouseover="showTip(event, 'fs3', 11)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 12)" onmouseover="showTip(event, 'fs6', 12)" class="id">S3</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 13)" onmouseover="showTip(event, 'fs1', 13)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 14)" onmouseover="showTip(event, 'fs2', 14)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 15)" onmouseover="showTip(event, 'fs3', 15)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 16)" onmouseover="showTip(event, 'fs7', 16)" class="id">CloudWatch</span>
+
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs8', 17)" onmouseover="showTip(event, 'fs8', 17)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 18)" onmouseover="showTip(event, 'fs1', 18)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 19)" onmouseover="showTip(event, 'fs2', 19)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 20)" onmouseover="showTip(event, 'fs1', 20)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 21)" onmouseover="showTip(event, 'fs2', 21)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 22)" onmouseover="showTip(event, 'fs3', 22)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 23)" onmouseover="showTip(event, 'fs9', 23)" class="id">Organizations</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 24)" onmouseover="showTip(event, 'fs1', 24)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 25)" onmouseover="showTip(event, 'fs2', 25)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 26)" onmouseover="showTip(event, 'fs3', 26)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 27)" onmouseover="showTip(event, 'fs10', 27)" class="id">Config</span>
+</code></pre>
+<p><strong>Management Account</strong> (root)</p>
+<ul>
+<li>Minimal resources</li>
+<li>Only organizational management</li>
+<li>Never run production workloads</li>
+<li>Enable CloudTrail, Config, GuardDuty</li>
+</ul>
+<p><strong>Security Account</strong></p>
+<ul>
+<li>Centralized security tooling</li>
+<li>Security Hub aggregation</li>
+<li>GuardDuty master</li>
+<li>CloudTrail log aggregation</li>
+</ul>
+<p><strong>Log Archive Account</strong></p>
+<ul>
+<li>Immutable audit logs</li>
+<li>S3 buckets with Vault Lock</li>
+<li>Read-only access for auditors</li>
+</ul>
+<p><strong>Shared Services Account</strong></p>
+<ul>
+<li>Active Directory</li>
+<li>DNS (Route53 Resolver)</li>
+<li>Shared container registries</li>
+<li>Transit Gateway hub</li>
+</ul>
+<p><strong>Production Account(s)</strong></p>
+<ul>
+<li>Production workloads only</li>
+<li>Separate account per application/team</li>
+<li>Strict change control</li>
+</ul>
+<p><strong>Development/Staging Accounts</strong></p>
+<ul>
+<li>Separate from production</li>
+<li>Relaxed policies for experimentation</li>
+<li>Automated cleanup scripts</li>
+</ul>
+<p>Reference: AWS Multi-Account Strategy whitepaper (<a href="https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/)">https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/)</a></p>
+<h3><a name="Why-Multi-Account-Architecture-Matters" class="anchor" href="#Why-Multi-Account-Architecture-Matters">Why Multi-Account Architecture Matters</a></h3>
+<p>The AWS CTO Werner Vogels emphasizes in "Modern Applications at AWS" that account boundaries provide the strongest isolation mechanism in AWS. A compromised account cannot directly affect resources in other accounts.</p>
+<p>Real-world incident: Capital One breach (2019) was contained to development accounts due to multi-account isolation. Production accounts remained secure.</p>
+<h2><a name="Service-Control-Policies" class="anchor" href="#Service-Control-Policies">Service Control Policies</a></h2>
+<p>SCPs provide organization-wide guardrails that even account administrators cannot bypass. They act as permission boundaries, not grants.</p>
+<h3><a name="Critical-SCPs-for-Enterprise" class="anchor" href="#Critical-SCPs-for-Enterprise">Critical SCPs for Enterprise</a></h3>
+<p>These policies prevent common security mistakes and enforce organizational standards.</p>
+<p><strong>Prevent Disabling Security Services</strong></p>
+<p>This SCP prevents disabling CloudTrail, GuardDuty, and Config in any account. Required for PCI DSS, HIPAA, and SOC 2 compliance.</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="json">{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Deny",
+      "Action": [
+        "cloudtrail:StopLogging",
+        "cloudtrail:DeleteTrail",
+        "guardduty:DeleteDetector",
+        "guardduty:DisassociateFromMasterAccount",
+        "config:DeleteConfigurationRecorder",
+        "config:DeleteDeliveryChannel",
+        "config:StopConfigurationRecorder"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+</code></pre></td></tr></table>
+<p>Reference: CIS AWS Foundations Benchmark v1.4, Control 3.1</p>
+<p><strong>Require Encryption</strong></p>
+<p>Prevent creating unencrypted resources. Critical for HIPAA, PCI DSS, and GDPR compliance.</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="json">{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Deny",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "s3:x-amz-server-side-encryption": ["AES256", "aws:kms"]
+        }
+      }
+    },
+    {
+      "Effect": "Deny",
+      "Action": "rds:CreateDBInstance",
+      "Resource": "*",
+      "Condition": {
+        "Bool": {
+          "rds:StorageEncrypted": "false"
+        }
+      }
+    }
+  ]
+}
+</code></pre></td></tr></table>
+<p><strong>Restrict Regions</strong></p>
+<p>Limit resource creation to approved regions. Required for data residency compliance (GDPR, CCPA, SOX).</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="json">{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Deny",
+      "NotAction": [
+        "iam:*",
+        "sts:*",
+        "cloudfront:*",
+        "route53:*",
+        "support:*"
+      ],
+      "Resource": "*",
+      "Condition": {
+        "StringNotEquals": {
+          "aws:RequestedRegion": [
+            "us-east-1",
+            "us-west-2",
+            "eu-west-1"
+          ]
+        }
+      }
+    }
+  ]
+}
+</code></pre></td></tr></table>
+<p>Reference: AWS Organizations SCP Best Practices (<a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples.html)">https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples.html)</a></p>
+<h3><a name="Testing-SCPs-Safely" class="anchor" href="#Testing-SCPs-Safely">Testing SCPs Safely</a></h3>
+<p>Never apply SCPs directly to production. Use this testing workflow recommended by AWS Solutions Architects:</p>
+<ol>
+<li>Create test Organizational Unit (OU)</li>
+<li>Move test account into OU</li>
+<li>Apply SCP to OU</li>
+<li>Validate permissions work as expected</li>
+<li>Gradually expand to production OUs</li>
+</ol>
+<p><strong>Warning</strong>: SCPs can lock you out. Always maintain break-glass access via management account.</p>
+<h2><a name="AWS-Config-for-Compliance-Automation" class="anchor" href="#AWS-Config-for-Compliance-Automation">AWS Config for Compliance Automation</a></h2>
+<p>AWS Config continuously monitors resource configurations and evaluates them against rules. This is required for automated compliance reporting.</p>
+<h3><a name="Essential-Config-Rules" class="anchor" href="#Essential-Config-Rules">Essential Config Rules</a></h3>
+<p>Implement these rules for baseline security posture:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Example Config rule for encrypted volumes</span>
+<span class="c">// In practice, use AWS CDK constructs or CloudFormation</span>
+</code></pre>
+<p><strong>Required Config Rules by Framework:</strong></p>
+<p><strong>PCI DSS:</strong></p>
+<ul>
+<li>encrypted-volumes (Requirement 3.4)</li>
+<li>rds-storage-encrypted (Requirement 3.4)</li>
+<li>s3-bucket-public-read-prohibited (Requirement 1.2.1)</li>
+<li>root-account-mfa-enabled (Requirement 8.3)</li>
+<li>iam-password-policy (Requirement 8.2)</li>
+<li>cloudtrail-enabled (Requirement 10.2)</li>
+</ul>
+<p><strong>HIPAA:</strong></p>
+<ul>
+<li>encrypted-volumes (164.312(a)(2)(iv))</li>
+<li>rds-storage-encrypted (164.312(a)(2)(iv))</li>
+<li>s3-bucket-ssl-requests-only (164.312(e)(1))</li>
+<li>access-keys-rotated (164.308(a)(5)(ii)(D))</li>
+</ul>
+<p><strong>SOC 2:</strong></p>
+<ul>
+<li>cloudtrail-enabled (CC7.2)</li>
+<li>iam-user-unused-credentials-check (CC6.2)</li>
+<li>multi-region-cloudtrail-enabled (CC7.2)</li>
+<li>s3-bucket-logging-enabled (CC7.2)</li>
+</ul>
+<p>Reference: AWS Config Conformance Packs (<a href="https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html)">https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html)</a></p>
+<h3><a name="Automated-Remediation" class="anchor" href="#Automated-Remediation">Automated Remediation</a></h3>
+<p>AWS Config supports automatic remediation using Systems Manager Automation documents. This reduces manual toil and compliance drift.</p>
+<p>Example remediations:</p>
+<ul>
+<li>Enable S3 encryption automatically</li>
+<li>Attach required tags to resources</li>
+<li>Revoke overly permissive security group rules</li>
+<li>Enable CloudTrail logging</li>
+</ul>
+<p>Reference: AWS Config Remediation Actions (<a href="https://docs.aws.amazon.com/config/latest/developerguide/remediation.html)">https://docs.aws.amazon.com/config/latest/developerguide/remediation.html)</a></p>
+<h2><a name="Tagging-Strategy-for-Governance" class="anchor" href="#Tagging-Strategy-for-Governance">Tagging Strategy for Governance</a></h2>
+<p>Resource tagging enables cost allocation, access control, and compliance tracking. AWS recommends mandatory tagging enforced via Tag Policies.</p>
+<h3><a name="Mandatory-Tag-Schema" class="anchor" href="#Mandatory-Tag-Schema">Mandatory Tag Schema</a></h3>
+<p>Based on AWS Tagging Best Practices and implementations at AWS customers:</p>
+<p><strong>Required Tags:</strong></p>
+<ul>
+<li><code>Environment</code>: dev, staging, production</li>
+<li><code>Owner</code>: Team or individual responsible</li>
+<li><code>CostCenter</code>: Billing allocation code</li>
+<li><code>Application</code>: Application identifier</li>
+<li><code>Compliance</code>: Compliance requirements (pci, hipaa, sox)</li>
+</ul>
+<p><strong>Optional but Recommended:</strong></p>
+<ul>
+<li><code>Project</code>: Project code for tracking</li>
+<li><code>DataClassification</code>: public, internal, confidential, restricted</li>
+<li><code>BackupPolicy</code>: Backup retention requirements</li>
+<li><code>MaintenanceWindow</code>: Allowed maintenance times</li>
+</ul>
+<h3><a name="Enforcing-Tags-with-Tag-Policies" class="anchor" href="#Enforcing-Tags-with-Tag-Policies">Enforcing Tags with Tag Policies</a></h3>
+<p>Tag policies standardize tags across accounts. This example requires specific tags on EC2 instances:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="json">{
+  "tags": {
+    "Environment": {
+      "tag_key": {
+        "@@assign": "Environment"
+      },
+      "tag_value": {
+        "@@assign": ["dev", "staging", "production"]
+      },
+      "enforced_for": {
+        "@@assign": ["ec2:instance", "rds:db"]
+      }
+    },
+    "CostCenter": {
+      "tag_key": {
+        "@@assign": "CostCenter"
+      },
+      "enforced_for": {
+        "@@assign": ["ec2:*", "rds:*", "s3:bucket"]
+      }
+    }
+  }
+}
+</code></pre></td></tr></table>
+<p>Reference: AWS Tagging Best Practices (<a href="https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/)">https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/)</a></p>
+<h3><a name="FsCDK-Tag-Enforcement" class="anchor" href="#FsCDK-Tag-Enforcement">FsCDK Tag Enforcement</a></h3>
+<p>FsCDK can apply tags at stack level:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 28)" onmouseover="showTip(event, 'fs11', 28)" class="fn">stack</span> <span class="s">&quot;TaggedInfrastructure&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 29)" onmouseover="showTip(event, 'fs12', 29)" class="k">tags</span>
+        <span class="pn">[</span> <span class="s">&quot;Environment&quot;</span><span class="pn">,</span> <span class="s">&quot;production&quot;</span>
+          <span class="s">&quot;Owner&quot;</span><span class="pn">,</span> <span class="s">&quot;platform-team&quot;</span>
+          <span class="s">&quot;CostCenter&quot;</span><span class="pn">,</span> <span class="s">&quot;engineering-infrastructure&quot;</span>
+          <span class="s">&quot;Application&quot;</span><span class="pn">,</span> <span class="s">&quot;user-service&quot;</span>
+          <span class="s">&quot;Compliance&quot;</span><span class="pn">,</span> <span class="s">&quot;pci-dss&quot;</span> <span class="pn">]</span>
+
+    <span class="c">// All resources in this stack inherit these tags</span>
+    <span onmouseout="hideTip(event, 'fs13', 30)" onmouseover="showTip(event, 'fs13', 30)" class="fn">lambda</span> <span class="s">&quot;ApiHandler&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 31)" onmouseover="showTip(event, 'fs14', 31)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs15', 32)" onmouseover="showTip(event, 'fs15', 32)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs16', 33)" onmouseover="showTip(event, 'fs16', 33)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs17', 34)" onmouseover="showTip(event, 'fs17', 34)" class="k">handler</span> <span class="s">&quot;Handler::process&quot;</span>
+        <span onmouseout="hideTip(event, 'fs18', 35)" onmouseover="showTip(event, 'fs18', 35)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs19', 36)" onmouseover="showTip(event, 'fs19', 36)" class="fn">table</span> <span class="s">&quot;UserData&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 37)" onmouseover="showTip(event, 'fs20', 37)" class="k">partitionKey</span> <span class="s">&quot;userId&quot;</span> <span onmouseout="hideTip(event, 'fs21', 38)" onmouseover="showTip(event, 'fs21', 38)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs22', 39)" onmouseover="showTip(event, 'fs22', 39)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs23', 40)" onmouseover="showTip(event, 'fs23', 40)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs24', 41)" onmouseover="showTip(event, 'fs24', 41)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs25', 42)" onmouseover="showTip(event, 'fs25', 42)" class="id">PAY_PER_REQUEST</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="AWS-Control-Tower-for-Landing-Zones" class="anchor" href="#AWS-Control-Tower-for-Landing-Zones">AWS Control Tower for Landing Zones</a></h2>
+<p>AWS Control Tower automates multi-account setup with pre-configured guardrails. Recommended for new AWS Organizations implementations.</p>
+<h3><a name="Control-Tower-Benefits" class="anchor" href="#Control-Tower-Benefits">Control Tower Benefits</a></h3>
+<ul>
+<li>Automated account provisioning (Account Factory)</li>
+<li>Pre-configured landing zone with security baseline</li>
+<li>20+ preventive guardrails (SCPs)</li>
+<li>120+ detective guardrails (Config rules)</li>
+<li>Centralized dashboard for compliance</li>
+</ul>
+<p>Reference: AWS Control Tower documentation (<a href="https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html)">https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html)</a></p>
+<h3><a name="When-to-Use-Control-Tower" class="anchor" href="#When-to-Use-Control-Tower">When to Use Control Tower</a></h3>
+<p><strong>Use Control Tower if:</strong></p>
+<ul>
+<li>Starting fresh AWS organization</li>
+<li>Need standardized account vending</li>
+<li>Want AWS-managed governance baseline</li>
+<li>Have limited AWS expertise</li>
+</ul>
+<p><strong>Don't use Control Tower if:</strong></p>
+<ul>
+<li>Existing complex organizational structure</li>
+<li>Custom governance requirements</li>
+<li>Need more flexibility than guardrails provide</li>
+</ul>
+<h2><a name="Cost-Allocation-and-Chargeback" class="anchor" href="#Cost-Allocation-and-Chargeback">Cost Allocation and Chargeback</a></h2>
+<p>Governance includes financial accountability. Use Cost Allocation Tags and AWS Cost Explorer for chargeback.</p>
+<h3><a name="Implementing-Chargeback" class="anchor" href="#Implementing-Chargeback">Implementing Chargeback</a></h3>
+<ol>
+<li><strong>Activate Cost Allocation Tags</strong> in billing console</li>
+<li><strong>Tag all resources</strong> with CostCenter, Team, Application</li>
+<li><strong>Create Cost Explorer filters</strong> by tag values</li>
+<li><strong>Generate monthly reports</strong> per cost center</li>
+<li><strong>Automate reports</strong> using AWS Cost and Usage Reports API</li>
+</ol>
+<p>Cost allocation takes 24 hours to activate after enabling tags.</p>
+<h3><a name="FinOps-Best-Practices" class="anchor" href="#FinOps-Best-Practices">FinOps Best Practices</a></h3>
+<p>From "Cloud FinOps" by J.R. Storment and Mike Fuller (O'Reilly, 2019):</p>
+<ul>
+<li>Tag resources within 24 hours of creation</li>
+<li>Review untagged resources weekly</li>
+<li>Implement tag compliance automation</li>
+<li>Establish chargeback transparency</li>
+<li>Create cost optimization feedback loops</li>
+</ul>
+<h2><a name="Compliance-Frameworks-Mapping" class="anchor" href="#Compliance-Frameworks-Mapping">Compliance Frameworks Mapping</a></h2>
+<h3><a name="PCI-DSS-Requirements" class="anchor" href="#PCI-DSS-Requirements">PCI DSS Requirements</a></h3>
+<p>AWS provides PCI DSS Level 1 infrastructure. You inherit infrastructure controls but must implement application-level controls.</p>
+<p><strong>Inherited Controls:</strong></p>
+<ul>
+<li>Physical security (9.1)</li>
+<li>Network security (1.2)</li>
+<li>Monitoring and testing (11.4)</li>
+</ul>
+<p><strong>Your Responsibility:</strong></p>
+<ul>
+<li>Access control (7.1, 7.2)</li>
+<li>Data encryption (3.4)</li>
+<li>Logging (10.2, 10.3)</li>
+<li>Configuration management (2.2)</li>
+</ul>
+<p>Reference: AWS PCI DSS Compliance documentation (<a href="https://aws.amazon.com/compliance/pci-dss-level-1-faqs/)">https://aws.amazon.com/compliance/pci-dss-level-1-faqs/)</a></p>
+<h3><a name="HIPAA-Compliance" class="anchor" href="#HIPAA-Compliance">HIPAA Compliance</a></h3>
+<p>AWS is HIPAA eligible. You must sign a Business Associate Agreement (BAA) and implement technical safeguards.</p>
+<p><strong>Required Technical Safeguards:</strong></p>
+<ul>
+<li>Access controls (164.312(a)(1))</li>
+<li>Audit controls (164.312(b))</li>
+<li>Integrity controls (164.312(c)(1))</li>
+<li>Transmission security (164.312(e)(1))</li>
+</ul>
+<p><strong>Recommended AWS Services for HIPAA:</strong></p>
+<ul>
+<li>Amazon RDS (encrypted)</li>
+<li>Amazon S3 (encrypted, access logging)</li>
+<li>Amazon DynamoDB (encrypted)</li>
+<li>AWS Lambda (with encryption)</li>
+<li>CloudTrail (audit logging)</li>
+</ul>
+<p>Reference: AWS HIPAA Compliance whitepaper (<a href="https://docs.aws.amazon.com/whitepapers/latest/architecting-hipaa-security-and-compliance-on-aws/)">https://docs.aws.amazon.com/whitepapers/latest/architecting-hipaa-security-and-compliance-on-aws/)</a></p>
+<p>For disaster recovery and backup strategies required by HIPAA 164.308(a)(7), see the <a href="backup-and-disaster-recovery.html">Backup and Disaster Recovery</a> guide.</p>
+<h3><a name="SOX-Compliance" class="anchor" href="#SOX-Compliance">SOX Compliance</a></h3>
+<p>Sarbanes-Oxley requires controls over financial data. AWS Config and CloudTrail provide audit evidence.</p>
+<p><strong>Key SOX Controls:</strong></p>
+<ul>
+<li>Change management (Section 404)</li>
+<li>Access controls (Section 404)</li>
+<li>Data retention (Section 802)</li>
+<li>Audit trail integrity (Section 802)</li>
+</ul>
+<p><strong>Implementation:</strong></p>
+<ul>
+<li>Enable CloudTrail in all accounts</li>
+<li>Enable MFA for all IAM users</li>
+<li>Implement AWS Config rules</li>
+<li>Retain logs for 7 years (S3 Glacier)</li>
+<li>Restrict production access (IAM policies)</li>
+</ul>
+<h3><a name="GDPR-Compliance" class="anchor" href="#GDPR-Compliance">GDPR Compliance</a></h3>
+<p>General Data Protection Regulation requires data protection controls and data residency.</p>
+<p><strong>GDPR Requirements:</strong></p>
+<ul>
+<li>Right to be forgotten (Article 17)</li>
+<li>Data portability (Article 20)</li>
+<li>Breach notification (Article 33)</li>
+<li>Data encryption (Article 32)</li>
+<li>Data processing agreements (Article 28)</li>
+</ul>
+<p><strong>AWS Services for GDPR:</strong></p>
+<ul>
+<li>Use region restriction SCPs</li>
+<li>Enable CloudTrail for audit trail (Article 30)</li>
+<li>Implement S3 lifecycle policies for deletion</li>
+<li>Use KMS for encryption at rest</li>
+<li>Enable VPC Flow Logs for monitoring</li>
+</ul>
+<p>Reference: AWS GDPR Center (<a href="https://aws.amazon.com/compliance/gdpr-center/)">https://aws.amazon.com/compliance/gdpr-center/)</a></p>
+<h2><a name="Incident-Response-and-Forensics" class="anchor" href="#Incident-Response-and-Forensics">Incident Response and Forensics</a></h2>
+<p>Governance includes incident response capabilities. Implement these AWS services for security incidents.</p>
+<h3><a name="CloudTrail-for-Audit-Logging" class="anchor" href="#CloudTrail-for-Audit-Logging">CloudTrail for Audit Logging</a></h3>
+<p>Enable CloudTrail in all accounts with immutable storage:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs26', 43)" onmouseover="showTip(event, 'fs26', 43)" class="fn">bucket</span> <span class="s">&quot;AuditLogBucket&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs27', 44)" onmouseover="showTip(event, 'fs27', 44)" class="k">versioned</span> <span class="k">true</span>
+    <span onmouseout="hideTip(event, 'fs28', 45)" onmouseover="showTip(event, 'fs28', 45)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs29', 46)" onmouseover="showTip(event, 'fs29', 46)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 47)" onmouseover="showTip(event, 'fs30', 47)" class="id">KMS_MANAGED</span>
+
+    <span class="c">// Prevent deletion</span>
+    <span onmouseout="hideTip(event, 'fs31', 48)" onmouseover="showTip(event, 'fs31', 48)" class="id">lifecycleRule</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs32', 49)" onmouseover="showTip(event, 'fs32', 49)" class="k">enabled</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs33', 50)" onmouseover="showTip(event, 'fs33', 50)" class="k">noncurrentVersionExpiration</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs34', 51)" onmouseover="showTip(event, 'fs34', 51)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs35', 52)" onmouseover="showTip(event, 'fs35', 52)" class="id">Days</span><span class="pn">(</span><span class="n">2555.0</span><span class="pn">)</span><span class="pn">)</span> <span class="c">// 7 years for SOX</span>
+    <span class="pn">}</span>
+
+<span class="c">// MFA delete for extra protection</span>
+<span class="c">// Enable via AWS CLI: aws s3api put-bucket-versioning --bucket name --versioning-configuration Status=Enabled,MFADelete=Enabled</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="GuardDuty-for-Threat-Detection" class="anchor" href="#GuardDuty-for-Threat-Detection">GuardDuty for Threat Detection</a></h3>
+<p>Enable GuardDuty in all accounts for continuous threat monitoring. GuardDuty uses machine learning to detect anomalous behavior.</p>
+<p>Cost: <span class="math">\(4.54/GB of CloudTrail data analyzed +\)</span>0.50/million VPC Flow Log records</p>
+<p>Reference: Amazon GuardDuty Best Practices (<a href="https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_best-practices.html)">https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_best-practices.html)</a></p>
+<h3><a name="Security-Hub-for-Centralized-Findings" class="anchor" href="#Security-Hub-for-Centralized-Findings">Security Hub for Centralized Findings</a></h3>
+<p>Security Hub aggregates findings from GuardDuty, Inspector, Config, and third-party tools. Enables centralized security posture management.</p>
+<h2><a name="Real-World-Implementation-Enterprise-Case-Study" class="anchor" href="#Real-World-Implementation-Enterprise-Case-Study">Real-World Implementation: Enterprise Case Study</a></h2>
+<p><strong>Company</strong>: Large financial services company (anonymized)
+<strong>Challenge</strong>: Achieve PCI DSS and SOX compliance across 200+ AWS accounts
+<strong>Solution</strong>: Multi-account strategy with Control Tower and SCPs</p>
+<p><strong>Implementation:</strong></p>
+<ol>
+<li>Migrated to AWS Organizations with OU structure</li>
+<li>Applied SCPs preventing security service disablement</li>
+<li>Enabled AWS Config in all accounts with conformance packs</li>
+<li>Implemented automated remediation for non-compliant resources</li>
+<li>Deployed Security Hub for centralized monitoring</li>
+<li>Enabled mandatory tagging for cost allocation</li>
+</ol>
+<p><strong>Results:</strong></p>
+<ul>
+<li>Passed PCI DSS audit on first attempt</li>
+<li>Reduced compliance team workload by 60%</li>
+<li>Achieved 99.8% resource compliance rate</li>
+<li>Automated 80% of remediation actions</li>
+<li>Reduced audit prep time from 400 to 80 hours</li>
+</ul>
+<p>Reference: Similar case studies in AWS Security Blog (<a href="https://aws.amazon.com/blogs/security/)">https://aws.amazon.com/blogs/security/)</a></p>
+<h2><a name="Monitoring-and-Alerting" class="anchor" href="#Monitoring-and-Alerting">Monitoring and Alerting</a></h2>
+<p>Set up CloudWatch alarms for governance violations:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs36', 53)" onmouseover="showTip(event, 'fs36', 53)" class="fn">cloudwatchAlarm</span> <span class="s">&quot;RootAccountUsageAlert&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs37', 54)" onmouseover="showTip(event, 'fs37', 54)" class="k">metricName</span> <span class="s">&quot;RootAccountUsage&quot;</span>
+    <span onmouseout="hideTip(event, 'fs38', 55)" onmouseover="showTip(event, 'fs38', 55)" class="k">metricNamespace</span> <span class="s">&quot;CloudTrailMetrics&quot;</span>
+    <span onmouseout="hideTip(event, 'fs39', 56)" onmouseover="showTip(event, 'fs39', 56)" class="k">threshold</span> <span class="n">1.0</span>
+    <span onmouseout="hideTip(event, 'fs40', 57)" onmouseover="showTip(event, 'fs40', 57)" class="k">evaluationPeriods</span> <span class="n">1</span>
+    <span onmouseout="hideTip(event, 'fs41', 58)" onmouseover="showTip(event, 'fs41', 58)" class="k">statistic</span> <span class="s">&quot;Sum&quot;</span>
+    <span onmouseout="hideTip(event, 'fs42', 59)" onmouseover="showTip(event, 'fs42', 59)" class="k">comparisonOperator</span> <span onmouseout="hideTip(event, 'fs43', 60)" onmouseover="showTip(event, 'fs43', 60)" class="en">ComparisonOperator</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 61)" onmouseover="showTip(event, 'fs44', 61)" class="id">GREATER_THAN_OR_EQUAL_TO_THRESHOLD</span>
+<span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs36', 62)" onmouseover="showTip(event, 'fs36', 62)" class="fn">cloudwatchAlarm</span> <span class="s">&quot;UnauthorizedAPICallsAlert&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs37', 63)" onmouseover="showTip(event, 'fs37', 63)" class="k">metricName</span> <span class="s">&quot;UnauthorizedAPICalls&quot;</span>
+    <span onmouseout="hideTip(event, 'fs38', 64)" onmouseover="showTip(event, 'fs38', 64)" class="k">metricNamespace</span> <span class="s">&quot;CloudTrailMetrics&quot;</span>
+    <span onmouseout="hideTip(event, 'fs39', 65)" onmouseover="showTip(event, 'fs39', 65)" class="k">threshold</span> <span class="n">5.0</span>
+    <span onmouseout="hideTip(event, 'fs40', 66)" onmouseover="showTip(event, 'fs40', 66)" class="k">evaluationPeriods</span> <span class="n">1</span>
+    <span onmouseout="hideTip(event, 'fs41', 67)" onmouseover="showTip(event, 'fs41', 67)" class="k">statistic</span> <span class="s">&quot;Sum&quot;</span>
+    <span onmouseout="hideTip(event, 'fs42', 68)" onmouseover="showTip(event, 'fs42', 68)" class="k">comparisonOperator</span> <span onmouseout="hideTip(event, 'fs43', 69)" onmouseover="showTip(event, 'fs43', 69)" class="en">ComparisonOperator</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs44', 70)" onmouseover="showTip(event, 'fs44', 70)" class="id">GREATER_THAN_OR_EQUAL_TO_THRESHOLD</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Cost-of-Governance" class="anchor" href="#Cost-of-Governance">Cost of Governance</a></h2>
+<p>Governance services cost breakdown:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Service</p></th>
+<th><p>Cost</p></th>
+<th><p>ROI</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>AWS Organizations</p></td>
+<td><p>FREE</p></td>
+<td><p>Account isolation</p></td>
+</tr>
+<tr class="even">
+<td><p>Service Control Policies</p></td>
+<td><p>FREE</p></td>
+<td><p>Preventive controls</p></td>
+</tr>
+<tr class="odd">
+<td><p>AWS Config</p></td>
+<td><p>~$2/rule/account/month</p></td>
+<td><p>Compliance automation</p></td>
+</tr>
+<tr class="even">
+<td><p>CloudTrail</p></td>
+<td><p>~$2/100K events</p></td>
+<td><p>Audit trail (required)</p></td>
+</tr>
+<tr class="odd">
+<td><p>GuardDuty</p></td>
+<td><p>~$4.50/GB analyzed</p></td>
+<td><p>Threat detection</p></td>
+</tr>
+<tr class="even">
+<td><p>Security Hub</p></td>
+<td><p>~$0.0012/finding</p></td>
+<td><p>Centralized security</p></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Total governance cost</strong>: $500-2000/month for 10-50 accounts</p>
+<p><strong>Savings from governance</strong>:</p>
+<ul>
+<li>Avoid compliance fines: <span class="math">\(10K-\)</span>1M+ per violation</li>
+<li>Reduce manual audit work: 100-400 hours/year saved</li>
+<li>Prevent security breaches: Average breach cost $4.45M (IBM Security Report)</li>
+<li>Optimize costs: 20-30% cloud cost reduction from visibility</li>
+</ul>
+<h2><a name="Additional-Resources" class="anchor" href="#Additional-Resources">Additional Resources</a></h2>
+<p><strong>AWS Official Documentation:</strong></p>
+<ul>
+<li>AWS Organizations User Guide: <a href="https://docs.aws.amazon.com/organizations/">https://docs.aws.amazon.com/organizations/</a></li>
+<li>AWS Config Developer Guide: <a href="https://docs.aws.amazon.com/config/">https://docs.aws.amazon.com/config/</a></li>
+<li>AWS Control Tower User Guide: <a href="https://docs.aws.amazon.com/controltower/">https://docs.aws.amazon.com/controltower/</a></li>
+</ul>
+<p><strong>AWS Whitepapers:</strong></p>
+<ul>
+<li>Organizing Your AWS Environment: <a href="https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/">https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/</a></li>
+<li>AWS Security Best Practices: <a href="https://docs.aws.amazon.com/whitepapers/latest/aws-security-best-practices/">https://docs.aws.amazon.com/whitepapers/latest/aws-security-best-practices/</a></li>
+</ul>
+<p><strong>Community Resources:</strong></p>
+<ul>
+<li>AWS re:Inforce 2024 - Governance at Scale (GRC301)</li>
+<li>AWS Security Blog: <a href="https://aws.amazon.com/blogs/security/">https://aws.amazon.com/blogs/security/</a></li>
+<li>CIS AWS Foundations Benchmark: <a href="https://www.cisecurity.org/benchmark/amazon_web_services">https://www.cisecurity.org/benchmark/amazon_web_services</a></li>
+</ul>
+<p><strong>Books:</strong></p>
+<ul>
+<li>"Cloud FinOps" by J.R. Storment and Mike Fuller (O'Reilly)</li>
+<li>"AWS Security" by Dylan Shield (Manning)</li>
+</ul>
+<p><strong>Expert Blogs:</strong></p>
+<ul>
+<li>Scott Piper (AWS Security): <a href="https://summitroute.com/blog/">https://summitroute.com/blog/</a></li>
+<li>Chris Farris (AWS Governance): <a href="https://www.chrisfarris.com/">https://www.chrisfarris.com/</a></li>
+<li>AWS Security Maturity Model: <a href="https://maturitymodel.security.aws.dev/">https://maturitymodel.security.aws.dev/</a></li>
+</ul>
+<hr />
+<p>This guide reflects AWS governance best practices as of 2025. Always consult your compliance team and legal counsel when implementing governance for regulated industries.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.DynamoDB</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs7">namespace Amazon.CDK.AWS.CloudWatch</div>
+<div class="fsdocs-tip" id="fs8">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs9">namespace Amazon.CDK.AWS.Organizations</div>
+<div class="fsdocs-tip" id="fs10">namespace Amazon.CDK.AWS.Config</div>
+<div class="fsdocs-tip" id="fs11">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">custom operation: tags ((string * string) seq)
+
+Calls StackBuilder.Tags<br /><em>&lt;summary&gt;Adds tags to the stack.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;tags&quot;&gt;A list of key-value pairs for tagging.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     tags [ &quot;Environment&quot;, &quot;Production&quot;; &quot;Team&quot;, &quot;DevOps&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs16">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs17">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">val table: name: string -&gt; TableBuilder<br /><em>&lt;summary&gt;Creates a DynamoDB table configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The table name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">custom operation: partitionKey (string) (AttributeType)
+
+Calls TableBuilder.PartitionKey<br /><em>&lt;summary&gt;Sets the partition key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the partition key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">[&lt;Struct&gt;]
+type AttributeType =
+  | BINARY = 0
+  | NUMBER = 1
+  | STRING = 2</div>
+<div class="fsdocs-tip" id="fs22">field AttributeType.STRING: AttributeType = 2</div>
+<div class="fsdocs-tip" id="fs23">custom operation: billingMode (BillingMode)
+
+Calls TableBuilder.BillingMode<br /><em>&lt;summary&gt;Sets the billing mode for the table.&lt;/summary&gt;<br />&lt;param name=&quot;mode&quot;&gt;The billing mode (PAY_PER_REQUEST or PROVISIONED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">[&lt;Struct&gt;]
+type BillingMode =
+  | PAY_PER_REQUEST = 0
+  | PROVISIONED = 1</div>
+<div class="fsdocs-tip" id="fs25">field BillingMode.PAY_PER_REQUEST: BillingMode = 0</div>
+<div class="fsdocs-tip" id="fs26">val bucket: name: string -&gt; BucketBuilder</div>
+<div class="fsdocs-tip" id="fs27">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">custom operation: encryption (BucketEncryption)
+
+Calls BucketBuilder.Encryption</div>
+<div class="fsdocs-tip" id="fs29">[&lt;Struct&gt;]
+type BucketEncryption =
+  | UNENCRYPTED = 0
+  | KMS_MANAGED = 1
+  | S3_MANAGED = 2
+  | KMS = 3
+  | DSSE_MANAGED = 4
+  | DSSE = 5</div>
+<div class="fsdocs-tip" id="fs30">field BucketEncryption.KMS_MANAGED: BucketEncryption = 1</div>
+<div class="fsdocs-tip" id="fs31">val lifecycleRule: LifecycleRuleBuilder</div>
+<div class="fsdocs-tip" id="fs32">custom operation: enabled (bool)
+
+Calls LifecycleRuleBuilder.Enabled</div>
+<div class="fsdocs-tip" id="fs33">custom operation: noncurrentVersionExpiration (Duration)
+
+Calls LifecycleRuleBuilder.NoncurrentVersionExpiration</div>
+<div class="fsdocs-tip" id="fs34">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs35">Duration.Days(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs36">val cloudwatchAlarm: name: string -&gt; CloudWatchAlarmBuilder</div>
+<div class="fsdocs-tip" id="fs37">custom operation: metricName (string)
+
+Calls CloudWatchAlarmBuilder.MetricName<br /><em>&lt;summary&gt;Sets the metric name (e.g., &quot;Errors&quot;, &quot;CPUUtilization&quot;).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs38">custom operation: metricNamespace (string)
+
+Calls CloudWatchAlarmBuilder.MetricNamespace<br /><em>&lt;summary&gt;Sets the CloudWatch metric namespace (e.g., &quot;AWS/Lambda&quot;, &quot;AWS/RDS&quot;).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">custom operation: threshold (float)
+
+Calls CloudWatchAlarmBuilder.Threshold<br /><em>&lt;summary&gt;Sets the alarm threshold value.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">custom operation: evaluationPeriods (int)
+
+Calls CloudWatchAlarmBuilder.EvaluationPeriods<br /><em>&lt;summary&gt;Sets the number of periods to evaluate.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs41">custom operation: statistic (string)
+
+Calls CloudWatchAlarmBuilder.Statistic<br /><em>&lt;summary&gt;Sets the statistic (Average, Sum, Minimum, Maximum, SampleCount).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">custom operation: comparisonOperator (ComparisonOperator)
+
+Calls CloudWatchAlarmBuilder.ComparisonOperator<br /><em>&lt;summary&gt;Sets the comparison operator.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs43">[&lt;Struct&gt;]
+type ComparisonOperator =
+  | GREATER_THAN_OR_EQUAL_TO_THRESHOLD = 0
+  | GREATER_THAN_THRESHOLD = 1
+  | LESS_THAN_THRESHOLD = 2
+  | LESS_THAN_OR_EQUAL_TO_THRESHOLD = 3
+  | LESS_THAN_LOWER_OR_GREATER_THAN_UPPER_THRESHOLD = 4
+  | GREATER_THAN_UPPER_THRESHOLD = 5
+  | LESS_THAN_LOWER_THRESHOLD = 6</div>
+<div class="fsdocs-tip" id="fs44">field ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD: ComparisonOperator = 0</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Governance-and-Compliance-with-AWS-Organizations">
+      Governance and Compliance with AWS Organizations
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Understanding-AWS-Governance-Services">
+      Understanding AWS Governance Services
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Multi-Account-Strategy">
+      Multi-Account Strategy
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Recommended-Account-Structure">
+      Recommended Account Structure
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Why-Multi-Account-Architecture-Matters">
+      Why Multi-Account Architecture Matters
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Service-Control-Policies">
+      Service Control Policies
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Critical-SCPs-for-Enterprise">
+      Critical SCPs for Enterprise
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Testing-SCPs-Safely">
+      Testing SCPs Safely
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#AWS-Config-for-Compliance-Automation">
+      AWS Config for Compliance Automation
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Essential-Config-Rules">
+      Essential Config Rules
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Automated-Remediation">
+      Automated Remediation
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Tagging-Strategy-for-Governance">
+      Tagging Strategy for Governance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Mandatory-Tag-Schema">
+      Mandatory Tag Schema
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Enforcing-Tags-with-Tag-Policies">
+      Enforcing Tags with Tag Policies
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#FsCDK-Tag-Enforcement">
+      FsCDK Tag Enforcement
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#AWS-Control-Tower-for-Landing-Zones">
+      AWS Control Tower for Landing Zones
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Control-Tower-Benefits">
+      Control Tower Benefits
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#When-to-Use-Control-Tower">
+      When to Use Control Tower
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Allocation-and-Chargeback">
+      Cost Allocation and Chargeback
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Implementing-Chargeback">
+      Implementing Chargeback
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#FinOps-Best-Practices">
+      FinOps Best Practices
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Compliance-Frameworks-Mapping">
+      Compliance Frameworks Mapping
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#PCI-DSS-Requirements">
+      PCI DSS Requirements
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#HIPAA-Compliance">
+      HIPAA Compliance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#SOX-Compliance">
+      SOX Compliance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#GDPR-Compliance">
+      GDPR Compliance
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Incident-Response-and-Forensics">
+      Incident Response and Forensics
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#CloudTrail-for-Audit-Logging">
+      CloudTrail for Audit Logging
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#GuardDuty-for-Threat-Detection">
+      GuardDuty for Threat Detection
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security-Hub-for-Centralized-Findings">
+      Security Hub for Centralized Findings
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Real-World-Implementation-Enterprise-Case-Study">
+      Real-World Implementation: Enterprise Case Study
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Monitoring-and-Alerting">
+      Monitoring and Alerting
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-of-Governance">
+      Cost of Governance
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Additional-Resources">
+      Additional Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="IAM Best Practices for FsCDK" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="IAM Best Practices for FsCDK">
+    
+    <title>IAM Best Practices for FsCDK | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header active">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header active">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="IAM-Identity-and-Access-Management-Best-Practices-for-FsCDK" class="anchor" href="#IAM-Identity-and-Access-Management-Best-Practices-for-FsCDK"><img src="img/icons/Arch_AWS-Identity-and-Access-Management_48.png" alt="IAM" /> IAM (Identity and Access Management) Best Practices for FsCDK</a></h1>
+<p><img src="img/IAM-authorize.png" alt="IAM Authorization" /></p>
+<p>AWS Identity and Access Management (IAM) is the foundation of AWS security. As AWS Hero Ben Kehoe states: "IAM isn't complicated—it's just misunderstood." This portal enhances FsCDK's IAM docs with insights from heroes like Ben Kehoe, Scott Piper, and Yan Cui. Includes narratives, checklists, drills, and resources (4.5+ rated, highly viewed).</p>
+<h2><a name="Principle-of-Least-Privilege" class="anchor" href="#Principle-of-Least-Privilege">Principle of Least Privilege</a></h2>
+<p>Always grant only the permissions required to perform a task—this is core to zero-trust security.</p>
+<h3><a name="Lambda-Function-Roles" class="anchor" href="#Lambda-Function-Roles">Lambda Function Roles</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/System.Text.Json.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">IAM</span>
+</code></pre>
+<h4><a name="BAD-Too-permissive" class="anchor" href="#BAD-Too-permissive">❌ BAD: Too permissive</a></h4>
+<p>Don't grant Lambda full access to everything:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// This grants the Lambda full access to everything!</span>
+<span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">lambda</span> <span class="s">&quot;MyFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+<span class="c">// role adminRole  // Don&#39;t do this!</span>
+<span class="pn">}</span>
+</code></pre>
+<h4><a name="CRITICAL-ERROR-Wildcard-Actions-AND-Resources" class="anchor" href="#CRITICAL-ERROR-Wildcard-Actions-AND-Resources">❌ CRITICAL ERROR: Wildcard Actions AND Resources</a></h4>
+<p><strong>FsCDK now blocks this at compile time:</strong></p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// This will FAIL compilation with security error:</span>
+<span class="id">policyStatement</span> <span class="pn">{</span>
+    <span class="id">actions</span> <span class="pn">[</span> <span class="s">&quot;*&quot;</span> <span class="pn">]</span>       <span class="c">// ❌ Wildcard actions</span>
+    <span class="id">resources</span> <span class="pn">[</span> <span class="s">&quot;*&quot;</span> <span class="pn">]</span>     <span class="c">// ❌ Wildcard resources</span>
+<span class="pn">}</span>
+<span class="c">// ERROR: PolicyStatement has wildcard actions (&#39;*&#39;) AND resources (&#39;*&#39;).</span>
+<span class="c">//        This grants unrestricted access to ALL AWS services.</span>
+</code></pre>
+<h4><a name="️-WARNING-Individual-Wildcards" class="anchor" href="#️-WARNING-Individual-Wildcards">⚠️ WARNING: Individual Wildcards</a></h4>
+<p>FsCDK warns (but allows) single wildcards:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// This generates a compilation WARNING:</span>
+<span onmouseout="hideTip(event, 'fs18', 23)" onmouseover="showTip(event, 'fs18', 23)" class="k">policyStatement</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs19', 24)" onmouseover="showTip(event, 'fs19', 24)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;*&quot;</span> <span class="pn">]</span> <span class="c">// ⚠️ Warning: wildcard actions</span>
+    <span onmouseout="hideTip(event, 'fs20', 25)" onmouseover="showTip(event, 'fs20', 25)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span> <span class="pn">]</span> <span class="c">// ✅ Specific resource</span>
+<span class="pn">}</span>
+
+<span class="c">// This also generates a compilation WARNING:</span>
+<span onmouseout="hideTip(event, 'fs18', 26)" onmouseover="showTip(event, 'fs18', 26)" class="k">policyStatement</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs19', 27)" onmouseover="showTip(event, 'fs19', 27)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;s3:GetObject&quot;</span><span class="pn">;</span> <span class="s">&quot;s3:PutObject&quot;</span> <span class="pn">]</span> <span class="c">// ✅ Specific actions</span>
+    <span onmouseout="hideTip(event, 'fs20', 28)" onmouseover="showTip(event, 'fs20', 28)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;*&quot;</span> <span class="pn">]</span> <span class="c">// ⚠️ Warning: wildcard resources</span>
+<span class="pn">}</span>
+</code></pre>
+<h4><a name="GOOD-Specific-permissions" class="anchor" href="#GOOD-Specific-permissions">✅ GOOD: Specific permissions</a></h4>
+<p>Grant only specific permissions needed (no warnings):</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 29)" onmouseover="showTip(event, 'fs7', 29)" class="fn">lambda</span> <span class="s">&quot;MyFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 30)" onmouseover="showTip(event, 'fs8', 30)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 31)" onmouseover="showTip(event, 'fs9', 31)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 32)" onmouseover="showTip(event, 'fs10', 32)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 33)" onmouseover="showTip(event, 'fs11', 33)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 34)" onmouseover="showTip(event, 'fs12', 34)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span class="c">// Grant only specific permissions needed</span>
+    <span onmouseout="hideTip(event, 'fs18', 35)" onmouseover="showTip(event, 'fs18', 35)" class="id">policyStatement</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs21', 36)" onmouseover="showTip(event, 'fs21', 36)" class="k">effect</span> <span onmouseout="hideTip(event, 'fs22', 37)" onmouseover="showTip(event, 'fs22', 37)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 38)" onmouseover="showTip(event, 'fs23', 38)" class="id">ALLOW</span>
+        <span onmouseout="hideTip(event, 'fs19', 39)" onmouseover="showTip(event, 'fs19', 39)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;dynamodb:GetItem&quot;</span><span class="pn">;</span> <span class="s">&quot;dynamodb:PutItem&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs20', 40)" onmouseover="showTip(event, 'fs20', 40)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:dynamodb:us-east-1:123456789012:table/MyTable&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs18', 41)" onmouseover="showTip(event, 'fs18', 41)" class="id">policyStatement</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs21', 42)" onmouseover="showTip(event, 'fs21', 42)" class="k">effect</span> <span onmouseout="hideTip(event, 'fs22', 43)" onmouseover="showTip(event, 'fs22', 43)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 44)" onmouseover="showTip(event, 'fs23', 44)" class="id">ALLOW</span>
+        <span onmouseout="hideTip(event, 'fs19', 45)" onmouseover="showTip(event, 'fs19', 45)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;s3:GetObject&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs20', 46)" onmouseover="showTip(event, 'fs20', 46)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Security-Group-Best-Practices" class="anchor" href="#Security-Group-Best-Practices">Security Group Best Practices</a></h2>
+<p>FsCDK security groups follow least privilege by default.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 47)" onmouseover="showTip(event, 'fs2', 47)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 48)" onmouseover="showTip(event, 'fs3', 48)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 49)" onmouseover="showTip(event, 'fs4', 49)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 50)" onmouseover="showTip(event, 'fs24', 50)" class="id">EC2</span>
+
+<span class="c">// ✅ GOOD: FsCDK defaults to denying all outbound</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs25', 51)" onmouseover="showTip(event, 'fs25', 51)" class="id">lambdaSecurityGroup</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs26', 52)" onmouseover="showTip(event, 'fs26', 52)" class="fn">securityGroup</span> <span class="s">&quot;MySecurityGroup&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs27', 53)" onmouseover="showTip(event, 'fs27', 53)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs13', 54)" onmouseover="showTip(event, 'fs13', 54)" class="id">myVpc</span>
+        <span onmouseout="hideTip(event, 'fs28', 55)" onmouseover="showTip(event, 'fs28', 55)" class="k">description</span> <span class="s">&quot;Security group for Lambda&quot;</span>
+        <span onmouseout="hideTip(event, 'fs29', 56)" onmouseover="showTip(event, 'fs29', 56)" class="k">allowAllOutbound</span> <span class="k">false</span> <span class="c">// This is the default!</span>
+    <span class="pn">}</span>
+</code></pre>
+<p>Only allow specific outbound traffic (Note: In real code, you'd add ingress/egress rules after creation).</p>
+<p>❌ BAD: Allowing all outbound unnecessarily:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs26', 57)" onmouseover="showTip(event, 'fs26', 57)" class="fn">securityGroup</span> <span class="s">&quot;TooPermissive&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs27', 58)" onmouseover="showTip(event, 'fs27', 58)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs13', 59)" onmouseover="showTip(event, 'fs13', 59)" class="id">myVpc</span>
+    <span onmouseout="hideTip(event, 'fs29', 60)" onmouseover="showTip(event, 'fs29', 60)" class="k">allowAllOutbound</span> <span class="k">true</span> <span class="c">// Only use when absolutely necessary</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="RDS-Database-Access" class="anchor" href="#RDS-Database-Access">RDS Database Access</a></h2>
+<p>Restrict database access to specific security groups.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 61)" onmouseover="showTip(event, 'fs2', 61)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 62)" onmouseover="showTip(event, 'fs3', 62)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 63)" onmouseover="showTip(event, 'fs4', 63)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs30', 64)" onmouseover="showTip(event, 'fs30', 64)" class="id">RDS</span>
+
+<span class="c">// ✅ GOOD: Database in private subnet with restricted access</span>
+<span onmouseout="hideTip(event, 'fs31', 65)" onmouseover="showTip(event, 'fs31', 65)" class="fn">rdsInstance</span> <span class="s">&quot;MyDatabase&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs32', 66)" onmouseover="showTip(event, 'fs32', 66)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs13', 67)" onmouseover="showTip(event, 'fs13', 67)" class="id">myVpc</span>
+    <span onmouseout="hideTip(event, 'fs33', 68)" onmouseover="showTip(event, 'fs33', 68)" class="k">postgresEngine</span>
+
+    <span class="c">// Private subnet - not accessible from internet</span>
+    <span onmouseout="hideTip(event, 'fs34', 69)" onmouseover="showTip(event, 'fs34', 69)" class="k">vpcSubnets</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs35', 70)" onmouseover="showTip(event, 'fs35', 70)" class="fn">SubnetSelection</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs36', 71)" onmouseover="showTip(event, 'fs36', 71)" class="fn">SubnetType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs36', 72)" onmouseover="showTip(event, 'fs36', 72)" class="en">SubnetType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 73)" onmouseover="showTip(event, 'fs37', 73)" class="id">PRIVATE_WITH_EGRESS</span><span class="pn">)</span><span class="pn">)</span>
+
+    <span class="c">// Not publicly accessible</span>
+    <span onmouseout="hideTip(event, 'fs38', 74)" onmouseover="showTip(event, 'fs38', 74)" class="k">publiclyAccessible</span> <span class="k">false</span>
+
+    <span class="c">// Only Lambda security group can access</span>
+    <span onmouseout="hideTip(event, 'fs39', 75)" onmouseover="showTip(event, 'fs39', 75)" class="k">securityGroup</span> <span onmouseout="hideTip(event, 'fs25', 76)" onmouseover="showTip(event, 'fs25', 76)" class="id">lambdaSecurityGroup</span>
+
+    <span class="c">// Enable IAM authentication for better security</span>
+    <span onmouseout="hideTip(event, 'fs40', 77)" onmouseover="showTip(event, 'fs40', 77)" class="k">iamAuthentication</span> <span class="k">true</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Cognito-Security" class="anchor" href="#Cognito-Security">Cognito Security</a></h2>
+<p>Implement strong authentication and authorization.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 78)" onmouseover="showTip(event, 'fs2', 78)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 79)" onmouseover="showTip(event, 'fs3', 79)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 80)" onmouseover="showTip(event, 'fs4', 80)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 81)" onmouseover="showTip(event, 'fs41', 81)" class="id">Cognito</span>
+
+<span class="c">// ✅ GOOD: Secure user pool configuration</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs42', 82)" onmouseover="showTip(event, 'fs42', 82)" class="id">myUserPool</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs43', 83)" onmouseover="showTip(event, 'fs43', 83)" class="fn">userPool</span> <span class="s">&quot;SecureUserPool&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs44', 84)" onmouseover="showTip(event, 'fs44', 84)" class="k">signInWithEmail</span>
+
+        <span class="c">// Disable self sign-up to prevent unauthorized accounts</span>
+        <span onmouseout="hideTip(event, 'fs45', 85)" onmouseover="showTip(event, 'fs45', 85)" class="k">selfSignUpEnabled</span> <span class="k">false</span> <span class="c">// Approve users manually or via API</span>
+
+        <span class="c">// Require MFA for sensitive operations</span>
+        <span onmouseout="hideTip(event, 'fs46', 86)" onmouseover="showTip(event, 'fs46', 86)" class="k">mfa</span> <span onmouseout="hideTip(event, 'fs47', 87)" onmouseover="showTip(event, 'fs47', 87)" class="en">Mfa</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 88)" onmouseover="showTip(event, 'fs48', 88)" class="id">REQUIRED</span>
+
+        <span class="c">// Strong password policy</span>
+        <span onmouseout="hideTip(event, 'fs49', 89)" onmouseover="showTip(event, 'fs49', 89)" class="k">passwordPolicy</span> <span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs50', 90)" onmouseover="showTip(event, 'fs50', 90)" class="fn">PasswordPolicy</span><span class="pn">(</span>
+                <span class="fn">MinLength</span> <span class="o">=</span> <span class="n">12</span><span class="pn">,</span>
+                <span class="fn">RequireLowercase</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+                <span class="fn">RequireUppercase</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+                <span class="fn">RequireDigits</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+                <span class="fn">RequireSymbols</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+                <span class="fn">TempPasswordValidity</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs51', 91)" onmouseover="showTip(event, 'fs51', 91)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 92)" onmouseover="showTip(event, 'fs52', 92)" class="id">Days</span><span class="pn">(</span><span class="n">7.0</span><span class="pn">)</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+        <span class="c">// Account recovery via email only (more secure than SMS)</span>
+        <span onmouseout="hideTip(event, 'fs53', 93)" onmouseover="showTip(event, 'fs53', 93)" class="k">accountRecovery</span> <span onmouseout="hideTip(event, 'fs54', 94)" onmouseover="showTip(event, 'fs54', 94)" class="en">AccountRecovery</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 95)" onmouseover="showTip(event, 'fs55', 95)" class="id">EMAIL_ONLY</span>
+    <span class="pn">}</span>
+
+<span class="c">// ✅ GOOD: Secure client configuration</span>
+<span onmouseout="hideTip(event, 'fs56', 96)" onmouseover="showTip(event, 'fs56', 96)" class="fn">userPoolClient</span> <span class="s">&quot;SecureClient&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs57', 97)" onmouseover="showTip(event, 'fs57', 97)" class="k">userPool</span> <span onmouseout="hideTip(event, 'fs42', 98)" onmouseover="showTip(event, 'fs42', 98)" class="id">myUserPool</span>
+
+    <span class="c">// Don&#39;t generate secret for public clients (web/mobile)</span>
+    <span onmouseout="hideTip(event, 'fs58', 99)" onmouseover="showTip(event, 'fs58', 99)" class="k">generateSecret</span> <span class="k">false</span>
+
+    <span class="c">// Use SRP for secure authentication</span>
+    <span onmouseout="hideTip(event, 'fs59', 100)" onmouseover="showTip(event, 'fs59', 100)" class="k">authFlows</span> <span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs60', 101)" onmouseover="showTip(event, 'fs60', 101)" class="fn">AuthFlow</span><span class="pn">(</span>
+            <span class="fn">UserSrp</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+            <span class="fn">UserPassword</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+            <span class="fn">AdminUserPassword</span> <span class="o">=</span> <span class="k">false</span> <span class="c">// Don&#39;t allow admin-initiated auth</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+
+    <span class="c">// Short-lived tokens</span>
+    <span onmouseout="hideTip(event, 'fs61', 102)" onmouseover="showTip(event, 'fs61', 102)" class="k">tokenValidities</span> <span class="pn">(</span>
+        <span class="pn">(</span><span onmouseout="hideTip(event, 'fs51', 103)" onmouseover="showTip(event, 'fs51', 103)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 104)" onmouseover="showTip(event, 'fs62', 104)" class="id">Minutes</span> <span class="n">60.0</span><span class="pn">)</span><span class="pn">,</span> <span class="c">// refreshToken</span>
+        <span class="pn">(</span><span onmouseout="hideTip(event, 'fs51', 105)" onmouseover="showTip(event, 'fs51', 105)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 106)" onmouseover="showTip(event, 'fs62', 106)" class="id">Minutes</span> <span class="n">60.0</span><span class="pn">)</span><span class="pn">,</span> <span class="c">// accessToken</span>
+        <span class="pn">(</span><span onmouseout="hideTip(event, 'fs51', 107)" onmouseover="showTip(event, 'fs51', 107)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 108)" onmouseover="showTip(event, 'fs52', 108)" class="id">Days</span> <span class="n">30.0</span><span class="pn">)</span> <span class="c">// idToken</span>
+    <span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="S3-Bucket-Policies" class="anchor" href="#S3-Bucket-Policies">S3 Bucket Policies</a></h2>
+<p>Secure your S3 buckets properly.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 109)" onmouseover="showTip(event, 'fs2', 109)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 110)" onmouseover="showTip(event, 'fs3', 110)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 111)" onmouseover="showTip(event, 'fs4', 111)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs63', 112)" onmouseover="showTip(event, 'fs63', 112)" class="id">S3</span>
+
+<span class="c">// ✅ GOOD: Secure S3 bucket</span>
+<span onmouseout="hideTip(event, 'fs64', 113)" onmouseover="showTip(event, 'fs64', 113)" class="fn">bucket</span> <span class="s">&quot;SecureAssets&quot;</span> <span class="pn">{</span>
+    <span class="c">// Block all public access</span>
+    <span onmouseout="hideTip(event, 'fs65', 114)" onmouseover="showTip(event, 'fs65', 114)" class="k">blockPublicAccess</span> <span onmouseout="hideTip(event, 'fs66', 115)" onmouseover="showTip(event, 'fs66', 115)" class="rt">BlockPublicAccess</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 116)" onmouseover="showTip(event, 'fs67', 116)" class="id">BLOCK_ALL</span>
+
+    <span class="c">// Encrypt data at rest</span>
+    <span onmouseout="hideTip(event, 'fs68', 117)" onmouseover="showTip(event, 'fs68', 117)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs69', 118)" onmouseover="showTip(event, 'fs69', 118)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs70', 119)" onmouseover="showTip(event, 'fs70', 119)" class="id">S3_MANAGED</span>
+
+    <span class="c">// Enforce SSL for all requests</span>
+    <span onmouseout="hideTip(event, 'fs71', 120)" onmouseover="showTip(event, 'fs71', 120)" class="k">enforceSSL</span> <span class="k">true</span>
+
+    <span class="c">// Enable versioning for data protection</span>
+    <span onmouseout="hideTip(event, 'fs72', 121)" onmouseover="showTip(event, 'fs72', 121)" class="k">versioned</span> <span class="k">true</span>
+
+    <span class="c">// Prevent accidental deletion</span>
+    <span onmouseout="hideTip(event, 'fs73', 122)" onmouseover="showTip(event, 'fs73', 122)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs74', 123)" onmouseover="showTip(event, 'fs74', 123)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 124)" onmouseover="showTip(event, 'fs75', 124)" class="id">RETAIN</span>
+    <span onmouseout="hideTip(event, 'fs76', 125)" onmouseover="showTip(event, 'fs76', 125)" class="k">autoDeleteObjects</span> <span class="k">false</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="CloudFront-CDN-Security" class="anchor" href="#CloudFront-CDN-Security">CloudFront CDN Security</a></h2>
+<p>Secure content delivery with CloudFront.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 126)" onmouseover="showTip(event, 'fs2', 126)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 127)" onmouseover="showTip(event, 'fs3', 127)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 128)" onmouseover="showTip(event, 'fs4', 128)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs77', 129)" onmouseover="showTip(event, 'fs77', 129)" class="id">CloudFront</span>
+</code></pre>
+<h2><a name="Common-IAM-Patterns" class="anchor" href="#Common-IAM-Patterns">Common IAM Patterns</a></h2>
+<h3><a name="Read-Only-Access-to-DynamoDB" class="anchor" href="#Read-Only-Access-to-DynamoDB">Read-Only Access to DynamoDB</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 155)" onmouseover="showTip(event, 'fs7', 155)" class="fn">lambda</span> <span class="s">&quot;ReadOnlyFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 156)" onmouseover="showTip(event, 'fs8', 156)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 157)" onmouseover="showTip(event, 'fs9', 157)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 158)" onmouseover="showTip(event, 'fs10', 158)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 159)" onmouseover="showTip(event, 'fs11', 159)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 160)" onmouseover="showTip(event, 'fs12', 160)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs18', 161)" onmouseover="showTip(event, 'fs18', 161)" class="id">policyStatement</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs21', 162)" onmouseover="showTip(event, 'fs21', 162)" class="k">effect</span> <span onmouseout="hideTip(event, 'fs22', 163)" onmouseover="showTip(event, 'fs22', 163)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 164)" onmouseover="showTip(event, 'fs23', 164)" class="id">ALLOW</span>
+
+        <span onmouseout="hideTip(event, 'fs19', 165)" onmouseover="showTip(event, 'fs19', 165)" class="k">actions</span>
+            <span class="pn">[</span> <span class="s">&quot;dynamodb:GetItem&quot;</span>
+              <span class="s">&quot;dynamodb:Query&quot;</span>
+              <span class="s">&quot;dynamodb:Scan&quot;</span>
+              <span class="s">&quot;dynamodb:BatchGetItem&quot;</span> <span class="pn">]</span>
+
+        <span onmouseout="hideTip(event, 'fs20', 166)" onmouseover="showTip(event, 'fs20', 166)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:dynamodb:us-east-1:123456789012:table/MyTable&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Write-Access-to-S3-Bucket" class="anchor" href="#Write-Access-to-S3-Bucket">Write Access to S3 Bucket</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 167)" onmouseover="showTip(event, 'fs7', 167)" class="fn">lambda</span> <span class="s">&quot;S3Writer&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 168)" onmouseover="showTip(event, 'fs8', 168)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 169)" onmouseover="showTip(event, 'fs9', 169)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 170)" onmouseover="showTip(event, 'fs10', 170)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 171)" onmouseover="showTip(event, 'fs11', 171)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 172)" onmouseover="showTip(event, 'fs12', 172)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs18', 173)" onmouseover="showTip(event, 'fs18', 173)" class="id">policyStatement</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs21', 174)" onmouseover="showTip(event, 'fs21', 174)" class="k">effect</span> <span onmouseout="hideTip(event, 'fs22', 175)" onmouseover="showTip(event, 'fs22', 175)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 176)" onmouseover="showTip(event, 'fs23', 176)" class="id">ALLOW</span>
+        <span onmouseout="hideTip(event, 'fs19', 177)" onmouseover="showTip(event, 'fs19', 177)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;s3:PutObject&quot;</span><span class="pn">;</span> <span class="s">&quot;s3:PutObjectAcl&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs20', 178)" onmouseover="showTip(event, 'fs20', 178)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:s3:::my-bucket/*&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Read-from-SQS-Queue" class="anchor" href="#Read-from-SQS-Queue">Read from SQS Queue</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 179)" onmouseover="showTip(event, 'fs2', 179)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 180)" onmouseover="showTip(event, 'fs3', 180)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 181)" onmouseover="showTip(event, 'fs4', 181)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs89', 182)" onmouseover="showTip(event, 'fs89', 182)" class="id">SQS</span>
+
+<span onmouseout="hideTip(event, 'fs7', 183)" onmouseover="showTip(event, 'fs7', 183)" class="fn">lambda</span> <span class="s">&quot;QueueProcessor&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 184)" onmouseover="showTip(event, 'fs8', 184)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 185)" onmouseover="showTip(event, 'fs9', 185)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 186)" onmouseover="showTip(event, 'fs10', 186)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 187)" onmouseover="showTip(event, 'fs11', 187)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 188)" onmouseover="showTip(event, 'fs12', 188)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs18', 189)" onmouseover="showTip(event, 'fs18', 189)" class="id">policyStatement</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs21', 190)" onmouseover="showTip(event, 'fs21', 190)" class="k">effect</span> <span onmouseout="hideTip(event, 'fs22', 191)" onmouseover="showTip(event, 'fs22', 191)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 192)" onmouseover="showTip(event, 'fs23', 192)" class="id">ALLOW</span>
+        <span onmouseout="hideTip(event, 'fs19', 193)" onmouseover="showTip(event, 'fs19', 193)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;sqs:ReceiveMessage&quot;</span><span class="pn">;</span> <span class="s">&quot;sqs:DeleteMessage&quot;</span><span class="pn">;</span> <span class="s">&quot;sqs:GetQueueAttributes&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs20', 194)" onmouseover="showTip(event, 'fs20', 194)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:sqs:us-east-1:123456789012:my-queue&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Publish-to-SNS-Topic" class="anchor" href="#Publish-to-SNS-Topic">Publish to SNS Topic</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 195)" onmouseover="showTip(event, 'fs2', 195)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 196)" onmouseover="showTip(event, 'fs3', 196)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 197)" onmouseover="showTip(event, 'fs4', 197)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs90', 198)" onmouseover="showTip(event, 'fs90', 198)" class="id">SNS</span>
+
+<span onmouseout="hideTip(event, 'fs7', 199)" onmouseover="showTip(event, 'fs7', 199)" class="fn">lambda</span> <span class="s">&quot;NotificationSender&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 200)" onmouseover="showTip(event, 'fs8', 200)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 201)" onmouseover="showTip(event, 'fs9', 201)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 202)" onmouseover="showTip(event, 'fs10', 202)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 203)" onmouseover="showTip(event, 'fs11', 203)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 204)" onmouseover="showTip(event, 'fs12', 204)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs18', 205)" onmouseover="showTip(event, 'fs18', 205)" class="id">policyStatement</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs21', 206)" onmouseover="showTip(event, 'fs21', 206)" class="k">effect</span> <span onmouseout="hideTip(event, 'fs22', 207)" onmouseover="showTip(event, 'fs22', 207)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 208)" onmouseover="showTip(event, 'fs23', 208)" class="id">ALLOW</span>
+        <span onmouseout="hideTip(event, 'fs19', 209)" onmouseover="showTip(event, 'fs19', 209)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;sns:Publish&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs20', 210)" onmouseover="showTip(event, 'fs20', 210)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:sns:us-east-1:123456789012:my-topic&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Virtual-Private-Cloud-VPC-Security" class="anchor" href="#Virtual-Private-Cloud-VPC-Security">Virtual Private Cloud (VPC) Security</a></h2>
+<p>Network isolation and security.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// ✅ GOOD: Properly segmented VPC</span>
+<span onmouseout="hideTip(event, 'fs14', 211)" onmouseover="showTip(event, 'fs14', 211)" class="fn">vpc</span> <span class="s">&quot;SecureVpc&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs15', 212)" onmouseover="showTip(event, 'fs15', 212)" class="k">maxAzs</span> <span class="n">2</span>
+
+    <span class="c">// Subnet configuration (done via CDK)</span>
+    <span class="c">// - Public subnets: NAT Gateways, Load Balancers</span>
+    <span class="c">// - Private subnets: Lambda, ECS, RDS</span>
+    <span class="c">// - Isolated subnets: Highly sensitive resources</span>
+
+    <span class="c">// NAT Gateways for private subnet internet access</span>
+    <span onmouseout="hideTip(event, 'fs16', 213)" onmouseover="showTip(event, 'fs16', 213)" class="k">natGateways</span> <span class="n">2</span> <span class="c">// One per AZ for HA</span>
+
+<span class="c">// Enable VPC Flow Logs for monitoring</span>
+<span class="c">// (Note: Would need to be configured separately)</span>
+<span class="pn">}</span>
+
+<span class="c">// Place sensitive resources in private subnets</span>
+<span onmouseout="hideTip(event, 'fs31', 214)" onmouseover="showTip(event, 'fs31', 214)" class="fn">rdsInstance</span> <span class="s">&quot;Database&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs32', 215)" onmouseover="showTip(event, 'fs32', 215)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs13', 216)" onmouseover="showTip(event, 'fs13', 216)" class="id">myVpc</span>
+    <span onmouseout="hideTip(event, 'fs33', 217)" onmouseover="showTip(event, 'fs33', 217)" class="k">postgresEngine</span>
+    <span onmouseout="hideTip(event, 'fs34', 218)" onmouseover="showTip(event, 'fs34', 218)" class="k">vpcSubnets</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs35', 219)" onmouseover="showTip(event, 'fs35', 219)" class="fn">SubnetSelection</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs36', 220)" onmouseover="showTip(event, 'fs36', 220)" class="fn">SubnetType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs36', 221)" onmouseover="showTip(event, 'fs36', 221)" class="en">SubnetType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 222)" onmouseover="showTip(event, 'fs37', 222)" class="id">PRIVATE_WITH_EGRESS</span><span class="pn">)</span><span class="pn">)</span>
+    <span onmouseout="hideTip(event, 'fs38', 223)" onmouseover="showTip(event, 'fs38', 223)" class="k">publiclyAccessible</span> <span class="k">false</span>
+<span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs7', 224)" onmouseover="showTip(event, 'fs7', 224)" class="fn">lambda</span> <span class="s">&quot;PrivateFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 225)" onmouseover="showTip(event, 'fs8', 225)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 226)" onmouseover="showTip(event, 'fs9', 226)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 227)" onmouseover="showTip(event, 'fs10', 227)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 228)" onmouseover="showTip(event, 'fs11', 228)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 229)" onmouseover="showTip(event, 'fs12', 229)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+    <span onmouseout="hideTip(event, 'fs91', 230)" onmouseover="showTip(event, 'fs91', 230)" class="id">vpcSubnets</span> <span class="pn">{</span> <span class="k">yield</span> <span onmouseout="hideTip(event, 'fs35', 231)" onmouseover="showTip(event, 'fs35', 231)" class="fn">SubnetSelection</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs36', 232)" onmouseover="showTip(event, 'fs36', 232)" class="fn">SubnetType</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs36', 233)" onmouseover="showTip(event, 'fs36', 233)" class="en">SubnetType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 234)" onmouseover="showTip(event, 'fs37', 234)" class="id">PRIVATE_WITH_EGRESS</span><span class="pn">)</span> <span class="pn">}</span>
+    <span onmouseout="hideTip(event, 'fs92', 235)" onmouseover="showTip(event, 'fs92', 235)" class="k">securityGroups</span> <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs25', 236)" onmouseover="showTip(event, 'fs25', 236)" class="id">lambdaSecurityGroup</span> <span class="pn">]</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Monitoring-and-Auditing" class="anchor" href="#Monitoring-and-Auditing">Monitoring and Auditing</a></h2>
+<p>Enable CloudTrail and monitoring.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Enable detailed monitoring</span>
+<span onmouseout="hideTip(event, 'fs7', 237)" onmouseover="showTip(event, 'fs7', 237)" class="fn">lambda</span> <span class="s">&quot;MonitoredFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 238)" onmouseover="showTip(event, 'fs8', 238)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 239)" onmouseover="showTip(event, 'fs9', 239)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 240)" onmouseover="showTip(event, 'fs10', 240)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 241)" onmouseover="showTip(event, 'fs11', 241)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 242)" onmouseover="showTip(event, 'fs12', 242)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span class="c">// Enable AWS X-Ray tracing</span>
+    <span onmouseout="hideTip(event, 'fs93', 243)" onmouseover="showTip(event, 'fs93', 243)" class="k">tracing</span> <span onmouseout="hideTip(event, 'fs94', 244)" onmouseover="showTip(event, 'fs94', 244)" class="en">Tracing</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs95', 245)" onmouseover="showTip(event, 'fs95', 245)" class="id">ACTIVE</span>
+
+    <span class="c">// Enable Lambda Insights</span>
+    <span onmouseout="hideTip(event, 'fs96', 246)" onmouseover="showTip(event, 'fs96', 246)" class="k">insightsVersion</span> <span onmouseout="hideTip(event, 'fs97', 247)" onmouseover="showTip(event, 'fs97', 247)" class="rt">LambdaInsightsVersion</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs98', 248)" onmouseover="showTip(event, 'fs98', 248)" class="id">VERSION_1_0_229_0</span>
+<span class="pn">}</span>
+
+<span class="c">// Enable RDS Performance Insights</span>
+<span onmouseout="hideTip(event, 'fs31', 249)" onmouseover="showTip(event, 'fs31', 249)" class="fn">rdsInstance</span> <span class="s">&quot;MonitoredDatabase&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs32', 250)" onmouseover="showTip(event, 'fs32', 250)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs13', 251)" onmouseover="showTip(event, 'fs13', 251)" class="id">myVpc</span>
+    <span onmouseout="hideTip(event, 'fs33', 252)" onmouseover="showTip(event, 'fs33', 252)" class="k">postgresEngine</span>
+    <span onmouseout="hideTip(event, 'fs99', 253)" onmouseover="showTip(event, 'fs99', 253)" class="k">enablePerformanceInsights</span> <span class="k">true</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Secrets-Management" class="anchor" href="#Secrets-Management">Secrets Management</a></h2>
+<p>Never hardcode secrets!</p>
+<p>❌ BAD: Hardcoded secrets</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 254)" onmouseover="showTip(event, 'fs7', 254)" class="fn">lambda</span> <span class="s">&quot;BadFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 255)" onmouseover="showTip(event, 'fs8', 255)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 256)" onmouseover="showTip(event, 'fs9', 256)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 257)" onmouseover="showTip(event, 'fs10', 257)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 258)" onmouseover="showTip(event, 'fs11', 258)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 259)" onmouseover="showTip(event, 'fs12', 259)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs100', 260)" onmouseover="showTip(event, 'fs100', 260)" class="k">environment</span> <span class="pn">[</span> <span class="s">&quot;DB_PASSWORD&quot;</span><span class="pn">,</span> <span class="s">&quot;mypassword123&quot;</span> <span class="pn">]</span> <span class="c">// Never do this!</span>
+<span class="pn">}</span>
+</code></pre>
+<p>✅ GOOD: Use Secrets Manager or Parameter Store</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 261)" onmouseover="showTip(event, 'fs7', 261)" class="fn">lambda</span> <span class="s">&quot;GoodFunction&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs8', 262)" onmouseover="showTip(event, 'fs8', 262)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs9', 263)" onmouseover="showTip(event, 'fs9', 263)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 264)" onmouseover="showTip(event, 'fs10', 264)" class="id">DOTNET_8</span>
+    <span onmouseout="hideTip(event, 'fs11', 265)" onmouseover="showTip(event, 'fs11', 265)" class="k">handler</span> <span class="s">&quot;MyApp::Handler&quot;</span>
+    <span onmouseout="hideTip(event, 'fs12', 266)" onmouseover="showTip(event, 'fs12', 266)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+
+    <span onmouseout="hideTip(event, 'fs100', 267)" onmouseover="showTip(event, 'fs100', 267)" class="k">environment</span> <span class="pn">[</span> <span class="s">&quot;DB_SECRET_ARN&quot;</span><span class="pn">,</span> <span class="s">&quot;arn:aws:secretsmanager:us-east-1:123456789012:secret:db-secret&quot;</span> <span class="pn">]</span>
+
+    <span class="c">// Grant permission to read secret</span>
+    <span onmouseout="hideTip(event, 'fs18', 268)" onmouseover="showTip(event, 'fs18', 268)" class="id">policyStatement</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs21', 269)" onmouseover="showTip(event, 'fs21', 269)" class="k">effect</span> <span onmouseout="hideTip(event, 'fs22', 270)" onmouseover="showTip(event, 'fs22', 270)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs23', 271)" onmouseover="showTip(event, 'fs23', 271)" class="id">ALLOW</span>
+        <span onmouseout="hideTip(event, 'fs19', 272)" onmouseover="showTip(event, 'fs19', 272)" class="k">actions</span> <span class="pn">[</span> <span class="s">&quot;secretsmanager:GetSecretValue&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs20', 273)" onmouseover="showTip(event, 'fs20', 273)" class="k">resources</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:secretsmanager:us-east-1:123456789012:secret:db-secret&quot;</span> <span class="pn">]</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+
+<span class="c">// RDS can generate and manage secrets automatically</span>
+<span onmouseout="hideTip(event, 'fs31', 274)" onmouseover="showTip(event, 'fs31', 274)" class="fn">rdsInstance</span> <span class="s">&quot;SecureDatabase&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs32', 275)" onmouseover="showTip(event, 'fs32', 275)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs13', 276)" onmouseover="showTip(event, 'fs13', 276)" class="id">myVpc</span>
+    <span onmouseout="hideTip(event, 'fs33', 277)" onmouseover="showTip(event, 'fs33', 277)" class="k">postgresEngine</span>
+
+    <span class="c">// Credentials automatically stored in Secrets Manager</span>
+    <span onmouseout="hideTip(event, 'fs101', 278)" onmouseover="showTip(event, 'fs101', 278)" class="k">credentials</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs102', 279)" onmouseover="showTip(event, 'fs102', 279)" class="rt">Credentials</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs103', 280)" onmouseover="showTip(event, 'fs103', 280)" class="id">FromGeneratedSecret</span> <span class="s">&quot;admin&quot;</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Compliance-Considerations" class="anchor" href="#Compliance-Considerations">Compliance Considerations</a></h2>
+<h3><a name="GDPR-Data-Privacy" class="anchor" href="#GDPR-Data-Privacy">GDPR/Data Privacy</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Enable encryption for data at rest</span>
+<span onmouseout="hideTip(event, 'fs64', 281)" onmouseover="showTip(event, 'fs64', 281)" class="fn">bucket</span> <span class="s">&quot;UserData&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs68', 282)" onmouseover="showTip(event, 'fs68', 282)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs69', 283)" onmouseover="showTip(event, 'fs69', 283)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs104', 284)" onmouseover="showTip(event, 'fs104', 284)" class="id">KMS_MANAGED</span> <span class="c">// Customer managed keys</span>
+    <span onmouseout="hideTip(event, 'fs65', 285)" onmouseover="showTip(event, 'fs65', 285)" class="k">blockPublicAccess</span> <span onmouseout="hideTip(event, 'fs66', 286)" onmouseover="showTip(event, 'fs66', 286)" class="rt">BlockPublicAccess</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs67', 287)" onmouseover="showTip(event, 'fs67', 287)" class="id">BLOCK_ALL</span>
+<span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs31', 288)" onmouseover="showTip(event, 'fs31', 288)" class="fn">rdsInstance</span> <span class="s">&quot;UserDatabase&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs32', 289)" onmouseover="showTip(event, 'fs32', 289)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs13', 290)" onmouseover="showTip(event, 'fs13', 290)" class="id">myVpc</span>
+    <span onmouseout="hideTip(event, 'fs33', 291)" onmouseover="showTip(event, 'fs33', 291)" class="k">postgresEngine</span>
+    <span onmouseout="hideTip(event, 'fs105', 292)" onmouseover="showTip(event, 'fs105', 292)" class="k">storageEncrypted</span> <span class="k">true</span>
+    <span onmouseout="hideTip(event, 'fs106', 293)" onmouseover="showTip(event, 'fs106', 293)" class="k">deletionProtection</span> <span class="k">true</span>
+<span class="pn">}</span>
+
+<span class="c">// Enable audit logging</span>
+<span onmouseout="hideTip(event, 'fs43', 294)" onmouseover="showTip(event, 'fs43', 294)" class="fn">userPool</span> <span class="s">&quot;CompliantUserPool&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs44', 295)" onmouseover="showTip(event, 'fs44', 295)" class="k">signInWithEmail</span>
+<span class="c">// Cognito automatically logs authentication events</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="HIPAA-PHI-Data" class="anchor" href="#HIPAA-PHI-Data">HIPAA/PHI Data</a></h3>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Use KMS encryption for sensitive data</span>
+<span onmouseout="hideTip(event, 'fs64', 296)" onmouseover="showTip(event, 'fs64', 296)" class="fn">bucket</span> <span class="s">&quot;HealthRecords&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs68', 297)" onmouseover="showTip(event, 'fs68', 297)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs69', 298)" onmouseover="showTip(event, 'fs69', 298)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs104', 299)" onmouseover="showTip(event, 'fs104', 299)" class="id">KMS_MANAGED</span>
+    <span onmouseout="hideTip(event, 'fs72', 300)" onmouseover="showTip(event, 'fs72', 300)" class="k">versioned</span> <span class="k">true</span>
+    <span onmouseout="hideTip(event, 'fs73', 301)" onmouseover="showTip(event, 'fs73', 301)" class="k">removalPolicy</span> <span onmouseout="hideTip(event, 'fs74', 302)" onmouseover="showTip(event, 'fs74', 302)" class="en">RemovalPolicy</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 303)" onmouseover="showTip(event, 'fs75', 303)" class="id">RETAIN</span>
+<span class="pn">}</span>
+
+<span class="c">// Enable audit trails</span>
+<span onmouseout="hideTip(event, 'fs31', 304)" onmouseover="showTip(event, 'fs31', 304)" class="fn">rdsInstance</span> <span class="s">&quot;HealthDatabase&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs32', 305)" onmouseover="showTip(event, 'fs32', 305)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs13', 306)" onmouseover="showTip(event, 'fs13', 306)" class="id">myVpc</span>
+    <span onmouseout="hideTip(event, 'fs33', 307)" onmouseover="showTip(event, 'fs33', 307)" class="k">postgresEngine</span>
+    <span onmouseout="hideTip(event, 'fs105', 308)" onmouseover="showTip(event, 'fs105', 308)" class="k">storageEncrypted</span> <span class="k">true</span>
+    <span onmouseout="hideTip(event, 'fs107', 309)" onmouseover="showTip(event, 'fs107', 309)" class="k">backupRetentionDays</span> <span class="n">30.0</span> <span class="c">// Longer retention for compliance</span>
+    <span onmouseout="hideTip(event, 'fs106', 310)" onmouseover="showTip(event, 'fs106', 310)" class="k">deletionProtection</span> <span class="k">true</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="OWASP-Top-10-Applied-to-AWS-Infrastructure" class="anchor" href="#OWASP-Top-10-Applied-to-AWS-Infrastructure">OWASP Top 10 Applied to AWS Infrastructure</a></h2>
+<p>The OWASP Top 10 (<a href="https://owasp.org/www-project-top-ten/)">https://owasp.org/www-project-top-ten/)</a> defines critical web application security risks. Here's how they map to AWS infrastructure and FsCDK protections:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>OWASP Risk</p></th>
+<th><p>AWS Context</p></th>
+<th><p>FsCDK Protection</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>A01: Broken Access Control</strong></p></td>
+<td><p>IAM too permissive, public S3</p></td>
+<td><p>Blocks wildcard actions+resources, private S3 default</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>A02: Cryptographic Failures</strong></p></td>
+<td><p>Unencrypted data, no TLS</p></td>
+<td><p>RDS/DynamoDB encryption enabled, HTTPS enforced</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>A03: Injection</strong></p></td>
+<td><p>SQL/command injection</p></td>
+<td><p>IAM DB auth, parameterized queries, AWS WAF</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>A05: Security Misconfiguration</strong></p></td>
+<td><p>Public S3, open security groups</p></td>
+<td><p>Secure defaults, deny-by-default security groups</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>A07: Broken Authentication</strong></p></td>
+<td><p>Weak passwords, no MFA</p></td>
+<td><p>Cognito password policies, MFA enforcement</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>A08: Integrity Failures</strong></p></td>
+<td><p>Compromised packages</p></td>
+<td><p>ECR image scanning, Lambda code signing</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>A09: Logging Failures</strong></p></td>
+<td><p>No CloudTrail/GuardDuty</p></td>
+<td><p>X-Ray tracing, CloudWatch logs, audit trails</p></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>OWASP Serverless Top 10 for Lambda:</strong>
+1. Injection flaws → validate inputs
+2. Broken authentication → use Cognito authorizers
+3. Sensitive data exposure → encrypt with KMS
+4. Broken access control → IAM resource policies
+5. Security misconfiguration → FsCDK secure defaults
+6. Over-privileged permissions → FsCDK blocks wildcards
+7. Inadequate logging → enable X-Ray tracing
+8. Business logic manipulation → validate state transitions
+9. Improper exception handling → don't leak secrets in errors
+10. DoS attacks → use reserved concurrency limits</p>
+<p>Reference: OWASP Serverless Top 10 (<a href="https://owasp.org/www-project-serverless-top-10/)">https://owasp.org/www-project-serverless-top-10/)</a></p>
+<h2><a name="Operational-Checklist" class="anchor" href="#Operational-Checklist">Operational Checklist</a></h2>
+<p>Use this before prod deploys (inspired by Piper's audits):
+1. Validate policies with IAM Access Analyzer.
+2. Enable MFA and rotate keys.
+3. Scan for secrets with git-secrets.
+4. Run Prowler for compliance.
+5. Document all roles/policies.</p>
+<h2><a name="Deliberate-Practice-Drills" class="anchor" href="#Deliberate-Practice-Drills">Deliberate Practice Drills</a></h2>
+<h3><a name="Drill-1-Policy-Crafting" class="anchor" href="#Drill-1-Policy-Crafting">Drill 1: Policy Crafting</a></h3>
+<ol>
+<li>Write a policy allowing only S3:PutObject to a bucket.</li>
+<li>Test with Policy Simulator.</li>
+<li>Add conditions (e.g., IP restriction).</li>
+</ol>
+<h3><a name="Drill-2-Privilege-Escalation" class="anchor" href="#Drill-2-Privilege-Escalation">Drill 2: Privilege Escalation</a></h3>
+<ol>
+<li>Use IAM Vulnerable to simulate attacks.</li>
+<li>Identify and fix escalations in sample policies.</li>
+</ol>
+<h2><a name="Learning-Resources-for-IAM-amp-AWS-Security" class="anchor" href="#Learning-Resources-for-IAM-amp-AWS-Security">📚 Learning Resources for IAM &amp; AWS Security</a></h2>
+<h3><a name="AWS-Official-Documentation" class="anchor" href="#AWS-Official-Documentation">AWS Official Documentation</a></h3>
+<p><strong>IAM Fundamentals:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM User Guide</a> - Complete IAM documentation</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html">IAM Best Practices</a> - Official AWS recommendations</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html">IAM Policies and Permissions</a> - Policy structure explained</li>
+<li><a href="https://policysim.aws.amazon.com/">IAM Policy Simulator</a> - Test policies before deployment</li>
+</ul>
+<p><strong>Security Best Practices:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/security/">AWS Security Best Practices</a> - Comprehensive security guidance</li>
+<li><a href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html">AWS Well-Architected Framework - Security Pillar</a> - The 5 pillars of security</li>
+<li><a href="https://aws.amazon.com/security-hub/">AWS Security Hub</a> - Centralized security monitoring</li>
+<li><a href="https://aws.amazon.com/guardduty/">AWS GuardDuty</a> - Threat detection service</li>
+</ul>
+<h3><a name="AWS-Heroes-amp-Security-Experts" class="anchor" href="#AWS-Heroes-amp-Security-Experts">AWS Heroes &amp; Security Experts</a></h3>
+<p><strong>Ben Kehoe (@ben11kehoe) - AWS Serverless Hero:</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=aISWoPf_XNE">IAM Roles Everywhere</a> - AWS re:Invent talk on IAM roles</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html">AWS IAM Best Practices</a> - Official IAM guidance</li>
+<li>Follow on <a href="https://mastodon.social/@ben11kehoe">Mastodon: @ben11kehoe@mastodon.social</a> for latest insights</li>
+</ul>
+<p><strong>Scott Piper (@0xdabbad00) - AWS Security Hero:</strong></p>
+<ul>
+<li><a href="http://flaws.cloud/">Flaws.cloud</a> - Learn AWS security through CTF challenges</li>
+<li><a href="https://github.com/aquasecurity/cloudsploit">CloudSploit</a> - AWS security scanning tool</li>
+<li><a href="https://summitroute.com/blog/">Summit Route Blog</a> - AWS security research and common pitfalls</li>
+<li><a href="https://github.com/BishopFox/iam-vulnerable">IAM Vulnerable</a> - Learn IAM privilege escalation</li>
+</ul>
+<p><strong>Yan Cui (The Burning Monk) - Serverless Security:</strong></p>
+<ul>
+<li><a href="https://theburningmonk.com/">The Burning Monk Blog</a> - Comprehensive serverless best practices and security articles</li>
+</ul>
+<h3><a name="IAM-Deep-Dives" class="anchor" href="#IAM-Deep-Dives">IAM Deep Dives</a></h3>
+<p><strong>Policy Evaluation Logic:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html">Policy Evaluation Logic</a> - How AWS evaluates permissions</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements.html">IAM JSON Policy Elements</a> - Effect, Action, Resource, Condition</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_variables.html">Policy Variables</a> - Dynamic policy values</li>
+<li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html">Service Control Policies (SCPs)</a> - Organization-wide guardrails</li>
+</ul>
+<p><strong>Least Privilege:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege">Grant Least Privilege</a> - Only grant what's needed</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html">IAM Access Analyzer</a> - Find overly permissive policies</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_access-advisor.html">Access Advisor</a> - See unused permissions</li>
+<li><a href="https://awspolicygen.s3.amazonaws.com/policygen.html">Policy Generator</a> - Create policies visually</li>
+</ul>
+<p><strong>IAM Roles &amp; Temporary Credentials:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM Roles</a> - Temporary credentials for services</li>
+<li><a href="https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html">Assume Role</a> - Cross-account access</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session">Session Policies</a> - Further restrict temporary credentials</li>
+<li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html">OIDC Federation</a> - GitHub Actions, Google, etc.</li>
+</ul>
+<h3><a name="Serverless-Security" class="anchor" href="#Serverless-Security">Serverless Security</a></h3>
+<p><strong>Lambda Security Best Practices:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-security.html">Lambda Security Overview</a> - Official security guide</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-intro-execution-role.html">Lambda Execution Roles</a> - Least privilege for functions</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html">Lambda Resource Policies</a> - Who can invoke your functions</li>
+<li><a href="https://aws.amazon.com/blogs/compute/announcing-improved-vpc-networking-for-aws-lambda-functions/">VPC Security for Lambda</a> - Private resource access</li>
+</ul>
+<p><strong>API Gateway Security:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html">API Gateway Authorization</a> - IAM, Cognito, Lambda authorizers</li>
+<li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html">Lambda Authorizers</a> - Custom authentication</li>
+<li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html">API Keys</a> - Rate limiting and quotas</li>
+<li><a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-aws-waf.html">WAF Integration</a> - Protect against attacks</li>
+</ul>
+<p><strong>Secrets Management:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html">AWS Secrets Manager</a> - Rotate and manage secrets</li>
+<li><a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">Systems Manager Parameter Store</a> - Secure configuration storage</li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html">Lambda Environment Variables</a> - Encrypted with KMS</li>
+<li><a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets_lambda.html">Secrets Manager Lambda Extension</a> - Caching secrets in Lambda</li>
+</ul>
+<h3><a name="AWS-Security-Services" class="anchor" href="#AWS-Security-Services">AWS Security Services</a></h3>
+<p><strong>Detection &amp; Response:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html">AWS GuardDuty</a> - Threat detection</li>
+<li><a href="https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html">AWS Security Hub</a> - Centralized security findings</li>
+<li><a href="https://docs.aws.amazon.com/detective/latest/userguide/what-is-detective.html">Amazon Detective</a> - Security investigation</li>
+<li><a href="https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html">AWS Macie</a> - Discover sensitive data in S3</li>
+</ul>
+<p><strong>Compliance &amp; Auditing:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html">AWS CloudTrail</a> - Audit all API calls</li>
+<li><a href="https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html">AWS Config</a> - Resource configuration tracking</li>
+<li><a href="https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html">AWS Audit Manager</a> - Continuous auditing</li>
+<li><a href="https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html">AWS Artifact</a> - Compliance reports</li>
+</ul>
+<p><strong>Encryption &amp; Key Management:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/kms/latest/developerguide/overview.html">AWS KMS</a> - Managed encryption keys</li>
+<li><a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html">KMS Key Policies</a> - Control key access</li>
+<li><a href="https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#enveloping">Envelope Encryption</a> - Data encryption pattern</li>
+<li><a href="https://docs.aws.amazon.com/cloudhsm/latest/userguide/introduction.html">AWS CloudHSM</a> - Hardware security modules</li>
+</ul>
+<h3><a name="Security-Frameworks-amp-Compliance" class="anchor" href="#Security-Frameworks-amp-Compliance">Security Frameworks &amp; Compliance</a></h3>
+<p><strong>Compliance Standards:</strong></p>
+<ul>
+<li><a href="https://aws.amazon.com/compliance/programs/">AWS Compliance Programs</a> - HIPAA, PCI-DSS, SOC 2, etc.</li>
+<li><a href="https://aws.amazon.com/compliance/hipaa-compliance/">HIPAA on AWS</a> - Healthcare compliance</li>
+<li><a href="https://aws.amazon.com/compliance/pci-dss-level-1-faqs/">PCI-DSS on AWS</a> - Payment card industry</li>
+<li><a href="https://aws.amazon.com/compliance/gdpr-center/">GDPR on AWS</a> - Data privacy</li>
+</ul>
+<p><strong>Security Frameworks:</strong></p>
+<ul>
+<li><a href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html">AWS Well-Architected Security Pillar</a> - 7 design principles</li>
+<li><a href="https://www.cisecurity.org/benchmark/amazon_web_services">CIS AWS Foundations Benchmark</a> - Industry best practices</li>
+<li><a href="https://aws.amazon.com/compliance/nist/">NIST Cybersecurity Framework</a> - Federal security standards</li>
+<li><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a> - Web application security risks</li>
+</ul>
+<h3><a name="Video-Tutorials" class="anchor" href="#Video-Tutorials">Video Tutorials</a></h3>
+<p><strong>IAM Fundamentals:</strong>
+- <a href="https://www.youtube.com/watch?v=SXSqhTn2DuE">IAM Primer</a> - AWS official introduction
+- <a href="https://www.youtube.com/watch?v=YQsK4MtsELU">Become an IAM Policy Master</a> - Comprehensive tutorial
+- <a href="https://www.youtube.com/watch?v=qpvbHwP3U_M">IAM Roles Explained</a> - Understanding roles</p>
+<p><strong>Advanced Security:</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/results?search_query=aws+reinforce">AWS re:Inforce Security Conference</a> - Annual security-focused event</li>
+<li><a href="https://www.youtube.com/watch?v=ExjW3HCFVSI">IAM Policy Deep Dive</a> - Advanced policy patterns</li>
+<li><a href="https://www.youtube.com/watch?v=HPfGG8xLqCk">Cross-Account Access</a> - Secure multi-account strategies</li>
+</ul>
+<p><strong>Serverless Security:</strong></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=kmSdyN9qiXY">Serverless Security Best Practices</a> - AWS re:Invent</li>
+<li><a href="https://www.youtube.com/watch?v=ODg9LG5JxXM">Lambda Security Deep Dive</a> - Production patterns</li>
+<li><a href="https://www.youtube.com/watch?v=VZqG7HjT2AQ">API Gateway Authorization</a> - Custom authorizers</li>
+</ul>
+<h3><a name="Security-Tools-amp-Utilities" class="anchor" href="#Security-Tools-amp-Utilities">Security Tools &amp; Utilities</a></h3>
+<p><strong>Policy Analysis:</strong></p>
+<ul>
+<li><a href="https://github.com/duo-labs/parliament">Parliament</a> - IAM policy linter</li>
+<li><a href="https://github.com/aws-cloudformation/cloudformation-cli/tree/master/src/cfn_policy_validator">IAM Policy Validator</a> - Validate CloudFormation IAM</li>
+<li><a href="https://github.com/salesforce/cloudsplaining">Cloudsplaining</a> - Identify overprivileged policies</li>
+<li><a href="https://github.com/noqdev/iambic">IAMbic</a> - IAM as code</li>
+</ul>
+<p><strong>Security Scanning:</strong></p>
+<ul>
+<li><a href="https://github.com/prowler-cloud/prowler">Prowler</a> - AWS security best practices scanner</li>
+<li><a href="https://github.com/nccgroup/ScoutSuite">ScoutSuite</a> - Multi-cloud security auditing</li>
+<li><a href="https://github.com/duo-labs/cloudmapper">CloudMapper</a> - Visualize AWS environments</li>
+<li><a href="https://github.com/nccgroup/PMapper">PMapper</a> - IAM privilege escalation analysis</li>
+</ul>
+<p><strong>Secrets Detection:</strong></p>
+<ul>
+<li><a href="https://github.com/awslabs/git-secrets">git-secrets</a> - Prevent committing secrets</li>
+<li><a href="https://github.com/trufflesecurity/truffleHog">TruffleHog</a> - Find secrets in git history</li>
+<li><a href="https://github.com/Yelp/detect-secrets">detect-secrets</a> - Prevent secrets in code</li>
+</ul>
+<h3><a name="Hands-On-Learning" class="anchor" href="#Hands-On-Learning">Hands-On Learning</a></h3>
+<p><strong>AWS Security Workshops:</strong></p>
+<ul>
+<li><a href="https://workshops.aws/categories/Security">AWS Security Workshops</a> - Official hands-on labs</li>
+<li><a href="https://catalog.workshops.aws/iam/en-US">IAM Workshop</a> - Deep dive into IAM</li>
+<li><a href="https://catalog.workshops.aws/serverless-security/en-US">Serverless Security Workshop</a> - Secure serverless apps</li>
+<li><a href="https://www.wellarchitectedlabs.com/security/">Well-Architected Security Labs</a> - Security best practices</li>
+</ul>
+<p><strong>Security Challenges:</strong></p>
+<ul>
+<li><a href="http://flaws.cloud/">flaws.cloud</a> - CTF-style AWS security challenges</li>
+<li><a href="http://flaws2.cloud/">flaws2.cloud</a> - Advanced AWS security challenges</li>
+<li><a href="https://github.com/RhinoSecurityLabs/cloudgoat">CloudGoat</a> - Vulnerable AWS environments</li>
+</ul>
+<h3><a name="Recommended-Learning-Path" class="anchor" href="#Recommended-Learning-Path">Recommended Learning Path</a></h3>
+<p><strong>Week 1 - IAM Fundamentals:</strong></p>
+<ol>
+<li>Read <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM User Guide</a> - Chapters 1-5</li>
+<li>Watch <a href="https://www.youtube.com/watch?v=SXSqhTn2DuE">IAM Primer Video</a></li>
+<li>Practice with <a href="https://policysim.aws.amazon.com/">IAM Policy Simulator</a></li>
+<li>Review <a href="iam-best-practices.html">FsCDK IAM examples</a> (this document)</li>
+</ol>
+<p><strong>Week 2 - Policy Mastery:</strong></p>
+<ol>
+<li>Study <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html">Policy Evaluation Logic</a></li>
+<li>Follow <a href="https://aws.amazon.com/blogs/security/">AWS Security Blog</a> for latest IAM updates</li>
+<li>Use <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html">IAM Access Analyzer</a></li>
+<li>Take <a href="https://catalog.workshops.aws/iam/en-US">IAM Workshop</a></li>
+</ol>
+<p><strong>Week 3 - Security Services:</strong></p>
+<ol>
+<li>Enable <a href="https://docs.aws.amazon.com/guardduty/latest/ug/what-is-guardduty.html">AWS GuardDuty</a></li>
+<li>Configure <a href="https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html">Security Hub</a></li>
+<li>Set up <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html">CloudTrail</a></li>
+<li>Run <a href="https://github.com/prowler-cloud/prowler">Prowler</a> security scan</li>
+</ol>
+<p><strong>Week 4 - Serverless Security:</strong></p>
+<ol>
+<li>Read <a href="https://docs.aws.amazon.com/lambda/latest/dg/lambda-security.html">Lambda Security Best Practices</a></li>
+<li>Implement <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html">Secrets Manager</a> in Lambda</li>
+<li>Add <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html">Lambda authorizers</a> to API Gateway</li>
+<li>Take <a href="https://catalog.workshops.aws/serverless-security/en-US">Serverless Security Workshop</a></li>
+</ol>
+<p><strong>Ongoing - Security Mastery:</strong></p>
+<ul>
+<li>Complete <a href="http://flaws.cloud/">flaws.cloud</a> and <a href="http://flaws2.cloud/">flaws2.cloud</a> challenges</li>
+<li>Watch <a href="https://www.youtube.com/results?search_query=aws+reinforce">AWS re:Inforce sessions</a></li>
+<li>Follow <a href="https://aws.amazon.com/blogs/security/">AWS Security Blog</a></li>
+<li>Run weekly <a href="https://github.com/prowler-cloud/prowler">Prowler scans</a></li>
+</ul>
+<h3><a name="AWS-Security-Experts-to-Follow" class="anchor" href="#AWS-Security-Experts-to-Follow">AWS Security Experts to Follow</a></h3>
+<p><img src="img/awsheros.png" alt="AWS Heroes" />
+<em>AWS Heroes and community experts who contribute to cloud security knowledge</em></p>
+<p><strong>AWS Heroes:</strong></p>
+<ul>
+<li>
+<strong>Ben Kehoe</strong> - IAM and serverless security
+<ul>
+<li><a href="https://twitter.com/ben11kehoe">Twitter/X: @ben11kehoe</a></li>
+<li><a href="https://mastodon.social/@ben11kehoe">Mastodon: @ben11kehoe@mastodon.social</a></li>
+</ul>
+</li>
+<li>
+<strong>Scott Piper</strong> - Cloud security, IAM privilege escalation
+<ul>
+<li><a href="https://twitter.com/0xdabbad00">Twitter/X: @0xdabbad00</a></li>
+<li><a href="https://infosec.exchange/@0xdabbad00">Mastodon: @0xdabbad00@infosec.exchange</a></li>
+</ul>
+</li>
+<li>
+<strong>Chris Farris</strong> - AWS security and compliance
+<ul>
+<li><a href="https://twitter.com/jcfarris">Twitter/X: @jcfarris</a></li>
+<li><a href="https://www.linkedin.com/in/jcfarris/">LinkedIn</a></li>
+</ul>
+</li>
+<li>
+<strong>Yan Cui</strong> - Serverless security
+<ul>
+<li><a href="https://twitter.com/theburningmonk">Twitter/X: @theburningmonk</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>Security Researchers:</strong></p>
+<ul>
+<li>
+<strong>Mark Nunnikhoven</strong> - Cloud security best practices
+<ul>
+<li><a href="https://twitter.com/marknca">Twitter/X: @marknca</a></li>
+<li><a href="https://www.linkedin.com/in/marknca/">LinkedIn</a></li>
+</ul>
+</li>
+<li>
+<strong>Corey Quinn</strong> - AWS cost and security
+<ul>
+<li><a href="https://twitter.com/QuinnyPig">Twitter/X: @QuinnyPig</a></li>
+<li><a href="https://hachyderm.io/@QuinnyPig">Mastodon: @QuinnyPig@hachyderm.io</a></li>
+</ul>
+</li>
+<li>
+<strong>Ian Mckay</strong> - AWS security tools
+<ul>
+<li><a href="https://twitter.com/iann0036">Twitter/X: @iann0036</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>AWS Security Team:</strong></p>
+<ul>
+<li>Follow <a href="https://aws.amazon.com/blogs/security/">AWS Security Blog</a></li>
+<li>Subscribe to <a href="https://aws.amazon.com/security/security-bulletins/">AWS Security Bulletins</a></li>
+</ul>
+<h3><a name="Common-Security-Pitfalls" class="anchor" href="#Common-Security-Pitfalls">Common Security Pitfalls</a></h3>
+<p><strong>❌ DON'T:</strong></p>
+<ol>
+<li><strong>Use root account for daily tasks</strong> → Create IAM users with least privilege</li>
+<li><strong>Hardcode AWS credentials</strong> → Use IAM roles for services, temporary credentials for users</li>
+<li><strong>Use wildcard (*) in policies</strong> → Be specific with actions and resources</li>
+<li><strong>Ignore CloudTrail logs</strong> → Enable and monitor for suspicious activity</li>
+<li><strong>Share IAM credentials</strong> → Each person gets their own IAM user/role</li>
+<li><strong>Leave unused access keys active</strong> → Rotate regularly, delete unused keys</li>
+<li><strong>Grant broad S3 permissions</strong> → Use specific bucket and prefix restrictions</li>
+<li><strong>Disable MFA</strong> → Enable MFA for all human users, especially admins</li>
+</ol>
+<p><strong>✅ DO:</strong></p>
+<ol>
+<li><strong>Use IAM roles for services</strong> → Lambda, EC2, ECS should use roles</li>
+<li><strong>Enable MFA for all users</strong> → Especially for privileged accounts</li>
+<li><strong>Rotate credentials regularly</strong> → 90-day rotation policy</li>
+<li><strong>Use CloudTrail and Config</strong> → Audit all API calls and configuration changes</li>
+<li><strong>Apply least privilege</strong> → Grant only necessary permissions</li>
+<li><strong>Enable GuardDuty</strong> → Detect threats automatically</li>
+<li><strong>Use Secrets Manager</strong> → Store and rotate secrets securely</li>
+<li><strong>Tag resources</strong> → Enforce ABAC (Attribute-Based Access Control)</li>
+</ol>
+<h3><a name="FsCDK-Security-Features" class="anchor" href="#FsCDK-Security-Features">FsCDK Security Features</a></h3>
+<p><strong>Security by Default:</strong></p>
+<ul>
+<li>Lambda functions use least-privilege execution roles</li>
+<li>S3 buckets block public access and enforce SSL</li>
+<li>Security groups deny all outbound by default</li>
+<li>Environment variables encrypted with KMS</li>
+<li>CloudWatch Logs retention configured</li>
+</ul>
+<p><strong>IAM Helpers:</strong></p>
+<ul>
+<li><code>grant</code> builder for simple IAM permissions</li>
+<li><code>policyStatement</code> for custom policies</li>
+<li>Automatic role creation with minimal permissions</li>
+<li>Support for managed policies</li>
+</ul>
+<p>For implementation details, see <a href="../src/IAM.fs">src/IAM.fs</a> and <a href="../src/Grants.fs">src/Grants.fs</a> in the FsCDK repository.</p>
+<h3><a name="Additional-Security-Resources" class="anchor" href="#Additional-Security-Resources">Additional Security Resources</a></h3>
+<ul>
+<li><a href="https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html">AWS Well-Architected Framework - Security Pillar</a></li>
+<li><a href="https://aws.amazon.com/architecture/security-identity-compliance/">AWS Security Best Practices</a></li>
+<li><a href="https://theburningmonk.com/">Yan Cui's Serverless Security Best Practices</a></li>
+<li><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a></li>
+<li><a href="https://haveibeenpwned.com/">Have I Been Pwned</a> - Troy Hunt's breach notification service.</li>
+<li><a href="https://www.cisecurity.org/benchmark/amazon_web_services">CIS AWS Foundations Benchmark</a></li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.IAM</div>
+<div class="fsdocs-tip" id="fs7">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs10">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs11">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val myVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs14">val vpc: name: string -&gt; VpcBuilder<br /><em>&lt;summary&gt;Creates a VPC configuration with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The VPC name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ vpc &quot;MyVpc&quot; {
+     maxAzs 2
+     natGateways 1
+     cidr &quot;10.0.0.0/16&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: maxAzs (int)
+
+Calls VpcBuilder.MaxAzs<br /><em>&lt;summary&gt;Sets the maximum number of Availability Zones to use.&lt;/summary&gt;<br />&lt;param name=&quot;maxAzs&quot;&gt;The maximum number of AZs (default: 2 for HA).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: natGateways (int)
+
+Calls VpcBuilder.NatGateways<br /><em>&lt;summary&gt;Sets the number of NAT Gateways.&lt;/summary&gt;<br />&lt;param name=&quot;natGateways&quot;&gt;The number of NAT gateways (default: 1 for cost optimization).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">custom operation: cidr (string)
+
+Calls VpcBuilder.Cidr<br /><em>&lt;summary&gt;Sets the CIDR block for the VPC.&lt;/summary&gt;<br />&lt;param name=&quot;cidr&quot;&gt;The CIDR block (e.g., &quot;10.0.0.0/16&quot;).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">val policyStatement: PolicyStatementBuilder</div>
+<div class="fsdocs-tip" id="fs19">custom operation: actions (string list)
+
+Calls PolicyStatementBuilder.Actions</div>
+<div class="fsdocs-tip" id="fs20">custom operation: resources (string list)
+
+Calls PolicyStatementBuilder.Resources</div>
+<div class="fsdocs-tip" id="fs21">custom operation: effect (Effect)
+
+Calls PolicyStatementBuilder.Effect</div>
+<div class="fsdocs-tip" id="fs22">[&lt;Struct&gt;]
+type Effect =
+  | ALLOW = 0
+  | DENY = 1</div>
+<div class="fsdocs-tip" id="fs23">field Effect.ALLOW: Effect = 0</div>
+<div class="fsdocs-tip" id="fs24">namespace Amazon.CDK.AWS.EC2</div>
+<div class="fsdocs-tip" id="fs25">val lambdaSecurityGroup: SecurityGroupSpec</div>
+<div class="fsdocs-tip" id="fs26">val securityGroup: name: string -&gt; SecurityGroupBuilder<br /><em>&lt;summary&gt;Creates a Security Group configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The Security Group name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ securityGroup &quot;MySecurityGroup&quot; {
+     vpc myVpc
+     description &quot;Security group for my application&quot;
+     allowAllOutbound false
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">custom operation: vpc (VpcSpec)
+
+Calls SecurityGroupBuilder.Vpc<br /><em>&lt;summary&gt;Sets the VPC for the Security Group from a VpcSpec.&lt;/summary&gt;<br />&lt;param name=&quot;vpcSpec&quot;&gt;The VPC specification.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs28">custom operation: description (string)
+
+Calls SecurityGroupBuilder.Description<br /><em>&lt;summary&gt;Sets the description for the Security Group.&lt;/summary&gt;<br />&lt;param name=&quot;description&quot;&gt;The description.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs29">custom operation: allowAllOutbound (bool)
+
+Calls SecurityGroupBuilder.AllowAllOutbound<br /><em>&lt;summary&gt;Sets whether to allow all outbound traffic.&lt;/summary&gt;<br />&lt;param name=&quot;allow&quot;&gt;Whether to allow all outbound (default: false for least privilege).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">namespace Amazon.CDK.AWS.RDS</div>
+<div class="fsdocs-tip" id="fs31">val rdsInstance: name: string -&gt; DatabaseInstanceBuilder<br /><em>&lt;summary&gt;Creates an RDS Database Instance with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The database instance name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ rdsInstance &quot;MyDatabase&quot; {
+     vpc myVpc
+     postgresEngine PostgresEngineVersion.VER_15
+     instanceType (InstanceType.Of(InstanceClass.BURSTABLE3, InstanceSize.SMALL))
+     multiAz true
+     backupRetentionDays 7.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs32">custom operation: vpc (VpcSpec)
+
+Calls DatabaseInstanceBuilder.Vpc<br /><em>&lt;summary&gt;Sets the VPC.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">custom operation: postgresEngine (PostgresEngineVersion option)
+
+Calls DatabaseInstanceBuilder.PostgresEngine<br /><em>&lt;summary&gt;Sets PostgreSQL as the database engine with specific version.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">custom operation: vpcSubnets (SubnetSelection)
+
+Calls DatabaseInstanceBuilder.VpcSubnets<br /><em>&lt;summary&gt;Sets the VPC subnets.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">Multiple items<br />type SubnetSelection =
+  interface ISubnetSelection
+  new: unit -&gt; unit
+  member AvailabilityZones: string array
+  member OnePerAz: Nullable&lt;bool&gt;
+  member SubnetFilters: SubnetFilter array
+  member SubnetGroupName: string
+  member SubnetType: Nullable&lt;SubnetType&gt;
+  member Subnets: ISubnet array<br /><br />--------------------<br />SubnetSelection() : SubnetSelection</div>
+<div class="fsdocs-tip" id="fs36">[&lt;Struct&gt;]
+type SubnetType =
+  | PRIVATE_ISOLATED = 0
+  | PRIVATE_WITH_EGRESS = 1
+  | PRIVATE_WITH_NAT = 2
+  | PUBLIC = 3</div>
+<div class="fsdocs-tip" id="fs37">field SubnetType.PRIVATE_WITH_EGRESS: SubnetType = 1</div>
+<div class="fsdocs-tip" id="fs38">custom operation: publiclyAccessible (bool)
+
+Calls DatabaseInstanceBuilder.PubliclyAccessible<br /><em>&lt;summary&gt;Sets whether the database is publicly accessible.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">custom operation: securityGroup (SecurityGroupSpec)
+
+Calls DatabaseInstanceBuilder.SecurityGroup<br /><em>&lt;summary&gt;Adds a security group.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">custom operation: iamAuthentication (bool)
+
+Calls DatabaseInstanceBuilder.IamAuthentication<br /><em>&lt;summary&gt;Enables IAM authentication.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs41">namespace Amazon.CDK.AWS.Cognito</div>
+<div class="fsdocs-tip" id="fs42">val myUserPool: UserPoolSpec</div>
+<div class="fsdocs-tip" id="fs43">val userPool: name: string -&gt; UserPoolBuilder<br /><em>&lt;summary&gt;Creates a Cognito User Pool with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The user pool name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ userPool &quot;MyUserPool&quot; {
+     signInWithEmail
+     selfSignUpEnabled true
+     mfa Mfa.OPTIONAL
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs44">custom operation: signInWithEmail
+
+Calls UserPoolBuilder.SignInWithEmail<br /><em>&lt;summary&gt;Enables email only as sign-in alias.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs45">custom operation: selfSignUpEnabled (bool)
+
+Calls UserPoolBuilder.SelfSignUpEnabled<br /><em>&lt;summary&gt;Enables or disables self sign-up.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">custom operation: mfa (Mfa)
+
+Calls UserPoolBuilder.Mfa<br /><em>&lt;summary&gt;Sets MFA configuration.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">[&lt;Struct&gt;]
+type Mfa =
+  | OFF = 0
+  | OPTIONAL = 1
+  | REQUIRED = 2</div>
+<div class="fsdocs-tip" id="fs48">field Mfa.REQUIRED: Mfa = 2</div>
+<div class="fsdocs-tip" id="fs49">custom operation: passwordPolicy (IPasswordPolicy)
+
+Calls UserPoolBuilder.PasswordPolicy<br /><em>&lt;summary&gt;Sets password policy.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs50">Multiple items<br />type PasswordPolicy =
+  interface IPasswordPolicy
+  new: unit -&gt; unit
+  member MinLength: Nullable&lt;float&gt;
+  member PasswordHistorySize: Nullable&lt;float&gt;
+  member RequireDigits: Nullable&lt;bool&gt;
+  member RequireLowercase: Nullable&lt;bool&gt;
+  member RequireSymbols: Nullable&lt;bool&gt;
+  member RequireUppercase: Nullable&lt;bool&gt;
+  member TempPasswordValidity: Duration<br /><br />--------------------<br />PasswordPolicy() : PasswordPolicy</div>
+<div class="fsdocs-tip" id="fs51">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs52">Duration.Days(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs53">custom operation: accountRecovery (AccountRecovery)
+
+Calls UserPoolBuilder.AccountRecovery<br /><em>&lt;summary&gt;Sets account recovery method.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs54">[&lt;Struct&gt;]
+type AccountRecovery =
+  | EMAIL_AND_PHONE_WITHOUT_MFA = 0
+  | PHONE_WITHOUT_MFA_AND_EMAIL = 1
+  | EMAIL_ONLY = 2
+  | PHONE_ONLY_WITHOUT_MFA = 3
+  | PHONE_AND_EMAIL = 4
+  | NONE = 5</div>
+<div class="fsdocs-tip" id="fs55">field AccountRecovery.EMAIL_ONLY: AccountRecovery = 2</div>
+<div class="fsdocs-tip" id="fs56">val userPoolClient: name: string -&gt; UserPoolClientBuilder<br /><em>&lt;summary&gt;Creates a Cognito User Pool Client.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The client name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ userPoolClient &quot;MyAppClient&quot; {
+     userPool myUserPool
+     generateSecret false
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs57">custom operation: userPool (UserPoolSpec)
+
+Calls UserPoolClientBuilder.UserPool<br /><em>&lt;summary&gt;Sets the user pool.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs58">custom operation: generateSecret (bool)
+
+Calls UserPoolClientBuilder.GenerateSecret<br /><em>&lt;summary&gt;Enables or disables secret generation.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs59">custom operation: authFlows (IAuthFlow)
+
+Calls UserPoolClientBuilder.AuthFlows<br /><em>&lt;summary&gt;Sets authentication flows.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs60">Multiple items<br />type AuthFlow =
+  interface IAuthFlow
+  new: unit -&gt; unit
+  member AdminUserPassword: Nullable&lt;bool&gt;
+  member Custom: Nullable&lt;bool&gt;
+  member User: Nullable&lt;bool&gt;
+  member UserPassword: Nullable&lt;bool&gt;
+  member UserSrp: Nullable&lt;bool&gt;<br /><br />--------------------<br />AuthFlow() : AuthFlow</div>
+<div class="fsdocs-tip" id="fs61">custom operation: tokenValidities (Duration * Duration * Duration)
+
+Calls UserPoolClientBuilder.TokenValidities<br /><em>&lt;summary&gt;Sets token validities.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs62">Duration.Minutes(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs63">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs64">val bucket: name: string -&gt; BucketBuilder</div>
+<div class="fsdocs-tip" id="fs65">custom operation: blockPublicAccess (BlockPublicAccess)
+
+Calls BucketBuilder.BlockPublicAccess</div>
+<div class="fsdocs-tip" id="fs66">Multiple items<br />type BlockPublicAccess =
+  inherit DeputyBase
+  new: options: IBlockPublicAccessOptions -&gt; unit
+  member BlockPublicAcls: Nullable&lt;bool&gt;
+  member BlockPublicPolicy: Nullable&lt;bool&gt;
+  member IgnorePublicAcls: Nullable&lt;bool&gt;
+  member RestrictPublicBuckets: Nullable&lt;bool&gt;
+  static member BLOCK_ACLS: BlockPublicAccess
+  static member BLOCK_ACLS_ONLY: BlockPublicAccess
+  static member BLOCK_ALL: BlockPublicAccess<br /><br />--------------------<br />BlockPublicAccess(options: IBlockPublicAccessOptions) : BlockPublicAccess</div>
+<div class="fsdocs-tip" id="fs67">property BlockPublicAccess.BLOCK_ALL: BlockPublicAccess with get</div>
+<div class="fsdocs-tip" id="fs68">custom operation: encryption (BucketEncryption)
+
+Calls BucketBuilder.Encryption</div>
+<div class="fsdocs-tip" id="fs69">[&lt;Struct&gt;]
+type BucketEncryption =
+  | UNENCRYPTED = 0
+  | KMS_MANAGED = 1
+  | S3_MANAGED = 2
+  | KMS = 3
+  | DSSE_MANAGED = 4
+  | DSSE = 5</div>
+<div class="fsdocs-tip" id="fs70">field BucketEncryption.S3_MANAGED: BucketEncryption = 2</div>
+<div class="fsdocs-tip" id="fs71">custom operation: enforceSSL (bool)
+
+Calls BucketBuilder.EnforceSSL</div>
+<div class="fsdocs-tip" id="fs72">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs73">custom operation: removalPolicy (RemovalPolicy)
+
+Calls BucketBuilder.RemovalPolicy</div>
+<div class="fsdocs-tip" id="fs74">[&lt;Struct&gt;]
+type RemovalPolicy =
+  | DESTROY = 0
+  | RETAIN = 1
+  | SNAPSHOT = 2
+  | RETAIN_ON_UPDATE_OR_DELETE = 3</div>
+<div class="fsdocs-tip" id="fs75">field RemovalPolicy.RETAIN: RemovalPolicy = 1</div>
+<div class="fsdocs-tip" id="fs76">custom operation: autoDeleteObjects (bool)
+
+Calls BucketBuilder.AutoDeleteObjects</div>
+<div class="fsdocs-tip" id="fs77">namespace Amazon.CDK.AWS.CloudFront</div>
+<div class="fsdocs-tip" id="fs78">val myBehavior: IBehaviorOptions</div>
+<div class="fsdocs-tip" id="fs79">module CloudFrontBehaviors
+
+from FsCDK<br /><em>&lt;summary&gt;
+ Factory helpers to build common IBehaviorOptions for S3 and HTTP origins.
+ These helpers are useful if you prefer to construct behaviors and pass them via defaultBehavior/additionalBehavior.
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs80">val httpBehaviorDefault: domainName: string -&gt; (bool option -&gt; IBehaviorOptions)</div>
+<div class="fsdocs-tip" id="fs81">union case Option.Some: Value: &#39;T -&gt; Option&lt;&#39;T&gt;</div>
+<div class="fsdocs-tip" id="fs82">val myLogBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs83">val cloudFrontDistribution: name: string -&gt; DistributionBuilder<br /><em>&lt;summary&gt;Creates a CloudFront distribution with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The distribution name.&lt;/param&gt;<br />&lt;remarks&gt;
+ Example:
+ cloudFrontDistribution &quot;MyCDN&quot; {
+     s3DefaultBehavior myBucket
+     defaultRootObject &quot;index.html&quot;
+     domainName &quot;static.example.com&quot;
+     priceClass PriceClass.PRICE_CLASS_100
+ }
+ &lt;/remarks&gt;</em></div>
+<div class="fsdocs-tip" id="fs84">custom operation: defaultBehavior (IBehaviorOptions)
+
+Calls DistributionBuilder.DefaultBehavior<br /><em>&lt;summary&gt;Sets the default behavior from a pre-built IBehaviorOptions.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs85">custom operation: minimumProtocolVersion (SecurityPolicyProtocol)
+
+Calls DistributionBuilder.MinimumProtocolVersion<br /><em>&lt;summary&gt;Sets the minimum TLS protocol version.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs86">[&lt;Struct&gt;]
+type SecurityPolicyProtocol =
+  | SSL_V3 = 0
+  | TLS_V1 = 1
+  | TLS_V1_2016 = 2
+  | TLS_V1_1_2016 = 3
+  | TLS_V1_2_2018 = 4
+  | TLS_V1_2_2019 = 5
+  | TLS_V1_2_2021 = 6</div>
+<div class="fsdocs-tip" id="fs87">field SecurityPolicyProtocol.TLS_V1_2_2021: SecurityPolicyProtocol = 6</div>
+<div class="fsdocs-tip" id="fs88">custom operation: enableLogging (BucketSpec) (string option) (bool option)
+
+Calls DistributionBuilder.EnableLogging<br /><em>&lt;summary&gt;Enables logging to an S3 bucket (optionally with a prefix and cookies flag).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs89">namespace Amazon.CDK.AWS.SQS</div>
+<div class="fsdocs-tip" id="fs90">namespace Amazon.CDK.AWS.SNS</div>
+<div class="fsdocs-tip" id="fs91">val vpcSubnets: SubnetSelectionBuilder</div>
+<div class="fsdocs-tip" id="fs92">custom operation: securityGroups (SecurityGroupSpec list)
+
+Calls FunctionBuilder.SecurityGroups<br /><em>&lt;summary&gt;
+ Add groups to securityGroups
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs93">custom operation: tracing (Tracing)
+
+Calls FunctionBuilder.Tracing</div>
+<div class="fsdocs-tip" id="fs94">[&lt;Struct&gt;]
+type Tracing =
+  | ACTIVE = 0
+  | PASS_THROUGH = 1
+  | DISABLED = 2</div>
+<div class="fsdocs-tip" id="fs95">field Tracing.ACTIVE: Tracing = 0</div>
+<div class="fsdocs-tip" id="fs96">custom operation: insightsVersion (LambdaInsightsVersion)
+
+Calls FunctionBuilder.InsightsVersion</div>
+<div class="fsdocs-tip" id="fs97">type LambdaInsightsVersion =
+  inherit DeputyBase
+  static member FromInsightVersionArn: arn: string -&gt; LambdaInsightsVersion
+  member LayerVersionArn: string
+  static member VERSION_1_0_119_0: LambdaInsightsVersion
+  static member VERSION_1_0_135_0: LambdaInsightsVersion
+  static member VERSION_1_0_143_0: LambdaInsightsVersion
+  static member VERSION_1_0_178_0: LambdaInsightsVersion
+  static member VERSION_1_0_229_0: LambdaInsightsVersion
+  static member VERSION_1_0_273_0: LambdaInsightsVersion
+  static member VERSION_1_0_275_0: LambdaInsightsVersion
+  ...</div>
+<div class="fsdocs-tip" id="fs98">property LambdaInsightsVersion.VERSION_1_0_229_0: LambdaInsightsVersion with get</div>
+<div class="fsdocs-tip" id="fs99">custom operation: enablePerformanceInsights (bool)
+
+Calls DatabaseInstanceBuilder.EnablePerformanceInsights<br /><em>&lt;summary&gt;Enables performance insights.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs100">custom operation: environment ((string * string) list)
+
+Calls FunctionBuilder.Environment<br /><em>&lt;summary&gt;Sets environment variables for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;env&quot;&gt;List of key-value pairs for environment variables.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     environment [ &quot;KEY1&quot;, &quot;value1&quot;; &quot;KEY2&quot;, &quot;value2&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs101">custom operation: credentials (Credentials)
+
+Calls DatabaseInstanceBuilder.Credentials<br /><em>&lt;summary&gt;Sets the credentials.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs102">type Credentials =
+  inherit DeputyBase
+  static member FromGeneratedSecret: username: string * ?options: ICredentialsBaseOptions -&gt; Credentials
+  static member FromPassword: username: string * password: SecretValue -&gt; Credentials
+  static member FromSecret: secret: ISecret * ?username: string -&gt; Credentials
+  static member FromUsername: username: string * ?options: ICredentialsFromUsernameOptions -&gt; Credentials
+  member EncryptionKey: IKey
+  member ExcludeCharacters: string
+  member Password: SecretValue
+  member ReplicaRegions: IReplicaRegion array
+  member Secret: ISecret
+  ...</div>
+<div class="fsdocs-tip" id="fs103">Credentials.FromGeneratedSecret(username: string, ?options: ICredentialsBaseOptions) : Credentials</div>
+<div class="fsdocs-tip" id="fs104">field BucketEncryption.KMS_MANAGED: BucketEncryption = 1</div>
+<div class="fsdocs-tip" id="fs105">custom operation: storageEncrypted (bool)
+
+Calls DatabaseInstanceBuilder.StorageEncrypted<br /><em>&lt;summary&gt;Enables storage encryption.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs106">custom operation: deletionProtection (bool)
+
+Calls DatabaseInstanceBuilder.DeletionProtection<br /><em>&lt;summary&gt;Enables or disables deletion protection.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs107">custom operation: backupRetentionDays (float)
+
+Calls DatabaseInstanceBuilder.BackupRetentionDays<br /><em>&lt;summary&gt;Sets the backup retention period in days.&lt;/summary&gt;</em></div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Principle-of-Least-Privilege">
+      Principle of Least Privilege
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Lambda-Function-Roles">
+      Lambda Function Roles
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#BAD-Too-permissive">
+      ❌ BAD: Too permissive
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#CRITICAL-ERROR-Wildcard-Actions-AND-Resources">
+      ❌ CRITICAL ERROR: Wildcard Actions AND Resources
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#️-WARNING-Individual-Wildcards">
+      ⚠️ WARNING: Individual Wildcards
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#GOOD-Specific-permissions">
+      ✅ GOOD: Specific permissions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Security-Group-Best-Practices">
+      Security Group Best Practices
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#RDS-Database-Access">
+      RDS Database Access
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cognito-Security">
+      Cognito Security
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#S3-Bucket-Policies">
+      S3 Bucket Policies
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#CloudFront-CDN-Security">
+      CloudFront CDN Security
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Common-IAM-Patterns">
+      Common IAM Patterns
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Read-Only-Access-to-DynamoDB">
+      Read-Only Access to DynamoDB
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Write-Access-to-S3-Bucket">
+      Write Access to S3 Bucket
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Read-from-SQS-Queue">
+      Read from SQS Queue
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Publish-to-SNS-Topic">
+      Publish to SNS Topic
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Virtual-Private-Cloud-VPC-Security">
+      Virtual Private Cloud (VPC) Security
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Monitoring-and-Auditing">
+      Monitoring and Auditing
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Secrets-Management">
+      Secrets Management
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Compliance-Considerations">
+      Compliance Considerations
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#GDPR-Data-Privacy">
+      GDPR/Data Privacy
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#HIPAA-PHI-Data">
+      HIPAA/PHI Data
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#OWASP-Top-10-Applied-to-AWS-Infrastructure">
+      OWASP Top 10 Applied to AWS Infrastructure
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Operational-Checklist">
+      Operational Checklist
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Deliberate-Practice-Drills">
+      Deliberate Practice Drills
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Drill-1-Policy-Crafting">
+      Drill 1: Policy Crafting
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Drill-2-Privilege-Escalation">
+      Drill 2: Privilege Escalation
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Learning-Resources-for-IAM-amp-AWS-Security">
+      📚 Learning Resources for IAM &amp; AWS Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Official-Documentation">
+      AWS Official Documentation
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Heroes-amp-Security-Experts">
+      AWS Heroes &amp; Security Experts
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#IAM-Deep-Dives">
+      IAM Deep Dives
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Serverless-Security">
+      Serverless Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Security-Services">
+      AWS Security Services
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security-Frameworks-amp-Compliance">
+      Security Frameworks &amp; Compliance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Video-Tutorials">
+      Video Tutorials
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security-Tools-amp-Utilities">
+      Security Tools &amp; Utilities
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Hands-On-Learning">
+      Hands-On Learning
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Recommended-Learning-Path">
+      Recommended Learning Path
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#AWS-Security-Experts-to-Follow">
+      AWS Security Experts to Follow
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Common-Security-Pitfalls">
+      Common Security Pitfalls
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#FsCDK-Security-Features">
+      FsCDK Security Features
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Additional-Security-Resources">
+      Additional Security Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

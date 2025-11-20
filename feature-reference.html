@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Complete Feature Reference" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Complete Feature Reference">
+    
+    <title>Complete Feature Reference | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header active">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header active">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="FsCDK-Complete-Feature-Reference" class="anchor" href="#FsCDK-Complete-Feature-Reference">FsCDK Complete Feature Reference</a></h1>
+<p>Comprehensive reference of all AWS services and features available in FsCDK.</p>
+<h2><a name="Core-Framework" class="anchor" href="#Core-Framework">Core Framework</a></h2>
+<h3><a name="Stack-and-Application" class="anchor" href="#Stack-and-Application">Stack and Application</a></h3>
+<ul>
+<li><strong>Stack Builder</strong> - Define CloudFormation stacks with type-safe DSL</li>
+<li><strong>App</strong> - CDK application configuration</li>
+<li><strong>Environment</strong> - AWS account/region configuration</li>
+<li><strong>Tags</strong> - Resource tagging across stacks</li>
+<li><strong>Custom Resources</strong> - Custom CloudFormation resources</li>
+</ul>
+<p>Documentation: <a href="getting-started-extended.html">Getting Started</a></p>
+<hr />
+<h2><a name="Compute-Services" class="anchor" href="#Compute-Services">Compute Services</a></h2>
+<h3><a name="AWS-Lambda" class="anchor" href="#AWS-Lambda"><img src="img/icons/Arch_AWS-Lambda_48.png" alt="AWS Lambda" /> AWS Lambda</a></h3>
+<ul>
+<li>Lambda Functions with production-safe defaults</li>
+<li>Docker Image Functions</li>
+<li>Lambda Powertools integration</li>
+<li>Function Versions</li>
+<li>Function URLs</li>
+<li>Lambda Filesystem (EFS)</li>
+<li>Event Source Mapping</li>
+<li>Event Invoke Config</li>
+<li>Function Permissions</li>
+</ul>
+<p>Documentation:
+- <a href="lambda-quickstart.html">Lambda Quickstart</a>
+- <a href="lambda-production-defaults.html">Lambda Production Defaults</a>
+- <a href="lambda-powertools.html">Lambda Powertools</a></p>
+<h3><a name="Containers" class="anchor" href="#Containers">Containers</a></h3>
+<ul>
+<li><strong>ECS</strong> - Container orchestration with Fargate support</li>
+<li><strong>EKS</strong> - Kubernetes cluster management</li>
+<li><strong>App Runner</strong> - Fully managed container service</li>
+<li><strong>ECR</strong> - Container image registry</li>
+</ul>
+<p>Documentation:
+- <a href="ec2-ecs.html">ECS/EC2</a>
+- <a href="eks-kubernetes.html">EKS/Kubernetes</a>
+- <a href="ecr-repository.html">ECR Repository</a></p>
+<h3><a name="Virtual-Machines" class="anchor" href="#Virtual-Machines">Virtual Machines</a></h3>
+<ul>
+<li><strong>EC2</strong> - Virtual machine configuration</li>
+<li><strong>Bastion Host</strong> - Secure SSH access</li>
+<li><strong>Elastic Beanstalk</strong> - PaaS for applications</li>
+</ul>
+<p>Documentation: <a href="bastion-host.html">Bastion Host</a></p>
+<hr />
+<h2><a name="Networking" class="anchor" href="#Networking">Networking</a></h2>
+<h3><a name="VPC-and-Networking" class="anchor" href="#VPC-and-Networking">VPC and Networking</a></h3>
+<ul>
+<li><strong>VPC</strong> - Virtual Private Cloud with Multi-AZ support</li>
+<li><strong>Subnets</strong> - Subnet selection and configuration</li>
+<li><strong>Security Groups</strong> - Least-privilege security</li>
+<li><strong>Route Tables</strong> - Custom routing</li>
+<li><strong>VPC Gateway Attachment</strong> - Internet/NAT gateways</li>
+<li><strong>Elastic IP</strong> - Static IP addresses</li>
+</ul>
+<p>Features:
+- Multi-AZ support
+- DNS enabled by default
+- NAT gateways
+- Security groups with no outbound by default</p>
+<h3><a name="Load-Balancing" class="anchor" href="#Load-Balancing">Load Balancing</a></h3>
+<ul>
+<li>
+<strong>Application Load Balancer (ALB)</strong> - HTTP/HTTPS load balancer
+<ul>
+<li>HTTP/2 support</li>
+<li>Drop invalid headers</li>
+<li>Target Groups</li>
+<li>Listeners (HTTP/HTTPS)</li>
+</ul>
+</li>
+<li><strong>Network Load Balancer</strong> - TCP/UDP load balancer</li>
+</ul>
+<p>Documentation:
+- <a href="alb-secrets-route53.html">ALB, Secrets, Route53</a>
+- <a href="network-load-balancer.html">Network Load Balancer</a></p>
+<h3><a name="DNS" class="anchor" href="#DNS">DNS</a></h3>
+<ul>
+<li><strong>Route53</strong> - DNS service</li>
+<li><strong>Route53 Record Set</strong> - DNS record management</li>
+</ul>
+<hr />
+<h2><a name="API-Services" class="anchor" href="#API-Services">API Services</a></h2>
+<h3><a name="API-Gateway" class="anchor" href="#API-Gateway">API Gateway</a></h3>
+<ul>
+<li>
+<strong>API Gateway V2 (HTTP API)</strong> - Low-latency HTTP API
+<ul>
+<li>CORS support</li>
+<li>JWT/Lambda authorizers</li>
+<li>Auto-deploy</li>
+<li>Cost-effective (70% cheaper than REST API)</li>
+</ul>
+</li>
+</ul>
+<p>Documentation: <a href="api-gateway-v2.html">API Gateway V2</a></p>
+<h3><a name="GraphQL" class="anchor" href="#GraphQL">GraphQL</a></h3>
+<ul>
+<li>
+<strong>AppSync</strong> - Managed GraphQL API
+<ul>
+<li>GraphQL subscriptions</li>
+<li>X-Ray tracing</li>
+<li>DynamoDB/Lambda/HTTP data sources</li>
+<li>Real-time updates</li>
+</ul>
+</li>
+</ul>
+<h3><a name="Content-Delivery" class="anchor" href="#Content-Delivery">Content Delivery</a></h3>
+<ul>
+<li>
+<strong>CloudFront</strong> - Global CDN
+<ul>
+<li>HTTP/2 support</li>
+<li>TLS 1.2 minimum</li>
+<li>IPv6 enabled</li>
+<li>Edge caching</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2><a name="Storage-Services" class="anchor" href="#Storage-Services">Storage Services</a></h2>
+<h3><a name="Object-Storage" class="anchor" href="#Object-Storage"><img src="img/icons/Arch_Amazon-Simple-Storage-Service_48.png" alt="Amazon S3" /> Object Storage</a></h3>
+<ul>
+<li>
+<strong>S3 Buckets</strong> - Secure object storage
+<ul>
+<li>Versioning</li>
+<li>Encryption (KMS)</li>
+<li>Block public access</li>
+<li>Lifecycle rules</li>
+<li>Bucket policies</li>
+<li>Bucket metrics</li>
+</ul>
+</li>
+</ul>
+<p>Documentation:
+- <a href="s3-quickstart.html">S3 Quickstart</a>
+- <a href="bucket-policy.html">Bucket Policy</a></p>
+<hr />
+<h2><a name="Database-Services" class="anchor" href="#Database-Services">Database Services</a></h2>
+<h3><a name="NoSQL" class="anchor" href="#NoSQL"><img src="img/icons/Arch_Amazon-DynamoDB_48.png" alt="Amazon DynamoDB" /> NoSQL</a></h3>
+<ul>
+<li>
+<strong>DynamoDB</strong> - Serverless NoSQL database
+<ul>
+<li><strong>Production defaults</strong>: PAY_PER_REQUEST billing, PITR enabled</li>
+<li><strong>Global Secondary Indexes (GSIs)</strong> - Single-table design support</li>
+<li><strong>Local Secondary Indexes (LSIs)</strong> - Alternative sort keys</li>
+<li><strong>Time-to-Live (TTL)</strong> - Automatic item expiration</li>
+<li><strong>Contributor Insights</strong> - Hot key detection</li>
+<li><strong>Table Classes</strong> - Standard-IA for cost optimization</li>
+<li>DynamoDB Streams for change data capture</li>
+<li>Kinesis stream integration</li>
+<li>Import from S3</li>
+</ul>
+</li>
+</ul>
+<p>Documentation: <a href="dynamodb.html">DynamoDB</a></p>
+<h3><a name="Relational" class="anchor" href="#Relational"><img src="img/icons/Arch_Amazon-RDS_48.png" alt="Amazon RDS" /> Relational</a></h3>
+<ul>
+<li>
+<strong>RDS</strong> - Managed relational databases
+<ul>
+<li>PostgreSQL, MySQL, MariaDB</li>
+<li>Oracle, SQL Server</li>
+<li>Multi-AZ support</li>
+<li>Automated backups</li>
+<li>Encryption</li>
+<li>IAM authentication</li>
+<li>Performance Insights</li>
+</ul>
+</li>
+</ul>
+<p>Documentation: <a href="rds-database.html">RDS Database</a></p>
+<h3><a name="Document-Database" class="anchor" href="#Document-Database">Document Database</a></h3>
+<ul>
+<li><strong>DocumentDB</strong> - MongoDB-compatible database</li>
+</ul>
+<h3><a name="Caching" class="anchor" href="#Caching">Caching</a></h3>
+<ul>
+<li><strong>ElastiCache</strong> - Redis/Memcached caching</li>
+</ul>
+<hr />
+<h2><a name="Messaging-and-Events" class="anchor" href="#Messaging-and-Events">Messaging and Events</a></h2>
+<h3><a name="Messaging" class="anchor" href="#Messaging"><img src="img/icons/Arch_Amazon-Simple-Notification-Service_48.png" alt="SNS" /> Messaging</a></h3>
+<ul>
+<li>
+<strong>SNS</strong> - Pub/sub messaging
+<ul>
+<li>Standard and FIFO topics</li>
+<li>Multiple subscription types</li>
+<li>Message filtering</li>
+</ul>
+</li>
+<li>
+<img src="img/icons/Arch_Amazon-Simple-Queue-Service_48.png" alt="SQS" /> <strong>SQS</strong> - Message queuing
+<ul>
+<li>Standard and FIFO queues</li>
+<li>Dead-letter queues</li>
+<li>Visibility timeout</li>
+</ul>
+</li>
+</ul>
+<p>Documentation: <a href="sns-sqs-messaging.html">SNS and SQS Messaging</a></p>
+<h3><a name="Event-Processing" class="anchor" href="#Event-Processing"><img src="img/icons/Arch_Amazon-EventBridge_48.png" alt="EventBridge" /> Event Processing</a></h3>
+<ul>
+<li>
+<strong>EventBridge</strong> - Event-driven architecture
+<ul>
+<li>Scheduled events (cron)</li>
+<li>Event patterns</li>
+<li>Multiple targets</li>
+</ul>
+</li>
+<li>
+<strong>Kinesis Streams</strong> - Real-time data streaming
+<ul>
+<li>Encryption enabled</li>
+<li>Shard-level processing</li>
+</ul>
+</li>
+</ul>
+<p>Documentation:
+- <a href="eventbridge.html">EventBridge</a>
+- <a href="kinesis-streams.html">Kinesis Streams</a></p>
+<hr />
+<h2><a name="Orchestration" class="anchor" href="#Orchestration">Orchestration</a></h2>
+<h3><a name="Workflows" class="anchor" href="#Workflows"><img src="img/icons/Arch_AWS-Step-Functions_48.png" alt="Step Functions" /> Workflows</a></h3>
+<ul>
+<li>
+<strong>Step Functions</strong> - State machine orchestration
+<ul>
+<li>Standard and Express workflows</li>
+<li>X-Ray tracing</li>
+<li>Full logging</li>
+<li>Error handling</li>
+<li>Parallel execution</li>
+</ul>
+</li>
+</ul>
+<p>Documentation: <a href="step-functions.html">Step Functions</a></p>
+<hr />
+<h2><a name="Security-and-Identity" class="anchor" href="#Security-and-Identity">Security and Identity</a></h2>
+<h3><a name="Authentication-and-Authorization" class="anchor" href="#Authentication-and-Authorization">Authentication and Authorization</a></h3>
+<ul>
+<li>
+<strong>Cognito</strong> - User authentication
+<ul>
+<li>User Pools</li>
+<li>Strong password policies</li>
+<li>MFA support</li>
+<li>Social identity providers</li>
+</ul>
+</li>
+</ul>
+<h3><a name="Encryption-and-Secrets" class="anchor" href="#Encryption-and-Secrets">Encryption and Secrets</a></h3>
+<ul>
+<li><strong>KMS</strong> - Key management</li>
+<li><strong>Secrets Manager</strong> - Secure credential storage with multi-region replication</li>
+<li><strong>Certificate Manager</strong> - SSL/TLS certificates</li>
+</ul>
+<p>Documentation:
+- <a href="kms-encryption.html">KMS Encryption</a>
+- <a href="certificate-manager.html">Certificate Manager</a></p>
+<h3><a name="Audit-and-Compliance" class="anchor" href="#Audit-and-Compliance">Audit and Compliance</a></h3>
+<ul>
+<li>
+<strong>CloudTrail</strong> - API audit logging (NEW)
+<ul>
+<li>Multi-region trails by default</li>
+<li>Global service events (IAM, STS, CloudFront)</li>
+<li>Log file validation (integrity checking)</li>
+<li>CloudWatch Logs integration</li>
+<li>Organization trail support</li>
+</ul>
+</li>
+</ul>
+<p>Documentation: <a href="cloudtrail-audit-logging.html">CloudTrail Audit Logging</a></p>
+<h3><a name="IAM" class="anchor" href="#IAM">IAM</a></h3>
+<ul>
+<li><strong>IAM Roles</strong> - Identity and access management</li>
+<li><strong>Policy Statements</strong> - Fine-grained permissions</li>
+<li><strong>Managed Policies</strong> - Reusable policies</li>
+<li><strong>Grants</strong> - Resource access grants</li>
+<li><strong>OIDC Provider</strong> - Federated identity</li>
+</ul>
+<p>Documentation:
+- <a href="iam-best-practices.html">IAM Best Practices</a>
+- <a href="managed-policy.html">Managed Policy</a></p>
+<hr />
+<h2><a name="Monitoring-and-Observability" class="anchor" href="#Monitoring-and-Observability">Monitoring and Observability</a></h2>
+<h3><a name="Logging" class="anchor" href="#Logging">Logging</a></h3>
+<ul>
+<li>
+<strong>CloudWatch Logs</strong> - Log management
+<ul>
+<li>Retention policies</li>
+<li>Log groups</li>
+<li>Structured logging</li>
+</ul>
+</li>
+</ul>
+<h3><a name="Metrics-and-Dashboards" class="anchor" href="#Metrics-and-Dashboards">Metrics and Dashboards</a></h3>
+<ul>
+<li><strong>CloudWatch Dashboard</strong> - Metrics visualization</li>
+</ul>
+<p>Documentation: <a href="cloudwatch-dashboard.html">CloudWatch Dashboard</a></p>
+<h3><a name="Tracing" class="anchor" href="#Tracing">Tracing</a></h3>
+<ul>
+<li>
+<strong>X-Ray</strong> - Distributed tracing
+<ul>
+<li>Enabled by default on Lambda</li>
+<li>Step Functions integration</li>
+<li>AppSync integration</li>
+</ul>
+</li>
+</ul>
+<h3><a name="Monitoring" class="anchor" href="#Monitoring">Monitoring</a></h3>
+<ul>
+<li><strong>CloudWatch Synthetics</strong> - Canary monitoring</li>
+</ul>
+<hr />
+<h2><a name="Production-Safe-Defaults" class="anchor" href="#Production-Safe-Defaults">Production-Safe Defaults</a></h2>
+<p>FsCDK emphasizes <strong>security and reliability by default</strong>:</p>
+<h3><a name="Lambda" class="anchor" href="#Lambda">Lambda</a></h3>
+<ul>
+<li>X-Ray tracing enabled</li>
+<li>Structured JSON logging</li>
+<li>Auto-DLQ creation</li>
+<li>Reserved concurrency (10)</li>
+<li>Environment encryption (KMS)</li>
+<li>90-day log retention</li>
+</ul>
+<h3><a name="VPC" class="anchor" href="#VPC">VPC</a></h3>
+<ul>
+<li>Multi-AZ by default</li>
+<li>DNS enabled</li>
+<li>Cost-optimized NAT gateways</li>
+<li><strong>VPC Flow Logs enabled by default</strong> (NEW)</li>
+<li>ONE_WEEK CloudWatch retention</li>
+</ul>
+<h3><a name="Security-Groups" class="anchor" href="#Security-Groups">Security Groups</a></h3>
+<ul>
+<li>No outbound traffic by default</li>
+<li>Least privilege principle</li>
+</ul>
+<h3><a name="IAM-1" class="anchor" href="#IAM-1">IAM</a></h3>
+<ul>
+<li><strong>Wildcard validation</strong> - Fails on <code>"*"</code> actions + <code>"*"</code> resources (NEW)</li>
+<li>Warnings on individual wildcards</li>
+<li>Least privilege enforcement</li>
+</ul>
+<h3><a name="RDS" class="anchor" href="#RDS">RDS</a></h3>
+<ul>
+<li><strong>Storage encryption enabled by default</strong> (NEW)</li>
+<li><strong>Deletion protection enabled</strong> (NEW)</li>
+<li><strong>IAM authentication enabled</strong> (NEW)</li>
+<li><strong>Explicitly private</strong> (not publicly accessible) (NEW)</li>
+<li><strong>CloudWatch Logs export ready</strong> (NEW)</li>
+<li>Automated backups (7 days)</li>
+<li>Auto minor version upgrades</li>
+</ul>
+<h3><a name="DynamoDB" class="anchor" href="#DynamoDB">DynamoDB</a></h3>
+<ul>
+<li><strong>AWS_MANAGED encryption by default</strong> (NEW)</li>
+<li><strong>Point-in-Time Recovery enabled</strong> (NEW)</li>
+<li>PAY_PER_REQUEST billing</li>
+</ul>
+<h3><a name="S3" class="anchor" href="#S3">S3</a></h3>
+<ul>
+<li>Block public access</li>
+<li>KMS encryption</li>
+<li>Versioning opt-in</li>
+</ul>
+<h3><a name="ALB" class="anchor" href="#ALB">ALB</a></h3>
+<ul>
+<li>Internal by default</li>
+<li>HTTP/2 enabled</li>
+<li>Drop invalid headers</li>
+</ul>
+<h3><a name="ECS-EKS" class="anchor" href="#ECS-EKS">ECS/EKS</a></h3>
+<ul>
+<li>Container Insights enabled</li>
+<li>Comprehensive logging</li>
+<li>Latest versions</li>
+</ul>
+<h3><a name="Step-Functions" class="anchor" href="#Step-Functions">Step Functions</a></h3>
+<ul>
+<li>X-Ray tracing enabled</li>
+<li>Full logging (ALL level)</li>
+<li>Timeout protection</li>
+</ul>
+<h3><a name="Kinesis" class="anchor" href="#Kinesis">Kinesis</a></h3>
+<ul>
+<li>Encryption enabled</li>
+<li>24-hour retention</li>
+</ul>
+<h3><a name="ECR" class="anchor" href="#ECR">ECR</a></h3>
+<ul>
+<li>Image scan on push</li>
+<li>Lifecycle policies</li>
+<li>Encryption</li>
+</ul>
+<hr />
+<h2><a name="Builder-Pattern-and-DSL" class="anchor" href="#Builder-Pattern-and-DSL">Builder Pattern and DSL</a></h2>
+<p>All FsCDK resources follow a consistent <strong>Computation Expression (CE) builder pattern</strong>:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">resourceType</span> <span class="s">&quot;name&quot;</span> <span class="pn">{</span>
+    <span class="id">property</span> <span class="id">value</span>
+    <span class="id">customOperation</span> <span class="id">value</span>
+    <span class="id">nestedBuilder</span> <span class="pn">{</span>
+        <span class="c">// ...</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p><strong>Key Features:</strong>
+- Type-safe configuration
+- Immutable infrastructure definitions
+- Production-safe defaults
+- Escape hatches to underlying CDK
+- Composable and reusable</p>
+<hr />
+<h2><a name="Comparison-to-Alternatives" class="anchor" href="#Comparison-to-Alternatives">Comparison to Alternatives</a></h2>
+<h3><a name="vs-Farmer" class="anchor" href="#vs-Farmer">vs Farmer</a></h3>
+<ul>
+<li>FsCDK uses AWS CDK (industry standard)</li>
+<li>Access to all AWS services</li>
+<li>Better CloudFormation compatibility</li>
+<li>More mature ecosystem</li>
+</ul>
+<p>Documentation: <a href="comparison-to-farmer.html">Comparison to Farmer</a></p>
+<h3><a name="vs-CDK-TypeScript-Python" class="anchor" href="#vs-CDK-TypeScript-Python">vs CDK (TypeScript/Python)</a></h3>
+<ul>
+<li>Type-safe F# syntax</li>
+<li>Functional programming patterns</li>
+<li>Better defaults (security-first)</li>
+<li>Immutable configuration</li>
+<li>More concise code</li>
+</ul>
+<hr />
+<h2><a name="Examples-and-Guides" class="anchor" href="#Examples-and-Guides">Examples and Guides</a></h2>
+<h3><a name="Quickstart-Guides" class="anchor" href="#Quickstart-Guides">Quickstart Guides</a></h3>
+<ul>
+<li><a href="getting-started-extended.html">Getting Started Extended</a></li>
+<li><a href="lambda-quickstart.html">Lambda Quickstart</a></li>
+<li><a href="s3-quickstart.html">S3 Quickstart</a></li>
+</ul>
+<h3><a name="Patterns-and-Best-Practices" class="anchor" href="#Patterns-and-Best-Practices">Patterns and Best Practices</a></h3>
+<ul>
+<li><a href="multi-tier-example.html">Multi-Tier Example</a></li>
+<li><a href="iam-best-practices.html">IAM Best Practices</a></li>
+<li><a href="lambda-production-defaults.html">Lambda Production Defaults</a></li>
+</ul>
+<h3><a name="Service-Specific-Guides" class="anchor" href="#Service-Specific-Guides">Service-Specific Guides</a></h3>
+<ul>
+<li><a href="alb-secrets-route53.html">ALB, Secrets, Route53</a></li>
+<li><a href="ec2-ecs.html">ECS/EC2</a></li>
+<li><a href="eks-kubernetes.html">EKS/Kubernetes</a></li>
+<li><a href="eventbridge.html">EventBridge</a></li>
+<li><a href="kinesis-streams.html">Kinesis Streams</a></li>
+<li><a href="kms-encryption.html">KMS Encryption</a></li>
+<li><a href="cloudwatch-dashboard.html">CloudWatch Dashboard</a></li>
+<li><a href="certificate-manager.html">Certificate Manager</a></li>
+<li><a href="bastion-host.html">Bastion Host</a></li>
+<li><a href="bucket-policy.html">Bucket Policy</a></li>
+<li><a href="managed-policy.html">Managed Policy</a></li>
+<li><a href="network-load-balancer.html">Network Load Balancer</a></li>
+</ul>
+<h3><a name="New-Features-Recently-Added" class="anchor" href="#New-Features-Recently-Added">New Features (Recently Added)</a></h3>
+<ul>
+<li><a href="api-gateway-v2.html">API Gateway V2 (HTTP API)</a></li>
+<li><a href="ecr-repository.html">ECR Repository</a></li>
+<li><a href="step-functions.html">Step Functions</a></li>
+<li><a href="dynamodb.html">DynamoDB</a></li>
+<li><a href="rds-database.html">RDS Database</a></li>
+<li><a href="sns-sqs-messaging.html">SNS and SQS Messaging</a></li>
+</ul>
+<hr />
+<h2><a name="Getting-Help" class="anchor" href="#Getting-Help">Getting Help</a></h2>
+<ul>
+<li><strong>GitHub Issues</strong>: <a href="https://github.com/Thorium/FsCDK/issues">Report bugs or request features</a></li>
+<li><strong>Documentation</strong>: Browse the docs/ directory</li>
+<li><strong>Examples</strong>: Check the examples/ directory</li>
+<li><strong>AWS CDK Docs</strong>: <a href="https://docs.aws.amazon.com/cdk/">Official AWS CDK documentation</a></li>
+</ul>
+<hr />
+<h2><a name="Summary" class="anchor" href="#Summary">Summary</a></h2>
+<p>FsCDK provides:</p>
+<ul>
+<li><strong>60+ service modules</strong> covering major AWS services</li>
+<li><strong>Type-safe F# DSL</strong> for infrastructure as code</li>
+<li><strong>Production-safe defaults</strong> following AWS best practices</li>
+<li><strong>Comprehensive examples</strong> and documentation</li>
+<li><strong>Full AWS CDK integration</strong> with escape hatches</li>
+<li><strong>Built for .NET 8</strong> and modern F#</li>
+</ul>
+<p>Perfect for teams that want the power of AWS CDK with the elegance and safety of F#.</p>
+
+        
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#FsCDK-Complete-Feature-Reference">
+      FsCDK Complete Feature Reference
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Core-Framework">
+      Core Framework
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Stack-and-Application">
+      Stack and Application
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Compute-Services">
+      Compute Services
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Containers">
+      Containers
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Virtual-Machines">
+      Virtual Machines
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Networking">
+      Networking
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#VPC-and-Networking">
+      VPC and Networking
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Load-Balancing">
+      Load Balancing
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DNS">
+      DNS
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#API-Services">
+      API Services
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#API-Gateway">
+      API Gateway
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#GraphQL">
+      GraphQL
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Content-Delivery">
+      Content Delivery
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Storage-Services">
+      Storage Services
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Database-Services">
+      Database Services
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Document-Database">
+      Document Database
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Caching">
+      Caching
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Messaging-and-Events">
+      Messaging and Events
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Orchestration">
+      Orchestration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Security-and-Identity">
+      Security and Identity
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Authentication-and-Authorization">
+      Authentication and Authorization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Encryption-and-Secrets">
+      Encryption and Secrets
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Audit-and-Compliance">
+      Audit and Compliance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#IAM">
+      IAM
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Monitoring-and-Observability">
+      Monitoring and Observability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Logging">
+      Logging
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Metrics-and-Dashboards">
+      Metrics and Dashboards
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Tracing">
+      Tracing
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Monitoring">
+      Monitoring
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Production-Safe-Defaults">
+      Production-Safe Defaults
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Lambda">
+      Lambda
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#VPC">
+      VPC
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security-Groups">
+      Security Groups
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#IAM-1">
+      IAM
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#RDS">
+      RDS
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DynamoDB">
+      DynamoDB
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#S3">
+      S3
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#ALB">
+      ALB
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#ECS-EKS">
+      ECS/EKS
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Step-Functions">
+      Step Functions
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Kinesis">
+      Kinesis
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#ECR">
+      ECR
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Builder-Pattern-and-DSL">
+      Builder Pattern and DSL
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Comparison-to-Alternatives">
+      Comparison to Alternatives
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#vs-Farmer">
+      vs Farmer
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#vs-CDK-TypeScript-Python">
+      vs CDK (TypeScript/Python)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Examples-and-Guides">
+      Examples and Guides
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Quickstart-Guides">
+      Quickstart Guides
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Patterns-and-Best-Practices">
+      Patterns and Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Service-Specific-Guides">
+      Service-Specific Guides
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#New-Features-Recently-Added">
+      New Features (Recently Added)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Getting-Help">
+      Getting Help
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Summary">
+      Summary
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

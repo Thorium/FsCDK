@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="S3 Bucket Policy" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="S3 Bucket Policy">
+    
+    <title>S3 Bucket Policy | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Crafting-world-class-S3-bucket-policies-with-FsCDK" class="anchor" href="#Crafting-world-class-S3-bucket-policies-with-FsCDK"><img src="img/icons/Arch_Amazon-Simple-Storage-Service_48.png" alt="S3" /> Crafting world-class S3 bucket policies with FsCDK</a></h1>
+<p>Precise S3 policies are the backbone of secure data lakes and static sites. This notebook captures the controls recommended by AWS Heroes <strong>Ben Kehoe</strong> and <strong>Yan Cui</strong>, plus guidance from the <strong>AWS Security Blog</strong> series on TLS enforcement and access governance. Use the FsCDK builders below to express guard rails as code and keep your buckets compliant.</p>
+<h2><a name="Quick-start-patterns" class="anchor" href="#Quick-start-patterns">Quick start patterns</a></h2>
+<p>Each scenario maps to a real-world best practice and references an authoritative resource for deeper study.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">S3</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">IAM</span>
+</code></pre>
+<h2><a name="Enforce-HTTPS-only-access" class="anchor" href="#Enforce-HTTPS-only-access">Enforce HTTPS-only access</a></h2>
+<p>Mirror the AWS Security Blog post “How to enforce TLS for S3” by denying any request that arrives over HTTP. This closes a common compliance gap and is required for SOC2, PCI DSS, and many regional data-protection frameworks.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 12)" onmouseover="showTip(event, 'fs7', 12)" class="fn">stack</span> <span class="s">&quot;SecureBucket&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 13)" onmouseover="showTip(event, 'fs8', 13)" class="fn">myBucket</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 14)" onmouseover="showTip(event, 'fs9', 14)" class="fn">bucket</span> <span class="s">&quot;MyBucket&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 15)" onmouseover="showTip(event, 'fs10', 15)" class="k">versioned</span> <span class="k">true</span>
+            <span onmouseout="hideTip(event, 'fs11', 16)" onmouseover="showTip(event, 'fs11', 16)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs12', 17)" onmouseover="showTip(event, 'fs12', 17)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 18)" onmouseover="showTip(event, 'fs13', 18)" class="id">S3_MANAGED</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 19)" onmouseover="showTip(event, 'fs14', 19)" class="fn">bucketPolicy</span> <span class="s">&quot;SecurePolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs15', 20)" onmouseover="showTip(event, 'fs15', 20)" class="k">bucket</span> <span onmouseout="hideTip(event, 'fs8', 21)" onmouseover="showTip(event, 'fs8', 21)" class="fn">myBucket</span>
+        <span onmouseout="hideTip(event, 'fs16', 22)" onmouseover="showTip(event, 'fs16', 22)" class="k">denyInsecureTransport</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="CloudFront-Origin-Access-Identity" class="anchor" href="#CloudFront-Origin-Access-Identity">CloudFront Origin Access Identity</a></h2>
+<p>Allow CloudFront to access a private S3 bucket.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 23)" onmouseover="showTip(event, 'fs2', 23)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 24)" onmouseover="showTip(event, 'fs3', 24)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 25)" onmouseover="showTip(event, 'fs4', 25)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 26)" onmouseover="showTip(event, 'fs17', 26)" class="id">CloudFront</span>
+
+<span onmouseout="hideTip(event, 'fs7', 27)" onmouseover="showTip(event, 'fs7', 27)" class="fn">stack</span> <span class="s">&quot;CloudFrontOrigin&quot;</span> <span class="pn">{</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="fn">websiteBucket</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 29)" onmouseover="showTip(event, 'fs9', 29)" class="fn">bucket</span> <span class="s">&quot;Website&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs19', 30)" onmouseover="showTip(event, 'fs19', 30)" class="k">blockPublicAccess</span> <span onmouseout="hideTip(event, 'fs20', 31)" onmouseover="showTip(event, 'fs20', 31)" class="rt">BlockPublicAccess</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 32)" onmouseover="showTip(event, 'fs21', 32)" class="id">BLOCK_ALL</span>
+            <span onmouseout="hideTip(event, 'fs11', 33)" onmouseover="showTip(event, 'fs11', 33)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs12', 34)" onmouseover="showTip(event, 'fs12', 34)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs13', 35)" onmouseover="showTip(event, 'fs13', 35)" class="id">S3_MANAGED</span>
+        <span class="pn">}</span>
+
+    <span class="c">// CloudFront Origin Access Identity</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 36)" onmouseover="showTip(event, 'fs22', 36)" class="fn">oai</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs23', 37)" onmouseover="showTip(event, 'fs23', 37)" class="fn">originAccessIdentity</span> <span class="s">&quot;MyOAI&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs24', 38)" onmouseover="showTip(event, 'fs24', 38)" class="k">comment</span> <span class="s">&quot;S3 access for CloudFront&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 39)" onmouseover="showTip(event, 'fs14', 39)" class="fn">bucketPolicy</span> <span class="s">&quot;CloudFrontAccess&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs15', 40)" onmouseover="showTip(event, 'fs15', 40)" class="k">bucket</span> <span onmouseout="hideTip(event, 'fs18', 41)" onmouseover="showTip(event, 'fs18', 41)" class="fn">websiteBucket</span>
+        <span onmouseout="hideTip(event, 'fs25', 42)" onmouseover="showTip(event, 'fs25', 42)" class="k">allowCloudFrontOAI</span> <span onmouseout="hideTip(event, 'fs22', 43)" onmouseover="showTip(event, 'fs22', 43)" class="fn">oai</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 44)" onmouseover="showTip(event, 'fs26', 44)" class="prop">Identity</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs27', 45)" onmouseover="showTip(event, 'fs27', 45)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 46)" onmouseover="showTip(event, 'fs28', 46)" class="id">OriginAccessIdentityId</span> <span class="c">// CloudFrontOriginAccessIdentityS3CanonicalUserId</span>
+        <span onmouseout="hideTip(event, 'fs16', 47)" onmouseover="showTip(event, 'fs16', 47)" class="k">denyInsecureTransport</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="IP-Address-Restrictions" class="anchor" href="#IP-Address-Restrictions">IP Address Restrictions</a></h2>
+<p>Restrict bucket access to specific IP addresses.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 48)" onmouseover="showTip(event, 'fs7', 48)" class="fn">stack</span> <span class="s">&quot;IPRestrictedBucket&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs29', 49)" onmouseover="showTip(event, 'fs29', 49)" class="fn">privateBucket</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 50)" onmouseover="showTip(event, 'fs9', 50)" class="fn">bucket</span> <span class="s">&quot;PrivateBucket&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs19', 51)" onmouseover="showTip(event, 'fs19', 51)" class="k">blockPublicAccess</span> <span onmouseout="hideTip(event, 'fs20', 52)" onmouseover="showTip(event, 'fs20', 52)" class="rt">BlockPublicAccess</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs21', 53)" onmouseover="showTip(event, 'fs21', 53)" class="id">BLOCK_ALL</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 54)" onmouseover="showTip(event, 'fs14', 54)" class="fn">bucketPolicy</span> <span class="s">&quot;IPRestriction&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs15', 55)" onmouseover="showTip(event, 'fs15', 55)" class="k">bucket</span> <span onmouseout="hideTip(event, 'fs29', 56)" onmouseover="showTip(event, 'fs29', 56)" class="fn">privateBucket</span>
+        <span onmouseout="hideTip(event, 'fs30', 57)" onmouseover="showTip(event, 'fs30', 57)" class="k">allowFromIpAddresses</span> <span class="pn">[</span> <span class="s">&quot;203.0.113.0/24&quot;</span><span class="pn">;</span> <span class="s">&quot;198.51.100.0/24&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs16', 58)" onmouseover="showTip(event, 'fs16', 58)" class="k">denyInsecureTransport</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Deny-Specific-IP-Addresses" class="anchor" href="#Deny-Specific-IP-Addresses">Deny Specific IP Addresses</a></h2>
+<p>Block access from known malicious IPs.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 59)" onmouseover="showTip(event, 'fs7', 59)" class="fn">stack</span> <span class="s">&quot;BlockMaliciousIPs&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 60)" onmouseover="showTip(event, 'fs31', 60)" class="fn">publicBucket</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 61)" onmouseover="showTip(event, 'fs9', 61)" class="fn">bucket</span> <span class="s">&quot;PublicBucket&quot;</span> <span class="pn">{</span> <span class="pn">(</span><span class="pn">)</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 62)" onmouseover="showTip(event, 'fs14', 62)" class="fn">bucketPolicy</span> <span class="s">&quot;BlockBadActors&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs15', 63)" onmouseover="showTip(event, 'fs15', 63)" class="k">bucket</span> <span onmouseout="hideTip(event, 'fs31', 64)" onmouseover="showTip(event, 'fs31', 64)" class="fn">publicBucket</span>
+        <span onmouseout="hideTip(event, 'fs32', 65)" onmouseover="showTip(event, 'fs32', 65)" class="k">denyFromIpAddresses</span> <span class="pn">[</span> <span class="s">&quot;192.0.2.0/24&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs16', 66)" onmouseover="showTip(event, 'fs16', 66)" class="k">denyInsecureTransport</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Custom-Policy-Statements" class="anchor" href="#Custom-Policy-Statements">Custom Policy Statements</a></h2>
+<p>Add custom policy statements for specific requirements.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 67)" onmouseover="showTip(event, 'fs7', 67)" class="fn">stack</span> <span class="s">&quot;CustomPolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 68)" onmouseover="showTip(event, 'fs33', 68)" class="fn">dataBucket</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 69)" onmouseover="showTip(event, 'fs9', 69)" class="fn">bucket</span> <span class="s">&quot;DataBucket&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs10', 70)" onmouseover="showTip(event, 'fs10', 70)" class="k">versioned</span> <span class="k">true</span> <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 71)" onmouseover="showTip(event, 'fs34', 71)" class="fn">readOnlyStatement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs35', 72)" onmouseover="showTip(event, 'fs35', 72)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs36', 73)" onmouseover="showTip(event, 'fs36', 73)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span class="fn">Sid</span> <span class="o">=</span> <span class="s">&quot;AllowReadOnly&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs37', 74)" onmouseover="showTip(event, 'fs37', 74)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 75)" onmouseover="showTip(event, 'fs37', 75)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 76)" onmouseover="showTip(event, 'fs38', 76)" class="id">ALLOW</span><span class="pn">,</span>
+                <span class="fn">Principals</span> <span class="o">=</span> <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs39', 77)" onmouseover="showTip(event, 'fs39', 77)" class="fn">AccountPrincipal</span><span class="pn">(</span><span class="s">&quot;123456789012&quot;</span><span class="pn">)</span> <span class="o">:&gt;</span> <span onmouseout="hideTip(event, 'fs40', 78)" onmouseover="showTip(event, 'fs40', 78)" class="if">IPrincipal</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:GetObject&quot;</span><span class="pn">;</span> <span class="s">&quot;s3:ListBucket&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span>
+                    <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs33', 79)" onmouseover="showTip(event, 'fs33', 79)" class="fn">dataBucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 80)" onmouseover="showTip(event, 'fs41', 80)" class="prop">Bucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 81)" onmouseover="showTip(event, 'fs42', 81)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 82)" onmouseover="showTip(event, 'fs43', 82)" class="id">BucketArn</span>
+                       <span onmouseout="hideTip(event, 'fs33', 83)" onmouseover="showTip(event, 'fs33', 83)" class="fn">dataBucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 84)" onmouseover="showTip(event, 'fs41', 84)" class="prop">Bucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 85)" onmouseover="showTip(event, 'fs42', 85)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 86)" onmouseover="showTip(event, 'fs43', 86)" class="id">BucketArn</span> <span class="o">+</span> <span class="s">&quot;/*&quot;</span> <span class="pn">|]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 87)" onmouseover="showTip(event, 'fs14', 87)" class="fn">bucketPolicy</span> <span class="s">&quot;CustomPolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs15', 88)" onmouseover="showTip(event, 'fs15', 88)" class="k">bucket</span> <span onmouseout="hideTip(event, 'fs33', 89)" onmouseover="showTip(event, 'fs33', 89)" class="fn">dataBucket</span>
+        <span onmouseout="hideTip(event, 'fs44', 90)" onmouseover="showTip(event, 'fs44', 90)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs34', 91)" onmouseover="showTip(event, 'fs34', 91)" class="fn">readOnlyStatement</span>
+        <span onmouseout="hideTip(event, 'fs16', 92)" onmouseover="showTip(event, 'fs16', 92)" class="k">denyInsecureTransport</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Multi-Statement-Policy" class="anchor" href="#Multi-Statement-Policy">Multi-Statement Policy</a></h2>
+<p>Combine multiple security controls in one policy.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs7', 93)" onmouseover="showTip(event, 'fs7', 93)" class="fn">stack</span> <span class="s">&quot;ComprehensivePolicy&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs45', 94)" onmouseover="showTip(event, 'fs45', 94)" class="fn">secureBucket</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs9', 95)" onmouseover="showTip(event, 'fs9', 95)" class="fn">bucket</span> <span class="s">&quot;SecureBucket&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs10', 96)" onmouseover="showTip(event, 'fs10', 96)" class="k">versioned</span> <span class="k">true</span>
+            <span onmouseout="hideTip(event, 'fs11', 97)" onmouseover="showTip(event, 'fs11', 97)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs12', 98)" onmouseover="showTip(event, 'fs12', 98)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs46', 99)" onmouseover="showTip(event, 'fs46', 99)" class="id">KMS_MANAGED</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs47', 100)" onmouseover="showTip(event, 'fs47', 100)" class="fn">adminStatement</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs35', 101)" onmouseover="showTip(event, 'fs35', 101)" class="fn">PolicyStatement</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs36', 102)" onmouseover="showTip(event, 'fs36', 102)" class="fn">PolicyStatementProps</span><span class="pn">(</span>
+                <span class="fn">Sid</span> <span class="o">=</span> <span class="s">&quot;AdminFullAccess&quot;</span><span class="pn">,</span>
+                <span onmouseout="hideTip(event, 'fs37', 103)" onmouseover="showTip(event, 'fs37', 103)" class="fn">Effect</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs37', 104)" onmouseover="showTip(event, 'fs37', 104)" class="en">Effect</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs38', 105)" onmouseover="showTip(event, 'fs38', 105)" class="id">ALLOW</span><span class="pn">,</span>
+                <span class="fn">Principals</span> <span class="o">=</span> <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs48', 106)" onmouseover="showTip(event, 'fs48', 106)" class="fn">ArnPrincipal</span><span class="pn">(</span><span class="s">&quot;arn:aws:iam::123456789012:role/AdminRole&quot;</span><span class="pn">)</span> <span class="o">:&gt;</span> <span onmouseout="hideTip(event, 'fs40', 107)" onmouseover="showTip(event, 'fs40', 107)" class="if">IPrincipal</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Actions</span> <span class="o">=</span> <span class="pn">[|</span> <span class="s">&quot;s3:*&quot;</span> <span class="pn">|]</span><span class="pn">,</span>
+                <span class="fn">Resources</span> <span class="o">=</span>
+                    <span class="pn">[|</span> <span onmouseout="hideTip(event, 'fs45', 108)" onmouseover="showTip(event, 'fs45', 108)" class="fn">secureBucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 109)" onmouseover="showTip(event, 'fs41', 109)" class="prop">Bucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 110)" onmouseover="showTip(event, 'fs42', 110)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 111)" onmouseover="showTip(event, 'fs43', 111)" class="id">BucketArn</span>
+                       <span onmouseout="hideTip(event, 'fs45', 112)" onmouseover="showTip(event, 'fs45', 112)" class="fn">secureBucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 113)" onmouseover="showTip(event, 'fs41', 113)" class="prop">Bucket</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 114)" onmouseover="showTip(event, 'fs42', 114)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs43', 115)" onmouseover="showTip(event, 'fs43', 115)" class="id">BucketArn</span> <span class="o">+</span> <span class="s">&quot;/*&quot;</span> <span class="pn">|]</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 116)" onmouseover="showTip(event, 'fs14', 116)" class="fn">bucketPolicy</span> <span class="s">&quot;ComprehensivePolicy&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs15', 117)" onmouseover="showTip(event, 'fs15', 117)" class="k">bucket</span> <span onmouseout="hideTip(event, 'fs45', 118)" onmouseover="showTip(event, 'fs45', 118)" class="fn">secureBucket</span>
+        <span onmouseout="hideTip(event, 'fs16', 119)" onmouseover="showTip(event, 'fs16', 119)" class="k">denyInsecureTransport</span>
+        <span onmouseout="hideTip(event, 'fs30', 120)" onmouseover="showTip(event, 'fs30', 120)" class="k">allowFromIpAddresses</span> <span class="pn">[</span> <span class="s">&quot;10.0.0.0/8&quot;</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs44', 121)" onmouseover="showTip(event, 'fs44', 121)" class="k">statement</span> <span onmouseout="hideTip(event, 'fs47', 122)" onmouseover="showTip(event, 'fs47', 122)" class="fn">adminStatement</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<h3><a name="Security" class="anchor" href="#Security">Security</a></h3>
+<ul>
+<li>✅ Always deny insecure transport (HTTP)</li>
+<li>✅ Use principle of least privilege</li>
+<li>✅ Restrict access by IP when possible</li>
+<li>✅ Enable bucket versioning with policies</li>
+<li>✅ Use MFA delete for critical buckets</li>
+</ul>
+<h3><a name="Operational-Excellence" class="anchor" href="#Operational-Excellence">Operational Excellence</a></h3>
+<ul>
+<li>✅ Use descriptive Sid values for statements</li>
+<li>✅ Document policy purpose in comments</li>
+<li>✅ Test policies before production deployment</li>
+<li>✅ Version control your policies</li>
+</ul>
+<h3><a name="Compliance" class="anchor" href="#Compliance">Compliance</a></h3>
+<ul>
+<li>✅ Audit bucket access regularly</li>
+<li>✅ Enable S3 access logging</li>
+<li>✅ Use AWS Config to monitor policy changes</li>
+<li>✅ Implement encryption requirements in policies</li>
+</ul>
+<h3><a name="Performance" class="anchor" href="#Performance">Performance</a></h3>
+<ul>
+<li>✅ Minimize policy complexity</li>
+<li>✅ Use bucket policies over ACLs</li>
+<li>✅ Cache policy evaluation results when possible</li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.IAM</div>
+<div class="fsdocs-tip" id="fs7">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs8">val myBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs9">val bucket: name: string -&gt; BucketBuilder</div>
+<div class="fsdocs-tip" id="fs10">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: encryption (BucketEncryption)
+
+Calls BucketBuilder.Encryption</div>
+<div class="fsdocs-tip" id="fs12">[&lt;Struct&gt;]
+type BucketEncryption =
+  | UNENCRYPTED = 0
+  | KMS_MANAGED = 1
+  | S3_MANAGED = 2
+  | KMS = 3
+  | DSSE_MANAGED = 4
+  | DSSE = 5</div>
+<div class="fsdocs-tip" id="fs13">field BucketEncryption.S3_MANAGED: BucketEncryption = 2</div>
+<div class="fsdocs-tip" id="fs14">val bucketPolicy: name: string -&gt; BucketPolicyBuilder<br /><em>&lt;summary&gt;Creates an S3 Bucket Policy with AWS security best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The policy name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucketPolicy &quot;MyBucketPolicy&quot; {
+     bucket myBucket
+     denyInsecureTransport
+     allowFromIpAddresses [&quot;203.0.113.0/24&quot;; &quot;198.51.100.0/24&quot;]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: bucket (BucketSpec)
+
+Calls BucketPolicyBuilder.Bucket<br /><em>&lt;summary&gt;Sets the bucket for the policy from a BucketSpec.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: denyInsecureTransport
+
+Calls BucketPolicyBuilder.DenyInsecureTransport<br /><em>&lt;summary&gt;Adds a statement that denies non-HTTPS requests (security best practice).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">namespace Amazon.CDK.AWS.CloudFront</div>
+<div class="fsdocs-tip" id="fs18">val websiteBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs19">custom operation: blockPublicAccess (BlockPublicAccess)
+
+Calls BucketBuilder.BlockPublicAccess</div>
+<div class="fsdocs-tip" id="fs20">Multiple items<br />type BlockPublicAccess =
+  inherit DeputyBase
+  new: options: IBlockPublicAccessOptions -&gt; unit
+  member BlockPublicAcls: Nullable&lt;bool&gt;
+  member BlockPublicPolicy: Nullable&lt;bool&gt;
+  member IgnorePublicAcls: Nullable&lt;bool&gt;
+  member RestrictPublicBuckets: Nullable&lt;bool&gt;
+  static member BLOCK_ACLS: BlockPublicAccess
+  static member BLOCK_ACLS_ONLY: BlockPublicAccess
+  static member BLOCK_ALL: BlockPublicAccess<br /><br />--------------------<br />BlockPublicAccess(options: IBlockPublicAccessOptions) : BlockPublicAccess</div>
+<div class="fsdocs-tip" id="fs21">property BlockPublicAccess.BLOCK_ALL: BlockPublicAccess with get</div>
+<div class="fsdocs-tip" id="fs22">val oai: OriginAccessIdentitySpec</div>
+<div class="fsdocs-tip" id="fs23">val originAccessIdentity: name: string -&gt; OriginAccessIdentityBuilder<br /><em>&lt;summary&gt;Creates a CloudFront Origin Access Identity.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The OAI name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ originAccessIdentity &quot;MyOAI&quot; {
+     comment &quot;Access to private S3 bucket&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">custom operation: comment (string)
+
+Calls OriginAccessIdentityBuilder.Comment<br /><em>&lt;summary&gt;Sets a comment for the OAI.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">custom operation: allowCloudFrontOAI (string)
+
+Calls BucketPolicyBuilder.AllowCloudFrontOAI<br /><em>&lt;summary&gt;Adds a statement that allows CloudFront OAI access.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">OriginAccessIdentitySpec.Identity: IOriginAccessIdentity option</div>
+<div class="fsdocs-tip" id="fs27">property Option.Value: IOriginAccessIdentity with get</div>
+<div class="fsdocs-tip" id="fs28">property IOriginAccessIdentity.OriginAccessIdentityId: string with get</div>
+<div class="fsdocs-tip" id="fs29">val privateBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs30">custom operation: allowFromIpAddresses (string list)
+
+Calls BucketPolicyBuilder.AllowFromIpAddresses<br /><em>&lt;summary&gt;Adds a statement that restricts access to specific IP addresses.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">val publicBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs32">custom operation: denyFromIpAddresses (string list)
+
+Calls BucketPolicyBuilder.DenyFromIpAddresses<br /><em>&lt;summary&gt;Adds a statement that denies access from specific IP addresses.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">val dataBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs34">val readOnlyStatement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs35">Multiple items<br />type PolicyStatement =
+  inherit DeputyBase
+  new: ?props: IPolicyStatementProps -&gt; unit
+  member AddAccountCondition: accountId: string -&gt; unit
+  member AddAccountRootPrincipal: unit -&gt; unit
+  member AddActions: [&lt;ParamArray&gt;] actions: string array -&gt; unit
+  member AddAllResources: unit -&gt; unit
+  member AddAnyPrincipal: unit -&gt; unit
+  member AddArnPrincipal: arn: string -&gt; unit
+  member AddAwsAccountPrincipal: accountId: string -&gt; unit
+  member AddCanonicalUserPrincipal: canonicalUserId: string -&gt; unit
+  ...<br /><br />--------------------<br />PolicyStatement(?props: IPolicyStatementProps) : PolicyStatement</div>
+<div class="fsdocs-tip" id="fs36">Multiple items<br />type PolicyStatementProps =
+  interface IPolicyStatementProps
+  new: unit -&gt; unit
+  member Actions: string array
+  member Conditions: IDictionary&lt;string,obj&gt;
+  member Effect: Nullable&lt;Effect&gt;
+  member NotActions: string array
+  member NotPrincipals: IPrincipal array
+  member NotResources: string array
+  member Principals: IPrincipal array
+  member Resources: string array
+  ...<br /><br />--------------------<br />PolicyStatementProps() : PolicyStatementProps</div>
+<div class="fsdocs-tip" id="fs37">[&lt;Struct&gt;]
+type Effect =
+  | ALLOW = 0
+  | DENY = 1</div>
+<div class="fsdocs-tip" id="fs38">field Effect.ALLOW: Effect = 0</div>
+<div class="fsdocs-tip" id="fs39">Multiple items<br />type AccountPrincipal =
+  inherit ArnPrincipal
+  new: accountId: obj -&gt; unit
+  member ToString: unit -&gt; string
+  member AccountId: obj
+  member PrincipalAccount: string<br /><br />--------------------<br />AccountPrincipal(accountId: obj) : AccountPrincipal</div>
+<div class="fsdocs-tip" id="fs40">type IPrincipal =
+  inherit IGrantable
+  override AddToPrincipalPolicy: statement: PolicyStatement -&gt; IAddToPrincipalPolicyResult
+  member AssumeRoleAction: string
+  member PolicyFragment: PrincipalPolicyFragment
+  member PrincipalAccount: string</div>
+<div class="fsdocs-tip" id="fs41">BucketSpec.Bucket: Bucket option<br /><em>&lt;summary&gt;
+ The underlying CDK Bucket construct - use for advanced scenarios
+&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">property Option.Value: Bucket with get</div>
+<div class="fsdocs-tip" id="fs43">property Bucket.BucketArn: string with get</div>
+<div class="fsdocs-tip" id="fs44">custom operation: statement (PolicyStatement)
+
+Calls BucketPolicyBuilder.Statement<br /><em>&lt;summary&gt;Adds a policy statement.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs45">val secureBucket: BucketSpec</div>
+<div class="fsdocs-tip" id="fs46">field BucketEncryption.KMS_MANAGED: BucketEncryption = 1</div>
+<div class="fsdocs-tip" id="fs47">val adminStatement: PolicyStatement</div>
+<div class="fsdocs-tip" id="fs48">Multiple items<br />type ArnPrincipal =
+  inherit PrincipalBase
+  new: arn: string -&gt; unit
+  member DedupeString: unit -&gt; string
+  member InOrganization: organizationId: string -&gt; PrincipalBase
+  member ToString: unit -&gt; string
+  member Arn: string
+  member PolicyFragment: PrincipalPolicyFragment<br /><br />--------------------<br />ArnPrincipal(arn: string) : ArnPrincipal</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#Quick-start-patterns">
+      Quick start patterns
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Enforce-HTTPS-only-access">
+      Enforce HTTPS-only access
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#CloudFront-Origin-Access-Identity">
+      CloudFront Origin Access Identity
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#IP-Address-Restrictions">
+      IP Address Restrictions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Deny-Specific-IP-Addresses">
+      Deny Specific IP Addresses
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Custom-Policy-Statements">
+      Custom Policy Statements
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Multi-Statement-Policy">
+      Multi-Statement Policy
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Operational-Excellence">
+      Operational Excellence
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Compliance">
+      Compliance
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Performance">
+      Performance
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

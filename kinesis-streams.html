@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Kinesis Streams Example" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Kinesis Streams Example">
+    
+    <title>Kinesis Streams Example | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Kinesis-Streams-Example" class="anchor" href="#Kinesis-Streams-Example"><img src="img/icons/Arch_Amazon-Kinesis_48.png" alt="Kinesis" /> Kinesis Streams Example</a></h1>
+<p>This example demonstrates how to create Amazon Kinesis Data Streams using FsCDK for real-time data streaming.</p>
+<h2><a name="What-is-Kinesis" class="anchor" href="#What-is-Kinesis">What is Kinesis?</a></h2>
+<p>Amazon Kinesis Data Streams enables you to build custom applications that process or analyze streaming data for specialized needs. It can continuously capture and store terabytes of data per hour from hundreds of thousands of sources.</p>
+<h2><a name="Prerequisites" class="anchor" href="#Prerequisites">Prerequisites</a></h2>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/8.0">.NET 8 SDK</a></li>
+<li><a href="https://docs.aws.amazon.com/cdk/latest/guide/cli.html">AWS CDK CLI</a> (<code>npm install -g aws-cdk</code>)</li>
+<li>AWS credentials configured (for deployment)</li>
+</ul>
+<h2><a name="Basic-Kinesis-Stream-with-Lambda-Consumer" class="anchor" href="#Basic-Kinesis-Stream-with-Lambda-Consumer">Basic Kinesis Stream with Lambda Consumer</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/System.Text.Json.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 3)" onmouseover="showTip(event, 'fs1', 3)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">Kinesis</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 7)" onmouseover="showTip(event, 'fs1', 7)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 10)" onmouseover="showTip(event, 'fs5', 10)" class="id">Lambda</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 11)" onmouseover="showTip(event, 'fs1', 11)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 14)" onmouseover="showTip(event, 'fs5', 14)" class="id">Lambda</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 15)" onmouseover="showTip(event, 'fs6', 15)" class="id">EventSources</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs7', 16)" onmouseover="showTip(event, 'fs7', 16)" class="id">FsCDK</span>
+</code></pre>
+<h2><a name="Stream-Configuration-Options" class="anchor" href="#Stream-Configuration-Options">Stream Configuration Options</a></h2>
+<h3><a name="On-Demand-Mode" class="anchor" href="#On-Demand-Mode">On-Demand Mode</a></h3>
+<p>For unpredictable workloads, use on-demand capacity mode. The stream automatically scales to handle varying throughput.</p>
+<p><strong>When to use:</strong>
+- Unpredictable traffic patterns
+- Sporadic workloads
+- New applications with unknown load</p>
+<p><strong>Pricing:</strong> Pay per GB of data written and read</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 60)" onmouseover="showTip(event, 'fs14', 60)" class="fn">stack</span> <span class="s">&quot;OnDemandKinesisStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 61)" onmouseover="showTip(event, 'fs20', 61)" class="k">description</span> <span class="s">&quot;Kinesis stream with on-demand capacity&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs44', 62)" onmouseover="showTip(event, 'fs44', 62)" class="fn">onDemandStream</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 63)" onmouseover="showTip(event, 'fs23', 63)" class="fn">kinesisStream</span> <span class="s">&quot;OnDemandStream&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 64)" onmouseover="showTip(event, 'fs24', 64)" class="k">streamName</span> <span class="s">&quot;on-demand-stream&quot;</span>
+            <span onmouseout="hideTip(event, 'fs45', 65)" onmouseover="showTip(event, 'fs45', 65)" class="k">streamMode</span> <span onmouseout="hideTip(event, 'fs46', 66)" onmouseover="showTip(event, 'fs46', 66)" class="en">StreamMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs47', 67)" onmouseover="showTip(event, 'fs47', 67)" class="id">ON_DEMAND</span>
+            <span onmouseout="hideTip(event, 'fs26', 68)" onmouseover="showTip(event, 'fs26', 68)" class="k">retentionPeriod</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 69)" onmouseover="showTip(event, 'fs27', 69)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 70)" onmouseover="showTip(event, 'fs28', 70)" class="id">Hours</span> <span class="n">168.</span><span class="pn">)</span> <span class="c">// 7 days</span>
+            <span onmouseout="hideTip(event, 'fs29', 71)" onmouseover="showTip(event, 'fs29', 71)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs30', 72)" onmouseover="showTip(event, 'fs30', 72)" class="en">StreamEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 73)" onmouseover="showTip(event, 'fs31', 73)" class="id">KMS</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Provisioned-Mode-High-Throughput" class="anchor" href="#Provisioned-Mode-High-Throughput">Provisioned Mode (High Throughput)</a></h3>
+<p>For predictable, high-volume data ingestion with multiple shards.</p>
+<p><strong>When to use:</strong>
+- Consistent high throughput
+- Cost optimization with reserved capacity
+- Need for predictable performance</p>
+<p><strong>Pricing:</strong> Pay per shard-hour</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 74)" onmouseover="showTip(event, 'fs14', 74)" class="fn">stack</span> <span class="s">&quot;HighThroughputKinesisStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 75)" onmouseover="showTip(event, 'fs20', 75)" class="k">description</span> <span class="s">&quot;High-throughput Kinesis stream with multiple shards&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs48', 76)" onmouseover="showTip(event, 'fs48', 76)" class="fn">highThroughputStream</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 77)" onmouseover="showTip(event, 'fs23', 77)" class="fn">kinesisStream</span> <span class="s">&quot;HighThroughputStream&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 78)" onmouseover="showTip(event, 'fs24', 78)" class="k">streamName</span> <span class="s">&quot;high-throughput-stream&quot;</span>
+            <span onmouseout="hideTip(event, 'fs25', 79)" onmouseover="showTip(event, 'fs25', 79)" class="k">shardCount</span> <span class="n">10</span>
+            <span onmouseout="hideTip(event, 'fs26', 80)" onmouseover="showTip(event, 'fs26', 80)" class="k">retentionPeriod</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 81)" onmouseover="showTip(event, 'fs27', 81)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 82)" onmouseover="showTip(event, 'fs28', 82)" class="id">Hours</span> <span class="n">168.</span><span class="pn">)</span> <span class="c">// 7 days</span>
+            <span onmouseout="hideTip(event, 'fs29', 83)" onmouseover="showTip(event, 'fs29', 83)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs30', 84)" onmouseover="showTip(event, 'fs30', 84)" class="en">StreamEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 85)" onmouseover="showTip(event, 'fs31', 85)" class="id">KMS</span>
+        <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Use-Cases" class="anchor" href="#Use-Cases">Use Cases</a></h2>
+<h3><a name="1-Real-Time-Analytics-Pipeline" class="anchor" href="#1-Real-Time-Analytics-Pipeline">1. Real-Time Analytics Pipeline</a></h3>
+<p>Process streaming data for real-time dashboards and metrics.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 86)" onmouseover="showTip(event, 'fs14', 86)" class="fn">stack</span> <span class="s">&quot;AnalyticsPipelineStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 87)" onmouseover="showTip(event, 'fs20', 87)" class="k">description</span> <span class="s">&quot;Real-time analytics with Kinesis and Lambda&quot;</span>
+
+    <span class="c">// Kinesis stream captures clickstream data</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs49', 88)" onmouseover="showTip(event, 'fs49', 88)" class="fn">clickstream</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 89)" onmouseover="showTip(event, 'fs23', 89)" class="fn">kinesisStream</span> <span class="s">&quot;ClickstreamData&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 90)" onmouseover="showTip(event, 'fs24', 90)" class="k">streamName</span> <span class="s">&quot;clickstream-events&quot;</span>
+            <span onmouseout="hideTip(event, 'fs25', 91)" onmouseover="showTip(event, 'fs25', 91)" class="k">shardCount</span> <span class="n">5</span>
+            <span onmouseout="hideTip(event, 'fs26', 92)" onmouseover="showTip(event, 'fs26', 92)" class="k">retentionPeriod</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 93)" onmouseover="showTip(event, 'fs27', 93)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 94)" onmouseover="showTip(event, 'fs28', 94)" class="id">Hours</span> <span class="n">48.</span><span class="pn">)</span>
+            <span onmouseout="hideTip(event, 'fs29', 95)" onmouseover="showTip(event, 'fs29', 95)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs30', 96)" onmouseover="showTip(event, 'fs30', 96)" class="en">StreamEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 97)" onmouseover="showTip(event, 'fs31', 97)" class="id">KMS</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Lambda processes events in real-time</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs50', 98)" onmouseover="showTip(event, 'fs50', 98)" class="fn">analyticsProcessor</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs33', 99)" onmouseover="showTip(event, 'fs33', 99)" class="fn">lambda</span> <span class="s">&quot;analytics-processor&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs34', 100)" onmouseover="showTip(event, 'fs34', 100)" class="k">handler</span> <span class="s">&quot;analytics.handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs35', 101)" onmouseover="showTip(event, 'fs35', 101)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs36', 102)" onmouseover="showTip(event, 'fs36', 102)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 103)" onmouseover="showTip(event, 'fs51', 103)" class="id">PYTHON_3_11</span>
+            <span onmouseout="hideTip(event, 'fs38', 104)" onmouseover="showTip(event, 'fs38', 104)" class="k">code</span> <span class="s">&quot;./analytics-code&quot;</span>
+            <span onmouseout="hideTip(event, 'fs39', 105)" onmouseover="showTip(event, 'fs39', 105)" class="k">memory</span> <span class="n">1024</span>
+            <span onmouseout="hideTip(event, 'fs40', 106)" onmouseover="showTip(event, 'fs40', 106)" class="k">timeout</span> <span class="n">60.0</span>
+
+            <span onmouseout="hideTip(event, 'fs41', 107)" onmouseover="showTip(event, 'fs41', 107)" class="k">environment</span>
+                <span class="pn">[</span> <span class="s">&quot;STREAM_NAME&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs49', 108)" onmouseover="showTip(event, 'fs49', 108)" class="fn">clickstream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 109)" onmouseover="showTip(event, 'fs42', 109)" class="id">StreamName</span>
+                  <span class="s">&quot;METRIC_NAMESPACE&quot;</span><span class="pn">,</span> <span class="s">&quot;Analytics/Clickstream&quot;</span> <span class="pn">]</span>
+
+            <span onmouseout="hideTip(event, 'fs43', 110)" onmouseover="showTip(event, 'fs43', 110)" class="k">description</span> <span class="s">&quot;Processes clickstream events for real-time analytics&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// This value-cross-linking would need some nicer API.</span>
+    <span onmouseout="hideTip(event, 'fs49', 111)" onmouseover="showTip(event, 'fs49', 111)" class="fn">clickstream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 112)" onmouseover="showTip(event, 'fs52', 112)" class="prop">GrantReads</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 113)" onmouseover="showTip(event, 'fs53', 113)" class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs50', 114)" onmouseover="showTip(event, 'fs50', 114)" class="fn">analyticsProcessor</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 115)" onmouseover="showTip(event, 'fs54', 115)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 116)" onmouseover="showTip(event, 'fs55', 116)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 117)" onmouseover="showTip(event, 'fs56', 117)" class="id">Role</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 118)" onmouseover="showTip(event, 'fs57', 118)" class="fn">ignore</span>
+
+    <span onmouseout="hideTip(event, 'fs50', 119)" onmouseover="showTip(event, 'fs50', 119)" class="fn">analyticsProcessor</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 120)" onmouseover="showTip(event, 'fs58', 120)" class="prop">EventSources</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 121)" onmouseover="showTip(event, 'fs59', 121)" class="id">Add</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs60', 122)" onmouseover="showTip(event, 'fs60', 122)" class="fn">KinesisEventSource</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs49', 123)" onmouseover="showTip(event, 'fs49', 123)" class="fn">clickstream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 124)" onmouseover="showTip(event, 'fs61', 124)" class="prop">Stream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 125)" onmouseover="showTip(event, 'fs62', 125)" class="id">Value</span><span class="pn">,</span>
+            <span onmouseout="hideTip(event, 'fs63', 126)" onmouseover="showTip(event, 'fs63', 126)" class="fn">KinesisEventSourceProps</span><span class="pn">(</span>
+                <span onmouseout="hideTip(event, 'fs64', 127)" onmouseover="showTip(event, 'fs64', 127)" class="fn">StartingPosition</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs64', 128)" onmouseover="showTip(event, 'fs64', 128)" class="en">StartingPosition</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 129)" onmouseover="showTip(event, 'fs65', 129)" class="id">LATEST</span><span class="pn">,</span>
+                <span class="fn">BatchSize</span> <span class="o">=</span> <span class="n">500.</span><span class="pn">,</span>
+                <span class="fn">MaxBatchingWindow</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 130)" onmouseover="showTip(event, 'fs27', 130)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 131)" onmouseover="showTip(event, 'fs66', 131)" class="id">Seconds</span><span class="pn">(</span><span class="n">10.</span><span class="pn">)</span><span class="pn">,</span>
+                <span class="fn">ParallelizationFactor</span> <span class="o">=</span> <span class="n">5.</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 132)" onmouseover="showTip(event, 'fs57', 132)" class="fn">ignore</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="2-Event-Streaming-Architecture" class="anchor" href="#2-Event-Streaming-Architecture">2. Event Streaming Architecture</a></h3>
+<p>Capture application events for multiple independent consumers.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 133)" onmouseover="showTip(event, 'fs14', 133)" class="fn">stack</span> <span class="s">&quot;EventStreamingStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 134)" onmouseover="showTip(event, 'fs20', 134)" class="k">description</span> <span class="s">&quot;Event streaming with multiple consumers&quot;</span>
+
+    <span class="c">// Central event stream</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs67', 135)" onmouseover="showTip(event, 'fs67', 135)" class="fn">eventStream</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 136)" onmouseover="showTip(event, 'fs23', 136)" class="fn">kinesisStream</span> <span class="s">&quot;ApplicationEvents&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 137)" onmouseover="showTip(event, 'fs24', 137)" class="k">streamName</span> <span class="s">&quot;application-events&quot;</span>
+            <span onmouseout="hideTip(event, 'fs25', 138)" onmouseover="showTip(event, 'fs25', 138)" class="k">shardCount</span> <span class="n">3</span>
+            <span onmouseout="hideTip(event, 'fs26', 139)" onmouseover="showTip(event, 'fs26', 139)" class="k">retentionPeriod</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 140)" onmouseover="showTip(event, 'fs27', 140)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 141)" onmouseover="showTip(event, 'fs28', 141)" class="id">Hours</span> <span class="n">72.</span><span class="pn">)</span>
+            <span onmouseout="hideTip(event, 'fs29', 142)" onmouseover="showTip(event, 'fs29', 142)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs30', 143)" onmouseover="showTip(event, 'fs30', 143)" class="en">StreamEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 144)" onmouseover="showTip(event, 'fs31', 144)" class="id">KMS</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Consumer 1: Event archiver</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs68', 145)" onmouseover="showTip(event, 'fs68', 145)" class="fn">archiver</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs33', 146)" onmouseover="showTip(event, 'fs33', 146)" class="fn">lambda</span> <span class="s">&quot;event-archiver&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs34', 147)" onmouseover="showTip(event, 'fs34', 147)" class="k">handler</span> <span class="s">&quot;archiver.handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs35', 148)" onmouseover="showTip(event, 'fs35', 148)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs36', 149)" onmouseover="showTip(event, 'fs36', 149)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 150)" onmouseover="showTip(event, 'fs51', 150)" class="id">PYTHON_3_11</span>
+            <span onmouseout="hideTip(event, 'fs38', 151)" onmouseover="showTip(event, 'fs38', 151)" class="k">code</span> <span class="s">&quot;./archiver-code&quot;</span>
+            <span onmouseout="hideTip(event, 'fs39', 152)" onmouseover="showTip(event, 'fs39', 152)" class="k">memory</span> <span class="n">512</span>
+            <span onmouseout="hideTip(event, 'fs40', 153)" onmouseover="showTip(event, 'fs40', 153)" class="k">timeout</span> <span class="n">120.0</span>
+            <span onmouseout="hideTip(event, 'fs43', 154)" onmouseover="showTip(event, 'fs43', 154)" class="k">description</span> <span class="s">&quot;Archives events to S3&quot;</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs67', 155)" onmouseover="showTip(event, 'fs67', 155)" class="fn">eventStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 156)" onmouseover="showTip(event, 'fs52', 156)" class="prop">GrantReads</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 157)" onmouseover="showTip(event, 'fs53', 157)" class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs68', 158)" onmouseover="showTip(event, 'fs68', 158)" class="fn">archiver</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 159)" onmouseover="showTip(event, 'fs54', 159)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 160)" onmouseover="showTip(event, 'fs55', 160)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 161)" onmouseover="showTip(event, 'fs56', 161)" class="id">Role</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 162)" onmouseover="showTip(event, 'fs57', 162)" class="fn">ignore</span>
+
+    <span onmouseout="hideTip(event, 'fs68', 163)" onmouseover="showTip(event, 'fs68', 163)" class="fn">archiver</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 164)" onmouseover="showTip(event, 'fs58', 164)" class="prop">EventSources</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 165)" onmouseover="showTip(event, 'fs59', 165)" class="id">Add</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs60', 166)" onmouseover="showTip(event, 'fs60', 166)" class="fn">KinesisEventSource</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs67', 167)" onmouseover="showTip(event, 'fs67', 167)" class="fn">eventStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 168)" onmouseover="showTip(event, 'fs61', 168)" class="prop">Stream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 169)" onmouseover="showTip(event, 'fs62', 169)" class="id">Value</span><span class="pn">,</span>
+            <span onmouseout="hideTip(event, 'fs63', 170)" onmouseover="showTip(event, 'fs63', 170)" class="fn">KinesisEventSourceProps</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs64', 171)" onmouseover="showTip(event, 'fs64', 171)" class="fn">StartingPosition</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs64', 172)" onmouseover="showTip(event, 'fs64', 172)" class="en">StartingPosition</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 173)" onmouseover="showTip(event, 'fs69', 173)" class="id">TRIM_HORIZON</span><span class="pn">,</span> <span class="fn">BatchSize</span> <span class="o">=</span> <span class="n">100.</span><span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 174)" onmouseover="showTip(event, 'fs57', 174)" class="fn">ignore</span>
+
+    <span class="c">// Consumer 2: Metrics aggregator</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs70', 175)" onmouseover="showTip(event, 'fs70', 175)" class="fn">metricsAggregator</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs33', 176)" onmouseover="showTip(event, 'fs33', 176)" class="fn">lambda</span> <span class="s">&quot;metrics-aggregator&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs34', 177)" onmouseover="showTip(event, 'fs34', 177)" class="k">handler</span> <span class="s">&quot;metrics.handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs35', 178)" onmouseover="showTip(event, 'fs35', 178)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs36', 179)" onmouseover="showTip(event, 'fs36', 179)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs37', 180)" onmouseover="showTip(event, 'fs37', 180)" class="id">NODEJS_18_X</span>
+            <span onmouseout="hideTip(event, 'fs38', 181)" onmouseover="showTip(event, 'fs38', 181)" class="k">code</span> <span class="s">&quot;./metrics-code&quot;</span>
+            <span onmouseout="hideTip(event, 'fs39', 182)" onmouseover="showTip(event, 'fs39', 182)" class="k">memory</span> <span class="n">512</span>
+            <span onmouseout="hideTip(event, 'fs40', 183)" onmouseover="showTip(event, 'fs40', 183)" class="k">timeout</span> <span class="n">60.0</span>
+            <span onmouseout="hideTip(event, 'fs43', 184)" onmouseover="showTip(event, 'fs43', 184)" class="k">description</span> <span class="s">&quot;Aggregates metrics from events&quot;</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs67', 185)" onmouseover="showTip(event, 'fs67', 185)" class="fn">eventStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 186)" onmouseover="showTip(event, 'fs52', 186)" class="prop">GrantReads</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 187)" onmouseover="showTip(event, 'fs53', 187)" class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs70', 188)" onmouseover="showTip(event, 'fs70', 188)" class="fn">metricsAggregator</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 189)" onmouseover="showTip(event, 'fs54', 189)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 190)" onmouseover="showTip(event, 'fs55', 190)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 191)" onmouseover="showTip(event, 'fs56', 191)" class="id">Role</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 192)" onmouseover="showTip(event, 'fs57', 192)" class="fn">ignore</span>
+
+    <span onmouseout="hideTip(event, 'fs70', 193)" onmouseover="showTip(event, 'fs70', 193)" class="fn">metricsAggregator</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 194)" onmouseover="showTip(event, 'fs58', 194)" class="prop">EventSources</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 195)" onmouseover="showTip(event, 'fs59', 195)" class="id">Add</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs60', 196)" onmouseover="showTip(event, 'fs60', 196)" class="fn">KinesisEventSource</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs67', 197)" onmouseover="showTip(event, 'fs67', 197)" class="fn">eventStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 198)" onmouseover="showTip(event, 'fs61', 198)" class="prop">Stream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 199)" onmouseover="showTip(event, 'fs62', 199)" class="id">Value</span><span class="pn">,</span>
+            <span onmouseout="hideTip(event, 'fs63', 200)" onmouseover="showTip(event, 'fs63', 200)" class="fn">KinesisEventSourceProps</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs64', 201)" onmouseover="showTip(event, 'fs64', 201)" class="fn">StartingPosition</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs64', 202)" onmouseover="showTip(event, 'fs64', 202)" class="en">StartingPosition</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 203)" onmouseover="showTip(event, 'fs65', 203)" class="id">LATEST</span><span class="pn">,</span> <span class="fn">BatchSize</span> <span class="o">=</span> <span class="n">200.</span><span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 204)" onmouseover="showTip(event, 'fs57', 204)" class="fn">ignore</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="3-Log-Aggregation" class="anchor" href="#3-Log-Aggregation">3. Log Aggregation</a></h3>
+<p>Centralize logs from multiple sources for analysis and storage.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 205)" onmouseover="showTip(event, 'fs14', 205)" class="fn">stack</span> <span class="s">&quot;LogAggregationStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 206)" onmouseover="showTip(event, 'fs20', 206)" class="k">description</span> <span class="s">&quot;Centralized log aggregation with Kinesis&quot;</span>
+
+    <span class="c">// Log aggregation stream</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs71', 207)" onmouseover="showTip(event, 'fs71', 207)" class="fn">logStream</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 208)" onmouseover="showTip(event, 'fs23', 208)" class="fn">kinesisStream</span> <span class="s">&quot;LogAggregation&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 209)" onmouseover="showTip(event, 'fs24', 209)" class="k">streamName</span> <span class="s">&quot;application-logs&quot;</span>
+            <span onmouseout="hideTip(event, 'fs25', 210)" onmouseover="showTip(event, 'fs25', 210)" class="k">shardCount</span> <span class="n">4</span>
+            <span onmouseout="hideTip(event, 'fs26', 211)" onmouseover="showTip(event, 'fs26', 211)" class="k">retentionPeriod</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 212)" onmouseover="showTip(event, 'fs27', 212)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 213)" onmouseover="showTip(event, 'fs28', 213)" class="id">Hours</span> <span class="n">24.</span><span class="pn">)</span>
+            <span onmouseout="hideTip(event, 'fs29', 214)" onmouseover="showTip(event, 'fs29', 214)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs30', 215)" onmouseover="showTip(event, 'fs30', 215)" class="en">StreamEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 216)" onmouseover="showTip(event, 'fs31', 216)" class="id">KMS</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Log processor</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs72', 217)" onmouseover="showTip(event, 'fs72', 217)" class="fn">logProcessor</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs33', 218)" onmouseover="showTip(event, 'fs33', 218)" class="fn">lambda</span> <span class="s">&quot;log-processor&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs34', 219)" onmouseover="showTip(event, 'fs34', 219)" class="k">handler</span> <span class="s">&quot;logs.handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs35', 220)" onmouseover="showTip(event, 'fs35', 220)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs36', 221)" onmouseover="showTip(event, 'fs36', 221)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 222)" onmouseover="showTip(event, 'fs51', 222)" class="id">PYTHON_3_11</span>
+            <span onmouseout="hideTip(event, 'fs38', 223)" onmouseover="showTip(event, 'fs38', 223)" class="k">code</span> <span class="s">&quot;./log-processor-code&quot;</span>
+            <span onmouseout="hideTip(event, 'fs39', 224)" onmouseover="showTip(event, 'fs39', 224)" class="k">memory</span> <span class="n">1024</span>
+            <span onmouseout="hideTip(event, 'fs40', 225)" onmouseover="showTip(event, 'fs40', 225)" class="k">timeout</span> <span class="n">120.0</span>
+
+            <span onmouseout="hideTip(event, 'fs41', 226)" onmouseover="showTip(event, 'fs41', 226)" class="k">environment</span> <span class="pn">[</span> <span class="s">&quot;LOG_GROUP&quot;</span><span class="pn">,</span> <span class="s">&quot;/aws/kinesis/logs&quot;</span> <span class="pn">]</span>
+
+            <span onmouseout="hideTip(event, 'fs43', 227)" onmouseover="showTip(event, 'fs43', 227)" class="k">description</span> <span class="s">&quot;Processes and filters log data&quot;</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs71', 228)" onmouseover="showTip(event, 'fs71', 228)" class="fn">logStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 229)" onmouseover="showTip(event, 'fs52', 229)" class="prop">GrantReads</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 230)" onmouseover="showTip(event, 'fs53', 230)" class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs72', 231)" onmouseover="showTip(event, 'fs72', 231)" class="fn">logProcessor</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 232)" onmouseover="showTip(event, 'fs54', 232)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 233)" onmouseover="showTip(event, 'fs55', 233)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 234)" onmouseover="showTip(event, 'fs56', 234)" class="id">Role</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 235)" onmouseover="showTip(event, 'fs57', 235)" class="fn">ignore</span>
+
+    <span onmouseout="hideTip(event, 'fs72', 236)" onmouseover="showTip(event, 'fs72', 236)" class="fn">logProcessor</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 237)" onmouseover="showTip(event, 'fs58', 237)" class="prop">EventSources</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 238)" onmouseover="showTip(event, 'fs59', 238)" class="id">Add</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs60', 239)" onmouseover="showTip(event, 'fs60', 239)" class="fn">KinesisEventSource</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs71', 240)" onmouseover="showTip(event, 'fs71', 240)" class="fn">logStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 241)" onmouseover="showTip(event, 'fs61', 241)" class="prop">Stream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 242)" onmouseover="showTip(event, 'fs62', 242)" class="id">Value</span><span class="pn">,</span>
+            <span onmouseout="hideTip(event, 'fs63', 243)" onmouseover="showTip(event, 'fs63', 243)" class="fn">KinesisEventSourceProps</span><span class="pn">(</span>
+                <span onmouseout="hideTip(event, 'fs64', 244)" onmouseover="showTip(event, 'fs64', 244)" class="fn">StartingPosition</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs64', 245)" onmouseover="showTip(event, 'fs64', 245)" class="en">StartingPosition</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 246)" onmouseover="showTip(event, 'fs65', 246)" class="id">LATEST</span><span class="pn">,</span>
+                <span class="fn">BatchSize</span> <span class="o">=</span> <span class="n">500.</span><span class="pn">,</span>
+                <span class="fn">MaxBatchingWindow</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 247)" onmouseover="showTip(event, 'fs27', 247)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 248)" onmouseover="showTip(event, 'fs66', 248)" class="id">Seconds</span><span class="pn">(</span><span class="n">5.</span><span class="pn">)</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 249)" onmouseover="showTip(event, 'fs57', 249)" class="fn">ignore</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Security-Best-Practices" class="anchor" href="#Security-Best-Practices">Security Best Practices</a></h2>
+<h3><a name="Encryption" class="anchor" href="#Encryption">Encryption</a></h3>
+<p><strong>At-Rest Encryption:</strong>
+- KMS encryption is enabled by default
+- Use customer-managed keys for sensitive data
+- Automatic key rotation available</p>
+<p><strong>In-Transit Encryption:</strong>
+- TLS encryption for all data transmission
+- HTTPS endpoints only</p>
+<p>You can add encryptionKey as parameter to builder.</p>
+<h3><a name="IAM-Permissions" class="anchor" href="#IAM-Permissions">IAM Permissions</a></h3>
+<p>Grant least-privilege access to streams.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// Producer permissions</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs73', 250)" onmouseover="showTip(event, 'fs73', 250)" class="id">producerRole</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs74', 251)" onmouseover="showTip(event, 'fs74', 251)" class="m">IAM</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 252)" onmouseover="showTip(event, 'fs75', 252)" class="id">createRole</span> <span class="s">&quot;lambda.amazonaws.com&quot;</span> <span class="s">&quot;stream-producer-role&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs76', 253)" onmouseover="showTip(event, 'fs76', 253)" class="id">producerStmt</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs74', 254)" onmouseover="showTip(event, 'fs74', 254)" class="m">IAM</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs77', 255)" onmouseover="showTip(event, 'fs77', 255)" class="id">allow</span> <span class="pn">[</span> <span class="s">&quot;kinesis:PutRecord&quot;</span><span class="pn">;</span> <span class="s">&quot;kinesis:PutRecords&quot;</span> <span class="pn">]</span> <span class="pn">[</span> <span class="s">&quot;arn:aws:kinesis:*:*:stream/my-stream&quot;</span> <span class="pn">]</span>
+<span class="c">//producerRole.AddToPolicy producerStmt |&gt; ignore</span>
+
+<span class="c">// Consumer permissions</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs78', 256)" onmouseover="showTip(event, 'fs78', 256)" class="id">consumerRole</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs74', 257)" onmouseover="showTip(event, 'fs74', 257)" class="m">IAM</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs75', 258)" onmouseover="showTip(event, 'fs75', 258)" class="id">createRole</span> <span class="s">&quot;lambda.amazonaws.com&quot;</span> <span class="s">&quot;stream-consumer-role&quot;</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs79', 259)" onmouseover="showTip(event, 'fs79', 259)" class="id">consumerStmt</span> <span class="o">=</span>
+    <span onmouseout="hideTip(event, 'fs74', 260)" onmouseover="showTip(event, 'fs74', 260)" class="m">IAM</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs77', 261)" onmouseover="showTip(event, 'fs77', 261)" class="id">allow</span>
+        <span class="pn">[</span> <span class="s">&quot;kinesis:GetRecords&quot;</span>
+          <span class="s">&quot;kinesis:GetShardIterator&quot;</span>
+          <span class="s">&quot;kinesis:DescribeStream&quot;</span>
+          <span class="s">&quot;kinesis:ListShards&quot;</span> <span class="pn">]</span>
+        <span class="pn">[</span> <span class="s">&quot;arn:aws:kinesis:*:*:stream/my-stream&quot;</span> <span class="pn">]</span>
+<span class="c">//consumerRole.AddToPolicy consumerStmt |&gt; ignore</span>
+</code></pre>
+<h2><a name="Monitoring-and-Observability" class="anchor" href="#Monitoring-and-Observability">Monitoring and Observability</a></h2>
+<h3><a name="CloudWatch-Metrics" class="anchor" href="#CloudWatch-Metrics">CloudWatch Metrics</a></h3>
+<p>Kinesis automatically publishes metrics for monitoring:</p>
+<ul>
+<li><strong>IncomingBytes</strong>: Data volume ingested</li>
+<li><strong>IncomingRecords</strong>: Record count ingested</li>
+<li><strong>GetRecords.IteratorAgeMilliseconds</strong>: Consumer lag</li>
+<li><strong>WriteProvisionedThroughputExceeded</strong>: Throttling events</li>
+<li><strong>ReadProvisionedThroughputExceeded</strong>: Consumer throttling</li>
+</ul>
+<h3><a name="CloudWatch-Alarms" class="anchor" href="#CloudWatch-Alarms">CloudWatch Alarms</a></h3>
+<p>Monitor stream health with alarms:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 262)" onmouseover="showTip(event, 'fs14', 262)" class="fn">stack</span> <span class="s">&quot;MonitoredKinesisStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 263)" onmouseover="showTip(event, 'fs20', 263)" class="k">description</span> <span class="s">&quot;Kinesis stream with CloudWatch monitoring&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs80', 264)" onmouseover="showTip(event, 'fs80', 264)" class="fn">monitoredStream</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 265)" onmouseover="showTip(event, 'fs23', 265)" class="fn">kinesisStream</span> <span class="s">&quot;MonitoredStream&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 266)" onmouseover="showTip(event, 'fs24', 266)" class="k">streamName</span> <span class="s">&quot;monitored-stream&quot;</span>
+            <span onmouseout="hideTip(event, 'fs25', 267)" onmouseover="showTip(event, 'fs25', 267)" class="k">shardCount</span> <span class="n">2</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Alarm for consumer lag</span>
+    <span onmouseout="hideTip(event, 'fs81', 268)" onmouseover="showTip(event, 'fs81', 268)" class="fn">cloudwatchAlarm</span> <span class="s">&quot;stream-lag-alarm&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs82', 269)" onmouseover="showTip(event, 'fs82', 269)" class="k">description</span> <span class="s">&quot;Alert when consumers fall behind&quot;</span>
+        <span onmouseout="hideTip(event, 'fs83', 270)" onmouseover="showTip(event, 'fs83', 270)" class="k">metricNamespace</span> <span class="s">&quot;AWS/Kinesis&quot;</span>
+        <span onmouseout="hideTip(event, 'fs84', 271)" onmouseover="showTip(event, 'fs84', 271)" class="k">metricName</span> <span class="s">&quot;GetRecords.IteratorAgeMilliseconds&quot;</span>
+        <span onmouseout="hideTip(event, 'fs85', 272)" onmouseover="showTip(event, 'fs85', 272)" class="k">dimensions</span> <span class="pn">[</span> <span class="s">&quot;StreamName&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs80', 273)" onmouseover="showTip(event, 'fs80', 273)" class="fn">monitoredStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 274)" onmouseover="showTip(event, 'fs42', 274)" class="id">StreamName</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs86', 275)" onmouseover="showTip(event, 'fs86', 275)" class="k">statistic</span> <span class="s">&quot;Maximum&quot;</span>
+        <span onmouseout="hideTip(event, 'fs87', 276)" onmouseover="showTip(event, 'fs87', 276)" class="k">threshold</span> <span class="n">60000.0</span> <span class="c">// 1 minute in milliseconds</span>
+        <span onmouseout="hideTip(event, 'fs88', 277)" onmouseover="showTip(event, 'fs88', 277)" class="k">evaluationPeriods</span> <span class="n">2</span>
+        <span onmouseout="hideTip(event, 'fs89', 278)" onmouseover="showTip(event, 'fs89', 278)" class="k">period</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 279)" onmouseover="showTip(event, 'fs27', 279)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs90', 280)" onmouseover="showTip(event, 'fs90', 280)" class="id">Minutes</span><span class="pn">(</span><span class="n">5.0</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="pn">}</span>
+
+    <span class="c">// Alarm for write throttling</span>
+    <span onmouseout="hideTip(event, 'fs81', 281)" onmouseover="showTip(event, 'fs81', 281)" class="fn">cloudwatchAlarm</span> <span class="s">&quot;write-throttle-alarm&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs82', 282)" onmouseover="showTip(event, 'fs82', 282)" class="k">description</span> <span class="s">&quot;Alert on write throttling&quot;</span>
+        <span onmouseout="hideTip(event, 'fs83', 283)" onmouseover="showTip(event, 'fs83', 283)" class="k">metricNamespace</span> <span class="s">&quot;AWS/Kinesis&quot;</span>
+        <span onmouseout="hideTip(event, 'fs84', 284)" onmouseover="showTip(event, 'fs84', 284)" class="k">metricName</span> <span class="s">&quot;WriteProvisionedThroughputExceeded&quot;</span>
+        <span onmouseout="hideTip(event, 'fs85', 285)" onmouseover="showTip(event, 'fs85', 285)" class="k">dimensions</span> <span class="pn">[</span> <span class="s">&quot;StreamName&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs80', 286)" onmouseover="showTip(event, 'fs80', 286)" class="fn">monitoredStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 287)" onmouseover="showTip(event, 'fs42', 287)" class="id">StreamName</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs86', 288)" onmouseover="showTip(event, 'fs86', 288)" class="k">statistic</span> <span class="s">&quot;Sum&quot;</span>
+        <span onmouseout="hideTip(event, 'fs87', 289)" onmouseover="showTip(event, 'fs87', 289)" class="k">threshold</span> <span class="n">10.0</span>
+        <span onmouseout="hideTip(event, 'fs88', 290)" onmouseover="showTip(event, 'fs88', 290)" class="k">evaluationPeriods</span> <span class="n">1</span>
+        <span onmouseout="hideTip(event, 'fs89', 291)" onmouseover="showTip(event, 'fs89', 291)" class="k">period</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 292)" onmouseover="showTip(event, 'fs27', 292)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs90', 293)" onmouseover="showTip(event, 'fs90', 293)" class="id">Minutes</span><span class="pn">(</span><span class="n">5.0</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Performance-Optimization" class="anchor" href="#Performance-Optimization">Performance Optimization</a></h2>
+<h3><a name="Shard-Calculation" class="anchor" href="#Shard-Calculation">Shard Calculation</a></h3>
+<p>Calculate required shards based on throughput requirements:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">Incoming</span> <span class="id">write</span> <span class="id">bandwidth</span><span class="pn">:</span> <span class="n">1</span> <span class="id">MB</span><span class="o">/</span><span class="id">sec</span> <span class="id">per</span> <span class="id">shard</span>
+<span class="id">Outgoing</span> <span class="id">read</span> <span class="id">bandwidth</span><span class="pn">:</span> <span class="n">2</span> <span class="id">MB</span><span class="o">/</span><span class="id">sec</span> <span class="id">per</span> <span class="id">shard</span>
+
+<span class="id">Required</span> <span class="id">shards</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs91', 294)" onmouseover="showTip(event, 'fs91', 294)" class="id">max</span><span class="pn">(</span>
+    <span class="id">incoming_write_bandwidth_in_MB</span> <span class="o">/</span> <span class="n">1</span><span class="pn">,</span>
+    <span class="id">outgoing_read_bandwidth_in_MB</span> <span class="o">/</span> <span class="n">2</span>
+<span class="pn">)</span>
+</code></pre>
+<h3><a name="Batch-Processing-Configuration" class="anchor" href="#Batch-Processing-Configuration">Batch Processing Configuration</a></h3>
+<p>Optimize Lambda processing for cost and latency:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 295)" onmouseover="showTip(event, 'fs14', 295)" class="fn">stack</span> <span class="s">&quot;OptimizedProcessingStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs20', 296)" onmouseover="showTip(event, 'fs20', 296)" class="k">description</span> <span class="s">&quot;Optimized Kinesis processing with Lambda&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 297)" onmouseover="showTip(event, 'fs22', 297)" class="fn">stream</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 298)" onmouseover="showTip(event, 'fs23', 298)" class="fn">kinesisStream</span> <span class="s">&quot;OptimizedStream&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 299)" onmouseover="showTip(event, 'fs24', 299)" class="k">streamName</span> <span class="s">&quot;optimized-stream&quot;</span>
+            <span onmouseout="hideTip(event, 'fs25', 300)" onmouseover="showTip(event, 'fs25', 300)" class="k">shardCount</span> <span class="n">5</span>
+        <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs92', 301)" onmouseover="showTip(event, 'fs92', 301)" class="fn">optimizedConsumer</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs33', 302)" onmouseover="showTip(event, 'fs33', 302)" class="fn">lambda</span> <span class="s">&quot;optimized-consumer&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs34', 303)" onmouseover="showTip(event, 'fs34', 303)" class="k">handler</span> <span class="s">&quot;optimized.handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs35', 304)" onmouseover="showTip(event, 'fs35', 304)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs36', 305)" onmouseover="showTip(event, 'fs36', 305)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 306)" onmouseover="showTip(event, 'fs51', 306)" class="id">PYTHON_3_11</span>
+            <span onmouseout="hideTip(event, 'fs38', 307)" onmouseover="showTip(event, 'fs38', 307)" class="k">code</span> <span class="s">&quot;./optimized-code&quot;</span>
+            <span onmouseout="hideTip(event, 'fs39', 308)" onmouseover="showTip(event, 'fs39', 308)" class="k">memory</span> <span class="n">1024</span>
+            <span onmouseout="hideTip(event, 'fs40', 309)" onmouseover="showTip(event, 'fs40', 309)" class="k">timeout</span> <span class="n">300.0</span>
+            <span onmouseout="hideTip(event, 'fs93', 310)" onmouseover="showTip(event, 'fs93', 310)" class="k">reservedConcurrentExecutions</span> <span class="n">10</span>
+            <span onmouseout="hideTip(event, 'fs43', 311)" onmouseover="showTip(event, 'fs43', 311)" class="k">description</span> <span class="s">&quot;Optimized batch processor&quot;</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs22', 312)" onmouseover="showTip(event, 'fs22', 312)" class="fn">stream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 313)" onmouseover="showTip(event, 'fs52', 313)" class="prop">GrantReads</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 314)" onmouseover="showTip(event, 'fs53', 314)" class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs92', 315)" onmouseover="showTip(event, 'fs92', 315)" class="fn">optimizedConsumer</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 316)" onmouseover="showTip(event, 'fs54', 316)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 317)" onmouseover="showTip(event, 'fs55', 317)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 318)" onmouseover="showTip(event, 'fs56', 318)" class="id">Role</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 319)" onmouseover="showTip(event, 'fs57', 319)" class="fn">ignore</span>
+
+    <span class="c">// Optimized event source mapping</span>
+    <span onmouseout="hideTip(event, 'fs92', 320)" onmouseover="showTip(event, 'fs92', 320)" class="fn">optimizedConsumer</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 321)" onmouseover="showTip(event, 'fs58', 321)" class="prop">EventSources</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 322)" onmouseover="showTip(event, 'fs59', 322)" class="id">Add</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs60', 323)" onmouseover="showTip(event, 'fs60', 323)" class="fn">KinesisEventSource</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs22', 324)" onmouseover="showTip(event, 'fs22', 324)" class="fn">stream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 325)" onmouseover="showTip(event, 'fs61', 325)" class="prop">Stream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 326)" onmouseover="showTip(event, 'fs62', 326)" class="id">Value</span><span class="pn">,</span>
+            <span onmouseout="hideTip(event, 'fs63', 327)" onmouseover="showTip(event, 'fs63', 327)" class="fn">KinesisEventSourceProps</span><span class="pn">(</span>
+                <span onmouseout="hideTip(event, 'fs64', 328)" onmouseover="showTip(event, 'fs64', 328)" class="fn">StartingPosition</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs64', 329)" onmouseover="showTip(event, 'fs64', 329)" class="en">StartingPosition</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs65', 330)" onmouseover="showTip(event, 'fs65', 330)" class="id">LATEST</span><span class="pn">,</span>
+                <span class="fn">BatchSize</span> <span class="o">=</span> <span class="n">1000.</span><span class="pn">,</span> <span class="c">// Larger batches reduce Lambda invocations</span>
+                <span class="fn">MaxBatchingWindow</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 331)" onmouseover="showTip(event, 'fs27', 331)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 332)" onmouseover="showTip(event, 'fs66', 332)" class="id">Seconds</span><span class="pn">(</span><span class="n">10.</span><span class="pn">)</span><span class="pn">,</span> <span class="c">// Wait up to 10s to collect records</span>
+                <span class="fn">ParallelizationFactor</span> <span class="o">=</span> <span class="n">5.</span><span class="pn">,</span> <span class="c">// Process 5 batches per shard concurrently</span>
+                <span class="fn">RetryAttempts</span> <span class="o">=</span> <span class="n">3.</span><span class="pn">,</span> <span class="c">// Retry failed batches</span>
+                <span class="fn">MaxRecordAge</span> <span class="o">=</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 333)" onmouseover="showTip(event, 'fs27', 333)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 334)" onmouseover="showTip(event, 'fs28', 334)" class="id">Hours</span> <span class="n">24.</span><span class="pn">)</span><span class="pn">,</span> <span class="c">// Discard old records</span>
+                <span class="fn">BisectBatchOnError</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span> <span class="c">// Split batch on error for faster recovery</span>
+                <span class="fn">ReportBatchItemFailures</span> <span class="o">=</span> <span class="k">true</span> <span class="c">// Report individual failures</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 335)" onmouseover="showTip(event, 'fs57', 335)" class="fn">ignore</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Complete-Production-Example" class="anchor" href="#Complete-Production-Example">Complete Production Example</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs14', 336)" onmouseover="showTip(event, 'fs14', 336)" class="fn">stack</span> <span class="s">&quot;ProductionKinesisStack&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs15', 337)" onmouseover="showTip(event, 'fs15', 337)" class="id">environment</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs16', 338)" onmouseover="showTip(event, 'fs16', 338)" class="k">account</span> <span onmouseout="hideTip(event, 'fs12', 339)" onmouseover="showTip(event, 'fs12', 339)" class="id">config</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs17', 340)" onmouseover="showTip(event, 'fs17', 340)" class="id">Account</span>
+        <span onmouseout="hideTip(event, 'fs18', 341)" onmouseover="showTip(event, 'fs18', 341)" class="k">region</span> <span onmouseout="hideTip(event, 'fs12', 342)" onmouseover="showTip(event, 'fs12', 342)" class="id">config</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs19', 343)" onmouseover="showTip(event, 'fs19', 343)" class="id">Region</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs20', 344)" onmouseover="showTip(event, 'fs20', 344)" class="k">description</span> <span class="s">&quot;Production-ready Kinesis streaming pipeline&quot;</span>
+    <span onmouseout="hideTip(event, 'fs21', 345)" onmouseover="showTip(event, 'fs21', 345)" class="k">tags</span> <span class="pn">[</span> <span class="s">&quot;Environment&quot;</span><span class="pn">,</span> <span class="s">&quot;Production&quot;</span><span class="pn">;</span> <span class="s">&quot;Project&quot;</span><span class="pn">,</span> <span class="s">&quot;DataPipeline&quot;</span><span class="pn">;</span> <span class="s">&quot;ManagedBy&quot;</span><span class="pn">,</span> <span class="s">&quot;FsCDK&quot;</span> <span class="pn">]</span>
+
+    <span class="c">// Production stream with extended retention</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs94', 346)" onmouseover="showTip(event, 'fs94', 346)" class="fn">prodStream</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs23', 347)" onmouseover="showTip(event, 'fs23', 347)" class="fn">kinesisStream</span> <span class="s">&quot;ProductionStream&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs24', 348)" onmouseover="showTip(event, 'fs24', 348)" class="k">streamName</span> <span class="s">&quot;production-data-stream&quot;</span>
+            <span onmouseout="hideTip(event, 'fs25', 349)" onmouseover="showTip(event, 'fs25', 349)" class="k">shardCount</span> <span class="n">10</span>
+            <span onmouseout="hideTip(event, 'fs26', 350)" onmouseover="showTip(event, 'fs26', 350)" class="k">retentionPeriod</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 351)" onmouseover="showTip(event, 'fs27', 351)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 352)" onmouseover="showTip(event, 'fs28', 352)" class="id">Hours</span> <span class="n">168.</span><span class="pn">)</span>
+            <span onmouseout="hideTip(event, 'fs29', 353)" onmouseover="showTip(event, 'fs29', 353)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs30', 354)" onmouseover="showTip(event, 'fs30', 354)" class="en">StreamEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs31', 355)" onmouseover="showTip(event, 'fs31', 355)" class="id">KMS</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Producer Lambda</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs95', 356)" onmouseover="showTip(event, 'fs95', 356)" class="fn">producer</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs33', 357)" onmouseover="showTip(event, 'fs33', 357)" class="fn">lambda</span> <span class="s">&quot;data-producer&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs34', 358)" onmouseover="showTip(event, 'fs34', 358)" class="k">handler</span> <span class="s">&quot;producer.handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs35', 359)" onmouseover="showTip(event, 'fs35', 359)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs36', 360)" onmouseover="showTip(event, 'fs36', 360)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 361)" onmouseover="showTip(event, 'fs51', 361)" class="id">PYTHON_3_11</span>
+            <span onmouseout="hideTip(event, 'fs38', 362)" onmouseover="showTip(event, 'fs38', 362)" class="k">code</span> <span class="s">&quot;./producer-code&quot;</span>
+            <span onmouseout="hideTip(event, 'fs39', 363)" onmouseover="showTip(event, 'fs39', 363)" class="k">memory</span> <span class="n">512</span>
+            <span onmouseout="hideTip(event, 'fs40', 364)" onmouseover="showTip(event, 'fs40', 364)" class="k">timeout</span> <span class="n">60.0</span>
+
+            <span onmouseout="hideTip(event, 'fs41', 365)" onmouseover="showTip(event, 'fs41', 365)" class="k">environment</span> <span class="pn">[</span> <span class="s">&quot;STREAM_NAME&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs94', 366)" onmouseover="showTip(event, 'fs94', 366)" class="fn">prodStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 367)" onmouseover="showTip(event, 'fs42', 367)" class="id">StreamName</span><span class="pn">;</span> <span class="s">&quot;BATCH_SIZE&quot;</span><span class="pn">,</span> <span class="s">&quot;500&quot;</span> <span class="pn">]</span>
+
+            <span onmouseout="hideTip(event, 'fs43', 368)" onmouseover="showTip(event, 'fs43', 368)" class="k">description</span> <span class="s">&quot;Produces events to Kinesis stream&quot;</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs94', 369)" onmouseover="showTip(event, 'fs94', 369)" class="fn">prodStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 370)" onmouseover="showTip(event, 'fs96', 370)" class="prop">GrantWrites</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 371)" onmouseover="showTip(event, 'fs53', 371)" class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs95', 372)" onmouseover="showTip(event, 'fs95', 372)" class="fn">producer</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 373)" onmouseover="showTip(event, 'fs54', 373)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 374)" onmouseover="showTip(event, 'fs55', 374)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 375)" onmouseover="showTip(event, 'fs56', 375)" class="id">Role</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 376)" onmouseover="showTip(event, 'fs57', 376)" class="fn">ignore</span>
+
+    <span class="c">// Consumer Lambda with optimal settings</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs97', 377)" onmouseover="showTip(event, 'fs97', 377)" class="fn">consumer</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs33', 378)" onmouseover="showTip(event, 'fs33', 378)" class="fn">lambda</span> <span class="s">&quot;data-consumer&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs34', 379)" onmouseover="showTip(event, 'fs34', 379)" class="k">handler</span> <span class="s">&quot;consumer.handler&quot;</span>
+            <span onmouseout="hideTip(event, 'fs35', 380)" onmouseover="showTip(event, 'fs35', 380)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs36', 381)" onmouseover="showTip(event, 'fs36', 381)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 382)" onmouseover="showTip(event, 'fs51', 382)" class="id">PYTHON_3_11</span>
+            <span onmouseout="hideTip(event, 'fs38', 383)" onmouseover="showTip(event, 'fs38', 383)" class="k">code</span> <span class="s">&quot;./consumer-code&quot;</span>
+            <span onmouseout="hideTip(event, 'fs39', 384)" onmouseover="showTip(event, 'fs39', 384)" class="k">memory</span> <span class="n">2048</span>
+            <span onmouseout="hideTip(event, 'fs40', 385)" onmouseover="showTip(event, 'fs40', 385)" class="k">timeout</span> <span class="n">300.0</span>
+            <span onmouseout="hideTip(event, 'fs93', 386)" onmouseover="showTip(event, 'fs93', 386)" class="k">reservedConcurrentExecutions</span> <span class="n">50</span>
+
+            <span onmouseout="hideTip(event, 'fs41', 387)" onmouseover="showTip(event, 'fs41', 387)" class="k">environment</span> <span class="pn">[</span> <span class="s">&quot;DESTINATION_BUCKET&quot;</span><span class="pn">,</span> <span class="s">&quot;processed-data-bucket&quot;</span><span class="pn">;</span> <span class="s">&quot;BATCH_SIZE&quot;</span><span class="pn">,</span> <span class="s">&quot;1000&quot;</span> <span class="pn">]</span>
+
+            <span onmouseout="hideTip(event, 'fs43', 388)" onmouseover="showTip(event, 'fs43', 388)" class="k">description</span> <span class="s">&quot;Consumes and processes events from Kinesis&quot;</span>
+        <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs94', 389)" onmouseover="showTip(event, 'fs94', 389)" class="fn">prodStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs52', 390)" onmouseover="showTip(event, 'fs52', 390)" class="prop">GrantReads</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs53', 391)" onmouseover="showTip(event, 'fs53', 391)" class="id">Add</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs97', 392)" onmouseover="showTip(event, 'fs97', 392)" class="fn">consumer</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs54', 393)" onmouseover="showTip(event, 'fs54', 393)" class="prop">Function</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs55', 394)" onmouseover="showTip(event, 'fs55', 394)" class="prop">Value</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs56', 395)" onmouseover="showTip(event, 'fs56', 395)" class="id">Role</span><span class="pn">)</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 396)" onmouseover="showTip(event, 'fs57', 396)" class="fn">ignore</span>
+
+    <span onmouseout="hideTip(event, 'fs97', 397)" onmouseover="showTip(event, 'fs97', 397)" class="fn">consumer</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs58', 398)" onmouseover="showTip(event, 'fs58', 398)" class="prop">EventSources</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 399)" onmouseover="showTip(event, 'fs59', 399)" class="id">Add</span><span class="pn">(</span>
+        <span onmouseout="hideTip(event, 'fs60', 400)" onmouseover="showTip(event, 'fs60', 400)" class="fn">KinesisEventSource</span><span class="pn">(</span>
+            <span onmouseout="hideTip(event, 'fs94', 401)" onmouseover="showTip(event, 'fs94', 401)" class="fn">prodStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs61', 402)" onmouseover="showTip(event, 'fs61', 402)" class="prop">Stream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 403)" onmouseover="showTip(event, 'fs62', 403)" class="id">Value</span><span class="pn">,</span>
+            <span onmouseout="hideTip(event, 'fs63', 404)" onmouseover="showTip(event, 'fs63', 404)" class="fn">KinesisEventSourceProps</span><span class="pn">(</span>
+                <span onmouseout="hideTip(event, 'fs64', 405)" onmouseover="showTip(event, 'fs64', 405)" class="fn">StartingPosition</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs64', 406)" onmouseover="showTip(event, 'fs64', 406)" class="en">StartingPosition</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 407)" onmouseover="showTip(event, 'fs69', 407)" class="id">TRIM_HORIZON</span><span class="pn">,</span>
+                <span class="fn">BatchSize</span> <span class="o">=</span> <span class="n">1000.</span><span class="pn">,</span>
+                <span class="fn">MaxBatchingWindow</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs27', 408)" onmouseover="showTip(event, 'fs27', 408)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 409)" onmouseover="showTip(event, 'fs66', 409)" class="id">Seconds</span><span class="pn">(</span><span class="n">10.</span><span class="pn">)</span><span class="pn">,</span>
+                <span class="fn">ParallelizationFactor</span> <span class="o">=</span> <span class="n">10.</span><span class="pn">,</span>
+                <span class="fn">RetryAttempts</span> <span class="o">=</span> <span class="n">3.</span><span class="pn">,</span>
+                <span class="fn">BisectBatchOnError</span> <span class="o">=</span> <span class="k">true</span><span class="pn">,</span>
+                <span class="fn">ReportBatchItemFailures</span> <span class="o">=</span> <span class="k">true</span>
+            <span class="pn">)</span>
+        <span class="pn">)</span>
+    <span class="pn">)</span>
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs57', 410)" onmouseover="showTip(event, 'fs57', 410)" class="fn">ignore</span>
+
+    <span class="c">// CloudWatch alarm for monitoring</span>
+    <span onmouseout="hideTip(event, 'fs81', 411)" onmouseover="showTip(event, 'fs81', 411)" class="fn">cloudwatchAlarm</span> <span class="s">&quot;production-stream-lag&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs82', 412)" onmouseover="showTip(event, 'fs82', 412)" class="k">description</span> <span class="s">&quot;Critical: Production stream consumer lag&quot;</span>
+        <span onmouseout="hideTip(event, 'fs83', 413)" onmouseover="showTip(event, 'fs83', 413)" class="k">metricNamespace</span> <span class="s">&quot;AWS/Kinesis&quot;</span>
+        <span onmouseout="hideTip(event, 'fs84', 414)" onmouseover="showTip(event, 'fs84', 414)" class="k">metricName</span> <span class="s">&quot;GetRecords.IteratorAgeMilliseconds&quot;</span>
+        <span onmouseout="hideTip(event, 'fs85', 415)" onmouseover="showTip(event, 'fs85', 415)" class="k">dimensions</span> <span class="pn">[</span> <span class="s">&quot;StreamName&quot;</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs94', 416)" onmouseover="showTip(event, 'fs94', 416)" class="fn">prodStream</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs42', 417)" onmouseover="showTip(event, 'fs42', 417)" class="id">StreamName</span> <span class="pn">]</span>
+        <span onmouseout="hideTip(event, 'fs86', 418)" onmouseover="showTip(event, 'fs86', 418)" class="k">statistic</span> <span class="s">&quot;Maximum&quot;</span>
+        <span onmouseout="hideTip(event, 'fs87', 419)" onmouseover="showTip(event, 'fs87', 419)" class="k">threshold</span> <span class="n">300000.0</span> <span class="c">// 5 minutes</span>
+        <span onmouseout="hideTip(event, 'fs88', 420)" onmouseover="showTip(event, 'fs88', 420)" class="k">evaluationPeriods</span> <span class="n">2</span>
+        <span onmouseout="hideTip(event, 'fs89', 421)" onmouseover="showTip(event, 'fs89', 421)" class="k">period</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs27', 422)" onmouseover="showTip(event, 'fs27', 422)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs90', 423)" onmouseover="showTip(event, 'fs90', 423)" class="id">Minutes</span><span class="pn">(</span><span class="n">5.0</span><span class="pn">)</span><span class="pn">)</span>
+    <span class="pn">}</span>
+
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h2>
+<h3><a name="Choosing-the-Right-Mode" class="anchor" href="#Choosing-the-Right-Mode">Choosing the Right Mode</a></h3>
+<p><strong>Provisioned Mode:</strong>
+- Best for: Consistent workloads
+- Cost: <span class="math">\(0.015 per shard-hour +\)</span>0.014 per million PUT payload units
+- Example: 2 shards x 24 hours x 30 days = $21.60/month</p>
+<p><strong>On-Demand Mode:</strong>
+- Best for: Variable workloads
+- Cost: <span class="math">\(0.04 per GB written +\)</span>0.0125 per GB read
+- Example: 100 GB write + 200 GB read = $6.50/month</p>
+<h3><a name="Data-Retention" class="anchor" href="#Data-Retention">Data Retention</a></h3>
+<ul>
+<li><strong>24 hours</strong>: Default, suitable for most use cases ($0/month)</li>
+<li><strong>7 days</strong>: Extended retention ($0.023 per shard-hour extra)</li>
+<li><strong>365 days</strong>: Maximum retention ($0.033 per shard-hour extra)</li>
+</ul>
+<h2><a name="Deployment" class="anchor" href="#Deployment">Deployment</a></h2>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Synthesize CloudFormation template
+cdk synth
+
+# Deploy to AWS
+cdk deploy ProductionKinesisStack
+
+# Destroy resources when done
+cdk destroy ProductionKinesisStack
+</code></pre></td></tr></table>
+<h2><a name="Next-Steps" class="anchor" href="#Next-Steps">Next Steps</a></h2>
+<ul>
+<li>Integrate with <a href="lambda-quickstart.html">Lambda Functions</a> for stream processing</li>
+<li>Review <a href="iam-best-practices.html">IAM Best Practices</a> for access control</li>
+<li>Explore <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/">DynamoDB</a> for storing processed data</li>
+</ul>
+<h2><a name="Resources" class="anchor" href="#Resources">Resources</a></h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/kinesis/">AWS Kinesis Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/streams/latest/dev/introduction.html">Kinesis Data Streams Developer Guide</a></li>
+<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html">Lambda Kinesis Integration</a></li>
+<li><a href="https://docs.aws.amazon.com/streams/latest/dev/best-practices.html">Kinesis Best Practices</a></li>
+<li><a href="https://aws.amazon.com/kinesis/data-streams/pricing/">Kinesis Pricing</a></li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS.Kinesis</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.Lambda.EventSources</div>
+<div class="fsdocs-tip" id="fs7">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs8">val get: unit -&gt; {| Account: string; Region: string |}</div>
+<div class="fsdocs-tip" id="fs9">namespace System</div>
+<div class="fsdocs-tip" id="fs10">type Environment =
+  static member Exit: exitCode: int -&gt; unit
+  static member ExpandEnvironmentVariables: name: string -&gt; string
+  static member FailFast: message: string -&gt; unit + 1 overload
+  static member GetCommandLineArgs: unit -&gt; string array
+  static member GetEnvironmentVariable: variable: string -&gt; string + 1 overload
+  static member GetEnvironmentVariables: unit -&gt; IDictionary + 1 overload
+  static member GetFolderPath: folder: SpecialFolder -&gt; string + 1 overload
+  static member GetLogicalDrives: unit -&gt; string array
+  static member SetEnvironmentVariable: variable: string * value: string -&gt; unit + 1 overload
+  static member CommandLine: string
+  ...<br /><em>&lt;summary&gt;Provides information about, and means to manipulate, the current environment and platform. This class cannot be inherited.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">System.Environment.GetEnvironmentVariable(variable: string) : string<br />System.Environment.GetEnvironmentVariable(variable: string, target: System.EnvironmentVariableTarget) : string</div>
+<div class="fsdocs-tip" id="fs12">val config: {| Account: string; Region: string |}</div>
+<div class="fsdocs-tip" id="fs13">module Config
+
+from Kinesis-streams</div>
+<div class="fsdocs-tip" id="fs14">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">val environment: EnvironmentBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Environment configuration.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: account (string)
+
+Calls EnvironmentBuilder.Account<br /><em>&lt;summary&gt;Sets the AWS account ID for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;accountId&quot;&gt;The AWS account ID.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">anonymous record field Account: string</div>
+<div class="fsdocs-tip" id="fs18">custom operation: region (string)
+
+Calls EnvironmentBuilder.Region<br /><em>&lt;summary&gt;Sets the AWS region for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;regionName&quot;&gt;The AWS region name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">anonymous record field Region: string</div>
+<div class="fsdocs-tip" id="fs20">custom operation: description (string)
+
+Calls StackBuilder.Description<br /><em>&lt;summary&gt;Sets the stack description.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;desc&quot;&gt;A description of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     description &quot;My application stack&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">custom operation: tags ((string * string) seq)
+
+Calls StackBuilder.Tags<br /><em>&lt;summary&gt;Adds tags to the stack.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;tags&quot;&gt;A list of key-value pairs for tagging.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     tags [ &quot;Environment&quot;, &quot;Production&quot;; &quot;Team&quot;, &quot;DevOps&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">val stream: KinesisStreamSpec</div>
+<div class="fsdocs-tip" id="fs23">val kinesisStream: name: string -&gt; KinesisStreamBuilder<br /><em>&lt;summary&gt;Creates a Kinesis stream with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The stream name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ kinesisStream &quot;MyStream&quot; {
+     shardCount 2
+     retentionPeriod (Duration.Hours(48.0))
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs24">custom operation: streamName (string)
+
+Calls KinesisStreamBuilder.StreamName<br /><em>&lt;summary&gt;Sets the stream name.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs25">custom operation: shardCount (int)
+
+Calls KinesisStreamBuilder.ShardCount<br /><em>&lt;summary&gt;Sets the number of shards.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">custom operation: retentionPeriod (Duration)
+
+Calls KinesisStreamBuilder.RetentionPeriod<br /><em>&lt;summary&gt;Sets the retention period.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs28">Duration.Hours(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs29">custom operation: encryption (StreamEncryption)
+
+Calls KinesisStreamBuilder.EncryptionKey<br /><em>&lt;summary&gt;Uses a custom KMS key for encryption.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">[&lt;Struct&gt;]
+type StreamEncryption =
+  | UNENCRYPTED = 0
+  | KMS = 1
+  | MANAGED = 2</div>
+<div class="fsdocs-tip" id="fs31">field StreamEncryption.KMS: StreamEncryption = 1</div>
+<div class="fsdocs-tip" id="fs32">val processor: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs33">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs36">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs37">property Runtime.NODEJS_18_X: Runtime with get</div>
+<div class="fsdocs-tip" id="fs38">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">custom operation: memory (int)
+
+Calls FunctionBuilder.Memory<br /><em>&lt;summary&gt;Sets the memory allocation for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;mb&quot;&gt;The memory size in megabytes.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     memory 512
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs40">custom operation: timeout (float)
+
+Calls FunctionBuilder.Timeout<br /><em>&lt;summary&gt;Sets the timeout for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs41">custom operation: environment ((string * string) list)
+
+Calls FunctionBuilder.Environment<br /><em>&lt;summary&gt;Sets environment variables for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;env&quot;&gt;List of key-value pairs for environment variables.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     environment [ &quot;KEY1&quot;, &quot;value1&quot;; &quot;KEY2&quot;, &quot;value2&quot; ]
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs42">KinesisStreamSpec.StreamName: string</div>
+<div class="fsdocs-tip" id="fs43">custom operation: description (string)
+
+Calls FunctionBuilder.Description<br /><em>&lt;summary&gt;Sets the description for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;desc&quot;&gt;The function description.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     description &quot;Processes incoming orders&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs44">val onDemandStream: KinesisStreamSpec</div>
+<div class="fsdocs-tip" id="fs45">custom operation: streamMode (StreamMode)
+
+Calls KinesisStreamBuilder.StreamMode<br /><em>&lt;summary&gt;Sets the stream mode.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">[&lt;Struct&gt;]
+type StreamMode =
+  | PROVISIONED = 0
+  | ON_DEMAND = 1</div>
+<div class="fsdocs-tip" id="fs47">field StreamMode.ON_DEMAND: StreamMode = 1</div>
+<div class="fsdocs-tip" id="fs48">val highThroughputStream: KinesisStreamSpec</div>
+<div class="fsdocs-tip" id="fs49">val clickstream: KinesisStreamSpec</div>
+<div class="fsdocs-tip" id="fs50">val analyticsProcessor: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs51">property Runtime.PYTHON_3_11: Runtime with get</div>
+<div class="fsdocs-tip" id="fs52">KinesisStreamSpec.GrantReads: ResizeArray&lt;AWS.IAM.IGrantable&gt;</div>
+<div class="fsdocs-tip" id="fs53">System.Collections.Generic.List.Add(item: AWS.IAM.IGrantable) : unit</div>
+<div class="fsdocs-tip" id="fs54">FunctionSpec.Function: IFunction option</div>
+<div class="fsdocs-tip" id="fs55">property Option.Value: IFunction with get</div>
+<div class="fsdocs-tip" id="fs56">property IFunction.Role: AWS.IAM.IRole with get</div>
+<div class="fsdocs-tip" id="fs57">val ignore: value: &#39;T -&gt; unit</div>
+<div class="fsdocs-tip" id="fs58">FunctionSpec.EventSources: ResizeArray&lt;IEventSource&gt;</div>
+<div class="fsdocs-tip" id="fs59">System.Collections.Generic.List.Add(item: IEventSource) : unit</div>
+<div class="fsdocs-tip" id="fs60">Multiple items<br />type KinesisEventSource =
+  inherit StreamEventSource
+  new: stream: IStream * props: IKinesisEventSourceProps -&gt; unit
+  member Bind: target: IFunction -&gt; unit
+  member EventSourceMappingArn: string
+  member EventSourceMappingId: string
+  member Stream: IStream<br /><br />--------------------<br />KinesisEventSource(stream: IStream, props: IKinesisEventSourceProps) : KinesisEventSource</div>
+<div class="fsdocs-tip" id="fs61">KinesisStreamSpec.Stream: IStream option</div>
+<div class="fsdocs-tip" id="fs62">property Option.Value: IStream with get</div>
+<div class="fsdocs-tip" id="fs63">Multiple items<br />type KinesisEventSourceProps =
+  interface IKinesisEventSourceProps
+  interface IStreamEventSourceProps
+  interface IBaseStreamEventSourceProps
+  new: unit -&gt; unit
+  member BatchSize: Nullable&lt;float&gt;
+  member BisectBatchOnError: Nullable&lt;bool&gt;
+  member Enabled: Nullable&lt;bool&gt;
+  member FilterEncryption: IKey
+  member Filters: IDictionary&lt;string,obj&gt; array
+  member MaxBatchingWindow: Duration
+  ...<br /><br />--------------------<br />KinesisEventSourceProps() : KinesisEventSourceProps</div>
+<div class="fsdocs-tip" id="fs64">[&lt;Struct&gt;]
+type StartingPosition =
+  | TRIM_HORIZON = 0
+  | LATEST = 1
+  | AT_TIMESTAMP = 2</div>
+<div class="fsdocs-tip" id="fs65">field StartingPosition.LATEST: StartingPosition = 1</div>
+<div class="fsdocs-tip" id="fs66">Duration.Seconds(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs67">val eventStream: KinesisStreamSpec</div>
+<div class="fsdocs-tip" id="fs68">val archiver: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs69">field StartingPosition.TRIM_HORIZON: StartingPosition = 0</div>
+<div class="fsdocs-tip" id="fs70">val metricsAggregator: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs71">val logStream: KinesisStreamSpec</div>
+<div class="fsdocs-tip" id="fs72">val logProcessor: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs73">val producerRole: AWS.IAM.RoleProps</div>
+<div class="fsdocs-tip" id="fs74">module IAM
+
+from FsCDK<br /><em>&lt;summary&gt;
+ IAM helpers for creating roles and policies following least-privilege principles.
+
+ **Rationale:**
+ - Least-privilege access reduces blast radius of compromised credentials
+ - AWS managed policies provide maintained, secure defaults
+ - Role-based access control simplifies permission management
+ - Service-specific roles limit cross-service access
+
+ **Best Practices:**
+ - Always start with minimum required permissions
+ - Use AWS managed policies when appropriate
+ - Create custom policies for specific application needs
+ - Avoid wildcards (*) in production
+ - Review and audit IAM policies regularly
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs75">val createRole: servicePrincipal: string -&gt; roleName: string -&gt; AWS.IAM.RoleProps<br /><em>&lt;summary&gt;
+ Creates a basic IAM role with a trust policy for the specified service principal
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs76">val producerStmt: AWS.IAM.PolicyStatement</div>
+<div class="fsdocs-tip" id="fs77">val allow: actions: string list -&gt; resources: string list -&gt; AWS.IAM.PolicyStatement<br /><em>&lt;summary&gt;
+ Creates a policy statement allowing specified actions on resources
+ &lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs78">val consumerRole: AWS.IAM.RoleProps</div>
+<div class="fsdocs-tip" id="fs79">val consumerStmt: AWS.IAM.PolicyStatement</div>
+<div class="fsdocs-tip" id="fs80">val monitoredStream: KinesisStreamSpec</div>
+<div class="fsdocs-tip" id="fs81">val cloudwatchAlarm: name: string -&gt; CloudWatchAlarmBuilder</div>
+<div class="fsdocs-tip" id="fs82">custom operation: description (string)
+
+Calls CloudWatchAlarmBuilder.Description<br /><em>&lt;summary&gt;Sets the alarm description.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs83">custom operation: metricNamespace (string)
+
+Calls CloudWatchAlarmBuilder.MetricNamespace<br /><em>&lt;summary&gt;Sets the CloudWatch metric namespace (e.g., &quot;AWS/Lambda&quot;, &quot;AWS/RDS&quot;).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs84">custom operation: metricName (string)
+
+Calls CloudWatchAlarmBuilder.MetricName<br /><em>&lt;summary&gt;Sets the metric name (e.g., &quot;Errors&quot;, &quot;CPUUtilization&quot;).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs85">custom operation: dimensions ((string * string) list)
+
+Calls CloudWatchAlarmBuilder.Dimensions<br /><em>&lt;summary&gt;Sets the metric dimensions for filtering (e.g., FunctionName, DBInstanceIdentifier).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs86">custom operation: statistic (string)
+
+Calls CloudWatchAlarmBuilder.Statistic<br /><em>&lt;summary&gt;Sets the statistic (Average, Sum, Minimum, Maximum, SampleCount).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs87">custom operation: threshold (float)
+
+Calls CloudWatchAlarmBuilder.Threshold<br /><em>&lt;summary&gt;Sets the alarm threshold value.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs88">custom operation: evaluationPeriods (int)
+
+Calls CloudWatchAlarmBuilder.EvaluationPeriods<br /><em>&lt;summary&gt;Sets the number of periods to evaluate.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs89">custom operation: period (Duration)
+
+Calls CloudWatchAlarmBuilder.Period<br /><em>&lt;summary&gt;Sets the evaluation period.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs90">Duration.Minutes(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs91">val max: e1: &#39;T -&gt; e2: &#39;T -&gt; &#39;T (requires comparison)</div>
+<div class="fsdocs-tip" id="fs92">val optimizedConsumer: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs93">custom operation: reservedConcurrentExecutions (int)
+
+Calls FunctionBuilder.ReservedConcurrentExecutions</div>
+<div class="fsdocs-tip" id="fs94">val prodStream: KinesisStreamSpec</div>
+<div class="fsdocs-tip" id="fs95">val producer: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs96">KinesisStreamSpec.GrantWrites: ResizeArray&lt;AWS.IAM.IGrantable&gt;</div>
+<div class="fsdocs-tip" id="fs97">val consumer: FunctionSpec</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#What-is-Kinesis">
+      What is Kinesis?
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Prerequisites">
+      Prerequisites
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Basic-Kinesis-Stream-with-Lambda-Consumer">
+      Basic Kinesis Stream with Lambda Consumer
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Stream-Configuration-Options">
+      Stream Configuration Options
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#On-Demand-Mode">
+      On-Demand Mode
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Provisioned-Mode-High-Throughput">
+      Provisioned Mode (High Throughput)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Use-Cases">
+      Use Cases
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#1-Real-Time-Analytics-Pipeline">
+      1. Real-Time Analytics Pipeline
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#2-Event-Streaming-Architecture">
+      2. Event Streaming Architecture
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#3-Log-Aggregation">
+      3. Log Aggregation
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Security-Best-Practices">
+      Security Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Encryption">
+      Encryption
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#IAM-Permissions">
+      IAM Permissions
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Monitoring-and-Observability">
+      Monitoring and Observability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#CloudWatch-Metrics">
+      CloudWatch Metrics
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#CloudWatch-Alarms">
+      CloudWatch Alarms
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Performance-Optimization">
+      Performance Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Shard-Calculation">
+      Shard Calculation
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Batch-Processing-Configuration">
+      Batch Processing Configuration
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Complete-Production-Example">
+      Complete Production Example
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Choosing-the-Right-Mode">
+      Choosing the Right Mode
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Data-Retention">
+      Data Retention
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Deployment">
+      Deployment
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Next-Steps">
+      Next Steps
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Resources">
+      Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

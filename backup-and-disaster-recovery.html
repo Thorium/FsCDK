@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="Backup and Disaster Recovery on AWS" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="Backup and Disaster Recovery on AWS">
+    
+    <title>Backup and Disaster Recovery on AWS | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header active">
+  Best Practices
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header ">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header active">
+  Best Practices
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Backup-and-Disaster-Recovery-on-AWS" class="anchor" href="#Backup-and-Disaster-Recovery-on-AWS">Backup and Disaster Recovery on AWS</a></h1>
+<p>This guide covers backup strategies, disaster recovery patterns, and business continuity planning for AWS infrastructure deployed with FsCDK. Based on the AWS Well-Architected Reliability Pillar and battle-tested patterns from AWS Solutions Architects.</p>
+<h2><a name="Understanding-Recovery-Objectives" class="anchor" href="#Understanding-Recovery-Objectives">Understanding Recovery Objectives</a></h2>
+<p>Before implementing any backup strategy, define your Recovery Point Objective (RPO) and Recovery Time Objective (RTO). These metrics determine your architecture and costs.</p>
+<p><strong>Recovery Point Objective (RPO)</strong>: Maximum acceptable data loss measured in time. If your RPO is 1 hour, you can lose at most 1 hour of data.</p>
+<p><strong>Recovery Time Objective (RTO)</strong>: Maximum acceptable downtime. If your RTO is 4 hours, you must restore operations within 4 hours of an incident.</p>
+<h3><a name="Common-RPO-RTO-Requirements-by-Industry" class="anchor" href="#Common-RPO-RTO-Requirements-by-Industry">Common RPO/RTO Requirements by Industry</a></h3>
+<table>
+<thead>
+<tr class="header">
+<th><p>Industry</p></th>
+<th><p>Typical RPO</p></th>
+<th><p>Typical RTO</p></th>
+<th><p>Compliance Drivers</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Financial Services</p></td>
+<td>< 1 hour</td>
+<td>< 4 hours</td>
+<td><p>SOX, PCI DSS</p></td>
+</tr>
+<tr class="even">
+<td><p>Healthcare</p></td>
+<td>< 4 hours</td>
+<td>< 8 hours</td>
+<td><p>HIPAA</p></td>
+</tr>
+<tr class="odd">
+<td><p>E-commerce</p></td>
+<td>< 15 minutes</td>
+<td>< 1 hour</td>
+<td><p>Revenue impact</p></td>
+</tr>
+<tr class="even">
+<td><p>SaaS Applications</p></td>
+<td>< 1 hour</td>
+<td>< 4 hours</td>
+<td><p>SLA commitments</p></td>
+</tr>
+<tr class="odd">
+<td><p>Media/Content</p></td>
+<td>< 24 hours</td>
+<td>< 24 hours</td>
+<td><p>Business tolerance</p></td>
+</tr>
+</tbody>
+</table>
+
+<p>Reference: AWS Disaster Recovery Whitepaper (<a href="https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)">https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html)</a></p>
+<h2><a name="RDS-Automated-Backups" class="anchor" href="#RDS-Automated-Backups">RDS Automated Backups</a></h2>
+<p>RDS provides automated backups with point-in-time recovery. This is the foundation for database disaster recovery.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">RDS</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">EC2</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="id">DynamoDB</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 16)" onmouseover="showTip(event, 'fs2', 16)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 17)" onmouseover="showTip(event, 'fs3', 17)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 18)" onmouseover="showTip(event, 'fs4', 18)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs8', 19)" onmouseover="showTip(event, 'fs8', 19)" class="id">CloudWatch</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 20)" onmouseover="showTip(event, 'fs2', 20)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 21)" onmouseover="showTip(event, 'fs3', 21)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 22)" onmouseover="showTip(event, 'fs4', 22)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs9', 23)" onmouseover="showTip(event, 'fs9', 23)" class="id">S3</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 24)" onmouseover="showTip(event, 'fs2', 24)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 25)" onmouseover="showTip(event, 'fs3', 25)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 26)" onmouseover="showTip(event, 'fs4', 26)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs10', 27)" onmouseover="showTip(event, 'fs10', 27)" class="id">Lambda</span>
+</code></pre>
+<h3><a name="Production-Database-with-Automated-Backups" class="anchor" href="#Production-Database-with-Automated-Backups">Production Database with Automated Backups</a></h3>
+<p>RDS automatically takes continuous backups, enabling restoration to any point within the backup retention window (1-35 days).</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 28)" onmouseover="showTip(event, 'fs11', 28)" class="fn">stack</span> <span class="s">&quot;ProductionBackupStrategy&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 29)" onmouseover="showTip(event, 'fs12', 29)" class="id">environment</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs13', 30)" onmouseover="showTip(event, 'fs13', 30)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 31)" onmouseover="showTip(event, 'fs14', 31)" class="k">description</span> <span class="s">&quot;Production database with automated backups&quot;</span>
+
+    <span class="c">// VPC for database</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs15', 32)" onmouseover="showTip(event, 'fs15', 32)" class="fn">prodVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs16', 33)" onmouseover="showTip(event, 'fs16', 33)" class="fn">vpc</span> <span class="s">&quot;ProductionVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs17', 34)" onmouseover="showTip(event, 'fs17', 34)" class="k">maxAzs</span> <span class="n">2</span>
+            <span onmouseout="hideTip(event, 'fs18', 35)" onmouseover="showTip(event, 'fs18', 35)" class="k">natGateways</span> <span class="n">1</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Production database with maximum backup retention</span>
+    <span onmouseout="hideTip(event, 'fs19', 36)" onmouseover="showTip(event, 'fs19', 36)" class="fn">rdsInstance</span> <span class="s">&quot;ProductionDB&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 37)" onmouseover="showTip(event, 'fs20', 37)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs15', 38)" onmouseover="showTip(event, 'fs15', 38)" class="fn">prodVpc</span>
+        <span onmouseout="hideTip(event, 'fs21', 39)" onmouseover="showTip(event, 'fs21', 39)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs22', 40)" onmouseover="showTip(event, 'fs22', 40)" class="k">instanceType</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 41)" onmouseover="showTip(event, 'fs23', 41)" class="rt">InstanceType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 42)" onmouseover="showTip(event, 'fs24', 42)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs25', 43)" onmouseover="showTip(event, 'fs25', 43)" class="en">InstanceClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 44)" onmouseover="showTip(event, 'fs26', 44)" class="id">MEMORY5</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs27', 45)" onmouseover="showTip(event, 'fs27', 45)" class="en">InstanceSize</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 46)" onmouseover="showTip(event, 'fs28', 46)" class="id">LARGE</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs29', 47)" onmouseover="showTip(event, 'fs29', 47)" class="k">allocatedStorage</span> <span class="n">100</span>
+
+        <span class="c">// Backup configuration</span>
+        <span onmouseout="hideTip(event, 'fs30', 48)" onmouseover="showTip(event, 'fs30', 48)" class="k">backupRetentionDays</span> <span class="n">35.0</span> <span class="c">// Maximum retention for PITR</span>
+        <span onmouseout="hideTip(event, 'fs31', 49)" onmouseover="showTip(event, 'fs31', 49)" class="k">preferredBackupWindow</span> <span class="s">&quot;03:00-04:00&quot;</span> <span class="c">// 3-4 AM UTC</span>
+
+        <span class="c">// High availability</span>
+        <span onmouseout="hideTip(event, 'fs32', 50)" onmouseover="showTip(event, 'fs32', 50)" class="k">multiAz</span> <span class="k">true</span>
+
+        <span class="c">// Security</span>
+        <span onmouseout="hideTip(event, 'fs33', 51)" onmouseover="showTip(event, 'fs33', 51)" class="k">deletionProtection</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs34', 52)" onmouseover="showTip(event, 'fs34', 52)" class="k">storageEncrypted</span> <span class="k">true</span>
+
+        <span class="c">// Monitoring</span>
+        <span onmouseout="hideTip(event, 'fs35', 53)" onmouseover="showTip(event, 'fs35', 53)" class="k">enablePerformanceInsights</span> <span class="k">true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Compliance-Driven-Retention-Policies" class="anchor" href="#Compliance-Driven-Retention-Policies">Compliance-Driven Retention Policies</a></h3>
+<p>Different compliance frameworks mandate specific retention periods. Configure your backup plans accordingly.</p>
+<p><strong>PCI DSS Requirements:</strong>
+- Retain backups for at least 3 months
+- Quarterly backups for 1 year
+- Reference: PCI DSS Requirement 3.1</p>
+<p><strong>HIPAA Requirements:</strong>
+- Retain backups for 6 years minimum
+- Ensure encryption at rest and in transit
+- Reference: 45 CFR §164.308(a)(7)(ii)(A)</p>
+<p><strong>SOX Requirements:</strong>
+- Retain financial data backups for 7 years
+- Ensure immutability and audit trails
+- Reference: Sarbanes-Oxley Section 802</p>
+<p>For long-term compliance retention beyond 35 days, use RDS snapshots exported to S3 with lifecycle policies.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 54)" onmouseover="showTip(event, 'fs11', 54)" class="fn">stack</span> <span class="s">&quot;ComplianceBackups&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 55)" onmouseover="showTip(event, 'fs12', 55)" class="id">environment</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs13', 56)" onmouseover="showTip(event, 'fs13', 56)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span> <span class="pn">}</span>
+
+    <span class="c">// Compliance database with automated snapshots</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 57)" onmouseover="showTip(event, 'fs36', 57)" class="fn">compVpc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 58)" onmouseover="showTip(event, 'fs16', 58)" class="fn">vpc</span> <span class="s">&quot;ComplianceVpc&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs17', 59)" onmouseover="showTip(event, 'fs17', 59)" class="k">maxAzs</span> <span class="n">2</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs19', 60)" onmouseover="showTip(event, 'fs19', 60)" class="fn">rdsInstance</span> <span class="s">&quot;ComplianceDB&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 61)" onmouseover="showTip(event, 'fs20', 61)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs36', 62)" onmouseover="showTip(event, 'fs36', 62)" class="fn">compVpc</span>
+        <span onmouseout="hideTip(event, 'fs21', 63)" onmouseover="showTip(event, 'fs21', 63)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs30', 64)" onmouseover="showTip(event, 'fs30', 64)" class="k">backupRetentionDays</span> <span class="n">35.0</span>
+        <span onmouseout="hideTip(event, 'fs33', 65)" onmouseover="showTip(event, 'fs33', 65)" class="k">deletionProtection</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs34', 66)" onmouseover="showTip(event, 'fs34', 66)" class="k">storageEncrypted</span> <span class="k">true</span>
+    <span class="pn">}</span>
+
+    <span class="c">// S3 bucket for long-term snapshot storage</span>
+    <span onmouseout="hideTip(event, 'fs37', 67)" onmouseover="showTip(event, 'fs37', 67)" class="fn">bucket</span> <span class="s">&quot;long-term-backup-storage&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs38', 68)" onmouseover="showTip(event, 'fs38', 68)" class="k">versioned</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs39', 69)" onmouseover="showTip(event, 'fs39', 69)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs40', 70)" onmouseover="showTip(event, 'fs40', 70)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs41', 71)" onmouseover="showTip(event, 'fs41', 71)" class="id">KMS_MANAGED</span>
+
+        <span class="c">// Lifecycle policy for cost optimization</span>
+        <span onmouseout="hideTip(event, 'fs42', 72)" onmouseover="showTip(event, 'fs42', 72)" class="id">lifecycleRule</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs43', 73)" onmouseover="showTip(event, 'fs43', 73)" class="k">enabled</span> <span class="k">true</span>
+
+            <span class="c">// Transition to Glacier after 90 days</span>
+            <span onmouseout="hideTip(event, 'fs44', 74)" onmouseover="showTip(event, 'fs44', 74)" class="k">transitions</span>
+                <span class="pn">[</span> <span onmouseout="hideTip(event, 'fs45', 75)" onmouseover="showTip(event, 'fs45', 75)" class="id">transition</span> <span class="pn">{</span>
+                      <span onmouseout="hideTip(event, 'fs46', 76)" onmouseover="showTip(event, 'fs46', 76)" class="k">storageClass</span> <span onmouseout="hideTip(event, 'fs47', 77)" onmouseover="showTip(event, 'fs47', 77)" class="rt">StorageClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs48', 78)" onmouseover="showTip(event, 'fs48', 78)" class="id">GLACIER</span>
+                      <span onmouseout="hideTip(event, 'fs49', 79)" onmouseover="showTip(event, 'fs49', 79)" class="k">transitionAfter</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs50', 80)" onmouseover="showTip(event, 'fs50', 80)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 81)" onmouseover="showTip(event, 'fs51', 81)" class="id">Days</span> <span class="n">90.0</span><span class="pn">)</span>
+                  <span class="pn">}</span> <span class="pn">]</span>
+
+            <span class="c">// Delete after 7 years (SOX compliance)</span>
+            <span onmouseout="hideTip(event, 'fs52', 82)" onmouseover="showTip(event, 'fs52', 82)" class="k">expiration</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs50', 83)" onmouseover="showTip(event, 'fs50', 83)" class="rt">Duration</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs51', 84)" onmouseover="showTip(event, 'fs51', 84)" class="id">Days</span> <span class="n">2555.0</span><span class="pn">)</span>
+        <span class="pn">}</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Reference: Export RDS snapshots to S3 (<a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ExportSnapshot.html)">https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ExportSnapshot.html)</a></p>
+<h2><a name="Point-in-Time-Recovery-for-Databases" class="anchor" href="#Point-in-Time-Recovery-for-Databases">Point-in-Time Recovery for Databases</a></h2>
+<h3><a name="RDS-Point-in-Time-Recovery" class="anchor" href="#RDS-Point-in-Time-Recovery">RDS Point-in-Time Recovery</a></h3>
+<p>RDS PITR allows restoration to any second within the retention period. This is critical for recovering from data corruption or accidental deletions.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 85)" onmouseover="showTip(event, 'fs11', 85)" class="fn">stack</span> <span class="s">&quot;PITRDatabase&quot;</span> <span class="pn">{</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs53', 86)" onmouseover="showTip(event, 'fs53', 86)" class="fn">pitrVpc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 87)" onmouseover="showTip(event, 'fs16', 87)" class="fn">vpc</span> <span class="s">&quot;PITRVpc&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs17', 88)" onmouseover="showTip(event, 'fs17', 88)" class="k">maxAzs</span> <span class="n">2</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs19', 89)" onmouseover="showTip(event, 'fs19', 89)" class="fn">rdsInstance</span> <span class="s">&quot;PITRDatabase&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 90)" onmouseover="showTip(event, 'fs20', 90)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs53', 91)" onmouseover="showTip(event, 'fs53', 91)" class="fn">pitrVpc</span>
+        <span onmouseout="hideTip(event, 'fs21', 92)" onmouseover="showTip(event, 'fs21', 92)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs30', 93)" onmouseover="showTip(event, 'fs30', 93)" class="k">backupRetentionDays</span> <span class="n">35.0</span> <span class="c">// Maximum PITR retention</span>
+        <span onmouseout="hideTip(event, 'fs32', 94)" onmouseover="showTip(event, 'fs32', 94)" class="k">multiAz</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs33', 95)" onmouseover="showTip(event, 'fs33', 95)" class="k">deletionProtection</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs35', 96)" onmouseover="showTip(event, 'fs35', 96)" class="k">enablePerformanceInsights</span> <span class="k">true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="DynamoDB-Point-in-Time-Recovery" class="anchor" href="#DynamoDB-Point-in-Time-Recovery">DynamoDB Point-in-Time Recovery</a></h3>
+<p>DynamoDB PITR provides continuous backups for 35 days. This feature is enabled by default in FsCDK production defaults.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 97)" onmouseover="showTip(event, 'fs11', 97)" class="fn">stack</span> <span class="s">&quot;DynamoDBBackup&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs54', 98)" onmouseover="showTip(event, 'fs54', 98)" class="fn">table</span> <span class="s">&quot;TransactionalData&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs55', 99)" onmouseover="showTip(event, 'fs55', 99)" class="k">partitionKey</span> <span class="s">&quot;id&quot;</span> <span onmouseout="hideTip(event, 'fs56', 100)" onmouseover="showTip(event, 'fs56', 100)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 101)" onmouseover="showTip(event, 'fs57', 101)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs58', 102)" onmouseover="showTip(event, 'fs58', 102)" class="k">sortKey</span> <span class="s">&quot;timestamp&quot;</span> <span onmouseout="hideTip(event, 'fs56', 103)" onmouseover="showTip(event, 'fs56', 103)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs59', 104)" onmouseover="showTip(event, 'fs59', 104)" class="id">NUMBER</span>
+        <span onmouseout="hideTip(event, 'fs60', 105)" onmouseover="showTip(event, 'fs60', 105)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs61', 106)" onmouseover="showTip(event, 'fs61', 106)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 107)" onmouseover="showTip(event, 'fs62', 107)" class="id">PAY_PER_REQUEST</span>
+
+        <span class="c">// PITR enabled by default in FsCDK</span>
+        <span onmouseout="hideTip(event, 'fs63', 108)" onmouseover="showTip(event, 'fs63', 108)" class="k">pointInTimeRecovery</span> <span class="k">true</span>
+
+        <span class="c">// Enable streams for replication</span>
+        <span onmouseout="hideTip(event, 'fs64', 109)" onmouseover="showTip(event, 'fs64', 109)" class="k">stream</span> <span onmouseout="hideTip(event, 'fs65', 110)" onmouseover="showTip(event, 'fs65', 110)" class="en">StreamViewType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 111)" onmouseover="showTip(event, 'fs66', 111)" class="id">NEW_AND_OLD_IMAGES</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Reference: DynamoDB Point-in-Time Recovery (<a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html)">https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html)</a></p>
+<h2><a name="Cross-Region-Replication-for-Disaster-Recovery" class="anchor" href="#Cross-Region-Replication-for-Disaster-Recovery">Cross-Region Replication for Disaster Recovery</a></h2>
+<p>For mission-critical workloads, implement cross-region replication to survive regional failures.</p>
+<h3><a name="RDS-Cross-Region-Read-Replicas" class="anchor" href="#RDS-Cross-Region-Read-Replicas">RDS Cross-Region Read Replicas</a></h3>
+<p>Create read replicas in secondary regions that can be promoted during a disaster. According to AWS, cross-region replicas typically have 1-5 second replication lag.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 112)" onmouseover="showTip(event, 'fs11', 112)" class="fn">stack</span> <span class="s">&quot;MultiRegionDatabase&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 113)" onmouseover="showTip(event, 'fs12', 113)" class="id">environment</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs13', 114)" onmouseover="showTip(event, 'fs13', 114)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 115)" onmouseover="showTip(event, 'fs14', 115)" class="k">description</span> <span class="s">&quot;Primary database with cross-region DR&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs67', 116)" onmouseover="showTip(event, 'fs67', 116)" class="fn">primaryVpc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs16', 117)" onmouseover="showTip(event, 'fs16', 117)" class="fn">vpc</span> <span class="s">&quot;PrimaryVpc&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs17', 118)" onmouseover="showTip(event, 'fs17', 118)" class="k">maxAzs</span> <span class="n">3</span>
+            <span onmouseout="hideTip(event, 'fs18', 119)" onmouseover="showTip(event, 'fs18', 119)" class="k">natGateways</span> <span class="n">2</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Primary database</span>
+    <span onmouseout="hideTip(event, 'fs19', 120)" onmouseover="showTip(event, 'fs19', 120)" class="fn">rdsInstance</span> <span class="s">&quot;PrimaryDB&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 121)" onmouseover="showTip(event, 'fs20', 121)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs67', 122)" onmouseover="showTip(event, 'fs67', 122)" class="fn">primaryVpc</span>
+        <span onmouseout="hideTip(event, 'fs21', 123)" onmouseover="showTip(event, 'fs21', 123)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs22', 124)" onmouseover="showTip(event, 'fs22', 124)" class="k">instanceType</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 125)" onmouseover="showTip(event, 'fs23', 125)" class="rt">InstanceType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 126)" onmouseover="showTip(event, 'fs24', 126)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs25', 127)" onmouseover="showTip(event, 'fs25', 127)" class="en">InstanceClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 128)" onmouseover="showTip(event, 'fs26', 128)" class="id">MEMORY5</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs27', 129)" onmouseover="showTip(event, 'fs27', 129)" class="en">InstanceSize</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 130)" onmouseover="showTip(event, 'fs68', 130)" class="id">XLARGE</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs32', 131)" onmouseover="showTip(event, 'fs32', 131)" class="k">multiAz</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs30', 132)" onmouseover="showTip(event, 'fs30', 132)" class="k">backupRetentionDays</span> <span class="n">30.0</span>
+        <span onmouseout="hideTip(event, 'fs35', 133)" onmouseover="showTip(event, 'fs35', 133)" class="k">enablePerformanceInsights</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs33', 134)" onmouseover="showTip(event, 'fs33', 134)" class="k">deletionProtection</span> <span class="k">true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p>For the DR region, deploy a separate stack:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="id">stack</span> <span class="s">&quot;DRDatabase&quot;</span> <span class="pn">{</span>
+    <span class="id">environment</span> <span class="pn">{</span>
+        <span class="id">region</span> <span class="s">&quot;us-west-2&quot;</span>  <span class="c">// DR region</span>
+    <span class="pn">}</span>
+
+    <span class="k">let</span> <span class="id">drVpc</span> <span class="o">=</span> <span class="id">vpc</span> <span class="s">&quot;DRVpc&quot;</span> <span class="pn">{</span> <span class="id">maxAzs</span> <span class="n">3</span> <span class="pn">}</span>
+
+    <span class="c">// Create read replica from primary (via AWS Console or CLI)</span>
+    <span class="c">// aws rds create-db-instance-read-replica \</span>
+    <span class="c">//   --db-instance-identifier dr-replica \</span>
+    <span class="c">//   --source-db-instance-identifier arn:aws:rds:us-east-1:account:db:primary-db \</span>
+    <span class="c">//   --region us-west-2</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Reference: AWS RDS Best Practices (<a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html)">https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html)</a></p>
+<h3><a name="DynamoDB-Global-Tables" class="anchor" href="#DynamoDB-Global-Tables">DynamoDB Global Tables</a></h3>
+<p>DynamoDB Global Tables provide automatic multi-region replication with typical latency under 1 second.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 135)" onmouseover="showTip(event, 'fs11', 135)" class="fn">stack</span> <span class="s">&quot;GlobalDynamoDB&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 136)" onmouseover="showTip(event, 'fs12', 136)" class="id">environment</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs13', 137)" onmouseover="showTip(event, 'fs13', 137)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs54', 138)" onmouseover="showTip(event, 'fs54', 138)" class="fn">table</span> <span class="s">&quot;GlobalUserData&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs55', 139)" onmouseover="showTip(event, 'fs55', 139)" class="k">partitionKey</span> <span class="s">&quot;userId&quot;</span> <span onmouseout="hideTip(event, 'fs56', 140)" onmouseover="showTip(event, 'fs56', 140)" class="en">AttributeType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs57', 141)" onmouseover="showTip(event, 'fs57', 141)" class="id">STRING</span>
+        <span onmouseout="hideTip(event, 'fs60', 142)" onmouseover="showTip(event, 'fs60', 142)" class="k">billingMode</span> <span onmouseout="hideTip(event, 'fs61', 143)" onmouseover="showTip(event, 'fs61', 143)" class="en">BillingMode</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs62', 144)" onmouseover="showTip(event, 'fs62', 144)" class="id">PAY_PER_REQUEST</span>
+
+        <span class="c">// Enable streams for global table replication</span>
+        <span onmouseout="hideTip(event, 'fs64', 145)" onmouseover="showTip(event, 'fs64', 145)" class="k">stream</span> <span onmouseout="hideTip(event, 'fs65', 146)" onmouseover="showTip(event, 'fs65', 146)" class="en">StreamViewType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs66', 147)" onmouseover="showTip(event, 'fs66', 147)" class="id">NEW_AND_OLD_IMAGES</span>
+
+        <span onmouseout="hideTip(event, 'fs63', 148)" onmouseover="showTip(event, 'fs63', 148)" class="k">pointInTimeRecovery</span> <span class="k">true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p>After deploying the table, enable global replication via AWS CLI:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash">aws dynamodb create-global-table \
+    --global-table-name GlobalUserData \
+    --replication-group RegionName=us-east-1 \
+    --replication-group RegionName=us-west-2 \
+    --replication-group RegionName=eu-west-1
+</code></pre></td></tr></table>
+<p>Reference: DynamoDB Global Tables (<a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html)">https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html)</a></p>
+<h3><a name="S3-Cross-Region-Replication" class="anchor" href="#S3-Cross-Region-Replication">S3 Cross-Region Replication</a></h3>
+<p>Replicate S3 buckets across regions for disaster recovery. S3 CRR typically replicates objects within 15 minutes.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 149)" onmouseover="showTip(event, 'fs11', 149)" class="fn">stack</span> <span class="s">&quot;S3Replication&quot;</span> <span class="pn">{</span>
+    <span class="c">// Source bucket with versioning (required for replication)</span>
+    <span onmouseout="hideTip(event, 'fs37', 150)" onmouseover="showTip(event, 'fs37', 150)" class="fn">bucket</span> <span class="s">&quot;source-assets&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs38', 151)" onmouseover="showTip(event, 'fs38', 151)" class="k">versioned</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs39', 152)" onmouseover="showTip(event, 'fs39', 152)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs40', 153)" onmouseover="showTip(event, 'fs40', 153)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 154)" onmouseover="showTip(event, 'fs69', 154)" class="id">S3_MANAGED</span>
+    <span class="pn">}</span>
+
+    <span class="c">// Destination bucket in DR region (deploy separately)</span>
+    <span onmouseout="hideTip(event, 'fs37', 155)" onmouseover="showTip(event, 'fs37', 155)" class="fn">bucket</span> <span class="s">&quot;dr-assets-replica&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs38', 156)" onmouseover="showTip(event, 'fs38', 156)" class="k">versioned</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs39', 157)" onmouseover="showTip(event, 'fs39', 157)" class="k">encryption</span> <span onmouseout="hideTip(event, 'fs40', 158)" onmouseover="showTip(event, 'fs40', 158)" class="en">BucketEncryption</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs69', 159)" onmouseover="showTip(event, 'fs69', 159)" class="id">S3_MANAGED</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Configure replication using AWS CLI after deployment:</p>
+<table class="pre"><tr><td class="snippet"><pre class="fssnip"><code lang="bash"># Create replication role
+aws iam create-role --role-name s3-replication-role \
+    --assume-role-policy-document file://trust-policy.json
+
+# Attach replication policy
+aws iam put-role-policy --role-name s3-replication-role \
+    --policy-name replication-policy \
+    --policy-document file://replication-policy.json
+
+# Enable replication
+aws s3api put-bucket-replication --bucket source-assets \
+    --replication-configuration file://replication-config.json
+</code></pre></td></tr></table>
+<p>Reference: S3 Replication (<a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html)">https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html)</a></p>
+<h2><a name="Disaster-Recovery-Patterns" class="anchor" href="#Disaster-Recovery-Patterns">Disaster Recovery Patterns</a></h2>
+<p>AWS defines four disaster recovery strategies, each with different costs and complexity.</p>
+<h3><a name="Pattern-1-Backup-and-Restore-RPO-hours-RTO-24-hours" class="anchor" href="#Pattern-1-Backup-and-Restore-RPO-hours-RTO-24-hours">Pattern 1: Backup and Restore (RPO: hours, RTO: 24+ hours)</a></h3>
+<p>Lowest cost option. Take periodic backups and restore when needed.</p>
+<p><strong>Cost</strong>: Low (backup storage only, ~$0.05/GB/month)
+<strong>Complexity</strong>: Low
+<strong>Best for</strong>: Development, non-critical workloads</p>
+<p>Implementation: Use RDS automated backups and DynamoDB on-demand backups.</p>
+<p>Reference: Werner Vogels (AWS CTO) - "Building Resilient Applications" (<a href="https://www.allthingsdistributed.com/2020/11/building-resilient-applications.html)">https://www.allthingsdistributed.com/2020/11/building-resilient-applications.html)</a></p>
+<h3><a name="Pattern-2-Pilot-Light-RPO-minutes-RTO-hours" class="anchor" href="#Pattern-2-Pilot-Light-RPO-minutes-RTO-hours">Pattern 2: Pilot Light (RPO: minutes, RTO: hours)</a></h3>
+<p>Maintain minimal version of environment running in DR region. Core infrastructure always on, but scaled down.</p>
+<p><strong>Cost</strong>: Medium (minimal compute running continuously)
+<strong>Complexity</strong>: Medium
+<strong>Best for</strong>: Standard production workloads</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 160)" onmouseover="showTip(event, 'fs11', 160)" class="fn">stack</span> <span class="s">&quot;PilotLight&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 161)" onmouseover="showTip(event, 'fs12', 161)" class="id">environment</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs13', 162)" onmouseover="showTip(event, 'fs13', 162)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 163)" onmouseover="showTip(event, 'fs14', 163)" class="k">description</span> <span class="s">&quot;Pilot light infrastructure - core services minimal&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs70', 164)" onmouseover="showTip(event, 'fs70', 164)" class="fn">pilotVpc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 165)" onmouseover="showTip(event, 'fs16', 165)" class="fn">vpc</span> <span class="s">&quot;PilotVpc&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs17', 166)" onmouseover="showTip(event, 'fs17', 166)" class="k">maxAzs</span> <span class="n">2</span> <span class="pn">}</span>
+
+    <span class="c">// Minimal database that can be scaled up</span>
+    <span onmouseout="hideTip(event, 'fs19', 167)" onmouseover="showTip(event, 'fs19', 167)" class="fn">rdsInstance</span> <span class="s">&quot;PilotDB&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 168)" onmouseover="showTip(event, 'fs20', 168)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs70', 169)" onmouseover="showTip(event, 'fs70', 169)" class="fn">pilotVpc</span>
+        <span onmouseout="hideTip(event, 'fs21', 170)" onmouseover="showTip(event, 'fs21', 170)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs22', 171)" onmouseover="showTip(event, 'fs22', 171)" class="k">instanceType</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 172)" onmouseover="showTip(event, 'fs23', 172)" class="rt">InstanceType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 173)" onmouseover="showTip(event, 'fs24', 173)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs25', 174)" onmouseover="showTip(event, 'fs25', 174)" class="en">InstanceClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs71', 175)" onmouseover="showTip(event, 'fs71', 175)" class="id">BURSTABLE3</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs27', 176)" onmouseover="showTip(event, 'fs27', 176)" class="en">InstanceSize</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs72', 177)" onmouseover="showTip(event, 'fs72', 177)" class="id">SMALL</span><span class="pn">)</span><span class="pn">)</span> <span class="c">// Minimal size</span>
+        <span onmouseout="hideTip(event, 'fs29', 178)" onmouseover="showTip(event, 'fs29', 178)" class="k">allocatedStorage</span> <span class="n">20</span>
+        <span onmouseout="hideTip(event, 'fs73', 179)" onmouseover="showTip(event, 'fs73', 179)" class="k">maxAllocatedStorage</span> <span class="n">1000</span> <span class="c">// Can auto-scale</span>
+        <span onmouseout="hideTip(event, 'fs32', 180)" onmouseover="showTip(event, 'fs32', 180)" class="k">multiAz</span> <span class="k">false</span> <span class="c">// Single AZ to save cost</span>
+        <span onmouseout="hideTip(event, 'fs30', 181)" onmouseover="showTip(event, 'fs30', 181)" class="k">backupRetentionDays</span> <span class="n">7.0</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p>During disaster, scale up the instance class to production size.</p>
+<h3><a name="Pattern-3-Warm-Standby-RPO-seconds-RTO-minutes" class="anchor" href="#Pattern-3-Warm-Standby-RPO-seconds-RTO-minutes">Pattern 3: Warm Standby (RPO: seconds, RTO: minutes)</a></h3>
+<p>Scaled-down but fully functional version runs in DR region.</p>
+<p><strong>Cost</strong>: Medium-High (continuous smaller environment)
+<strong>Complexity</strong>: Medium-High
+<strong>Best for</strong>: Business-critical workloads</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 182)" onmouseover="showTip(event, 'fs11', 182)" class="fn">stack</span> <span class="s">&quot;WarmStandby&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 183)" onmouseover="showTip(event, 'fs12', 183)" class="id">environment</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs13', 184)" onmouseover="showTip(event, 'fs13', 184)" class="k">region</span> <span class="s">&quot;us-west-2&quot;</span> <span class="c">// DR region</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 185)" onmouseover="showTip(event, 'fs14', 185)" class="k">description</span> <span class="s">&quot;Warm standby - scaled down production environment&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs74', 186)" onmouseover="showTip(event, 'fs74', 186)" class="fn">warmVpc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 187)" onmouseover="showTip(event, 'fs16', 187)" class="fn">vpc</span> <span class="s">&quot;WarmStandbyVpc&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs17', 188)" onmouseover="showTip(event, 'fs17', 188)" class="k">maxAzs</span> <span class="n">2</span> <span class="pn">}</span>
+
+    <span class="c">// Scaled down but fully functional</span>
+    <span onmouseout="hideTip(event, 'fs19', 189)" onmouseover="showTip(event, 'fs19', 189)" class="fn">rdsInstance</span> <span class="s">&quot;WarmStandbyDB&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 190)" onmouseover="showTip(event, 'fs20', 190)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs74', 191)" onmouseover="showTip(event, 'fs74', 191)" class="fn">warmVpc</span>
+        <span onmouseout="hideTip(event, 'fs21', 192)" onmouseover="showTip(event, 'fs21', 192)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs22', 193)" onmouseover="showTip(event, 'fs22', 193)" class="k">instanceType</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 194)" onmouseover="showTip(event, 'fs23', 194)" class="rt">InstanceType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 195)" onmouseover="showTip(event, 'fs24', 195)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs25', 196)" onmouseover="showTip(event, 'fs25', 196)" class="en">InstanceClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 197)" onmouseover="showTip(event, 'fs26', 197)" class="id">MEMORY5</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs27', 198)" onmouseover="showTip(event, 'fs27', 198)" class="en">InstanceSize</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 199)" onmouseover="showTip(event, 'fs28', 199)" class="id">LARGE</span><span class="pn">)</span><span class="pn">)</span> <span class="c">// 50% of prod</span>
+        <span onmouseout="hideTip(event, 'fs32', 200)" onmouseover="showTip(event, 'fs32', 200)" class="k">multiAz</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs30', 201)" onmouseover="showTip(event, 'fs30', 201)" class="k">backupRetentionDays</span> <span class="n">30.0</span>
+    <span class="pn">}</span>
+
+    <span class="c">// Minimal Lambda capacity</span>
+    <span onmouseout="hideTip(event, 'fs75', 202)" onmouseover="showTip(event, 'fs75', 202)" class="fn">lambda</span> <span class="s">&quot;WarmStandbyAPI&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs76', 203)" onmouseover="showTip(event, 'fs76', 203)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs77', 204)" onmouseover="showTip(event, 'fs77', 204)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs78', 205)" onmouseover="showTip(event, 'fs78', 205)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs79', 206)" onmouseover="showTip(event, 'fs79', 206)" class="k">handler</span> <span class="s">&quot;Handler::process&quot;</span>
+        <span onmouseout="hideTip(event, 'fs80', 207)" onmouseover="showTip(event, 'fs80', 207)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+        <span onmouseout="hideTip(event, 'fs81', 208)" onmouseover="showTip(event, 'fs81', 208)" class="k">memory</span> <span class="n">512</span>
+        <span onmouseout="hideTip(event, 'fs82', 209)" onmouseover="showTip(event, 'fs82', 209)" class="k">reservedConcurrentExecutions</span> <span class="n">5</span> <span class="c">// Minimal capacity</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h3><a name="Pattern-4-Hot-Standby-Active-Active-RPO-near-zero-RTO-automatic" class="anchor" href="#Pattern-4-Hot-Standby-Active-Active-RPO-near-zero-RTO-automatic">Pattern 4: Hot Standby/Active-Active (RPO: near-zero, RTO: automatic)</a></h3>
+<p>Full environment runs in multiple regions simultaneously.</p>
+<p><strong>Cost</strong>: High (full duplicate infrastructure)
+<strong>Complexity</strong>: High
+<strong>Best for</strong>: Mission-critical, 99.99%+ SLA requirements</p>
+<p>Used by Netflix, Airbnb, and other companies requiring five-nines availability.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 210)" onmouseover="showTip(event, 'fs11', 210)" class="fn">stack</span> <span class="s">&quot;HotStandbyPrimary&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 211)" onmouseover="showTip(event, 'fs12', 211)" class="id">environment</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs13', 212)" onmouseover="showTip(event, 'fs13', 212)" class="k">region</span> <span class="s">&quot;us-east-1&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 213)" onmouseover="showTip(event, 'fs14', 213)" class="k">description</span> <span class="s">&quot;Active-Active primary region&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs67', 214)" onmouseover="showTip(event, 'fs67', 214)" class="fn">primaryVpc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 215)" onmouseover="showTip(event, 'fs16', 215)" class="fn">vpc</span> <span class="s">&quot;PrimaryVpc&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs17', 216)" onmouseover="showTip(event, 'fs17', 216)" class="k">maxAzs</span> <span class="n">3</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs19', 217)" onmouseover="showTip(event, 'fs19', 217)" class="fn">rdsInstance</span> <span class="s">&quot;PrimaryDB&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 218)" onmouseover="showTip(event, 'fs20', 218)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs67', 219)" onmouseover="showTip(event, 'fs67', 219)" class="fn">primaryVpc</span>
+        <span onmouseout="hideTip(event, 'fs21', 220)" onmouseover="showTip(event, 'fs21', 220)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs22', 221)" onmouseover="showTip(event, 'fs22', 221)" class="k">instanceType</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 222)" onmouseover="showTip(event, 'fs23', 222)" class="rt">InstanceType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 223)" onmouseover="showTip(event, 'fs24', 223)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs25', 224)" onmouseover="showTip(event, 'fs25', 224)" class="en">InstanceClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 225)" onmouseover="showTip(event, 'fs26', 225)" class="id">MEMORY5</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs27', 226)" onmouseover="showTip(event, 'fs27', 226)" class="en">InstanceSize</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 227)" onmouseover="showTip(event, 'fs68', 227)" class="id">XLARGE</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs32', 228)" onmouseover="showTip(event, 'fs32', 228)" class="k">multiAz</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs30', 229)" onmouseover="showTip(event, 'fs30', 229)" class="k">backupRetentionDays</span> <span class="n">30.0</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs75', 230)" onmouseover="showTip(event, 'fs75', 230)" class="fn">lambda</span> <span class="s">&quot;PrimaryAPI&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs76', 231)" onmouseover="showTip(event, 'fs76', 231)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs77', 232)" onmouseover="showTip(event, 'fs77', 232)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs78', 233)" onmouseover="showTip(event, 'fs78', 233)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs79', 234)" onmouseover="showTip(event, 'fs79', 234)" class="k">handler</span> <span class="s">&quot;Handler::process&quot;</span>
+        <span onmouseout="hideTip(event, 'fs80', 235)" onmouseover="showTip(event, 'fs80', 235)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+        <span onmouseout="hideTip(event, 'fs81', 236)" onmouseover="showTip(event, 'fs81', 236)" class="k">memory</span> <span class="n">1024</span>
+        <span onmouseout="hideTip(event, 'fs82', 237)" onmouseover="showTip(event, 'fs82', 237)" class="k">reservedConcurrentExecutions</span> <span class="n">100</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+
+<span onmouseout="hideTip(event, 'fs11', 238)" onmouseover="showTip(event, 'fs11', 238)" class="fn">stack</span> <span class="s">&quot;HotStandbySecondary&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs12', 239)" onmouseover="showTip(event, 'fs12', 239)" class="id">environment</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs13', 240)" onmouseover="showTip(event, 'fs13', 240)" class="k">region</span> <span class="s">&quot;us-west-2&quot;</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs14', 241)" onmouseover="showTip(event, 'fs14', 241)" class="k">description</span> <span class="s">&quot;Active-Active secondary region&quot;</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs83', 242)" onmouseover="showTip(event, 'fs83', 242)" class="fn">secondaryVpc</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs16', 243)" onmouseover="showTip(event, 'fs16', 243)" class="fn">vpc</span> <span class="s">&quot;SecondaryVpc&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs17', 244)" onmouseover="showTip(event, 'fs17', 244)" class="k">maxAzs</span> <span class="n">3</span> <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs19', 245)" onmouseover="showTip(event, 'fs19', 245)" class="fn">rdsInstance</span> <span class="s">&quot;SecondaryDB&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs20', 246)" onmouseover="showTip(event, 'fs20', 246)" class="k">vpc</span> <span onmouseout="hideTip(event, 'fs83', 247)" onmouseover="showTip(event, 'fs83', 247)" class="fn">secondaryVpc</span>
+        <span onmouseout="hideTip(event, 'fs21', 248)" onmouseover="showTip(event, 'fs21', 248)" class="k">postgresEngine</span>
+        <span onmouseout="hideTip(event, 'fs22', 249)" onmouseover="showTip(event, 'fs22', 249)" class="k">instanceType</span> <span class="pn">(</span><span onmouseout="hideTip(event, 'fs23', 250)" onmouseover="showTip(event, 'fs23', 250)" class="rt">InstanceType</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs24', 251)" onmouseover="showTip(event, 'fs24', 251)" class="id">Of</span><span class="pn">(</span><span onmouseout="hideTip(event, 'fs25', 252)" onmouseover="showTip(event, 'fs25', 252)" class="en">InstanceClass</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs26', 253)" onmouseover="showTip(event, 'fs26', 253)" class="id">MEMORY5</span><span class="pn">,</span> <span onmouseout="hideTip(event, 'fs27', 254)" onmouseover="showTip(event, 'fs27', 254)" class="en">InstanceSize</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs68', 255)" onmouseover="showTip(event, 'fs68', 255)" class="id">XLARGE</span><span class="pn">)</span><span class="pn">)</span>
+        <span onmouseout="hideTip(event, 'fs32', 256)" onmouseover="showTip(event, 'fs32', 256)" class="k">multiAz</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs30', 257)" onmouseover="showTip(event, 'fs30', 257)" class="k">backupRetentionDays</span> <span class="n">30.0</span>
+    <span class="pn">}</span>
+
+    <span onmouseout="hideTip(event, 'fs75', 258)" onmouseover="showTip(event, 'fs75', 258)" class="fn">lambda</span> <span class="s">&quot;SecondaryAPI&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs76', 259)" onmouseover="showTip(event, 'fs76', 259)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs77', 260)" onmouseover="showTip(event, 'fs77', 260)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs78', 261)" onmouseover="showTip(event, 'fs78', 261)" class="id">DOTNET_8</span>
+        <span onmouseout="hideTip(event, 'fs79', 262)" onmouseover="showTip(event, 'fs79', 262)" class="k">handler</span> <span class="s">&quot;Handler::process&quot;</span>
+        <span onmouseout="hideTip(event, 'fs80', 263)" onmouseover="showTip(event, 'fs80', 263)" class="k">code</span> <span class="s">&quot;./publish&quot;</span>
+        <span onmouseout="hideTip(event, 'fs81', 264)" onmouseover="showTip(event, 'fs81', 264)" class="k">memory</span> <span class="n">1024</span>
+        <span onmouseout="hideTip(event, 'fs82', 265)" onmouseover="showTip(event, 'fs82', 265)" class="k">reservedConcurrentExecutions</span> <span class="n">100</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<p>Reference: Adrian Cockcroft (Netflix) - "Migrating to Microservices" (<a href="https://www.nginx.com/blog/microservices-at-netflix-architectural-best-practices/)">https://www.nginx.com/blog/microservices-at-netflix-architectural-best-practices/)</a></p>
+<h2><a name="Monitoring-and-Alerting" class="anchor" href="#Monitoring-and-Alerting">Monitoring and Alerting</a></h2>
+<p>Set up CloudWatch alarms for backup and replication failures.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs11', 266)" onmouseover="showTip(event, 'fs11', 266)" class="fn">stack</span> <span class="s">&quot;BackupMonitoring&quot;</span> <span class="pn">{</span>
+    <span class="c">// Alarm for RDS backup failures</span>
+    <span onmouseout="hideTip(event, 'fs84', 267)" onmouseover="showTip(event, 'fs84', 267)" class="fn">cloudwatchAlarm</span> <span class="s">&quot;RDSBackupFailure&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs85', 268)" onmouseover="showTip(event, 'fs85', 268)" class="k">metricName</span> <span class="s">&quot;BackupRetentionPeriodStorageUsed&quot;</span>
+        <span onmouseout="hideTip(event, 'fs86', 269)" onmouseover="showTip(event, 'fs86', 269)" class="k">metricNamespace</span> <span class="s">&quot;AWS/RDS&quot;</span>
+        <span onmouseout="hideTip(event, 'fs87', 270)" onmouseover="showTip(event, 'fs87', 270)" class="k">threshold</span> <span class="n">0.0</span>
+        <span onmouseout="hideTip(event, 'fs88', 271)" onmouseover="showTip(event, 'fs88', 271)" class="k">evaluationPeriods</span> <span class="n">1</span>
+        <span onmouseout="hideTip(event, 'fs89', 272)" onmouseover="showTip(event, 'fs89', 272)" class="k">statistic</span> <span class="s">&quot;Average&quot;</span>
+        <span onmouseout="hideTip(event, 'fs90', 273)" onmouseover="showTip(event, 'fs90', 273)" class="k">comparisonOperator</span> <span onmouseout="hideTip(event, 'fs91', 274)" onmouseover="showTip(event, 'fs91', 274)" class="en">ComparisonOperator</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs92', 275)" onmouseover="showTip(event, 'fs92', 275)" class="id">LESS_THAN_OR_EQUAL_TO_THRESHOLD</span>
+        <span onmouseout="hideTip(event, 'fs93', 276)" onmouseover="showTip(event, 'fs93', 276)" class="k">treatMissingData</span> <span onmouseout="hideTip(event, 'fs94', 277)" onmouseover="showTip(event, 'fs94', 277)" class="en">TreatMissingData</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs95', 278)" onmouseover="showTip(event, 'fs95', 278)" class="id">BREACHING</span>
+    <span class="pn">}</span>
+
+    <span class="c">// Alarm for DynamoDB replication lag (for Global Tables)</span>
+    <span onmouseout="hideTip(event, 'fs84', 279)" onmouseover="showTip(event, 'fs84', 279)" class="fn">cloudwatchAlarm</span> <span class="s">&quot;DynamoDBReplicationLag&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs85', 280)" onmouseover="showTip(event, 'fs85', 280)" class="k">metricName</span> <span class="s">&quot;ReplicationLatency&quot;</span>
+        <span onmouseout="hideTip(event, 'fs86', 281)" onmouseover="showTip(event, 'fs86', 281)" class="k">metricNamespace</span> <span class="s">&quot;AWS/DynamoDB&quot;</span>
+        <span onmouseout="hideTip(event, 'fs87', 282)" onmouseover="showTip(event, 'fs87', 282)" class="k">threshold</span> <span class="n">60000.0</span> <span class="c">// 60 seconds</span>
+        <span onmouseout="hideTip(event, 'fs88', 283)" onmouseover="showTip(event, 'fs88', 283)" class="k">evaluationPeriods</span> <span class="n">2</span>
+        <span onmouseout="hideTip(event, 'fs89', 284)" onmouseover="showTip(event, 'fs89', 284)" class="k">statistic</span> <span class="s">&quot;Average&quot;</span>
+        <span onmouseout="hideTip(event, 'fs90', 285)" onmouseover="showTip(event, 'fs90', 285)" class="k">comparisonOperator</span> <span onmouseout="hideTip(event, 'fs91', 286)" onmouseover="showTip(event, 'fs91', 286)" class="en">ComparisonOperator</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs96', 287)" onmouseover="showTip(event, 'fs96', 287)" class="id">GREATER_THAN_THRESHOLD</span>
+        <span onmouseout="hideTip(event, 'fs93', 288)" onmouseover="showTip(event, 'fs93', 288)" class="k">treatMissingData</span> <span onmouseout="hideTip(event, 'fs94', 289)" onmouseover="showTip(event, 'fs94', 289)" class="en">TreatMissingData</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs97', 290)" onmouseover="showTip(event, 'fs97', 290)" class="id">NOT_BREACHING</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Testing-Disaster-Recovery" class="anchor" href="#Testing-Disaster-Recovery">Testing Disaster Recovery</a></h2>
+<p>AWS recommends testing DR procedures quarterly. According to the AWS Reliability Pillar, untested DR plans fail 30-40% of the time during actual disasters.</p>
+<h3><a name="DR-Testing-Checklist" class="anchor" href="#DR-Testing-Checklist">DR Testing Checklist</a></h3>
+<ol>
+<li><strong>Backup Verification</strong>: Restore from backup to test environment monthly</li>
+<li><strong>Failover Testing</strong>: Switch to DR region quarterly</li>
+<li><strong>Data Integrity</strong>: Verify restored data matches production</li>
+<li><strong>RTO Measurement</strong>: Time the complete recovery process</li>
+<li><strong>Documentation</strong>: Update runbooks based on test results</li>
+</ol>
+<p>Reference: AWS Well-Architected Reliability Pillar - REL13 (<a href="https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/test-reliability.html)">https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/test-reliability.html)</a></p>
+<h3><a name="Automated-DR-Testing-with-AWS-Fault-Injection-Simulator" class="anchor" href="#Automated-DR-Testing-with-AWS-Fault-Injection-Simulator">Automated DR Testing with AWS Fault Injection Simulator</a></h3>
+<p>AWS FIS allows testing failover scenarios without impacting production:</p>
+<ul>
+<li>Test RDS Multi-AZ failover</li>
+<li>Test application behavior during region degradation</li>
+<li>Validate monitoring and alerting</li>
+<li>Practice runbook procedures</li>
+</ul>
+<h2><a name="Cost-Considerations" class="anchor" href="#Cost-Considerations">Cost Considerations</a></h2>
+<p>Backup and DR costs vary significantly based on strategy:</p>
+<table>
+<thead>
+<tr class="header">
+<th><p>Strategy</p></th>
+<th><p>Monthly Cost (Example)</p></th>
+<th><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Backup Only</p></td>
+<td><p>$50-200</p></td>
+<td><p>Development, non-critical</p></td>
+</tr>
+<tr class="even">
+<td><p>Pilot Light</p></td>
+<td><p>$200-1000</p></td>
+<td><p>Standard production</p></td>
+</tr>
+<tr class="odd">
+<td><p>Warm Standby</p></td>
+<td><p>$1000-5000</p></td>
+<td><p>Business-critical</p></td>
+</tr>
+<tr class="even">
+<td><p>Hot Standby</p></td>
+<td><p>$5000-20000+</p></td>
+<td><p>Mission-critical, 99.99%+ SLA</p></td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>Cost Optimization Tips:</strong></p>
+<ol>
+<li>Use S3 Glacier for long-term archive (90+ days) - 80% cheaper than standard storage</li>
+<li>Enable lifecycle policies to transition old backups automatically</li>
+<li>Use cross-region replication only for critical data</li>
+<li>Test restore times before committing to expensive active-active</li>
+<li>Use Aurora Global Database instead of RDS for faster replication</li>
+</ol>
+<p>Reference: AWS Cost Optimization Pillar (<a href="https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html)">https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html)</a></p>
+<h2><a name="Compliance-Mapping" class="anchor" href="#Compliance-Mapping">Compliance Mapping</a></h2>
+<p>Common compliance frameworks and their DR requirements. For comprehensive governance controls and compliance automation, see the <a href="governance-compliance-aws-organizations.html">Governance and Compliance with AWS Organizations</a> guide.</p>
+<p><strong>PCI DSS</strong></p>
+<ul>
+<li>Requirement 3.1: Retain backups with cardholder data</li>
+<li>Requirement 9.5: Physically secure backup media</li>
+<li>Requirement 10.5: Protect audit trail backups</li>
+</ul>
+<p><strong>HIPAA</strong></p>
+<ul>
+<li>164.308(a)(7)(i): Contingency plan required</li>
+<li>164.308(a)(7)(ii)(A): Data backup plan</li>
+<li>164.308(a)(7)(ii)(B): Disaster recovery plan</li>
+<li>164.308(a)(7)(ii)(C): Emergency mode operation plan</li>
+</ul>
+<p><strong>SOX</strong></p>
+<ul>
+<li>Section 404: Financial data retention (7 years)</li>
+<li>Immutable backups for audit trail integrity</li>
+</ul>
+<p><strong>ISO 27001</strong></p>
+<ul>
+<li>A.12.3.1: Information backup procedures</li>
+<li>A.17.1.2: Business continuity procedures</li>
+<li>A.17.1.3: Verify, review, evaluate continuity</li>
+</ul>
+<h2><a name="Real-World-Case-Study-AWS-US-EAST-1-Outage" class="anchor" href="#Real-World-Case-Study-AWS-US-EAST-1-Outage">Real-World Case Study: AWS US-EAST-1 Outage</a></h2>
+<p><strong>US-EAST-1 Outage (December 2021)</strong></p>
+<ul>
+<li>Caused by network device failure</li>
+<li>Affected major services for 7+ hours</li>
+<li>Companies with multi-region setups remained operational</li>
+<li>Single-region customers experienced complete outage</li>
+</ul>
+<p><strong>Key Takeaway</strong>: Do not rely on single region for production workloads. US-EAST-1 is the largest region but has had several multi-hour outages.</p>
+<p>Reference: AWS Post-Event Summaries (<a href="https://aws.amazon.com/message/12721/)">https://aws.amazon.com/message/12721/)</a></p>
+<h2><a name="Additional-Resources" class="anchor" href="#Additional-Resources">Additional Resources</a></h2>
+<p><strong>AWS Official Documentation:</strong></p>
+<ul>
+<li>AWS Backup Developer Guide: <a href="https://docs.aws.amazon.com/aws-backup/">https://docs.aws.amazon.com/aws-backup/</a></li>
+<li>RDS Backup and Restore: <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html">https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_CommonTasks.BackupRestore.html</a></li>
+<li>DynamoDB Backup and Restore: <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html">https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/BackupRestore.html</a></li>
+</ul>
+<p><strong>AWS Whitepapers:</strong></p>
+<ul>
+<li>Disaster Recovery on AWS: <a href="https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/">https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/</a></li>
+<li>AWS Well-Architected Framework - Reliability Pillar: <a href="https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/">https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/</a></li>
+</ul>
+<p><strong>Community Resources:</strong></p>
+<ul>
+<li>AWS re:Invent 2023 - Disaster Recovery Best Practices (DOP326)</li>
+<li>Corey Quinn, "The AWS Morning Brief" podcast episodes on DR</li>
+<li>Adrian Hornsby (AWS Principal Evangelist) "Chaos Engineering" blog series</li>
+</ul>
+<p><strong>Books:</strong></p>
+<ul>
+<li>"AWS System Administration" by Michael Wittig and Andreas Wittig (O'Reilly)</li>
+<li>"Implementing AWS Disaster Recovery" (Packt Publishing)</li>
+</ul>
+<hr />
+<p>This guide reflects AWS best practices as of 2025. Always refer to the latest AWS documentation and your organization's compliance requirements when implementing disaster recovery strategies.</p>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.RDS</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.EC2</div>
+<div class="fsdocs-tip" id="fs7">namespace Amazon.CDK.AWS.DynamoDB</div>
+<div class="fsdocs-tip" id="fs8">namespace Amazon.CDK.AWS.CloudWatch</div>
+<div class="fsdocs-tip" id="fs9">namespace Amazon.CDK.AWS.S3</div>
+<div class="fsdocs-tip" id="fs10">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs11">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">val environment: EnvironmentBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Environment configuration.&lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     account &quot;123456789012&quot;
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">custom operation: region (string)
+
+Calls EnvironmentBuilder.Region<br /><em>&lt;summary&gt;Sets the AWS region for the environment.&lt;/summary&gt;<br />&lt;param name=&quot;regionName&quot;&gt;The AWS region name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ environment {
+     region &quot;us-west-2&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: description (string)
+
+Calls StackBuilder.Description<br /><em>&lt;summary&gt;Sets the stack description.&lt;/summary&gt;<br />&lt;param name=&quot;config&quot;&gt;The current stack configuration.&lt;/param&gt;<br />&lt;param name=&quot;desc&quot;&gt;A description of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     description &quot;My application stack&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">val prodVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs16">val vpc: name: string -&gt; VpcBuilder<br /><em>&lt;summary&gt;Creates a VPC configuration with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The VPC name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ vpc &quot;MyVpc&quot; {
+     maxAzs 2
+     natGateways 1
+     cidr &quot;10.0.0.0/16&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">custom operation: maxAzs (int)
+
+Calls VpcBuilder.MaxAzs<br /><em>&lt;summary&gt;Sets the maximum number of Availability Zones to use.&lt;/summary&gt;<br />&lt;param name=&quot;maxAzs&quot;&gt;The maximum number of AZs (default: 2 for HA).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">custom operation: natGateways (int)
+
+Calls VpcBuilder.NatGateways<br /><em>&lt;summary&gt;Sets the number of NAT Gateways.&lt;/summary&gt;<br />&lt;param name=&quot;natGateways&quot;&gt;The number of NAT gateways (default: 1 for cost optimization).&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs19">val rdsInstance: name: string -&gt; DatabaseInstanceBuilder<br /><em>&lt;summary&gt;Creates an RDS Database Instance with AWS best practices.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The database instance name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ rdsInstance &quot;MyDatabase&quot; {
+     vpc myVpc
+     postgresEngine PostgresEngineVersion.VER_15
+     instanceType (InstanceType.Of(InstanceClass.BURSTABLE3, InstanceSize.SMALL))
+     multiAz true
+     backupRetentionDays 7.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">custom operation: vpc (VpcSpec)
+
+Calls DatabaseInstanceBuilder.Vpc<br /><em>&lt;summary&gt;Sets the VPC.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs21">custom operation: postgresEngine (PostgresEngineVersion option)
+
+Calls DatabaseInstanceBuilder.PostgresEngine<br /><em>&lt;summary&gt;Sets PostgreSQL as the database engine with specific version.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs22">custom operation: instanceType (InstanceType)
+
+Calls DatabaseInstanceBuilder.InstanceType<br /><em>&lt;summary&gt;Sets the instance type.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs23">Multiple items<br />type InstanceType =
+  inherit DeputyBase
+  new: instanceTypeIdentifier: string -&gt; unit
+  member IsBurstable: unit -&gt; bool
+  member SameInstanceClassAs: other: InstanceType -&gt; bool
+  member ToString: unit -&gt; string
+  static member Of: instanceClass: InstanceClass * instanceSize: InstanceSize -&gt; InstanceType
+  member Architecture: InstanceArchitecture<br /><br />--------------------<br />InstanceType(instanceTypeIdentifier: string) : InstanceType</div>
+<div class="fsdocs-tip" id="fs24">InstanceType.Of(instanceClass: InstanceClass, instanceSize: InstanceSize) : InstanceType</div>
+<div class="fsdocs-tip" id="fs25">[&lt;Struct&gt;]
+type InstanceClass =
+  | STANDARD3 = 0
+  | M3 = 1
+  | STANDARD4 = 2
+  | M4 = 3
+  | STANDARD5 = 4
+  | M5 = 5
+  | STANDARD5_NVME_DRIVE = 6
+  | M5D = 7
+  | STANDARD5_AMD = 8
+  | M5A = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs26">field InstanceClass.MEMORY5: InstanceClass = 22</div>
+<div class="fsdocs-tip" id="fs27">[&lt;Struct&gt;]
+type InstanceSize =
+  | NANO = 0
+  | MICRO = 1
+  | SMALL = 2
+  | MEDIUM = 3
+  | LARGE = 4
+  | XLARGE = 5
+  | XLARGE2 = 6
+  | XLARGE3 = 7
+  | XLARGE4 = 8
+  | XLARGE6 = 9
+  ...</div>
+<div class="fsdocs-tip" id="fs28">field InstanceSize.LARGE: InstanceSize = 4</div>
+<div class="fsdocs-tip" id="fs29">custom operation: allocatedStorage (int)
+
+Calls DatabaseInstanceBuilder.AllocatedStorage<br /><em>&lt;summary&gt;Sets the allocated storage in GB.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">custom operation: backupRetentionDays (float)
+
+Calls DatabaseInstanceBuilder.BackupRetentionDays<br /><em>&lt;summary&gt;Sets the backup retention period in days.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">custom operation: preferredBackupWindow (string)
+
+Calls DatabaseInstanceBuilder.PreferredBackupWindow<br /><em>&lt;summary&gt;Sets the preferred backup window.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs32">custom operation: multiAz (bool)
+
+Calls DatabaseInstanceBuilder.MultiAz<br /><em>&lt;summary&gt;Enables or disables Multi-AZ deployment.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs33">custom operation: deletionProtection (bool)
+
+Calls DatabaseInstanceBuilder.DeletionProtection<br /><em>&lt;summary&gt;Enables or disables deletion protection.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs34">custom operation: storageEncrypted (bool)
+
+Calls DatabaseInstanceBuilder.StorageEncrypted<br /><em>&lt;summary&gt;Enables storage encryption.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">custom operation: enablePerformanceInsights (bool)
+
+Calls DatabaseInstanceBuilder.EnablePerformanceInsights<br /><em>&lt;summary&gt;Enables performance insights.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs36">val compVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs37">val bucket: name: string -&gt; BucketBuilder</div>
+<div class="fsdocs-tip" id="fs38">custom operation: versioned (bool)
+
+Calls BucketBuilder.Versioned<br /><em>&lt;summary&gt;
+ Enables or disables versioning for the S3 bucket.
+
+ **Security Best Practice:** Enable versioning for:
+ - Critical data that requires audit trails
+ - Data subject to compliance requirements (HIPAA, SOC2, etc.)
+ - Production buckets storing business data
+
+ **Cost Consideration:** Versioning stores all versions of objects, increasing storage costs.
+ Only disable for:
+ - Temporary/cache buckets
+ - Build artifacts with short lifecycle
+ - Development/testing buckets
+
+ **Default:** false (opt-in for cost optimization)
+ &lt;/summary&gt;<br />&lt;param name=&quot;value&quot;&gt;True to enable versioning, false to disable.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ bucket &quot;production-data&quot; {
+     versioned true  // Enable for production
+ }
+
+ bucket &quot;cache-bucket&quot; {
+     versioned false  // Disable for temp data
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs39">custom operation: encryption (BucketEncryption)
+
+Calls BucketBuilder.Encryption</div>
+<div class="fsdocs-tip" id="fs40">[&lt;Struct&gt;]
+type BucketEncryption =
+  | UNENCRYPTED = 0
+  | KMS_MANAGED = 1
+  | S3_MANAGED = 2
+  | KMS = 3
+  | DSSE_MANAGED = 4
+  | DSSE = 5</div>
+<div class="fsdocs-tip" id="fs41">field BucketEncryption.KMS_MANAGED: BucketEncryption = 1</div>
+<div class="fsdocs-tip" id="fs42">val lifecycleRule: LifecycleRuleBuilder</div>
+<div class="fsdocs-tip" id="fs43">custom operation: enabled (bool)
+
+Calls LifecycleRuleBuilder.Enabled</div>
+<div class="fsdocs-tip" id="fs44">custom operation: transitions (ITransition list)
+
+Calls LifecycleRuleBuilder.Transitions</div>
+<div class="fsdocs-tip" id="fs45">val transition: TransitionBuilder<br /><em>&lt;summary&gt;
+ Creates an S3 lifecycle transition rule for moving objects to different storage classes.
+ Transitions reduce storage costs by automatically moving objects to cheaper storage tiers.
+ &lt;/summary&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ transition {
+     storageClass StorageClass.GLACIER
+     transitionAfter (Duration.Days(90.0))
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs46">custom operation: storageClass (StorageClass)
+
+Calls TransitionBuilder.StorageClass<br /><em>&lt;summary&gt;
+ Sets the storage class to transition to.
+ Common classes: GLACIER (low-cost archival), DEEP_ARCHIVE (lowest cost, rare access),
+ INTELLIGENT_TIERING (automatic cost optimization), GLACIER_IR (instant retrieval).
+ &lt;/summary&gt;<br />&lt;param name=&quot;storageClass&quot;&gt;The target storage class.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs47">Multiple items<br />type StorageClass =
+  inherit DeputyBase
+  new: value: string -&gt; unit
+  member ToString: unit -&gt; string
+  member Value: string
+  static member DEEP_ARCHIVE: StorageClass
+  static member GLACIER: StorageClass
+  static member GLACIER_INSTANT_RETRIEVAL: StorageClass
+  static member INFREQUENT_ACCESS: StorageClass
+  static member INTELLIGENT_TIERING: StorageClass
+  static member ONE_ZONE_INFREQUENT_ACCESS: StorageClass<br /><br />--------------------<br />StorageClass(value: string) : StorageClass</div>
+<div class="fsdocs-tip" id="fs48">property StorageClass.GLACIER: StorageClass with get</div>
+<div class="fsdocs-tip" id="fs49">custom operation: transitionAfter (Duration)
+
+Calls TransitionBuilder.TransitionAfter<br /><em>&lt;summary&gt;
+ Sets when objects transition after creation (use Duration.Days()).
+ Example: transitionAfter (Duration.Days(90.0)) moves objects after 90 days.
+ &lt;/summary&gt;<br />&lt;param name=&quot;duration&quot;&gt;Time after object creation to transition.&lt;/param&gt;</em></div>
+<div class="fsdocs-tip" id="fs50">type Duration =
+  inherit DeputyBase
+  member FormatTokenToNumber: unit -&gt; string
+  member IsUnresolved: unit -&gt; bool
+  member Minus: rhs: Duration -&gt; Duration
+  member Plus: rhs: Duration -&gt; Duration
+  member ToDays: ?opts: ITimeConversionOptions -&gt; float
+  member ToHours: ?opts: ITimeConversionOptions -&gt; float
+  member ToHumanString: unit -&gt; string
+  member ToIsoString: unit -&gt; string
+  member ToMilliseconds: ?opts: ITimeConversionOptions -&gt; float
+  ...</div>
+<div class="fsdocs-tip" id="fs51">Duration.Days(amount: float) : Duration</div>
+<div class="fsdocs-tip" id="fs52">custom operation: expiration (Duration)
+
+Calls LifecycleRuleBuilder.Expiration</div>
+<div class="fsdocs-tip" id="fs53">val pitrVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs54">val table: name: string -&gt; TableBuilder<br /><em>&lt;summary&gt;Creates a DynamoDB table configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The table name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs55">custom operation: partitionKey (string) (AttributeType)
+
+Calls TableBuilder.PartitionKey<br /><em>&lt;summary&gt;Sets the partition key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the partition key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;id&quot; AttributeType.STRING
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs56">[&lt;Struct&gt;]
+type AttributeType =
+  | BINARY = 0
+  | NUMBER = 1
+  | STRING = 2</div>
+<div class="fsdocs-tip" id="fs57">field AttributeType.STRING: AttributeType = 2</div>
+<div class="fsdocs-tip" id="fs58">custom operation: sortKey (string) (AttributeType)
+
+Calls TableBuilder.SortKey<br /><em>&lt;summary&gt;Sets the sort key for the table.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The attribute name for the sort key.&lt;/param&gt;<br />&lt;param name=&quot;attrType&quot;&gt;The attribute type (STRING, NUMBER, or BINARY).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     partitionKey &quot;userId&quot; AttributeType.STRING
+     sortKey &quot;timestamp&quot; AttributeType.NUMBER
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs59">field AttributeType.NUMBER: AttributeType = 1</div>
+<div class="fsdocs-tip" id="fs60">custom operation: billingMode (BillingMode)
+
+Calls TableBuilder.BillingMode<br /><em>&lt;summary&gt;Sets the billing mode for the table.&lt;/summary&gt;<br />&lt;param name=&quot;mode&quot;&gt;The billing mode (PAY_PER_REQUEST or PROVISIONED).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     billingMode BillingMode.PAY_PER_REQUEST
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs61">[&lt;Struct&gt;]
+type BillingMode =
+  | PAY_PER_REQUEST = 0
+  | PROVISIONED = 1</div>
+<div class="fsdocs-tip" id="fs62">field BillingMode.PAY_PER_REQUEST: BillingMode = 0</div>
+<div class="fsdocs-tip" id="fs63">custom operation: pointInTimeRecovery (bool)
+
+Calls TableBuilder.PointInTimeRecovery<br /><em>&lt;summary&gt;Enables or disables point-in-time recovery.&lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether point-in-time recovery is enabled.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     pointInTimeRecovery true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs64">custom operation: stream (StreamViewType)
+
+Calls TableBuilder.Stream<br /><em>&lt;summary&gt;Enables DynamoDB Streams for the table.&lt;/summary&gt;<br />&lt;param name=&quot;streamType&quot;&gt;The stream view type (KEYS_ONLY, NEW_IMAGE, OLD_IMAGE, or NEW_AND_OLD_IMAGES).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ table &quot;MyTable&quot; {
+     stream StreamViewType.NEW_AND_OLD_IMAGES
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs65">[&lt;Struct&gt;]
+type StreamViewType =
+  | NEW_IMAGE = 0
+  | OLD_IMAGE = 1
+  | NEW_AND_OLD_IMAGES = 2
+  | KEYS_ONLY = 3</div>
+<div class="fsdocs-tip" id="fs66">field StreamViewType.NEW_AND_OLD_IMAGES: StreamViewType = 2</div>
+<div class="fsdocs-tip" id="fs67">val primaryVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs68">field InstanceSize.XLARGE: InstanceSize = 5</div>
+<div class="fsdocs-tip" id="fs69">field BucketEncryption.S3_MANAGED: BucketEncryption = 2</div>
+<div class="fsdocs-tip" id="fs70">val pilotVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs71">field InstanceClass.BURSTABLE3: InstanceClass = 172</div>
+<div class="fsdocs-tip" id="fs72">field InstanceSize.SMALL: InstanceSize = 2</div>
+<div class="fsdocs-tip" id="fs73">custom operation: maxAllocatedStorage (int)
+
+Calls DatabaseInstanceBuilder.MaxAllocatedStorage<br /><em>&lt;summary&gt;Sets the maximum allocated storage in GB for autoscaling.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs74">val warmVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs75">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs76">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs77">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs78">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs79">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs80">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs81">custom operation: memory (int)
+
+Calls FunctionBuilder.Memory<br /><em>&lt;summary&gt;Sets the memory allocation for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;mb&quot;&gt;The memory size in megabytes.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     memory 512
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs82">custom operation: reservedConcurrentExecutions (int)
+
+Calls FunctionBuilder.ReservedConcurrentExecutions</div>
+<div class="fsdocs-tip" id="fs83">val secondaryVpc: VpcSpec</div>
+<div class="fsdocs-tip" id="fs84">val cloudwatchAlarm: name: string -&gt; CloudWatchAlarmBuilder</div>
+<div class="fsdocs-tip" id="fs85">custom operation: metricName (string)
+
+Calls CloudWatchAlarmBuilder.MetricName<br /><em>&lt;summary&gt;Sets the metric name (e.g., &quot;Errors&quot;, &quot;CPUUtilization&quot;).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs86">custom operation: metricNamespace (string)
+
+Calls CloudWatchAlarmBuilder.MetricNamespace<br /><em>&lt;summary&gt;Sets the CloudWatch metric namespace (e.g., &quot;AWS/Lambda&quot;, &quot;AWS/RDS&quot;).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs87">custom operation: threshold (float)
+
+Calls CloudWatchAlarmBuilder.Threshold<br /><em>&lt;summary&gt;Sets the alarm threshold value.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs88">custom operation: evaluationPeriods (int)
+
+Calls CloudWatchAlarmBuilder.EvaluationPeriods<br /><em>&lt;summary&gt;Sets the number of periods to evaluate.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs89">custom operation: statistic (string)
+
+Calls CloudWatchAlarmBuilder.Statistic<br /><em>&lt;summary&gt;Sets the statistic (Average, Sum, Minimum, Maximum, SampleCount).&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs90">custom operation: comparisonOperator (ComparisonOperator)
+
+Calls CloudWatchAlarmBuilder.ComparisonOperator<br /><em>&lt;summary&gt;Sets the comparison operator.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs91">[&lt;Struct&gt;]
+type ComparisonOperator =
+  | GREATER_THAN_OR_EQUAL_TO_THRESHOLD = 0
+  | GREATER_THAN_THRESHOLD = 1
+  | LESS_THAN_THRESHOLD = 2
+  | LESS_THAN_OR_EQUAL_TO_THRESHOLD = 3
+  | LESS_THAN_LOWER_OR_GREATER_THAN_UPPER_THRESHOLD = 4
+  | GREATER_THAN_UPPER_THRESHOLD = 5
+  | LESS_THAN_LOWER_THRESHOLD = 6</div>
+<div class="fsdocs-tip" id="fs92">field ComparisonOperator.LESS_THAN_OR_EQUAL_TO_THRESHOLD: ComparisonOperator = 3</div>
+<div class="fsdocs-tip" id="fs93">custom operation: treatMissingData (TreatMissingData)
+
+Calls CloudWatchAlarmBuilder.TreatMissingData<br /><em>&lt;summary&gt;Sets how to treat missing data.&lt;/summary&gt;</em></div>
+<div class="fsdocs-tip" id="fs94">[&lt;Struct&gt;]
+type TreatMissingData =
+  | BREACHING = 0
+  | NOT_BREACHING = 1
+  | IGNORE = 2
+  | MISSING = 3</div>
+<div class="fsdocs-tip" id="fs95">field TreatMissingData.BREACHING: TreatMissingData = 0</div>
+<div class="fsdocs-tip" id="fs96">field ComparisonOperator.GREATER_THAN_THRESHOLD: ComparisonOperator = 1</div>
+<div class="fsdocs-tip" id="fs97">field TreatMissingData.NOT_BREACHING: TreatMissingData = 1</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-1">
+    <a href="#Backup-and-Disaster-Recovery-on-AWS">
+      Backup and Disaster Recovery on AWS
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Understanding-Recovery-Objectives">
+      Understanding Recovery Objectives
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Common-RPO-RTO-Requirements-by-Industry">
+      Common RPO/RTO Requirements by Industry
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#RDS-Automated-Backups">
+      RDS Automated Backups
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Production-Database-with-Automated-Backups">
+      Production Database with Automated Backups
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Compliance-Driven-Retention-Policies">
+      Compliance-Driven Retention Policies
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Point-in-Time-Recovery-for-Databases">
+      Point-in-Time Recovery for Databases
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#RDS-Point-in-Time-Recovery">
+      RDS Point-in-Time Recovery
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DynamoDB-Point-in-Time-Recovery">
+      DynamoDB Point-in-Time Recovery
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cross-Region-Replication-for-Disaster-Recovery">
+      Cross-Region Replication for Disaster Recovery
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#RDS-Cross-Region-Read-Replicas">
+      RDS Cross-Region Read Replicas
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DynamoDB-Global-Tables">
+      DynamoDB Global Tables
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#S3-Cross-Region-Replication">
+      S3 Cross-Region Replication
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Disaster-Recovery-Patterns">
+      Disaster Recovery Patterns
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Pattern-1-Backup-and-Restore-RPO-hours-RTO-24-hours">
+      Pattern 1: Backup and Restore (RPO: hours, RTO: 24+ hours)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Pattern-2-Pilot-Light-RPO-minutes-RTO-hours">
+      Pattern 2: Pilot Light (RPO: minutes, RTO: hours)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Pattern-3-Warm-Standby-RPO-seconds-RTO-minutes">
+      Pattern 3: Warm Standby (RPO: seconds, RTO: minutes)
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Pattern-4-Hot-Standby-Active-Active-RPO-near-zero-RTO-automatic">
+      Pattern 4: Hot Standby/Active-Active (RPO: near-zero, RTO: automatic)
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Monitoring-and-Alerting">
+      Monitoring and Alerting
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Testing-Disaster-Recovery">
+      Testing Disaster Recovery
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#DR-Testing-Checklist">
+      DR Testing Checklist
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Automated-DR-Testing-with-AWS-Fault-Injection-Simulator">
+      Automated DR Testing with AWS Fault Injection Simulator
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Cost-Considerations">
+      Cost Considerations
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Compliance-Mapping">
+      Compliance Mapping
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Real-World-Case-Study-AWS-US-EAST-1-Outage">
+      Real-World Case Study: AWS US-EAST-1 Outage
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Additional-Resources">
+      Additional Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>

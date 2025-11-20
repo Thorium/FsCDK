@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en" data-root="https://totallymoney.github.io/FsCDK/">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Edgar Gonzalez" name="author">
+    <!-- Opengraph properties (https://ogp.me/) -->
+    <meta property="og:site_name" content="FsCDK">
+    <meta property="og:title" content="SNS and SQS Messaging" />
+    <meta property="og:url" content="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    <meta property="og:type" content="website" />
+    <!-- Twitter cards (https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/summary-card-with-large-image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://totallymoney.github.io/FsCDK/">
+    <meta name="twitter:title" content="SNS and SQS Messaging">
+    
+    <title>SNS and SQS Messaging | FsCDK</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/img/favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+    <script type="application/javascript" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-set-dark.js"></script>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-default.css" rel="stylesheet" type="text/css"/>
+    <link href="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.css" rel="stylesheet" type="text/css"/>
+    
+    
+</head>
+<body class="content">
+<header>
+    <div class="start">
+        <div id="menu-toggle">
+            <iconify-icon class="icon closed" height="22" icon="eva:menu-fill" width="22"></iconify-icon>
+            <iconify-icon class="icon open" height="22" icon="mi:close" width="22"></iconify-icon>
+            <input type="checkbox" name="mobile-menu" />
+            <ul class="menu">
+                <li class="nav-header">Links</li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+                </li>
+                <li class="nav-item"><a class="nav-link"
+                                        href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+                    Notes</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+                    Repository</a></li>
+                <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+                <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+            </ul>
+        </div>
+        <a href="https://github.com/totallymoney/FsCDK">
+            <img alt="Header menu logo" src="https://totallymoney.github.io/FsCDK/img/logo.png">
+            <strong>FsCDK</strong>
+        </a>
+    </div>
+    <div class="end">
+        <a href="https://github.com/totallymoney/FsCDK/" target="_blank">
+            <iconify-icon icon="uil:github" width="26" height="26"></iconify-icon>
+        </a>
+        <iconify-icon id="search-btn" icon="carbon:search" class="search" width="24" height="24"></iconify-icon>
+        <fsdocs-theme-toggle></fsdocs-theme-toggle>
+    </div>
+</header>
+<aside id="fsdocs-main-menu">
+    <ul class="menu">
+        <li class="nav-header">Links</li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/blob/main/LICENSE">License</a>
+        </li>
+        <li class="nav-item"><a class="nav-link"
+                                href="https://github.com/totallymoney/FsCDK/blob/main/CHANGELOG.md">Release
+            Notes</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/totallymoney/FsCDK/">Source
+            Repository</a></li>
+        <li class="nav-header active">
+  Resources
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/alb-secrets-route53.html">
+    Load Balancer, Secrets Manager, and Route 53 Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/api-gateway-v2.html">
+    API Gateway V2 (HTTP API)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bastion-host.html">
+    Bastion Host
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/bucket-policy.html">
+    S3 Bucket Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/certificate-manager.html">
+    Certificate Manager
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudtrail-audit-logging.html">
+    CloudTrail Audit Logging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cloudwatch-dashboard.html">
+    CloudWatch Monitoring and Dashboards
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cognito-m2m-oauth.html">
+    Cognito OAuth 2.0 Machine-to-Machine (M2M)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/dynamodb.html">
+    DynamoDB Tables
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ec2-ecs.html">
+    EC2 and ECS Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/ecr-repository.html">
+    ECR Repository (Container Registry)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eks-kubernetes.html">
+    EKS (Elastic Kubernetes Service) Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/eventbridge.html">
+    EventBridge
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kinesis-streams.html">
+    Kinesis Streams Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/kms-encryption.html">
+    KMS Key Management
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-powertools.html">
+    Lambda Powertools Integration
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-production-defaults.html">
+    Lambda Production Defaults
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/lambda-quickstart.html">
+    Lambda Quickstart Example
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/managed-policy.html">
+    Managed IAM Policy
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/network-load-balancer.html">
+    Network Load Balancer
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/rds-database.html">
+    RDS Relational Databases
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/s3-quickstart.html">
+    S3 Quickstart Example
+  </a>
+</li>             
+<li class="nav-item active">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/sns-sqs-messaging.html">
+    SNS and SQS Messaging
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/step-functions.html">
+    Step Functions (State Machines)
+  </a>
+</li>             
+<li class="nav-header ">
+  Testing
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/localstack-testing.html">
+    Local Testing with LocalStack
+  </a>
+</li>             
+<li class="nav-header ">
+  Reference
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/aws-learning-resources.html">
+    AWS Learning Resources
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/comparison-to-farmer.html">
+    Comparison with Azure (Farmer F#) to AWS (FsCDK)
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/feature-reference.html">
+    Complete Feature Reference
+  </a>
+</li>             
+<li class="nav-header ">
+  Getting Started
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/getting-started-extended.html">
+    Getting Started with FsCDK - Extended Features
+  </a>
+</li>             
+<li class="nav-header ">
+  Tutorials
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tenant-patterns.html">
+    Multi-Tenant SaaS Patterns
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/multi-tier-example.html">
+    FsCDK Multi-Tier Application Example
+  </a>
+</li>             
+<li class="nav-header ">
+  Best Practices
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/backup-and-disaster-recovery.html">
+    Backup and Disaster Recovery on AWS
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/cost-optimization-strategies.html">
+    AWS Cost Optimization Strategies
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/governance-compliance-aws-organizations.html">
+    Governance and Compliance with AWS Organizations
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/iam-best-practices.html">
+    IAM Best Practices for FsCDK
+  </a>
+</li>             
+<li class="nav-header ">
+  Other
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/custom-resources.html">
+    Production-grade custom resources with FsCDK
+
+  </a>
+</li>             
+<li class="nav-item ">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/img/diagrams/README.html">
+    FsCDK Documentation Diagrams
+
+  </a>
+</li>
+        <li class="nav-header">
+  API Reference
+</li>             
+<li class="nav-item">
+  <a class="nav-link" href="https://totallymoney.github.io/FsCDK/reference/index.html">
+    All Namespaces
+  </a>
+</li>
+    </ul>
+</aside>
+<main>
+    <div id="content">
+        
+<h1><a name="Amazon-SNS-and-SQS" class="anchor" href="#Amazon-SNS-and-SQS"><img src="img/icons/Arch_Amazon-Simple-Notification-Service_48.png" alt="SNS" /> <img src="img/icons/Arch_Amazon-Simple-Queue-Service_48.png" alt="SQS" /> Amazon SNS and SQS</a></h1>
+<p>Amazon SNS (Simple Notification Service) and SQS (Simple Queue Service) are fully managed messaging services
+that enable you to decouple and scale microservices, distributed systems, and serverless applications.</p>
+<h2><a name="SNS-SQS-Messaging-Patterns" class="anchor" href="#SNS-SQS-Messaging-Patterns">SNS/SQS Messaging Patterns</a></h2>
+<p><img src="img/diagrams/sns-sqs-messaging-patterns.svg" alt="SNS/SQS Messaging Patterns" /></p>
+<h2><a name="Quick-Start" class="anchor" href="#Quick-Start">Quick Start</a></h2>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.JSII.Runtime.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Constructs.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/Amazon.CDK.Lib.dll&quot;</span>
+<span class="pp">#r</span> <span class="s">&quot;../src/bin/Release/net8.0/publish/FsCDK.dll&quot;</span>
+
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="id">FsCDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="id">CDK</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 4)" onmouseover="showTip(event, 'fs2', 4)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 5)" onmouseover="showTip(event, 'fs3', 5)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 6)" onmouseover="showTip(event, 'fs4', 6)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs5', 7)" onmouseover="showTip(event, 'fs5', 7)" class="id">SNS</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 8)" onmouseover="showTip(event, 'fs2', 8)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 9)" onmouseover="showTip(event, 'fs3', 9)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs6', 11)" onmouseover="showTip(event, 'fs6', 11)" class="id">SQS</span>
+<span class="k">open</span> <span onmouseout="hideTip(event, 'fs2', 12)" onmouseover="showTip(event, 'fs2', 12)" class="id">Amazon</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs3', 13)" onmouseover="showTip(event, 'fs3', 13)" class="id">CDK</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs4', 14)" onmouseover="showTip(event, 'fs4', 14)" class="id">AWS</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs7', 15)" onmouseover="showTip(event, 'fs7', 15)" class="id">Lambda</span>
+</code></pre>
+<h2><a name="SNS-Basic-Topic" class="anchor" href="#SNS-Basic-Topic">SNS: Basic Topic</a></h2>
+<p>Create a simple SNS topic for pub/sub messaging.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 16)" onmouseover="showTip(event, 'fs8', 16)" class="fn">stack</span> <span class="s">&quot;BasicSNS&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs9', 17)" onmouseover="showTip(event, 'fs9', 17)" class="fn">topic</span> <span class="s">&quot;OrderNotifications&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs10', 18)" onmouseover="showTip(event, 'fs10', 18)" class="k">displayName</span> <span class="s">&quot;Order Processing Notifications&quot;</span> <span class="pn">}</span> <span class="pn">}</span>
+</code></pre>
+<h2><a name="SNS-FIFO-Topic" class="anchor" href="#SNS-FIFO-Topic">SNS: FIFO Topic</a></h2>
+<p>Create a FIFO topic for ordered, exactly-once message delivery.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 19)" onmouseover="showTip(event, 'fs8', 19)" class="fn">stack</span> <span class="s">&quot;FIFOTopic&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs9', 20)" onmouseover="showTip(event, 'fs9', 20)" class="fn">topic</span> <span class="s">&quot;Transactions.fifo&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs10', 21)" onmouseover="showTip(event, 'fs10', 21)" class="k">displayName</span> <span class="s">&quot;Transaction Events&quot;</span>
+        <span onmouseout="hideTip(event, 'fs11', 22)" onmouseover="showTip(event, 'fs11', 22)" class="k">fifo</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs12', 23)" onmouseover="showTip(event, 'fs12', 23)" class="k">contentBasedDeduplication</span> <span class="k">true</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="SQS-Basic-Queue" class="anchor" href="#SQS-Basic-Queue">SQS: Basic Queue</a></h2>
+<p>Create a simple SQS queue for asynchronous message processing.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 24)" onmouseover="showTip(event, 'fs8', 24)" class="fn">stack</span> <span class="s">&quot;BasicSQS&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs13', 25)" onmouseover="showTip(event, 'fs13', 25)" class="fn">queue</span> <span class="s">&quot;OrderProcessing&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 26)" onmouseover="showTip(event, 'fs14', 26)" class="k">visibilityTimeout</span> <span class="n">30.0</span>
+        <span onmouseout="hideTip(event, 'fs15', 27)" onmouseover="showTip(event, 'fs15', 27)" class="k">messageRetention</span> <span class="n">345600.0</span> <span class="c">// 4 days</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="SQS-FIFO-Queue" class="anchor" href="#SQS-FIFO-Queue">SQS: FIFO Queue</a></h2>
+<p>Create a FIFO queue for ordered message processing.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 28)" onmouseover="showTip(event, 'fs8', 28)" class="fn">stack</span> <span class="s">&quot;FIFOQueue&quot;</span> <span class="pn">{</span>
+    <span onmouseout="hideTip(event, 'fs13', 29)" onmouseover="showTip(event, 'fs13', 29)" class="fn">queue</span> <span class="s">&quot;Transactions.fifo&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs16', 30)" onmouseover="showTip(event, 'fs16', 30)" class="k">fifo</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs17', 31)" onmouseover="showTip(event, 'fs17', 31)" class="k">contentBasedDeduplication</span> <span class="k">true</span>
+        <span onmouseout="hideTip(event, 'fs14', 32)" onmouseover="showTip(event, 'fs14', 32)" class="k">visibilityTimeout</span> <span class="n">60.0</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="SQS-Queue-with-Dead-Letter-Queue" class="anchor" href="#SQS-Queue-with-Dead-Letter-Queue">SQS: Queue with Dead Letter Queue</a></h2>
+<p>Implement error handling with a dead-letter queue.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 33)" onmouseover="showTip(event, 'fs8', 33)" class="fn">stack</span> <span class="s">&quot;QueueWithDLQ&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create dead-letter queue first</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs18', 34)" onmouseover="showTip(event, 'fs18', 34)" class="fn">dlq</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs13', 35)" onmouseover="showTip(event, 'fs13', 35)" class="fn">queue</span> <span class="s">&quot;ProcessingDLQ&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs15', 36)" onmouseover="showTip(event, 'fs15', 36)" class="k">messageRetention</span> <span class="n">1209600.0</span> <span class="c">// 14 days</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create main queue with DLQ</span>
+    <span onmouseout="hideTip(event, 'fs13', 37)" onmouseover="showTip(event, 'fs13', 37)" class="fn">queue</span> <span class="s">&quot;OrderProcessing&quot;</span> <span class="pn">{</span>
+        <span onmouseout="hideTip(event, 'fs14', 38)" onmouseover="showTip(event, 'fs14', 38)" class="k">visibilityTimeout</span> <span class="n">30.0</span>
+        <span onmouseout="hideTip(event, 'fs19', 39)" onmouseover="showTip(event, 'fs19', 39)" class="k">deadLetterQueue</span> <span class="s">&quot;ProcessingDLQ&quot;</span> <span class="n">3</span> <span class="c">// 3 max receives</span>
+    <span class="pn">}</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="SNS-to-SQS-Fan-Out-Pattern" class="anchor" href="#SNS-to-SQS-Fan-Out-Pattern">SNS to SQS: Fan-Out Pattern</a></h2>
+<p>Distribute messages from one SNS topic to multiple SQS queues.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 40)" onmouseover="showTip(event, 'fs8', 40)" class="fn">stack</span> <span class="s">&quot;FanOutPattern&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create SNS topic</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs20', 41)" onmouseover="showTip(event, 'fs20', 41)" class="fn">orderTopic</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 42)" onmouseover="showTip(event, 'fs9', 42)" class="fn">topic</span> <span class="s">&quot;OrderEvents&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs10', 43)" onmouseover="showTip(event, 'fs10', 43)" class="k">displayName</span> <span class="s">&quot;Order Processing Events&quot;</span> <span class="pn">}</span>
+
+    <span class="c">// Create multiple queues for different processing</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 44)" onmouseover="showTip(event, 'fs21', 44)" class="fn">inventoryQueue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 45)" onmouseover="showTip(event, 'fs13', 45)" class="fn">queue</span> <span class="s">&quot;InventoryProcessing&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs14', 46)" onmouseover="showTip(event, 'fs14', 46)" class="k">visibilityTimeout</span> <span class="n">30.0</span> <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 47)" onmouseover="showTip(event, 'fs22', 47)" class="fn">shippingQueue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 48)" onmouseover="showTip(event, 'fs13', 48)" class="fn">queue</span> <span class="s">&quot;ShippingProcessing&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs14', 49)" onmouseover="showTip(event, 'fs14', 49)" class="k">visibilityTimeout</span> <span class="n">60.0</span> <span class="pn">}</span>
+
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs23', 50)" onmouseover="showTip(event, 'fs23', 50)" class="fn">analyticsQueue</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs13', 51)" onmouseover="showTip(event, 'fs13', 51)" class="fn">queue</span> <span class="s">&quot;AnalyticsProcessing&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs14', 52)" onmouseover="showTip(event, 'fs14', 52)" class="k">visibilityTimeout</span> <span class="n">120.0</span> <span class="pn">}</span>
+
+    <span class="c">// Note: Subscriptions must be configured using CDK directly</span>
+    <span class="c">// Example: orderTopic.AddSubscription(SqsSubscription inventoryQueue)</span>
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="SNS-to-Lambda" class="anchor" href="#SNS-to-Lambda">SNS to Lambda</a></h2>
+<p>Trigger Lambda functions from SNS topics.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 53)" onmouseover="showTip(event, 'fs8', 53)" class="fn">stack</span> <span class="s">&quot;SNSToLambda&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create Lambda function</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs24', 54)" onmouseover="showTip(event, 'fs24', 54)" class="fn">processorFunc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs25', 55)" onmouseover="showTip(event, 'fs25', 55)" class="fn">lambda</span> <span class="s">&quot;EventProcessor&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs26', 56)" onmouseover="showTip(event, 'fs26', 56)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs27', 57)" onmouseover="showTip(event, 'fs27', 57)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 58)" onmouseover="showTip(event, 'fs28', 58)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs29', 59)" onmouseover="showTip(event, 'fs29', 59)" class="k">handler</span> <span class="s">&quot;App::ProcessEvent&quot;</span>
+            <span onmouseout="hideTip(event, 'fs30', 60)" onmouseover="showTip(event, 'fs30', 60)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create SNS topic</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs31', 61)" onmouseover="showTip(event, 'fs31', 61)" class="fn">eventTopic</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs9', 62)" onmouseover="showTip(event, 'fs9', 62)" class="fn">topic</span> <span class="s">&quot;SystemEvents&quot;</span> <span class="pn">{</span> <span onmouseout="hideTip(event, 'fs10', 63)" onmouseover="showTip(event, 'fs10', 63)" class="k">displayName</span> <span class="s">&quot;System Event Notifications&quot;</span> <span class="pn">}</span>
+
+    <span class="c">// Note: Subscription must be configured using CDK directly</span>
+    <span class="c">// Example: eventTopic.AddSubscription(LambdaSubscription processorFunc)</span>
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="SQS-to-Lambda" class="anchor" href="#SQS-to-Lambda">SQS to Lambda</a></h2>
+<p>Process SQS messages with Lambda functions.</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span onmouseout="hideTip(event, 'fs8', 64)" onmouseover="showTip(event, 'fs8', 64)" class="fn">stack</span> <span class="s">&quot;SQSToLambda&quot;</span> <span class="pn">{</span>
+    <span class="c">// Create queue</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs32', 65)" onmouseover="showTip(event, 'fs32', 65)" class="fn">workQueue</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs13', 66)" onmouseover="showTip(event, 'fs13', 66)" class="fn">queue</span> <span class="s">&quot;WorkQueue&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs14', 67)" onmouseover="showTip(event, 'fs14', 67)" class="k">visibilityTimeout</span> <span class="n">300.0</span> <span class="c">// 5 minutes (match Lambda timeout)</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Create Lambda function</span>
+    <span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 68)" onmouseover="showTip(event, 'fs33', 68)" class="fn">workerFunc</span> <span class="o">=</span>
+        <span onmouseout="hideTip(event, 'fs25', 69)" onmouseover="showTip(event, 'fs25', 69)" class="fn">lambda</span> <span class="s">&quot;Worker&quot;</span> <span class="pn">{</span>
+            <span onmouseout="hideTip(event, 'fs26', 70)" onmouseover="showTip(event, 'fs26', 70)" class="k">runtime</span> <span onmouseout="hideTip(event, 'fs27', 71)" onmouseover="showTip(event, 'fs27', 71)" class="rt">Runtime</span><span class="pn">.</span><span onmouseout="hideTip(event, 'fs28', 72)" onmouseover="showTip(event, 'fs28', 72)" class="id">DOTNET_8</span>
+            <span onmouseout="hideTip(event, 'fs29', 73)" onmouseover="showTip(event, 'fs29', 73)" class="k">handler</span> <span class="s">&quot;App::ProcessMessage&quot;</span>
+            <span onmouseout="hideTip(event, 'fs30', 74)" onmouseover="showTip(event, 'fs30', 74)" class="k">code</span> <span class="s">&quot;./lambda&quot;</span>
+            <span onmouseout="hideTip(event, 'fs34', 75)" onmouseover="showTip(event, 'fs34', 75)" class="k">timeout</span> <span class="n">300.0</span> <span class="c">// 5 minutes</span>
+        <span class="pn">}</span>
+
+    <span class="c">// Note: Event source mapping must be configured using CDK directly</span>
+    <span class="c">// Example: workQueue.GrantConsumeMessages workerFunc</span>
+    <span class="pn">(</span><span class="pn">)</span>
+<span class="pn">}</span>
+</code></pre>
+<h2><a name="Email-Notifications" class="anchor" href="#Email-Notifications">Email Notifications</a></h2>
+<p>Send email notifications using SNS.</p>
+<p>Note: Email subscriptions must be configured using CDK directly.
+Email addresses require confirmation.</p>
+<h2><a name="SMS-Notifications" class="anchor" href="#SMS-Notifications">SMS Notifications</a></h2>
+<p>Send SMS notifications using SNS.</p>
+<p>Note: SMS subscriptions must be configured using CDK directly.
+Requires SMS settings configuration in AWS account.</p>
+<h2><a name="Best-Practices" class="anchor" href="#Best-Practices">Best Practices</a></h2>
+<h3><a name="SNS-Best-Practices" class="anchor" href="#SNS-Best-Practices">SNS Best Practices</a></h3>
+<h4><a name="Performance" class="anchor" href="#Performance">Performance</a></h4>
+<ul>
+<li>Use batching for high-volume publishing</li>
+<li>Implement retry logic with exponential backoff</li>
+<li>Use message attributes for filtering</li>
+<li>Consider FIFO topics only when ordering is critical</li>
+</ul>
+<h4><a name="Security" class="anchor" href="#Security">Security</a></h4>
+<ul>
+<li>Use IAM policies for topic access control</li>
+<li>Enable encryption at rest and in transit</li>
+<li>Use VPC endpoints for private access</li>
+<li>Audit access with CloudTrail</li>
+</ul>
+<h4><a name="Cost-Optimization" class="anchor" href="#Cost-Optimization">Cost Optimization</a></h4>
+<ul>
+<li>Use message filtering to reduce unnecessary deliveries</li>
+<li>Monitor unused topics and remove them</li>
+<li>Use standard topics unless FIFO is required</li>
+<li>Consolidate topics where possible</li>
+</ul>
+<h4><a name="Reliability" class="anchor" href="#Reliability">Reliability</a></h4>
+<ul>
+<li>Implement DLQ for failed deliveries</li>
+<li>Set appropriate retry policies</li>
+<li>Monitor delivery failures in CloudWatch</li>
+<li>Use multiple subscriptions for redundancy</li>
+</ul>
+<h3><a name="SQS-Best-Practices" class="anchor" href="#SQS-Best-Practices">SQS Best Practices</a></h3>
+<h4><a name="Performance-1" class="anchor" href="#Performance-1">Performance</a></h4>
+<ul>
+<li>Set visibility timeout &gt;= Lambda timeout</li>
+<li>Use long polling (reduce empty receives)</li>
+<li>Batch messages when possible</li>
+<li>Use message attributes for metadata</li>
+</ul>
+<h4><a name="Security-1" class="anchor" href="#Security-1">Security</a></h4>
+<ul>
+<li>Use IAM policies for queue access control</li>
+<li>Enable encryption at rest (SQS-managed or KMS)</li>
+<li>Use VPC endpoints for private access</li>
+<li>Implement least-privilege access</li>
+</ul>
+<h4><a name="Cost-Optimization-1" class="anchor" href="#Cost-Optimization-1">Cost Optimization</a></h4>
+<ul>
+<li>Use standard queues unless FIFO is required</li>
+<li>Set appropriate message retention (don't over-retain)</li>
+<li>Monitor queue age and empty receives</li>
+<li>Use long polling to reduce API calls</li>
+</ul>
+<h4><a name="Reliability-1" class="anchor" href="#Reliability-1">Reliability</a></h4>
+<ul>
+<li>Always implement dead-letter queues</li>
+<li>Set maxReceiveCount appropriately (3-5 typical)</li>
+<li>Monitor DLQ depth and alert on messages</li>
+<li>Implement idempotent message processing</li>
+<li>Set retention high enough for recovery</li>
+</ul>
+<h3><a name="Message-Processing-Patterns" class="anchor" href="#Message-Processing-Patterns">Message Processing Patterns</a></h3>
+<h4><a name="Fan-Out-SNS-to-Multiple-SQS" class="anchor" href="#Fan-Out-SNS-to-Multiple-SQS">Fan-Out (SNS to Multiple SQS)</a></h4>
+<ul>
+<li>One message triggers multiple processing pipelines</li>
+<li>Each queue processes independently</li>
+<li>Use for parallel processing of same event</li>
+</ul>
+<h4><a name="Queue-Chain-SQS-to-Lambda-to-SQS" class="anchor" href="#Queue-Chain-SQS-to-Lambda-to-SQS">Queue Chain (SQS to Lambda to SQS)</a></h4>
+<ul>
+<li>Multi-stage processing pipeline</li>
+<li>Each stage processes and forwards</li>
+<li>Use for complex workflows</li>
+</ul>
+<h4><a name="Priority-Queue" class="anchor" href="#Priority-Queue">Priority Queue</a></h4>
+<ul>
+<li>Multiple queues with different Lambda concurrency</li>
+<li>High-priority queue gets more workers</li>
+<li>Use for SLA-based processing</li>
+</ul>
+<h4><a name="Circuit-Breaker" class="anchor" href="#Circuit-Breaker">Circuit Breaker</a></h4>
+<ul>
+<li>Monitor DLQ depth</li>
+<li>Stop processing on repeated failures</li>
+<li>Use for protecting downstream systems</li>
+</ul>
+<h2><a name="SNS-vs-SQS" class="anchor" href="#SNS-vs-SQS">SNS vs SQS</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th><p>Feature</p></th>
+<th><p>SNS</p></th>
+<th><p>SQS</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Pattern</strong></p></td>
+<td><p>Pub/Sub (push)</p></td>
+<td><p>Queue (pull)</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Delivery</strong></p></td>
+<td><p>Push to subscribers</p></td>
+<td><p>Pull by consumers</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Message Persistence</strong></p></td>
+<td><p>No</p></td>
+<td><p>Yes (up to 14 days)</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Subscribers</strong></p></td>
+<td><p>Multiple</p></td>
+<td><p>One consumer per message</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Ordering</strong></p></td>
+<td><p>FIFO topics only</p></td>
+<td><p>FIFO queues only</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Best For</strong></p></td>
+<td><p>Fan-out, notifications</p></td>
+<td><p>Decoupling, buffering</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2><a name="FIFO-vs-Standard" class="anchor" href="#FIFO-vs-Standard">FIFO vs Standard</a></h2>
+<table>
+<thead>
+<tr class="header">
+<th><p>Feature</p></th>
+<th><p>Standard</p></th>
+<th><p>FIFO</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><strong>Throughput</strong></p></td>
+<td><p>Unlimited</p></td>
+<td><p>300 msg/s (batch: 3000)</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Ordering</strong></p></td>
+<td><p>Best effort</p></td>
+<td><p>Guaranteed</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Delivery</strong></p></td>
+<td><p>At least once</p></td>
+<td><p>Exactly once</p></td>
+</tr>
+<tr class="even">
+<td><p><strong>Cost</strong></p></td>
+<td><p>Lower</p></td>
+<td><p>Higher</p></td>
+</tr>
+<tr class="odd">
+<td><p><strong>Use Case</strong></p></td>
+<td><p>Most scenarios</p></td>
+<td><p>Banking, trading</p></td>
+</tr>
+</tbody>
+</table>
+
+<h2><a name="Message-Attributes" class="anchor" href="#Message-Attributes">Message Attributes</a></h2>
+<p>Use message attributes for filtering and routing:</p>
+<pre class="fssnip highlighted"><code lang="fsharp"><span class="c">// In Lambda publishing to SNS:</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 76)" onmouseover="showTip(event, 'fs35', 76)" class="id">attributes</span> <span class="o">=</span> <span class="id">Dictionary</span><span class="pn">&lt;</span><span onmouseout="hideTip(event, 'fs36', 77)" onmouseover="showTip(event, 'fs36', 77)" class="id">string</span><span class="pn">,</span> <span class="id">MessageAttributeValue</span><span class="pn">&gt;</span><span class="pn">(</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs35', 78)" onmouseover="showTip(event, 'fs35', 78)" class="id">attributes</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span class="s">&quot;eventType&quot;</span><span class="pn">,</span> <span class="id">MessageAttributeValue</span><span class="pn">(</span><span class="id">StringValue</span> <span class="o">=</span> <span class="s">&quot;order&quot;</span><span class="pn">)</span><span class="pn">)</span>
+<span onmouseout="hideTip(event, 'fs35', 79)" onmouseover="showTip(event, 'fs35', 79)" class="id">attributes</span><span class="pn">.</span><span class="id">Add</span><span class="pn">(</span><span class="s">&quot;priority&quot;</span><span class="pn">,</span> <span class="id">MessageAttributeValue</span><span class="pn">(</span><span class="id">StringValue</span> <span class="o">=</span> <span class="s">&quot;high&quot;</span><span class="pn">)</span><span class="pn">)</span>
+
+<span class="id">topic</span><span class="pn">.</span><span class="id">Publish</span><span class="pn">(</span><span class="id">PublishRequest</span><span class="pn">(</span>
+    <span class="id">Message</span> <span class="o">=</span> <span class="id">json</span><span class="pn">,</span>
+    <span class="id">MessageAttributes</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs35', 80)" onmouseover="showTip(event, 'fs35', 80)" class="id">attributes</span>
+<span class="pn">)</span><span class="pn">)</span>
+</code></pre>
+<h2><a name="Resources" class="anchor" href="#Resources">Resources</a></h2>
+<ul>
+<li><a href="https://docs.aws.amazon.com/sns/">Amazon SNS Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/sqs/">Amazon SQS Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html">SNS Message Filtering</a></li>
+<li><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-best-practices.html">SQS Best Practices</a></li>
+<li><a href="https://docs.aws.amazon.com/sns/latest/dg/sns-common-scenarios.html">Fan-Out Pattern</a></li>
+</ul>
+
+        <div class="fsdocs-tip" id="fs1">namespace FsCDK</div>
+<div class="fsdocs-tip" id="fs2">namespace Amazon</div>
+<div class="fsdocs-tip" id="fs3">namespace Amazon.CDK</div>
+<div class="fsdocs-tip" id="fs4">namespace Amazon.CDK.AWS</div>
+<div class="fsdocs-tip" id="fs5">namespace Amazon.CDK.AWS.SNS</div>
+<div class="fsdocs-tip" id="fs6">namespace Amazon.CDK.AWS.SQS</div>
+<div class="fsdocs-tip" id="fs7">namespace Amazon.CDK.AWS.Lambda</div>
+<div class="fsdocs-tip" id="fs8">val stack: name: string -&gt; StackBuilder<br /><em>&lt;summary&gt;Creates an AWS CDK Stack construct.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The name of the stack.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ stack &quot;MyStack&quot; {
+     lambda myFunction
+     bucket myBucket
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs9">val topic: name: string -&gt; TopicBuilder<br /><em>&lt;summary&gt;Creates an SNS topic configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The topic name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ topic &quot;MyTopic&quot; {
+     displayName &quot;My Notification Topic&quot;
+     fifo true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs10">custom operation: displayName (string)
+
+Calls TopicBuilder.DisplayName<br /><em>&lt;summary&gt;Sets the display name for the topic.&lt;/summary&gt;<br />&lt;param name=&quot;displayName&quot;&gt;The display name shown in email notifications.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ topic &quot;MyTopic&quot; {
+     displayName &quot;Order Notifications&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs11">custom operation: fifo (bool)
+
+Calls TopicBuilder.Fifo<br /><em>&lt;summary&gt;Configures the topic as a FIFO topic.&lt;/summary&gt;<br />&lt;param name=&quot;isFifo&quot;&gt;Whether the topic is FIFO.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ topic &quot;MyTopic.fifo&quot; {
+     fifo true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs12">custom operation: contentBasedDeduplication (bool)
+
+Calls TopicBuilder.ContentBasedDeduplication<br /><em>&lt;summary&gt;Enables content-based deduplication for FIFO topics.&lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether content-based deduplication is enabled.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ topic &quot;MyTopic.fifo&quot; {
+     fifo true
+     contentBasedDeduplication true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs13">val queue: name: string -&gt; QueueBuilder<br /><em>&lt;summary&gt;Creates an SQS queue configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The queue name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     visibilityTimeout 30.0
+     fifo true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs14">custom operation: visibilityTimeout (float)
+
+Calls QueueBuilder.VisibilityTimeout<br /><em>&lt;summary&gt;Sets the visibility timeout for messages in the queue.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The visibility timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     visibilityTimeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs15">custom operation: messageRetention (float)
+
+Calls QueueBuilder.MessageRetention<br /><em>&lt;summary&gt;Sets the message retention period for the queue.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The retention period in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     messageRetention 345600.0 // 4 days
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs16">custom operation: fifo (bool)
+
+Calls QueueBuilder.Fifo<br /><em>&lt;summary&gt;Configures the queue as a FIFO queue.&lt;/summary&gt;<br />&lt;param name=&quot;isFifo&quot;&gt;Whether the queue is FIFO.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue.fifo&quot; {
+     fifo true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs17">custom operation: contentBasedDeduplication (bool)
+
+Calls QueueBuilder.ContentBasedDeduplication<br /><em>&lt;summary&gt;Enables content-based deduplication for FIFO queues.&lt;/summary&gt;<br />&lt;param name=&quot;enabled&quot;&gt;Whether content-based deduplication is enabled.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue.fifo&quot; {
+     fifo true
+     contentBasedDeduplication true
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs18">val dlq: QueueSpec</div>
+<div class="fsdocs-tip" id="fs19">custom operation: deadLetterQueue (string) (int)
+
+Calls QueueBuilder.DeadLetterQueue<br /><em>&lt;summary&gt;Configures a dead-letter queue for the queue.&lt;/summary&gt;<br />&lt;param name=&quot;dlqName&quot;&gt;The name of the dead-letter queue.&lt;/param&gt;<br />&lt;param name=&quot;maxReceiveCount&quot;&gt;Maximum receives before sending to DLQ.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ queue &quot;MyQueue&quot; {
+     deadLetterQueue &quot;MyDLQ&quot; 3
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs20">val orderTopic: TopicSpec</div>
+<div class="fsdocs-tip" id="fs21">val inventoryQueue: QueueSpec</div>
+<div class="fsdocs-tip" id="fs22">val shippingQueue: QueueSpec</div>
+<div class="fsdocs-tip" id="fs23">val analyticsQueue: QueueSpec</div>
+<div class="fsdocs-tip" id="fs24">val processorFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs25">val lambda: name: string -&gt; FunctionBuilder<br /><em>&lt;summary&gt;Creates a Lambda function configuration.&lt;/summary&gt;<br />&lt;param name=&quot;name&quot;&gt;The function name.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+     runtime Runtime.NODEJS_18_X
+     code &quot;./lambda&quot;
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs26">custom operation: runtime (Runtime)
+
+Calls FunctionBuilder.Runtime<br /><em>&lt;summary&gt;Sets the runtime for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;runtime&quot;&gt;The Lambda runtime.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     runtime Runtime.NODEJS_18_X
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs27">Multiple items<br />type Runtime =
+  inherit DeputyBase
+  new: name: string * ?family: Nullable&lt;RuntimeFamily&gt; * ?props: ILambdaRuntimeProps -&gt; unit
+  member RuntimeEquals: other: Runtime -&gt; bool
+  member ToString: unit -&gt; string
+  member BundlingImage: DockerImage
+  member Family: Nullable&lt;RuntimeFamily&gt;
+  member IsVariable: bool
+  member Name: string
+  member SupportsCodeGuruProfiling: bool
+  member SupportsInlineCode: bool
+  ...<br /><br />--------------------<br />Runtime(name: string, ?family: System.Nullable&lt;RuntimeFamily&gt;, ?props: ILambdaRuntimeProps) : Runtime</div>
+<div class="fsdocs-tip" id="fs28">property Runtime.DOTNET_8: Runtime with get</div>
+<div class="fsdocs-tip" id="fs29">custom operation: handler (string)
+
+Calls FunctionBuilder.Handler<br /><em>&lt;summary&gt;Sets the handler for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;handler&quot;&gt;The handler name (e.g., &quot;index.handler&quot;).&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     handler &quot;index.handler&quot;
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs30">custom operation: code (Code)
+
+Calls FunctionBuilder.Code<br /><em>&lt;summary&gt;Sets the code source from a Code object.&lt;/summary&gt;<br />&lt;param name=&quot;path&quot;&gt;The Code object.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     code (Code.FromBucket myBucket &quot;lambda.zip&quot;)
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs31">val eventTopic: TopicSpec</div>
+<div class="fsdocs-tip" id="fs32">val workQueue: QueueSpec</div>
+<div class="fsdocs-tip" id="fs33">val workerFunc: FunctionSpec</div>
+<div class="fsdocs-tip" id="fs34">custom operation: timeout (float)
+
+Calls FunctionBuilder.Timeout<br /><em>&lt;summary&gt;Sets the timeout for the Lambda function.&lt;/summary&gt;<br />&lt;param name=&quot;seconds&quot;&gt;The timeout in seconds.&lt;/param&gt;<br />&lt;code lang=&quot;fsharp&quot;&gt;
+ lambda &quot;MyFunction&quot; {
+     timeout 30.0
+ }
+ &lt;/code&gt;</em></div>
+<div class="fsdocs-tip" id="fs35">val attributes: obj</div>
+<div class="fsdocs-tip" id="fs36">Multiple items<br />val string: value: &#39;T -&gt; string<br /><br />--------------------<br />type string = System.String</div>
+
+    </div>
+</main>
+<aside id="fsdocs-page-menu">
+    <p id="on-this-page">On this page</p>
+    <ul>
+  <li class="level-2">
+    <a href="#SNS-SQS-Messaging-Patterns">
+      SNS/SQS Messaging Patterns
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Quick-Start">
+      Quick Start
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SNS-Basic-Topic">
+      SNS: Basic Topic
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SNS-FIFO-Topic">
+      SNS: FIFO Topic
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SQS-Basic-Queue">
+      SQS: Basic Queue
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SQS-FIFO-Queue">
+      SQS: FIFO Queue
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SQS-Queue-with-Dead-Letter-Queue">
+      SQS: Queue with Dead Letter Queue
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SNS-to-SQS-Fan-Out-Pattern">
+      SNS to SQS: Fan-Out Pattern
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SNS-to-Lambda">
+      SNS to Lambda
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SQS-to-Lambda">
+      SQS to Lambda
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Email-Notifications">
+      Email Notifications
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SMS-Notifications">
+      SMS Notifications
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Best-Practices">
+      Best Practices
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#SNS-Best-Practices">
+      SNS Best Practices
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Performance">
+      Performance
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Security">
+      Security
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Cost-Optimization">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Reliability">
+      Reliability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#SQS-Best-Practices">
+      SQS Best Practices
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Performance-1">
+      Performance
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Security-1">
+      Security
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Cost-Optimization-1">
+      Cost Optimization
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Reliability-1">
+      Reliability
+    </a>
+  </li>
+  <li class="level-3">
+    <a href="#Message-Processing-Patterns">
+      Message Processing Patterns
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Fan-Out-SNS-to-Multiple-SQS">
+      Fan-Out (SNS to Multiple SQS)
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Queue-Chain-SQS-to-Lambda-to-SQS">
+      Queue Chain (SQS to Lambda to SQS)
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Priority-Queue">
+      Priority Queue
+    </a>
+  </li>
+  <li class="level-4">
+    <a href="#Circuit-Breaker">
+      Circuit Breaker
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#SNS-vs-SQS">
+      SNS vs SQS
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#FIFO-vs-Standard">
+      FIFO vs Standard
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Message-Attributes">
+      Message Attributes
+    </a>
+  </li>
+  <li class="level-2">
+    <a href="#Resources">
+      Resources
+    </a>
+  </li>
+</ul>
+</aside>
+<dialog>
+    <input type="search" placeholder="Search docs" />
+    <div class="results">
+        <ul></ul>
+        <p class="empty">Type something to start searching.</p>
+    </div>
+</dialog>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-tips.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme-toggle.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-theme.js"></script>
+<script type="module" src="https://totallymoney.github.io/FsCDK/content/fsdocs-search.js"></script>
+
+</body>
+</html>
