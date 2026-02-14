@@ -30,6 +30,7 @@ open Amazon.CDK.AWS.APIGateway
 open Amazon.CDK.AWS.ECS
 open Amazon.CDK.AWS.CloudTrail
 open Amazon.CDK.AWS.SSM
+open Amazon.CDK.AwsBedrock
 //open Amazon.CDK.AWS.CloudHSMV2
 
 // ============================================================================
@@ -105,6 +106,10 @@ type Operation =
     | UserOp of UserSpec
     | SSMParameterOp of SSMParameterSpec
     | SSMDocumentOp of SSMDocumentSpec
+    | BedrockAgentOp of BedrockAgentSpec
+    | BedrockKnowledgeBaseOp of BedrockKnowledgeBaseSpec
+    | BedrockDataSourceOp of BedrockDataSourceSpec
+    | BedrockGuardrailOp of BedrockGuardrailSpec
 
 // ============================================================================
 // Helper Functions - Process Operations in Stack
@@ -585,6 +590,22 @@ module StackOperations =
 
             ssmDocumentSpec.Document <- Some document
 
+        | BedrockAgentOp agentSpec ->
+            let agent = CfnAgent(stack, agentSpec.ConstructId, agentSpec.Props)
+            agentSpec.Agent <- Some agent
+
+        | BedrockKnowledgeBaseOp kbSpec ->
+            let kb = CfnKnowledgeBase(stack, kbSpec.ConstructId, kbSpec.Props)
+            kbSpec.KnowledgeBase <- Some kb
+
+        | BedrockDataSourceOp dsSpec ->
+            let ds = CfnDataSource(stack, dsSpec.ConstructId, dsSpec.Props)
+            dsSpec.DataSource <- Some ds
+
+        | BedrockGuardrailOp grSpec ->
+            let gr = CfnGuardrail(stack, grSpec.ConstructId, grSpec.Props)
+            grSpec.Guardrail <- Some gr
+
 
 // ============================================================================
 // Stack and App Configuration DSL
@@ -1042,9 +1063,60 @@ type StackBuilder(name: string) =
     member inline this.Bind(spec: UserSpec, [<InlineIfLambda>] cont: IUser -> StackConfig) : StackConfig =
         this.BindViaYield UserOp (fun s -> s.User) "User" (fun s -> s.ConstructId) spec cont
 
+    member inline this.Bind(spec: BedrockAgentSpec, [<InlineIfLambda>] cont: CfnAgent -> StackConfig) : StackConfig =
+        this.BindViaYield BedrockAgentOp (fun s -> s.Agent) "Bedrock Agent" (fun s -> s.AgentName) spec cont
+
+    member inline this.Bind
+        (
+            spec: BedrockKnowledgeBaseSpec,
+            [<InlineIfLambda>] cont: CfnKnowledgeBase -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield
+            BedrockKnowledgeBaseOp
+            (fun s -> s.KnowledgeBase)
+            "Bedrock Knowledge Base"
+            (fun s -> s.KnowledgeBaseName)
+            spec
+            cont
+
+    member inline this.Bind
+        (
+            spec: BedrockDataSourceSpec,
+            [<InlineIfLambda>] cont: CfnDataSource -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield
+            BedrockDataSourceOp
+            (fun s -> s.DataSource)
+            "Bedrock Data Source"
+            (fun s -> s.DataSourceName)
+            spec
+            cont
+
+    member inline this.Bind
+        (
+            spec: BedrockGuardrailSpec,
+            [<InlineIfLambda>] cont: CfnGuardrail -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield
+            BedrockGuardrailOp
+            (fun s -> s.Guardrail)
+            "Bedrock Guardrail"
+            (fun s -> s.GuardrailName)
+            spec
+            cont
+
     member this.Yield(trailSpec: CloudTrailSpec) : StackConfig = this.Init(CloudTrailOp trailSpec)
 
     member this.Yield(trailSpec: EfsFileSystemSpec) : StackConfig = this.Init(EfsFileSystemOp trailSpec)
+
+    member this.Yield(agentSpec: BedrockAgentSpec) : StackConfig = this.Init(BedrockAgentOp agentSpec)
+
+    member this.Yield(kbSpec: BedrockKnowledgeBaseSpec) : StackConfig =
+        this.Init(BedrockKnowledgeBaseOp kbSpec)
+
+    member this.Yield(dsSpec: BedrockDataSourceSpec) : StackConfig = this.Init(BedrockDataSourceOp dsSpec)
+
+    member this.Yield(grSpec: BedrockGuardrailSpec) : StackConfig = this.Init(BedrockGuardrailOp grSpec)
 
     member _.Zero() : StackConfig =
         { Name = name

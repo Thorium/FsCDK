@@ -243,6 +243,7 @@ table th {
 | ![App Runner](img/icons/Arch_AWS-App-Runner_48.png) | **App Runner** | Fully managed container service for web apps and APIs |
 | ![AppSync](img/icons/Arch_AWS-AppSync_48.png) | **AppSync** | Builds managed GraphQL APIs with real-time data synchronization |
 | [![Bastion Host](img/icons/Res_Amazon-EC2_Instance_48.png)](bastion-host.html) | [**Bastion Host**](bastion-host.html) | Secure SSH access to instances in private subnets 📚 *with curated learning resources* |
+| | [**Bedrock**](bedrock.html) | Foundation models for generative AI applications (Agents, Knowledge Bases, Guardrails) |
 | [![Certificate Manager](img/icons/Arch_AWS-Certificate-Manager_48.png)](certificate-manager.html) | [**Certificate Manager**](certificate-manager.html) | Manages SSL/TLS certificates for secure connections 📚 *with curated learning resources* |
 | ![CloudFront](img/icons/Arch_Amazon-CloudFront_48.png) | **CloudFront** | Content delivery network (CDN) for fast global content distribution |
 | ![CloudHSM](img/icons/Arch_AWS-CloudHSM_48.png) | **CloudHSM** | Hardware security modules for cryptographic key storage |
