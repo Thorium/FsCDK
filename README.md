@@ -83,7 +83,7 @@ Notes:
 
 ## Supported AWS Services
 
-FsCDK provides F# builders for 30+ AWS services across all major categories:
+FsCDK provides F# builders for 35+ AWS services across all major categories:
 
 | Service | What it does |
 |---------|--------------|
@@ -92,6 +92,7 @@ FsCDK provides F# builders for 30+ AWS services across all major categories:
 | **App Runner** | Fully managed container service for web apps and APIs |
 | **AppSync** | Builds managed GraphQL APIs with real-time data synchronization |
 | **Bastion Host** | Secure SSH access to instances in private subnets - [📚 Docs with learning resources](https://totallymoney.github.io/FsCDK/bastion-host.html) |
+| **Bedrock** | AI/ML foundation models with Agents, Knowledge Bases, Data Sources, and Guardrails - [📚 Docs with learning resources](https://totallymoney.github.io/FsCDK/bedrock.html) |
 | **Certificate Manager** | Manages SSL/TLS certificates for secure connections - [📚 Docs with learning resources](https://totallymoney.github.io/FsCDK/certificate-manager.html) |
 | **CloudFront** | Content delivery network (CDN) for fast global content distribution |
 | **CloudHSM** | Hardware security modules for cryptographic key storage |
