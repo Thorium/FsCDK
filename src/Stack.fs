@@ -110,6 +110,10 @@ type Operation =
     | BedrockKnowledgeBaseOp of BedrockKnowledgeBaseSpec
     | BedrockDataSourceOp of BedrockDataSourceSpec
     | BedrockGuardrailOp of BedrockGuardrailSpec
+    | HttpApiOp of HttpApiSpec
+    | WebAclOp of WebAclSpec
+    | BucketDeploymentOp of BucketDeploymentSpec
+    | CfnOutputOp of CfnOutputSpec
 
 // ============================================================================
 // Helper Functions - Process Operations in Stack
@@ -222,17 +226,49 @@ module StackOperations =
             let sg = SecurityGroup(stack, sgSpec.ConstructId, sgSpec.Props)
             sgSpec.SecurityGroup <- Some sg
 
-        | RdsInstanceOp rdsSpec -> DatabaseInstance(stack, rdsSpec.ConstructId, rdsSpec.Props) |> ignore
+        | RdsInstanceOp rdsSpec ->
+            let instance = DatabaseInstance(stack, rdsSpec.ConstructId, rdsSpec.Props)
+            rdsSpec.Instance <- Some instance
 
         | CloudFrontDistributionOp cfSpec ->
-            Amazon.CDK.AWS.CloudFront.Distribution(stack, cfSpec.ConstructId, cfSpec.Props)
-            |> ignore
+            cfSpec.SpaRewritePath
+            |> Option.iter (fun pagePath ->
+                match cfSpec.Props.DefaultBehavior with
+                | :? BehaviorOptions as behavior ->
+                    let rewrite =
+                        Amazon.CDK.AWS.CloudFront.Function(
+                            stack,
+                            $"{cfSpec.ConstructId}SpaRewrite",
+                            Amazon.CDK.AWS.CloudFront.FunctionProps(
+                                Code = FunctionCode.FromInline(CloudFrontOrigins.spaRewriteCode pagePath),
+                                Runtime = FunctionRuntime.JS_2_0
+                            )
+                        )
+
+                    let association =
+                        FunctionAssociation(Function = rewrite, EventType = FunctionEventType.VIEWER_REQUEST)
+                        :> IFunctionAssociation
+
+                    behavior.FunctionAssociations <-
+                        Array.append
+                            (behavior.FunctionAssociations |> Option.ofObj |> Option.defaultValue [||])
+                            [| association |]
+                | _ ->
+                    failwith
+                        $"Distribution '{cfSpec.DistributionName}': spaRewrite needs a default behavior built by FsCDK or a BehaviorOptions.")
+
+            let distribution =
+                Amazon.CDK.AWS.CloudFront.Distribution(stack, cfSpec.ConstructId, cfSpec.Props)
+
+            cfSpec.Distribution <- Some distribution
 
         | UserPoolOp upSpec ->
             let up = UserPool(stack, upSpec.ConstructId, upSpec.Props)
             upSpec.UserPool <- Some up
 
-        | UserPoolClientOp upcSpec -> UserPoolClient(stack, upcSpec.ConstructId, upcSpec.Props) |> ignore
+        | UserPoolClientOp upcSpec ->
+            let client = UserPoolClient(stack, upcSpec.ConstructId, upcSpec.Props)
+            upcSpec.UserPoolClient <- Some client
 
         | UserPoolResourceServerOp uprsSpec ->
             let rs = UserPoolResourceServer(stack, uprsSpec.ConstructId, uprsSpec.Props)
@@ -342,6 +378,16 @@ module StackOperations =
 
         | CloudWatchAlarmOp alarmSpec ->
             let ala = Alarm(stack, alarmSpec.ConstructId, alarmSpec.Props)
+
+            if not alarmSpec.AlarmActions.IsEmpty then
+                ala.AddAlarmAction(Array.ofList alarmSpec.AlarmActions)
+
+            if not alarmSpec.OkActions.IsEmpty then
+                ala.AddOkAction(Array.ofList alarmSpec.OkActions)
+
+            if not alarmSpec.InsufficientDataActions.IsEmpty then
+                ala.AddInsufficientDataAction(Array.ofList alarmSpec.InsufficientDataActions)
+
             alarmSpec.Alarm <- Some ala
 
         //| CloudHSMClusterOp hsmSpec ->
@@ -605,6 +651,20 @@ module StackOperations =
         | BedrockGuardrailOp grSpec ->
             let gr = CfnGuardrail(stack, grSpec.ConstructId, grSpec.Props)
             grSpec.Guardrail <- Some gr
+
+        | HttpApiOp apiSpec -> HttpApiOperations.create stack apiSpec
+
+        | WebAclOp aclSpec -> WebAclOperations.create stack aclSpec
+
+        | BucketDeploymentOp deploymentSpec ->
+            let deployment =
+                Amazon.CDK.AWS.S3.Deployment.BucketDeployment(stack, deploymentSpec.ConstructId, deploymentSpec.Props)
+
+            deploymentSpec.Deployment <- Some deployment
+
+        | CfnOutputOp outputSpec ->
+            let output = CfnOutput(stack, outputSpec.ConstructId, outputSpec.Props)
+            outputSpec.Output <- Some output
 
 
 // ============================================================================
@@ -1117,6 +1177,89 @@ type StackBuilder(name: string) =
     member this.Yield(dsSpec: BedrockDataSourceSpec) : StackConfig = this.Init(BedrockDataSourceOp dsSpec)
 
     member this.Yield(grSpec: BedrockGuardrailSpec) : StackConfig = this.Init(BedrockGuardrailOp grSpec)
+
+    member this.Yield(apiSpec: HttpApiSpec) : StackConfig = this.Init(HttpApiOp apiSpec)
+
+    member this.Yield(aclSpec: WebAclSpec) : StackConfig = this.Init(WebAclOp aclSpec)
+
+    member this.Yield(deploymentSpec: BucketDeploymentSpec) : StackConfig =
+        this.Init(BucketDeploymentOp deploymentSpec)
+
+    member this.Yield(outputSpec: CfnOutputSpec) : StackConfig = this.Init(CfnOutputOp outputSpec)
+
+    member inline this.Bind
+        (
+            spec: HttpApiSpec,
+            [<InlineIfLambda>] cont: Amazon.CDK.AWS.Apigatewayv2.HttpApi -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield HttpApiOp (fun s -> s.HttpApi) "HttpApi" (fun s -> s.ApiName) spec cont
+
+    member inline this.Bind
+        (
+            spec: DatabaseInstanceSpec,
+            [<InlineIfLambda>] cont: DatabaseInstance -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield RdsInstanceOp (fun s -> s.Instance) "DatabaseInstance" (fun s -> s.DatabaseName) spec cont
+
+    member inline this.Bind
+        (
+            spec: DatabaseProxySpec,
+            [<InlineIfLambda>] cont: IDatabaseProxy -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield DatabaseProxyOp (fun s -> s.DatabaseProxy) "DatabaseProxy" (fun s -> s.ProxyName) spec cont
+
+    member inline this.Bind
+        (
+            spec: DistributionSpec,
+            [<InlineIfLambda>] cont: IDistribution -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield
+            CloudFrontDistributionOp
+            (fun s -> s.Distribution)
+            "Distribution"
+            (fun s -> s.DistributionName)
+            spec
+            cont
+
+    member inline this.Bind
+        (
+            spec: WebAclSpec,
+            [<InlineIfLambda>] cont: Amazon.CDK.AWS.WAFv2.CfnWebACL -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield WebAclOp (fun s -> s.WebAcl) "WebAcl" (fun s -> s.AclName) spec cont
+
+    member inline this.Bind
+        (
+            spec: BucketDeploymentSpec,
+            [<InlineIfLambda>] cont: Amazon.CDK.AWS.S3.Deployment.BucketDeployment -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield
+            BucketDeploymentOp
+            (fun s -> s.Deployment)
+            "BucketDeployment"
+            (fun s -> s.DeploymentName)
+            spec
+            cont
+
+    member inline this.Bind
+        (
+            spec: OIDCProviderSpec,
+            [<InlineIfLambda>] cont: IOpenIdConnectProvider -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield OIDCProviderOp (fun s -> s.Provider) "OIDC Provider" (fun s -> s.ProviderName) spec cont
+
+    member inline this.Bind
+        (
+            spec: UserPoolResourceServerSpec,
+            [<InlineIfLambda>] cont: IUserPoolResourceServer -> StackConfig
+        ) : StackConfig =
+        this.BindViaYield
+            UserPoolResourceServerOp
+            (fun s -> s.ResourceServer)
+            "UserPoolResourceServer"
+            (fun s -> s.ResourceServerName)
+            spec
+            cont
 
     member _.Zero() : StackConfig =
         { Name = name

@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `httpApi` creates a real HTTP API: Lambda/integration routes, `publicRoute`, `routeSpec`, Cognito and JWT authorizers, custom domain, default-stage throttling, JSON access logs, `let!` bind to `HttpApi`
+- `webAcl` WAFv2 builder: managed rule groups, rate limits, REGIONAL/CLOUDFRONT scope, associations, logging with redacted fields
+- `bucketDeployment` builder (asset upload with CloudFront invalidation) and `cfnOutput` builder
+- CloudFront `OriginAccessControlOrigin` origin (refuses `aws/s3`-key buckets OAC cannot read), `errorResponse`, `spaErrorResponses`, `spaRewrite` (CloudFront Function on the default behavior); `let!` bind to `IDistribution`
+- `githubActionsRole` builder for GitHub Actions OIDC deploy roles (repository + branch/tag/environment `sub` conditions, `cdkDeployAccess`)
+- `cloudwatchAlarm` `alarmAction`, `okAction`, `insufficientDataAction` (SNS) and `actionsEnabled`
+- `let!` binds for `rdsInstance` (`DatabaseInstance`), `rdsProxy`, `oidcProvider`, `userPoolResourceServer`, `bucketDeployment`, `webAcl`
+- `samples/serverless-web`: CloudFront + OAC SPA, HTTP API with Cognito JWT to a .NET Lambda (SnapStart), DynamoDB, WAF
+
+### Fixed
+- `rdsInstance` and `cloudFrontDistribution` constructs are stored on the spec instead of discarded
+- `userPoolClient` stores its construct, so `let!` on it works
+- `rdsProxy` `proxyTarget` accepts database instances (the overload always resolved to clusters)
+- `HttpApiHelpers.corsPermissive` no longer combines `*` origins with credentials
+
 ## [0.2.0] - 2025-12-10
 
 ### Added
