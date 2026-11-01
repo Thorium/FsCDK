@@ -316,8 +316,8 @@ FsCDK emphasizes **security and reliability by default**:
 
 - X-Ray tracing enabled
 - Structured JSON logging
-- Auto-DLQ creation
-- Reserved concurrency (10)
+- Opt-in DLQ creation (`autoCreateDLQ true`) and Powertools layer (`autoAddPowertools true`)
+- No hidden reserved concurrency: set `reservedConcurrentExecutions` explicitly
 - Environment encryption (KMS)
 - 90-day log retention
 

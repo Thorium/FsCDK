@@ -72,6 +72,8 @@ stack "BasicHttpAPI" {
 Adopt a least-privilege CORS policy from day one. The development configuration below mirrors the rapid-prototyping approach that **Heitor Lessa** demonstrates in the Powertools workshops, while the production configuration reflects the lock-down guidance from the **AWS Security Blog** article “Implementing secure CORS for API Gateway.” Use permissive settings only in sandbox environments and document every approved origin for production.
 
 `HttpApiHelpers.corsPermissive` allows any origin and therefore does not allow credentials (browsers reject that combination).
+When the browser must send cookies or other credentials, use `HttpApiHelpers.corsWithCredentials` with explicit origins:
+API Gateway rejects `AllowCredentials` combined with a `*` origin.
 *)
 
 stack "HttpAPIWithCORS" {
@@ -98,6 +100,20 @@ stack "HttpAPIWithCORS" {
                 [ "https://myapp.com"; "https://www.myapp.com" ]
                 [ CorsHttpMethod.GET; CorsHttpMethod.POST; CorsHttpMethod.PUT ]
                 [ "Content-Type"; "Authorization" ]
+        )
+
+        route HttpMethod.ANY "/{proxy+}" fn
+    }
+
+    // Production with cookies: explicit origins + credentials
+    httpApi "session-api" {
+        description "API called with browser credentials"
+
+        cors (
+            HttpApiHelpers.corsWithCredentials
+                [ "https://myapp.com" ]
+                [ CorsHttpMethod.GET; CorsHttpMethod.POST ]
+                [ "Content-Type" ]
         )
 
         route HttpMethod.ANY "/{proxy+}" fn
@@ -219,6 +235,9 @@ let restrictedCors =
         [ CorsHttpMethod.GET; CorsHttpMethod.POST ]
         [ "Content-Type"; "Authorization" ]
 
+let credentialedCors =
+    HttpApiHelpers.corsWithCredentials [ "https://example.com" ] [ CorsHttpMethod.GET ] [ "Content-Type" ]
+
 // Route Key Helpers
 let getUsersRoute = HttpApiHelpers.getRoute "/users"
 let createUserRoute = HttpApiHelpers.postRoute "/users"
@@ -238,17 +257,25 @@ let anyMethodRoute = HttpApiHelpers.anyRoute "/{proxy+}"
 | Operations | Tag APIs (`Service`, `Environment`), version routes (`/v1`, `/v2`), and document schemas using OpenAPI. Include runbooks for authoriser failures. | Supports operational excellence per Well-Architected Serverless Lens. |
 
 FsCDK’s builder defaults—auto-deployed `$default` stage and disabled CORS—provide a sensible starting point. Bind the
-API with `let!` whenever you need the underlying `HttpApi` (stages, VPC links, metrics):
+API with `let!` whenever you need the underlying `HttpApi` (stages, VPC links, metrics). Alarms notify an SNS topic
+with `alarmAction`; `okAction` and `insufficientDataAction` notify on recovery and missing data, and
+`actionsEnabled false` mutes the actions without deleting the alarm:
 
 ```fsharp
 let! api = httpApi "items-api" { route HttpMethod.GET "/items" itemsFn }
+let! alertsTopic = topic "ApiAlerts" { () }
 
 cloudwatchAlarm "ItemsApi5xx" {
     metric (api.MetricServerError())
     threshold 5.0
+    evaluationPeriods 1
     alarmAction alertsTopic
+    okAction alertsTopic
 }
 ```
+
+See [CloudFront static sites and SPAs](cloudfront-static-site.html) to serve the API under `/api/*` next to a
+single-page app.
 
 ## Further learning
 
