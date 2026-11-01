@@ -63,7 +63,10 @@ stack "StaticSite" {
         cloudFrontDistribution "StaticSiteCdn" {
             s3DefaultBehavior (OriginAccessControlOrigin site)
             defaultRootObject "index.html"
-            errorResponse (ErrorResponse(HttpStatus = 404.0, ResponseHttpStatus = 404.0, ResponsePagePath = "/404.html"))
+
+            errorResponse (
+                ErrorResponse(HttpStatus = 404.0, ResponseHttpStatus = 404.0, ResponsePagePath = "/404.html")
+            )
         }
 
     bucketDeployment "StaticSiteContent" {
